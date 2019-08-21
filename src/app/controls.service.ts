@@ -89,4 +89,20 @@ export class ControlsService {
     toast.present();
   }
 
+  async PastDateToast() {
+    const toast = await this.toastController.create({
+      message: 'You cannot select a past date',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+  async FutureDateToast() {
+    const toast = await this.toastController.create({
+      message: 'You cannot select a day further than 7 days from today.',
+      duration: 5000
+    });
+    toast.present();
+  }
+
 }

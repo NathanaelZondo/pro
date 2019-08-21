@@ -11,8 +11,42 @@ import { VirtualTimeScheduler } from 'rxjs';
 })
 export class BookwithsalonPage implements OnInit {
 
-  constructor(public backend:BackendService,public control:ControlsService) { }
+  constructor(public backend:BackendService,public control:ControlsService) {
+    let cdate =new Date();
+    cdate.getFullYear();
+    let cd1 =new Date();
+    
+    
+    
+    cdate.getDay();
+  this.currentdate= (cdate.getFullYear()+"-"+(cd1.getMonth()+1)+"-"+cdate.getDate());
 
+
+  this.futuredate = (cdate.getFullYear()+"-"+(cd1.getMonth()+1)+"-"+cdate.getDate());
+
+
+
+  if(cdate.getDate()>28)
+  {
+    this.futuredate = (cdate.getFullYear()+"-"+(cd1.getMonth()+2)+"-"+((cdate.getDate()+7-31)));
+    console.log("futuredate1", this.futuredate )
+  
+  }
+  else
+  {
+    this.futuredate = (cdate.getFullYear()+"-"+(cd1.getMonth()+1)+"-"+(cdate.getDate()+7));
+    console.log("futuredate2", this.futuredate )
+  
+  }
+  
+
+  console.log("futuredate", this.futuredate )
+  this.dat =this.currentdate;
+  console.log(this.dat)
+   }
+currentdate ;
+futuredate;
+dat:Date;
   ngOnInit() {
     
   }
@@ -32,8 +66,24 @@ export class BookwithsalonPage implements OnInit {
 
 setbooking(booking:bookings)
 {
-  this.backend.userbookings(booking);
-  this.control.router.navigate(['home']);
+  //this.backend.userbookings(booking);
+
+  if(new Date(this.userdate)<new Date(this.currentdate))
+  {
+   this.control.PastDateToast();
+  }
+  else if(new Date(this.userdate)>new Date(this.futuredate))
+  {
+    this.control.FutureDateToast();
+  }
+
+  //this.control.router.navigate(['home']);
 }
+
+
+
+userdate;
+
+
 
 }
