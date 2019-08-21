@@ -5,6 +5,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ControlContainer } from '@angular/forms';
 import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
+import { Profile } from '../profile';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomePage {
 
 
   salon=[];
- 
+profiles:Profile[];
 cover;
 desc;
 location;
@@ -33,6 +34,21 @@ this.desc = this.salon[0].desc;
 this.location =this.salon[0].location;
 this.salonname=this.salon[0].nameOfSalon;
     
+  })
+
+  this.backend.getProfile().subscribe(val=>{
+    
+
+    this.profiles =val;
+
+    
+    
+    
+    
+this.backend.setuserdata(this.profiles[0].name,this.profiles[0].surname,this.profiles[0].cell)
+
+
+    console.log("this is the value for profile",)
   })
   }
 

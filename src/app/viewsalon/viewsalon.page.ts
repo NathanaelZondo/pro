@@ -20,11 +20,11 @@ export class ViewsalonPage implements OnInit {
   {
     if(x==0)
     {
-      this.backend.getstyles();
+      this.backend.getstyles(0);
     this.control.router.navigate(['viewhairstyle']);
   }
 else{
- // this.backend.getstyles();
-  //this.control.router.navigate(['viewhairstyle']);
+ this.backend.getstyles(1);
+  this.control.router.navigate(['viewhairstyle']);
 }
   }}

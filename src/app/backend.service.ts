@@ -9,6 +9,7 @@ import {AngularFirestore,AngularFirestoreCollection,AngularFirestoreDocument} fr
 import { Profile } from './profile';
 import { Observable } from 'rxjs/Observable';
 import { ControlsService } from './controls.service';
+import { bookings } from './booking';
 
 
 @Injectable({
@@ -33,6 +34,8 @@ salons:Observable<any[]>;
    this.womenstyles=this.afs.collection('Salons').doc('sRkAEe3vxX5d7LR8WnhW').collection('Styles').doc('women').valueChanges()
     console.log()
    }
+
+   gend;
 
 getProfile()
 {
@@ -67,12 +70,76 @@ authstate()
 return this.salons;
 }
 
-getstyles()
+getstyles(x)
+{
+  this.gend =x;
+if(x ==0)
+{
+ return this.menstyles; 
+}
+else{
+  return this.womenstyles;
+}
+}
+
+setuserdata(name,surname,cell)
+{
+this.name=name;
+this.surname=surname;
+this.cell =cell;  
+if(name ==""||surname==""||cell<1000)
+{
+  this.control.router.navigate(['createprofile']);
+}
+else
+{
+  this.control.router.navigate(['home']);
+  console.log("logged in user name",name)
+}
+}
+
+setsalondata()
+{
+  
+}
+
+name:string;
+surname:string;
+cell:string;
+salonname:string;
+salonlocation:string;
+hairstyletype:string;
+hairstyleprice:string;
+estimatedtime:number;
+sessiontime:number;
+
+
+
+userbookings(value,booking:bookings)
 {
 
- return this.menstyles; 
+booking.name =this.name;
 
 
+booking.surname =this.surname;
+
+
+booking.cell =this.cell;
+
+booking.salonname=this.salonname;
+
+booking.salonlocation=this.salonlocation;
+
+booking.hairstyletype =this.hairstyletype;
+
+booking.hairstyleprice=this.hairstyleprice
+
+booking.estimatedtime =this.estimatedtime;
+
+
+booking.sessiontime=this.sessiontime;
+
+console.log(booking)
 }
 }
 
