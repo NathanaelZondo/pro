@@ -133,7 +133,11 @@ sessiontime:number;
 userbookings(booking:bookings)
 {
 console.log(booking)
-this.afs.collection('userbookings').doc(firebase.auth().currentUser.uid); 
+
+
+this.afs.collection('Bookings').doc(firebase.auth().currentUser.uid).collection('userbookings').add(booking).then(result=>{
+  console.log(result)
+}); 
 
 }
 }
