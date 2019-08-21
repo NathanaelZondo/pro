@@ -29,13 +29,15 @@ salons:Observable<any[]>;
 
     this.salons=this.afs.collection('Salons').valueChanges();
 
-    this.menstyles = this.afs.collection('Salons').doc('sRkAEe3vxX5d7LR8WnhW').collection('Styles').doc('Men').valueChanges();
+    this.menstyles = this.afs.collection('Salons').doc('sRkAEe3vxX5d7LR8WnhW').collection('Styles').doc('gender').collection('male').doc('ESdvVuyYbccge3Au9Qlq').valueChanges();
 
-   this.womenstyles=this.afs.collection('Salons').doc('sRkAEe3vxX5d7LR8WnhW').collection('Styles').doc('women').valueChanges()
-    console.log()
+  
+   this.womenstyles=this.afs.collection('Salons').doc('sRkAEe3vxX5d7LR8WnhW').collection('Styles').doc('gender').collection('female').doc('AKVWEYRB3203GYtMfc3B').valueChanges();
+    
    }
 
    gend;
+   type ='chiskop;'
 
 getProfile()
 {
@@ -75,9 +77,11 @@ getstyles(x)
   this.gend =x;
 if(x ==0)
 {
+  
  return this.menstyles; 
 }
 else{
+  
   return this.womenstyles;
 }
 }
@@ -98,9 +102,20 @@ else
 }
 }
 
-setsalondata()
+setsalondata(name,location)
 {
-  
+  this.salonname=name;
+  this.salonlocation=location;
+
+  console.log(name,location);
+}
+
+sethairstyledata(name,duration,price)
+{
+  this.hairstyletype=name;
+ this.hairstyleprice=price;
+ this.estimatedtime=duration; 
+ console.log(name,duration,price);
 }
 
 name:string;
@@ -115,31 +130,11 @@ sessiontime:number;
 
 
 
-userbookings(value,booking:bookings)
+userbookings(booking:bookings)
 {
-
-booking.name =this.name;
-
-
-booking.surname =this.surname;
-
-
-booking.cell =this.cell;
-
-booking.salonname=this.salonname;
-
-booking.salonlocation=this.salonlocation;
-
-booking.hairstyletype =this.hairstyletype;
-
-booking.hairstyleprice=this.hairstyleprice
-
-booking.estimatedtime =this.estimatedtime;
-
-
-booking.sessiontime=this.sessiontime;
-
 console.log(booking)
+this.afs.collection('userbookings').doc(firebase.auth().currentUser.uid); 
+
 }
 }
 

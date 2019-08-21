@@ -33,6 +33,8 @@ this.cover =this.salon[0].coverImage;
 this.desc = this.salon[0].desc;
 this.location =this.salon[0].location;
 this.salonname=this.salon[0].nameOfSalon;
+
+this.backend.setsalondata(this.salonname,this.location)
     
   })
 

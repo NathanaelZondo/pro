@@ -7,26 +7,27 @@
 <ion-content>
 <ion-item>
   <ion-label></ion-label>
-  <ion-input placeholder="name"></ion-input>
+  <ion-input placeholder="name" [(ngModel)] ="booking.name"></ion-input>
 </ion-item>
 <ion-item>
   <ion-label></ion-label>
-  <ion-input placeholder="surname"></ion-input>
+  <ion-input placeholder="surname" [(ngModel)] ="booking.surname"></ion-input>
 </ion-item>
 <ion-item>
   <ion-label></ion-label>
-  <ion-input placeholder="cell"></ion-input>
+  <ion-input placeholder="cell" [(ngModel)] ="booking.cell"></ion-input>
 </ion-item>
 <ion-item>
   <ion-label></ion-label>
-  <ion-input placeholder="hairstyle type"></ion-input>
+  <ion-input placeholder="hairstyle type" [(ngModel)] ="booking.hairstyletype"></ion-input>
 </ion-item>
 <ion-item>
   <ion-label></ion-label>
-  <ion-input placeholder="estimated time for hairstyle"></ion-input>
+  <ion-input placeholder="estimated time for hairstyle" [(ngModel)] ="booking.estimatedtime"></ion-input>
 </ion-item>
 <ion-item>
   <ion-label></ion-label>
-  <ion-input placeholder="session time"></ion-input>
+  <ion-input placeholder="session time" type ="time" [(ngModel)] ="booking.sessiontime" ></ion-input>
 </ion-item>
+<ion-button (click) ="setbooking(booking)">Submit</ion-button>
 </ion-content>

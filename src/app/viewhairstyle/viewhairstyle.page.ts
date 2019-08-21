@@ -12,13 +12,21 @@ export class ViewhairstylePage implements OnInit {
   fg ={};
   constructor(public backend:BackendService,public control:ControlsService) {
 
-    this.backend.getstyles(this.backend.gend).subscribe(val=>{
-      this.fg =val;
+ 
+   }
+
+  ionViewDidEnter()
+{
+  this.backend.getstyles(this.backend.gend).subscribe(val=>{
+    this.fg =val;
 this.gender.push(this.fg);
 
-console.log(this.gender)
-    })
-   }
+this.backend.sethairstyledata(this.gender[0].hairstyle,this.gender[0].duration,this.gender[0].hairprice);
+
+
+console.log(this.gender[0].duration)
+  })
+}
 
   ngOnInit() {
   }
