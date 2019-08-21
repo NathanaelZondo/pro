@@ -12,8 +12,8 @@ export class ViewhairstylePage implements OnInit {
   fg ={};
   constructor(public backend:BackendService,public control:ControlsService) {
 
-    this.backend.getstyles().subscribe(val=>{
-      //this.fg = val;
+    this.backend.getstyles(this.backend.gend).subscribe(val=>{
+      this.fg =val;
 this.gender.push(this.fg);
 
 console.log(this.gender)

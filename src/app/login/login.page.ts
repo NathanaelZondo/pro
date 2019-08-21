@@ -44,7 +44,7 @@ firebase.auth().signInWithEmailAndPassword(user.email, user.password).then(resul
   
   if(result.user.uid>"")
   {
-    this.control.router.navigate(['createprofile']);
+    this.control.router.navigate(['home']);
     
     this.control.LoginToast();
   
