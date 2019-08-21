@@ -1,0 +1,36 @@
+<ion-content align ="center">
+
+  
+  <pre>
+  
+  
+  
+  </pre>
+  <b><h1 style ="color:white">LOGIN</h1></b>
+  <pre>
+  </pre>
+    <img src ='../../assets/icon/avt.png' style ="filter: invert(0%)" height ="100px" width ="100px">
+      
+  <br>
+  <br>
+    <ion-item style ="border:none">
+          <ion-label floating style ="color: white">Enter your email address</ion-label>
+          <ion-input ion-input  type ="email" [(ngModel)] ="user.email" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating style ="color: white">Enter your password</ion-label>
+          <ion-input  type ="password"  [(ngModel)] ="user.password" ></ion-input>
+        </ion-item>
+        <pre></pre>
+      <button ion-button full (click) = "fun(user)" >Log In &nbsp;<ion-icon name="log-in"></ion-icon></button>
+      <pre>
+
+
+
+      </pre>
+      
+      <label>OR</label>
+
+      <button ion-button full (click) = "signup()" >Sign Up &nbsp;<ion-icon name="create"></ion-icon></button>
+  </ion-content>
+  

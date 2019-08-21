@@ -1,0 +1,25 @@
+<ion-content align ="center">
+  <pre>
+  
+  
+  
+  </pre>
+  <b><h1 style ="color:white">REGISTER</h1></b>
+  <pre>
+  </pre>
+    <img src ='../../assets/icon/add.png' style ="filter: invert(0%)" height ="100px" width ="100px">
+      
+  <br>
+  <br>
+  
+<ion-item>
+  <ion-label style ="color: white" floating>Enter email address</ion-label>
+  <ion-input ion-input  type ="text" [(ngModel)] ="user.email"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label style ="color: white" floating>Enter your password</ion-label>
+  <ion-input  type ="password"  [(ngModel)] ="user.password"></ion-input>
+</ion-item>
+
+    <button ion-button full (click) = "fun(user)" >SUBMIT<ion-icon name ="create"></ion-icon></button>
+</ion-content>

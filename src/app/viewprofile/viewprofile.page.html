@@ -1,0 +1,18 @@
+
+
+<ion-content>
+<ion-item *ngFor ="let profile of profiles">
+    <ion-thumbnail item-start>
+        <img src ="{{profile.image}}">
+      </ion-thumbnail>
+<pre>
+  
+{{profile.name}}
+{{profile.surname}}
+{{profile.cell}}
+{{profile.bio}}
+</pre>
+
+
+</ion-item>
+</ion-content>

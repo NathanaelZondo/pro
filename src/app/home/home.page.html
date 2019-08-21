@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content align ="center">
+ <ion-button (click)="signout()">Sign Out</ion-button>
+ <ion-button (click)="selectsalon()">Select Salon</ion-button>
+
+ <ion-item *ngFor="let sal of salon">
+  <ion-thumbnail>
+<img src ="{{sal.coverImage}}">
+
+  </ion-thumbnail> 
+  
+   <pre>
+     
+   {{sal.nameOfSalon}}
+   {{sal.location}}
+   {{sal.desc}}
+  </pre>
+   </ion-item>
+</ion-content>
