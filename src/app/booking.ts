@@ -12,5 +12,6 @@ hairstyleprice:string;
 hairstyletype:string;
 estimatedtime:number;
 sessiontime:number;
+sessionendtime:string;
 
 }
