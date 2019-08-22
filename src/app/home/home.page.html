@@ -23,4 +23,20 @@
    {{sal.desc}}
   </pre>
    </ion-item>
+   <ion-item *ngFor = "let x of salond"  (click)="selectsalon(x)" >
+
+      <ion-thumbnail>
+    <img src ="{{x.salonImage}}">
+      </ion-thumbnail>
+
+<pre>
+{{x.salonName}}
+{{x.location}}
+{{x.SalonDesc}}
+</pre>
+
+   </ion-item>
+
+
+  
 </ion-content>

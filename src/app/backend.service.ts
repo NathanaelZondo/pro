@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, AlertController, ToastController, LoadingController } from '@ionic/angular';
 import * as firebase from 'firebase';
-import { FirebaseAuth } from '@angular/fire';
+import { FirebaseAuth, FirebaseDatabase } from '@angular/fire';
 import { Router } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/database';
 import {AngularFirestore,AngularFirestoreCollection,AngularFirestoreDocument} from '@angular/fire/firestore';
@@ -10,6 +10,7 @@ import { Profile } from './profile';
 import { Observable } from 'rxjs/Observable';
 import { ControlsService } from './controls.service';
 import { bookings } from './booking';
+import { Firestore } from '@google-cloud/firestore';
 
 
 @Injectable({
@@ -18,12 +19,14 @@ import { bookings } from './booking';
 export class BackendService {
   itemsCollection:AngularFirestoreCollection<Profile>;
   items:Observable<any[]>;
-  
+  db = firebase.firestore();
   saloncollection:AngularFirestoreCollection<any>;
 salons:Observable<any[]>;
   menstyles:Observable<unknown>;
   womenstyles:Observable<unknown>;
-  constructor(public afs:AngularFirestore,public control:ControlsService) {
+  displayProfile: FirebaseFirestore.DocumentData;
+  salonsDisply =[];
+  constructor(public afs:AngularFirestore,public control:ControlsService,public loadingController: LoadingController,) {
 
     this.items=this.afs.collection('userprofile').valueChanges();
 
@@ -140,5 +143,34 @@ this.afs.collection('Bookings').doc(firebase.auth().currentUser.uid).collection(
 }); 
 
 }
+
+
+
+
+getHairSalon(){
+
+ 
+ this.db.collection('SalonNode').get().then( snap => {
+   if (snap.empty !== true){
+     console.log('Got data', snap);
+     snap.forEach(doc => {
+       console.log('Profile Document: ', doc.data())
+       this.displayProfile = doc.data();
+       this.name = doc.data().salonName;
+    this.salonsDisply.push(doc.data())
+     })
+     
+   } else {
+     console.log('No data');
+     
+   }
+  
+ }).catch(err => {
+   console.log("Query Results: ", err);
+  
+ })
+}
+
+
 }
 

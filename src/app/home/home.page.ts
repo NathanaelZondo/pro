@@ -21,20 +21,19 @@ cover;
 desc;
 location;
 salonname;
+salond =this.backend.salonsDisply;
   constructor(private camera:Camera,public control:ControlsService,public backend:BackendService) {
    // initializeApp(config);
    this.backend.authstate();
-
+console.log('check',this.salond)
    this.backend.getsalons().subscribe(val=>{
     this.salon =val;
     console.log(this.salon)
 
-this.cover =this.salon[0].coverImage;
-this.desc = this.salon[0].desc;
-this.location =this.salon[0].location;
-this.salonname=this.salon[0].nameOfSalon;
+
 
 this.backend.setsalondata(this.salonname,this.location)
+this.backend.getHairSalon()
     
   })
 
@@ -86,9 +85,15 @@ this.backend.signout();
 this.control.router.navigate(['login']);
   }
 
-  selectsalon()
+  selectsalon(x)
   {
     console.log(this.backend.getsalons());
+
+console.log()
+this.cover =x.salonImage;
+this.desc = x.SalonDesc;
+this.location =x.location;
+this.salonname=x.salonName;
     this.control.router.navigate(['viewsalon']);
   }
 }

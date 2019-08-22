@@ -120,7 +120,7 @@ if(mins+estimatedmins>59)
 {
 overlap =  mins+estimatedmins-60;
 
-hrs= estimatedhours+1;
+hrs= hrs+estimatedhours+1;
 mins =overlap;
  
 console.log("this is the converted time",hrs+":"+mins)
@@ -200,7 +200,7 @@ if(mins+estimatedmins>59)
 {
 overlap =  mins+estimatedmins-60;
 
-hrs= estimatedhours+1;
+hrs=hrs+ estimatedhours+1;
 mins =overlap;
  
 console.log("this is the converted time",hrs+":"+mins)
@@ -223,7 +223,7 @@ else if(mins+estimatedmins<59){
   mins =mins+estimatedmins;
    
   console.log("this is the converted time",hrs+":"+mins)
-  newhrs =parseFloat(hrs.toString());
+  newhrs =hrs+estimatedhours ;
   newmins =mins;
   if(newmins<10)
   {

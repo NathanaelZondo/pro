@@ -18,7 +18,7 @@ export class ViewsalonPage implements OnInit {
 
   selecthairstyle(x)
   {
-    if(x==0)
+    if(x == 0)
     {
       this.backend.getstyles(0);
     this.control.router.navigate(['viewhairstyle']);
