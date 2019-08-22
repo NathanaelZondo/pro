@@ -145,19 +145,28 @@ this.afs.collection('Bookings').doc(firebase.auth().currentUser.uid).collection(
 }
 
 
-
+hairstyledata:Array<any>=[];
 
 getHairSalon(){
 
  
  this.db.collection('SalonNode').get().then( snap => {
    if (snap.empty !== true){
-     console.log('Got data', snap);
+    
      snap.forEach(doc => {
-       console.log('Profile Document: ', doc.data())
+       //console.log('Profile Document: ', doc.data())
        this.displayProfile = doc.data();
        this.name = doc.data().salonName;
     this.salonsDisply.push(doc.data())
+
+    this.db.collection('SalonNode').doc(doc.data().salonName).collection('Styles').get().then( qu =>{
+      qu.forEach(doc =>{
+      console.log(doc.data())
+      this.hairstyledata.push(doc.data());
+        
+      })
+    })
+
      })
      
    } else {

@@ -89,11 +89,13 @@ this.control.router.navigate(['login']);
   {
     console.log(this.backend.getsalons());
 
-console.log()
+console.log(x)
 this.cover =x.salonImage;
 this.desc = x.SalonDesc;
 this.location =x.location;
-this.salonname=x.salonName;
+this.backend.salonname=x.salonName;
+
+console.log(this.backend.salonname)
     this.control.router.navigate(['viewsalon']);
   }
 }

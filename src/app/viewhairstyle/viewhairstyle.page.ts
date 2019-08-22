@@ -10,9 +10,12 @@ import { ControlsService } from '../controls.service';
 export class ViewhairstylePage implements OnInit {
   gender=[];
   fg ={};
+  hairstyledata:Array<any>=[];
   constructor(public backend:BackendService,public control:ControlsService) {
 
- 
+    this.backend.getHairSalon();
+
+    this.hairstyledata =this.backend.hairstyledata;
    }
 
   ionViewDidEnter()
