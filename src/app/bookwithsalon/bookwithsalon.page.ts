@@ -318,7 +318,10 @@ if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])
 {
 console.log("Got Something")
 this.control.SlotToast();
-}  
+} 
+else{
+  this.control.SlotToast1();
+} 
 }
 }
 

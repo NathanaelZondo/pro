@@ -107,10 +107,20 @@ export class ControlsService {
 
   async SlotToast() {
     const toast = await this.toastController.create({
-      message: 'This booking has already been taken',
+      message: 'This booking has already been taken.',
       duration: 5000
     });
     toast.present();
   }
 
+  async SlotToast1()
+  {
+    const toast = await this.toastController.create({
+      message: 'Booking slot currently empty.',
+      duration: 5000
+    });
+    toast.present();
+
 }
+}
+
