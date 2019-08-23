@@ -314,7 +314,9 @@ this.backend.db.collection('SalonNode').doc('Nakanjani').collection('staff').doc
 
 for(let i =0;i<this.testarray.length;i++)
 {
-if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])==hourRange && parseFloat(this.testarray[i].sessiontime[3]+this.testarray[i].sessiontime[4])<minuteRange)
+
+  console.log("sesyarray and usertime",parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1]),"usertime",hourRange)
+if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])==hourRange )
 {
 console.log("Got Something")
 this.control.SlotToast();
