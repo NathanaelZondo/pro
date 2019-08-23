@@ -5,6 +5,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.466)), url('../../assets/map.jpg');
 }
 
 
@@ -37,11 +38,13 @@
             position: relative;
             left: 10px;
             top: 2px;
+            background: black;
 
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                opacity: 0.7;
             }
         }
 
@@ -53,11 +56,13 @@
 
             .title {
                 font-size: 17px;
-                font-weight: bold;
+                // font-weight: bold;
+                color: white;
             }
 
             .subtitle {
                 font-size: 13px;
+                color: white;
             }
         }
     }
