@@ -1,25 +1,32 @@
-<ion-content align ="center">
-  <pre>
-  
-  
-  
-  </pre>
-  <b><h1 style ="color:white">REGISTER</h1></b>
-  <pre>
-  </pre>
-    <img src ='../../assets/icon/add.png' style ="filter: invert(0%)" height ="100px" width ="100px">
-      
-  <br>
-  <br>
-  
-<ion-item>
-  <ion-label style ="color: white" floating>Enter email address</ion-label>
-  <ion-input ion-input  type ="text" [(ngModel)] ="user.email"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label style ="color: white" floating>Enter your password</ion-label>
-  <ion-input  type ="password"  [(ngModel)] ="user.password"></ion-input>
-</ion-item>
+<ion-content>
 
-    <button ion-button full (click) = "fun(user)" >SUBMIT<ion-icon name ="create"></ion-icon></button>
+  <div class="container">
+    <div class="logo">
+      <img src='../../assets//Untitled-1.jpg'>
+    </div>
+
+    <div class="title">
+      <h1>REGISTER</h1>
+    </div>
+
+    <div class="inputs">
+      <ion-item>
+        <ion-input type="email" placeholder="Enter Email" [(ngModel)]="user.email"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-input type="password" placeholder="Enter Password" [(ngModel)]="user.password"></ion-input>
+      </ion-item>
+    </div>
+<br>
+    <div class="btn">
+      <ion-button color="dark" (click)="fun(user)" id="signup">
+        Sign-Up
+      </ion-button>
+    </div>
+    <div class="signin">
+      <p>Already have an account? <span (click)="signin()">Sign-In</span></p>
+    </div>
+  </div>
 </ion-content>

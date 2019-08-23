@@ -51,12 +51,13 @@ else{
   var errorMessage = error.message;
   // ...
 });
-
-
  
 
-  
+}
 
+signin()
+{
+this.control.router.navigate(['login']);  
 }
 
 }

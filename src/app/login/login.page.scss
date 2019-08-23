@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo{
+    width: 300px;
+    height: 300px;
+}
+
+.title{
+    font-size: 40px;
+    padding: 20px;
+}
+.inputs{
+    width: 80%;
+    align-items: center;
+}
+
+.reset{
+  display: flex;
+  align-items: flex-end;
+}
+
+.btn{
+    width: 80%;
+    display: flex;
+    flex-flow: column;
+   align-items: center;
+    .button{
+        width: 80%;
+    }
+}
+
+span{
+    color: blue;
+}
