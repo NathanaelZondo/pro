@@ -1,42 +1,89 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title>
       Home
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
- <ion-button (click)="signout()">Sign Out</ion-button>
- <ion-button (click)="selectsalon()">Select Salon</ion-button>
+  <div class="search">
+    <ion-searchbar placeholder="Search"></ion-searchbar>
+  </div>
+  <div class="container">
 
- <ion-item *ngFor="let sal of salon">
-  <ion-thumbnail>
-<img src ="{{sal.coverImage}}">
+    <div class="map">
 
-  </ion-thumbnail> 
-  
-   <pre>
-     
+    </div>
+
+    <div class="place">
+      <p id="place">Soweto</p>
+
+    </div>
+    <div class="salonlist">
+      
+        <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
+          <div class="image">
+            <img src="{{x.salonImage}}">
+          </div>
+          <div class="details">
+            <div class="subtitle">
+              {{x.location}}
+            </div>
+            <div class="title">
+              {{x.salonName}}
+            </div>
+          </div>
+        </div>
+      
+    </div>
+
+  </div>
+
+
+  <!-- <ion-item *ngFor="let sal of salon">
+    <ion-thumbnail>
+      <img src="{{sal.coverImage}}">
+
+    </ion-thumbnail>
+
+    <pre>
+
    {{sal.nameOfSalon}}
    {{sal.location}}
    {{sal.desc}}
   </pre>
-   </ion-item>
-   <ion-item *ngFor = "let x of salond"  (click)="selectsalon(x)" >
+  </ion-item>
+  <ion-item *ngFor="let x of salond" (click)="selectsalon(x)">
 
-      <ion-thumbnail>
-    <img src ="{{x.salonImage}}">
-      </ion-thumbnail>
+    <ion-thumbnail>
+      <img src="{{x.salonImage}}">
+    </ion-thumbnail>
 
-<pre>
+    <pre>
 {{x.salonName}}
 {{x.location}}
 {{x.SalonDesc}}
 </pre>
 
-   </ion-item>
+  </ion-item> -->
 
 
-  
+
 </ion-content>
+
+<!-- <ion-button (click)="signout()">Sign Out</ion-button>
+  <ion-button (click)="selectsalon()">Select Salon</ion-button> -->
+
+<!-- <ion-card *ngFor="let sal of salon">
+            <img src="{{sal.coverImage}}">
+
+            <ion-card-header>
+              <ion-card-subtitle> {{sal.location}}</ion-card-subtitle>
+              <ion-card-title> {{sal.nameOfSalon}}</ion-card-title>
+            </ion-card-header>
+          
+            <ion-card-content>
+                {{sal.desc}}
+            </ion-card-content>
+          </ion-card> -->
