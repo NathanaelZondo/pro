@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ControlsService {
 
+
+
   constructor(
     public navCtrl: NavController, 
     public router:Router,
