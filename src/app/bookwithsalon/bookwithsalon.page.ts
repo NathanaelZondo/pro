@@ -314,7 +314,7 @@ console.log((minuteRange));
 
  for(let i =0;i<this.testarray.length;i++)
  {
-if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])==hourRange)
+if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])==hourRange && minuteRange <= parseFloat(this.testarray[i].sessionendtime[3]+this.testarray[i].sessionendtime[4]) )
  {
  console.log("Got Something")
  this.control.SlotToast();
