@@ -7,9 +7,7 @@
   <div *ngFor ="let x of hairstyledata">
       <ion-item *ngIf="x.genderOptions == gender" (click) ="choosehair(x)">
         <img src =  '{{x.hairStyleImage}}'>
-       
-
-        
+      
         </ion-item>
         <p> {{x.hairstyleDesc}}></p>
       </div>

@@ -6,42 +6,35 @@
   </ion-toolbar>
 </ion-header> -->
 
-<ion-content align ="center">
-
-   <ion-item *ngFor = "let x of salond"  (click)="selectsalon(x)" >
 <ion-content>
-  <div class="search">
-    <ion-searchbar placeholder="Search"></ion-searchbar>
-  </div>
-  <div class="container">
 
-    <div class="map">
-
-    </div>
-
-    <div class="place">
-      <p id="place">Soweto</p>
-
-    </div>
-    <div class="salonlist">
-      
-        <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
-          <div class="image">
-            <img src="{{x.salonImage}}">
-          </div>
-          <div class="details">
-            <div class="subtitle">
-              {{x.location}}
-            </div>
-            <div class="title">
-              {{x.salonName}}
-            </div>
-          </div>
+    <div class="search">
+        <ion-searchbar placeholder="Search"></ion-searchbar>
+      </div>
+      <div class="container">
+        <div class="map">
         </div>
-      
-    </div>
-
-  </div>
+        <div class="place">
+          <p id="place">Soweto</p>
+        </div>
+        <div class="salonlist">
+          
+            <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
+              <div class="image">
+                <img src="{{x.salonImage}}">
+              </div>
+              <div class="details">
+                <div class="subtitle">
+                  {{x.location}}
+                </div>
+                <div class="title">
+                  {{x.salonName}}
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
 
 
   <!-- <ion-item *ngFor="let sal of salon">
