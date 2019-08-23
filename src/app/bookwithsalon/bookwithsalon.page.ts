@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { ControlsService } from '../controls.service';
 import { bookings } from '../booking';
-import { VirtualTimeScheduler } from 'rxjs';
 import { AlertController } from '@ionic/angular';
-import { until } from 'protractor';
 
 @Component({
   selector: 'app-bookwithsalon',
@@ -244,8 +242,11 @@ else if(mins+estimatedmins<59){
   }
   
 }
-let hourRange = booking.sessiontime[0]+booking.sessiontime[1]
-console.log();
+
+
+////////////////////////////////////////////validating booking sessions
+
+
 
 
 
@@ -258,7 +259,7 @@ if(this.blocker==false)
 //this.presentAlertConfirm();
 //this.booking =booking;
 }
-//this.backend.userbookings(booking);
+this.backend.userbookings(booking);
   //this.control.router.navigate(['home']);
 }
 
@@ -291,6 +292,34 @@ async presentAlertConfirm() {
 
   await alert.present();
 
+}
+
+
+testarray=[];
+testbooking(booking)
+{
+
+
+  let hourRange = parseFloat(booking.sessiontime[0]+booking.sessiontime[1]);
+let minuteRange =parseFloat(booking.sessiontime[3]+booking.sessiontime[4])
+console.log((minuteRange));
+this.backend.db.collection('SalonNode').doc('Nakanjani').collection('staff').doc('busi').collection('2019-8-23').get().then(val=>{
+  val.forEach(doc=>{
+   
+   this.testarray.push(doc.data());
+  
+  })
+  console.log(this.testarray)
+})
+
+for(let i =0;i<this.testarray.length;i++)
+{
+if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])==hourRange && parseFloat(this.testarray[i].sessiontime[3]+this.testarray[i].sessiontime[4])<minuteRange)
+{
+console.log("Got Something")
+this.control.SlotToast();
+}  
+}
 }
 
 }

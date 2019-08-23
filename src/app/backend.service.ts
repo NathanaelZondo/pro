@@ -142,6 +142,8 @@ this.afs.collection('Bookings').doc(firebase.auth().currentUser.uid).collection(
   console.log(result)
 }); 
 
+this.db.collection('SalonNode').doc('Nakanjani').collection('staff').doc('busi').collection('2019-8-23').add(booking);
+
 }
 
 

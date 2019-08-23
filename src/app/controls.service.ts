@@ -105,4 +105,12 @@ export class ControlsService {
     toast.present();
   }
 
+  async SlotToast() {
+    const toast = await this.toastController.create({
+      message: 'This booking has already been taken',
+      duration: 5000
+    });
+    toast.present();
+  }
+
 }
