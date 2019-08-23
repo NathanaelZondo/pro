@@ -14,6 +14,7 @@ export class ViewhairstylePage implements OnInit {
   constructor(public backend:BackendService,public control:ControlsService) {
 
     this.backend.getHairSalon();
+    
 
     this.hairstyledata =this.backend.hairstyledata;
    }
@@ -24,7 +25,7 @@ export class ViewhairstylePage implements OnInit {
   //  this.fg =val;
 this.gender.push(this.fg);
 
-this.backend.sethairstyledata(this.gender[0].hairstyle,this.gender[0].duration,this.gender[0].hairprice);
+
 
 
 console.log(this.gender[0].duration)

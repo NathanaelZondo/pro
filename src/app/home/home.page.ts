@@ -6,6 +6,7 @@ import { ControlContainer } from '@angular/forms';
 import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
 import { Profile } from '../profile';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,7 @@ console.log('check',this.salond)
    this.backend.getsalons().subscribe(val=>{
     this.salon =val;
     console.log(this.salon)
-
+   
 
 
 this.backend.setsalondata(this.salonname,this.location)
@@ -52,7 +53,7 @@ this.backend.setuserdata(this.profiles[0].name,this.profiles[0].surname,this.pro
     console.log("this is the value for profile",)
   })
   }
-
+  db = firebase.firestore();
   async takePhoto()
   {
 const options:CameraOptions ={
@@ -87,7 +88,7 @@ this.control.router.navigate(['login']);
 
   selectsalon(x)
   {
-    console.log(this.backend.getsalons());
+  
 
 console.log(x)
 this.cover =x.salonImage;
@@ -95,7 +96,15 @@ this.desc = x.SalonDesc;
 this.location =x.location;
 this.backend.salonname=x.salonName;
 
-console.log(this.backend.salonname)
+
+
+this.backend.setsalondata(x.salonName,x.location);
+
+
+
     this.control.router.navigate(['viewsalon']);
   }
+
+
+  
 }

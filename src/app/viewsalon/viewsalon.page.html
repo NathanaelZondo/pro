@@ -5,9 +5,12 @@
   <ion-button (click)="selecthairstyle('male')">Male hairstyle</ion-button>
 
   <div *ngFor ="let x of hairstyledata">
-      <ion-item *ngIf="x.genderOptions == gender">
+      <ion-item *ngIf="x.genderOptions == gender" (click) ="choosehair(x)">
         <img src =  '{{x.hairStyleImage}}'>
+       
+
         
         </ion-item>
-  </div>
+        <p> {{x.hairstyleDesc}}></p>
+      </div>
 </ion-content>

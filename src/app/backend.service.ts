@@ -124,7 +124,7 @@ sethairstyledata(name,duration,price)
 name:string;
 surname:string;
 cell:string;
-salonname:string;
+salonname:string ='max';
 salonlocation:string;
 hairstyletype:string;
 hairstyleprice:string;
@@ -162,7 +162,7 @@ getHairSalon(){
     this.db.collection('SalonNode').doc(doc.data().salonName).collection('Styles').get().then( qu =>{
       qu.forEach(doc =>{
       console.log(doc.data())
-      this.hairstyledata.push(doc.data());
+     // this.hairstyledata.push(doc.data());
         
       })
     })
@@ -180,6 +180,13 @@ getHairSalon(){
  })
 }
 
+ 
 
-}
+
+
+ }
+
+
+
+
 
