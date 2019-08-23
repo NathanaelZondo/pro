@@ -10,7 +10,7 @@ import { Profile } from './profile';
 import { Observable } from 'rxjs/Observable';
 import { ControlsService } from './controls.service';
 import { bookings } from './booking';
-import { Firestore } from '@google-cloud/firestore';
+
 
 
 @Injectable({
@@ -24,7 +24,7 @@ export class BackendService {
 salons:Observable<any[]>;
   menstyles:Observable<unknown>;
   womenstyles:Observable<unknown>;
-  displayProfile: FirebaseFirestore.DocumentData;
+  displayProfile;
   salonsDisply =[];
   constructor(public afs:AngularFirestore,public control:ControlsService,public loadingController: LoadingController,) {
 
@@ -142,7 +142,7 @@ this.afs.collection('Bookings').doc(firebase.auth().currentUser.uid).collection(
   console.log(result)
 }); 
 
-this.db.collection('SalonNode').doc('Nakanjani').collection('staff').doc('busi').collection('2019-8-23').add(booking);
+//this.db.collection('SalonNode').doc('Nakanjani').collection('staff').doc('busi').collection('2019-8-23').add(booking);
 
 }
 

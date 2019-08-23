@@ -303,25 +303,23 @@ testbooking(booking)
   let hourRange = parseFloat(booking.sessiontime[0]+booking.sessiontime[1]);
 let minuteRange =parseFloat(booking.sessiontime[3]+booking.sessiontime[4])
 console.log((minuteRange));
-this.backend.db.collection('SalonNode').doc('Nakanjani').collection('staff').doc('busi').collection('2019-8-23').get().then(val=>{
-  val.forEach(doc=>{
+ this.backend.db.collection('SalonNode').doc('Nakanjani').collection('staff').doc('busi').collection('2019-8-23').get().then(val=>{
+ val.forEach(doc=>{
    
    this.testarray.push(doc.data());
   
   })
   console.log(this.testarray)
-})
+ })
 
-for(let i =0;i<this.testarray.length;i++)
-{
-if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])==hourRange && parseFloat(this.testarray[i].sessiontime[3]+this.testarray[i].sessiontime[4])<minuteRange)
-{
-console.log("Got Something")
-this.control.SlotToast();
-} 
-else{
-  this.control.SlotToast1();
-} 
+ for(let i =0;i<this.testarray.length;i++)
+ {
+if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])==hourRange)
+ {
+ console.log("Got Something")
+ this.control.SlotToast();
+ } 
+
 }
 }
 
