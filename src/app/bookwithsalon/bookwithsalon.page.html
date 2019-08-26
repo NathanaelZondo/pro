@@ -27,7 +27,7 @@
 </ion-item>
 <ion-item>
   <ion-label></ion-label>
-  <ion-input placeholder="session time" type ="time" [(ngModel)] ="booking.sessiontime" (click) ="testbooking(booking)"></ion-input>
+  <ion-input placeholder="session time" type ="time" [(ngModel)] ="booking.sessiontime" ></ion-input>
 </ion-item>
 <ion-item>
   <ion-label></ion-label>
@@ -44,6 +44,7 @@
 
 
 
+<ion-button (click) ="testbooking(booking)">Validate booking</ion-button>
 <ion-button (click) ="setbooking(booking)">Submit</ion-button>
 
 

@@ -3,7 +3,7 @@ import { BackendService } from '../backend.service';
 import { ControlsService } from '../controls.service';
 import { bookings } from '../booking';
 import { AlertController } from '@ionic/angular';
-
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-bookwithsalon',
   templateUrl: './bookwithsalon.page.html',
@@ -267,7 +267,8 @@ if(this.blocker==false)
 //this.presentAlertConfirm();
 //this.booking =booking;
 }
-this.backend.userbookings(booking);
+this.testbooking(booking);
+//this.backend.userbookings(booking);
   //this.control.router.navigate(['home']);
 }
 
@@ -302,26 +303,46 @@ async presentAlertConfirm() {
 
 }
 
-
+db =firebase.firestore();
 testarray=[];
 testbooking(booking)
 {
  let hourRange = parseFloat(booking.sessiontime[0]+booking.sessiontime[1]);
 let minuteRange =parseFloat(booking.sessiontime[3]+booking.sessiontime[4])
-console.log((minuteRange));
-this.backend.db.collection('SalonNode').doc('Nakanjani').collection('staff').doc('busi').collection('2019-8-23').get().then(val=>{
+console.log("Test booking here",booking);
+this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).get().then(val=>{
 val.forEach(doc=>{
   this.testarray.push(doc.data());
- })
- console.log(this.testarray)
-})
-for(let i =0;i<this.testarray.length;i++)
+  if(this.testarray)
+  {
+    this.findtime(booking);
+  }
+ });
+ 
+});
+
+
+
+}
+
+
+findtime(booking)
 {
-if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])==hourRange)
-{
-console.log("Got Something")
-this.control.SlotToast();
+  let hourRange = parseFloat(booking.sessiontime[0]+booking.sessiontime[1]);
+let minuteRange =parseFloat(booking.sessiontime[3]+booking.sessiontime[4])
+  for(let i =0;i<this.testarray.length;i++)
+  {
+  if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])==hourRange)
+  {
+    //console.log(this.testarray)
+  console.log("Got Something")
+  this.control.SlotToast();
+  }
+  else
+  {
+    this.control.SlotToast1();
+  }
+  }
 }
-}
-}
+
 }

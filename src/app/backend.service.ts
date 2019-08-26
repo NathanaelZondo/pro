@@ -144,8 +144,8 @@ this.afs.collection('Bookings').doc(firebase.auth().currentUser.uid).collection(
   console.log(result)
 }); 
 
-console.log("query info =",booking.salonname,booking.hairdresser,booking.userdate)
-//this.db.collection('SalonNode').doc('Nakanjani').collection('staff').doc('busi').collection('2019-8-23').add(booking);
+console.log("query info =",booking.salonname,booking.hairdresser,booking.userdate,booking.hairdresser)
+this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).add(booking);
 
 }
 
