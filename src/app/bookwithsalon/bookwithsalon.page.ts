@@ -58,7 +58,7 @@ dat:Date;
     
   }
   booking:bookings ={
-  name:this.backend.name,
+  name:this.backend.username,
   surname:this.backend.surname,
   cell:this.backend.cell,
   salonname:this.backend.salonname,

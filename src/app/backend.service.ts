@@ -89,12 +89,12 @@ else{
 }
 }
 
-setuserdata(name,surname,cell)
+setuserdata(username,surname,cell)
 {
-this.name=name;
+this.username=username;
 this.surname=surname;
 this.cell =cell;  
-if(name ==""||surname==""||cell<1000)
+if(username ==""||surname==""||cell=="")
 {
   this.control.router.navigate(['createprofile']);
 }
@@ -120,7 +120,7 @@ sethairstyledata(name,duration,price)
  this.estimatedtime=duration; 
  console.log(name,duration,price);
 }
-
+username:string;
 name:string;
 surname:string;
 cell:string;
