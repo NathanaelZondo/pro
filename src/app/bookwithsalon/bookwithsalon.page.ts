@@ -12,12 +12,18 @@ import { AlertController } from '@ionic/angular';
 export class BookwithsalonPage implements OnInit {
   unit:string;
   unit1:string;
+  staff =[];
   constructor(public backend:BackendService,public control:ControlsService,public alertController:AlertController) {
     let cdate =new Date();
     cdate.getFullYear();
     let cd1 =new Date();
     
-    
+    this.backend.gethairdresser().get().then(val=>{
+      val.forEach(stav=>{
+        console.log(stav.data())
+this.staff.push(stav.data());
+      })
+    })
     
     cdate.getDay();
   this.currentdate= (cdate.getFullYear()+"-"+(cd1.getMonth()+1)+"-"+cdate.getDate());
@@ -61,7 +67,9 @@ dat:Date;
   hairstyleprice:this.backend.hairstyleprice,
   estimatedtime:this.backend.estimatedtime,
   sessiontime:this.backend.sessiontime,
-  sessionendtime:""
+  sessionendtime:"",
+  hairdresser:"",
+  userdate:undefined
 }
 //this is the date inputed by the user
 userdate;
@@ -76,13 +84,13 @@ setbooking(booking:bookings)
   this.blocker =false;
   //this.backend.userbookings(booking);
 // prevents incorrect dates from being selected
-  if(new Date(this.userdate)<new Date(this.currentdate))
+  if(new Date(this.booking.userdate)<new Date(this.currentdate))
   {
    this.control.PastDateToast();
    this.blocker =true;
    console.log("pastdate")
   }
-  else if(new Date(this.userdate)>new Date(this.futuredate))
+  else if(new Date(this.booking.userdate)>new Date(this.futuredate))
   {
     this.control.FutureDateToast();
     this.blocker =true;

@@ -130,6 +130,8 @@ hairstyletype:string;
 hairstyleprice:string;
 estimatedtime:number;
 sessiontime:number;
+hairdresser:string;
+bookingdate:string;
 
 
 
@@ -142,6 +144,7 @@ this.afs.collection('Bookings').doc(firebase.auth().currentUser.uid).collection(
   console.log(result)
 }); 
 
+console.log("query info =",booking.salonname,booking.hairdresser,booking.userdate)
 //this.db.collection('SalonNode').doc('Nakanjani').collection('staff').doc('busi').collection('2019-8-23').add(booking);
 
 }
@@ -184,7 +187,10 @@ getHairSalon(){
 
  
 
-
+gethairdresser()
+{
+ return this.db.collection('SalonNode').doc('Nakanjani').collection('staff');
+}
 
  }
 

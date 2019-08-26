@@ -13,5 +13,7 @@ hairstyletype:string;
 estimatedtime:number;
 sessiontime:number;
 sessionendtime:string;
+hairdresser:string;
+userdate:undefined
 
 }
