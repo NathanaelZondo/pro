@@ -15,6 +15,7 @@ import { config } from '../cred';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage  {
+
   constructor(
     public backend:BackendService,
     public control:ControlsService,
@@ -77,4 +78,5 @@ signup()
 {
 this.control.router.navigate(['registration']);  
 }
+
 }

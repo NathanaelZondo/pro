@@ -1,7 +1,79 @@
 <ion-content>
 
-  <div class="container">
-    <div class="logo">
+  <div class="container" >
+    <div class="b1">
+      
+      <div class="topshape">
+        <div class="img">
+          <img src="../../assets/Path 4.png">
+        </div>
+        <div class="txt">
+          <p>Sign-In</p>
+        </div>
+
+      </div>
+
+
+      <div class="middleshape">
+        <div class="img1">
+          <img src="../../assets/Path 2.png">
+        </div>
+        <div class="details">
+            <div class="signup">
+                <p (click)="signup()">Sign-Up</p>
+              </div>
+              <div class="inputs">
+                  <ion-item>
+                      <ion-input type="email" placeholder="Enter Email" [(ngModel)]="user.email" id="npt"></ion-input>
+                    </ion-item>
+              
+              
+                    <ion-item>
+                      <ion-input type="password" placeholder="Enter Password" [(ngModel)]="user.password" id="npt"></ion-input>
+                    </ion-item>
+              </div>
+              <div class="reset">
+                  <p>Forgot Password?</p>
+              </div>
+              <div class="signin" (click)="fun(user)" >
+                      <ion-icon slot="icon-only" name="arrow-round-forward" ></ion-icon> 
+              </div>
+        </div>
+       
+
+      </div>
+
+
+      <div class="bottomshape">
+        <div class="img2">
+            <img src="../../assets/Path 3.png">
+        </div>
+        <div class="social">
+          Or sign-in with : <br>
+            <ion-icon name="logo-facebook" id="icon"></ion-icon>
+            <ion-icon name="logo-google" id="icon"></ion-icon>
+        </div>
+      
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <div class="logo">
       <img src='../../assets/Untitled-1.jpg'>
     </div>
 
@@ -31,6 +103,6 @@
 
     <div class="signup">
       <p>Don't have an account yet? <span (click)="signup()">Sign-Up</span></p>
-    </div>
-  </div>
+    </div> -->
+
 </ion-content>
