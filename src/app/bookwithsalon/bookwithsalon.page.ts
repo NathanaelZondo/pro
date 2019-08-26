@@ -3,7 +3,7 @@ import { BackendService } from '../backend.service';
 import { ControlsService } from '../controls.service';
 import { bookings } from '../booking';
 import { AlertController } from '@ionic/angular';
-
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-bookwithsalon',
   templateUrl: './bookwithsalon.page.html',
@@ -12,12 +12,18 @@ import { AlertController } from '@ionic/angular';
 export class BookwithsalonPage implements OnInit {
   unit:string;
   unit1:string;
+  staff =[];
   constructor(public backend:BackendService,public control:ControlsService,public alertController:AlertController) {
     let cdate =new Date();
     cdate.getFullYear();
     let cd1 =new Date();
     
-    
+    this.backend.gethairdresser().get().then(val=>{
+      val.forEach(stav=>{
+        console.log(stav.data())
+this.staff.push(stav.data());
+      })
+    })
     
     cdate.getDay();
   this.currentdate= (cdate.getFullYear()+"-"+(cd1.getMonth()+1)+"-"+cdate.getDate());
@@ -52,7 +58,7 @@ dat:Date;
     
   }
   booking:bookings ={
-  name:this.backend.name,
+  name:this.backend.username,
   surname:this.backend.surname,
   cell:this.backend.cell,
   salonname:this.backend.salonname,
@@ -61,7 +67,9 @@ dat:Date;
   hairstyleprice:this.backend.hairstyleprice,
   estimatedtime:this.backend.estimatedtime,
   sessiontime:this.backend.sessiontime,
-  sessionendtime:""
+  sessionendtime:"",
+  hairdresser:"",
+  userdate:undefined
 }
 //this is the date inputed by the user
 userdate;
@@ -76,13 +84,13 @@ setbooking(booking:bookings)
   this.blocker =false;
   //this.backend.userbookings(booking);
 // prevents incorrect dates from being selected
-  if(new Date(this.userdate)<new Date(this.currentdate))
+  if(new Date(this.booking.userdate)<new Date(this.currentdate))
   {
    this.control.PastDateToast();
    this.blocker =true;
    console.log("pastdate")
   }
-  else if(new Date(this.userdate)>new Date(this.futuredate))
+  else if(new Date(this.booking.userdate)>new Date(this.futuredate))
   {
     this.control.FutureDateToast();
     this.blocker =true;
@@ -259,7 +267,8 @@ if(this.blocker==false)
 this.presentAlertConfirm();
 this.booking =booking;
 }
-this.backend.userbookings(booking);
+this.testbooking(booking);
+//this.backend.userbookings(booking);
   //this.control.router.navigate(['home']);
 }
 
@@ -294,26 +303,46 @@ async presentAlertConfirm() {
 
 }
 
-
+db =firebase.firestore();
 testarray=[];
 testbooking(booking)
 {
  let hourRange = parseFloat(booking.sessiontime[0]+booking.sessiontime[1]);
 let minuteRange =parseFloat(booking.sessiontime[3]+booking.sessiontime[4])
-console.log((minuteRange));
-this.backend.db.collection('SalonNode').doc('Nakanjani').collection('staff').doc('busi').collection('2019-8-23').get().then(val=>{
+console.log("Test booking here",booking);
+this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).get().then(val=>{
 val.forEach(doc=>{
   this.testarray.push(doc.data());
- })
- console.log(this.testarray)
-})
-for(let i =0;i<this.testarray.length;i++)
+  if(this.testarray)
+  {
+    this.findtime(booking);
+  }
+ });
+ 
+});
+
+
+
+}
+
+
+findtime(booking)
 {
-if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])==hourRange)
-{
-console.log("Got Something")
-this.control.SlotToast();
+  let hourRange = parseFloat(booking.sessiontime[0]+booking.sessiontime[1]);
+let minuteRange =parseFloat(booking.sessiontime[3]+booking.sessiontime[4])
+  for(let i =0;i<this.testarray.length;i++)
+  {
+  if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])==hourRange)
+  {
+    //console.log(this.testarray)
+  console.log("Got Something")
+  this.control.SlotToast();
+  }
+  else
+  {
+    this.control.SlotToast1();
+  }
+  }
 }
-}
-}
+
 }

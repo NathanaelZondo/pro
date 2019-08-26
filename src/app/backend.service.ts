@@ -89,12 +89,12 @@ else{
 }
 }
 
-setuserdata(name,surname,cell)
+setuserdata(username,surname,cell)
 {
-this.name=name;
+this.username=username;
 this.surname=surname;
 this.cell =cell;  
-if(name ==""||surname==""||cell<1000)
+if(username ==""||surname==""||cell=="")
 {
   this.control.router.navigate(['createprofile']);
 }
@@ -120,7 +120,7 @@ sethairstyledata(name,duration,price)
  this.estimatedtime=duration; 
  console.log(name,duration,price);
 }
-
+username:string;
 name:string;
 surname:string;
 cell:string;
@@ -130,6 +130,8 @@ hairstyletype:string;
 hairstyleprice:string;
 estimatedtime:number;
 sessiontime:number;
+hairdresser:string;
+bookingdate:string;
 
 
 
@@ -142,7 +144,8 @@ this.afs.collection('Bookings').doc(firebase.auth().currentUser.uid).collection(
   console.log(result)
 }); 
 
-//this.db.collection('SalonNode').doc('Nakanjani').collection('staff').doc('busi').collection('2019-8-23').add(booking);
+console.log("query info =",booking.salonname,booking.hairdresser,booking.userdate,booking.hairdresser)
+this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).add(booking);
 
 }
 
@@ -184,7 +187,10 @@ getHairSalon(){
 
  
 
-
+gethairdresser()
+{
+ return this.db.collection('SalonNode').doc('Nakanjani').collection('staff');
+}
 
  }
 
