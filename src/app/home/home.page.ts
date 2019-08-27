@@ -31,7 +31,7 @@ console.log('check',this.salond)
     this.salon =val;
     console.log(this.salon)
    
-    this.hairstyledata =this.backend.hairstyledata.splice(0,1);
+    this.hairstyledata =this.backend.hairstyledata.splice(0,this.backend.hairstyledata.length);
 
 this.backend.setsalondata(this.salonname,this.location)
 this.backend.getHairSalon()
@@ -89,13 +89,15 @@ this.control.router.navigate(['login']);
   selectsalon(x)
   {
   
-
+this.backend.selectedsalon.splice(0,1);
 console.log(x)
 this.cover =x.salonImage;
 this.desc = x.SalonDesc;
 this.location =x.location;
 this.backend.salonname=x.salonName;
 this.backend.selectedsalon.push(x);
+this.backend.selectedsalon.splice(1,1);
+
 
 
 

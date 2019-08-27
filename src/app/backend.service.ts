@@ -150,12 +150,12 @@ this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(b
 
 }
 
-
+salondisp;
 hairstyledata:Array<any>=[];
 
 getHairSalon(){
 
- 
+ this.hairstyledata=[];
  this.db.collection('SalonNode').get().then( snap => {
    if (snap.empty !== true){
     
@@ -168,7 +168,7 @@ getHairSalon(){
     this.db.collection('SalonNode').doc(doc.data().salonName).collection('Styles').get().then( qu =>{
       qu.forEach(doc =>{
       console.log(doc.data())
-     // this.hairstyledata.push(doc.data());
+     this.hairstyledata.push(doc.data());
         
       })
     })

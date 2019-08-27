@@ -355,7 +355,16 @@ console.log("For loop 2",this.d2<=new Date(booking.userdate+'T0'+this.testarray[
 
 if(this.d1.getHours()==new Date(booking.userdate+'T'+this.testarray[i].sessiontime).getHours() && this.d2<=new Date(booking.userdate+'T0'+this.testarray[i].sessionendtime) && this.d1)
 {
-  if(this.d1.getMinutes()<=this.d2.getMinutes())
+  if(this.d1.getHours()==new Date(booking.userdate+'T'+this.testarray[i].sessiontime).getHours() && this.d1.getMinutes()>=this.d2.getMinutes())
+  {
+    this.control.SlotToast1();
+  }
+  else if((this.d1.getHours() ==this.d2.getHours() ||this.d1.getHours()+1 ==this.d2.getHours()) && this.d1.getMinutes()<=this.d2.getMinutes())
+  {
+    this.control.SlotToast();
+  }
+  else if
+  (this.d1.getMinutes()<=this.d2.getMinutes())
   {
   this.control.SlotToast();
   }

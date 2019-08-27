@@ -10,12 +10,12 @@ import * as firebase from 'firebase';
 })
 export class ViewsalonPage implements OnInit {
   more = false;
-  hairstyledata:Array<any>=[];
+  hair =[];
   viewhair = true;
   constructor(public control:ControlsService,public backend:BackendService,public modalController: ModalController) {
     this.backend.getHairSalon()
-    this.gethairstyles();
-    this.hairstyledata =this.backend.hairstyledata.splice(0,1);
+    //this.gethairstyles(this.gend);
+   
     console.log("selectedsalon data",this.salond)
    }
    salond =this.backend.selectedsalon;
@@ -24,35 +24,31 @@ export class ViewsalonPage implements OnInit {
 gender =0;
   selecthairstyle(x)
   {
-   
+   this.gender = x;
+   this.gethairstyles(this.gender);
 
-    
-
-    this.gender = x;
-    if(x == 'male')
-    {
-      this.gethairstyles();
     //this.control.router.navigate(['viewhairstyle']);
-  }
-else{
-  this.gethairstyles();
   //this.control.router.navigate(['viewhairstyle']);
-}
+  
   }
 db=firebase.firestore();
 
-  gethairstyles()
+  gethairstyles(x)
   {
+    
    console.log(this.backend.salonname)
 
-this.db.collection('SalonNode').doc(this.backend.salonname).collection('Styles').get().then(val =>{
+let user = this.db.collection('SalonNode').doc(this.backend.salonname).collection('Styles')
+
+
+let query = user.where("genderOptions", "==", x).get().then(val =>{
   val.forEach(doc=>{   
-    console.log(doc.data())
-  this.hairstyledata.push(doc.data());
+   
+  this.hair.push(doc.data());
   })
 })
 
- 
+console.log('jkl',this.hair)
   }
 
   choosehair(x)
