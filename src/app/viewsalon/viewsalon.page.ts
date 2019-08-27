@@ -3,7 +3,7 @@ import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
 import { ModalController, } from '@ionic/angular';
 import * as firebase from 'firebase';
-import Swiper from 'swiper';
+
 
 @Component({
   selector: 'app-viewsalon',
@@ -20,8 +20,10 @@ export class ViewsalonPage implements OnInit {
   more = false;
   hair = [];
   viewhair = true;
-  constructor(public control: ControlsService, public backend: BackendService, public modalController: ModalController) {
-    this.backend.getHairSalon()
+  placeholder =this.backend.salonsDisply;
+    constructor(public control:ControlsService,public backend:BackendService,public modalController: ModalController) {
+    this.backend.getHairSalon();
+
     //this.gethairstyles(this.gend);
 
     console.log("selectedsalon data", this.salond)
