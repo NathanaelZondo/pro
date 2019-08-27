@@ -8,11 +8,13 @@ const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'createprofile', loadChildren: './createprofile/createprofile.module#CreateprofilePageModule' },
   { path: 'viewprofile', loadChildren: './viewprofile/viewprofile.module#ViewprofilePageModule' },
-  { path: 'registration', loadChildren: './registration/registration.module#RegistrationPageModule' },
   { path: 'viewsalon', loadChildren: './viewsalon/viewsalon.module#ViewsalonPageModule' },
   { path: 'viewhairstyle', loadChildren: './viewhairstyle/viewhairstyle.module#ViewhairstylePageModule' },
   { path: 'bookwithsalon', loadChildren: './bookwithsalon/bookwithsalon.module#BookwithsalonPageModule' },
   { path: 'booking', loadChildren: './booking/booking.module#BookingPageModule' },
+  { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },  { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordPageModule' },
+
+
 ];
 
 @NgModule({
