@@ -45,7 +45,7 @@
        
                 <ion-slides pager="true" (ionSlideDidChange)="slideChanged()">
           
-                    <ion-slide *ngFor="let x of hairstyledata" (click)="choosehair(x)">
+                    <ion-slide *ngFor="let x of hair" (click)="choosehair(x)">
                         <img src='{{x.hairStyleImage}}'>
                         <p> {{x.hairstyleDesc}}></p>
                     </ion-slide>
