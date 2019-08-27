@@ -48,6 +48,11 @@ getProfile()
   return this.items;
 }
 
+getprofile2()
+{
+ return this.db.collection('userprofile').doc(firebase.auth().currentUser.uid).get();
+}
+
 createprofile(profile:Profile)
 {
  this.afs.collection('userprofile').doc(firebase.auth().currentUser.uid).set(profile); 

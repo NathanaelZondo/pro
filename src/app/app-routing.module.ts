@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'viewhairstyle', loadChildren: './viewhairstyle/viewhairstyle.module#ViewhairstylePageModule' },
   { path: 'bookwithsalon', loadChildren: './bookwithsalon/bookwithsalon.module#BookwithsalonPageModule' },
   { path: 'booking', loadChildren: './booking/booking.module#BookingPageModule' },
+  { path: 'updateprofile', loadChildren: './updateprofile/updateprofile.module#UpdateprofilePageModule' },
 ];
 
 @NgModule({
