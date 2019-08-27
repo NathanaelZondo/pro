@@ -35,7 +35,7 @@
 
 
   <div [ngClass]="{'hair-inactive': !more, 'hair-active': more}" id="hair">
-    <div class="gallery" *ngFor="let x of hairstyledata">
+    <div class="gallery" *ngFor="let x of hair">
       <div class="card">
           <div class="imagez" (click)="choosehair(x)">
               <img src='{{x.hairStyleImage}}'>
