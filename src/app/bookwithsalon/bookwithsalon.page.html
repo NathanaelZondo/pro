@@ -5,48 +5,62 @@
 </ion-header>
 
 <ion-content>
-  <div class="container"> </div>
-<ion-item>
-  <ion-label></ion-label>
-  <ion-input placeholder="name" [(ngModel)] ="booking.name"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label></ion-label>
-  <ion-input placeholder="surname" [(ngModel)] ="booking.surname"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label></ion-label>
-  <ion-input placeholder="cell" [(ngModel)] ="booking.cell"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label></ion-label>
-  <ion-input placeholder="hairstyle type" [(ngModel)] ="booking.hairstyletype"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label></ion-label>
-  <ion-input placeholder="estimated time for hairstyle" [(ngModel)] ="booking.estimatedtime"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label></ion-label>
-  <ion-input placeholder="session time" type ="time" [(ngModel)] ="booking.sessiontime" ></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label></ion-label>
-  <ion-input placeholder="session time" type ="date" 
-  displayFormat="DD/MM/YYYY" min='2019-01-01' [(ngModel)] ="booking.userdate"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label>Hair Dresser</ion-label>
-  <ion-select value="brown" okText="Okay" [(ngModel)] ="booking.hairdresser" >
-    <ion-select-option *ngFor ="let x of staff" >{{x.name}}</ion-select-option>
-   
-  </ion-select>
-</ion-item>
+  <div class="container"> 
+    <div class="logo">
+      
+    </div>
+    <div class="heading">
+     <h1>Appointments</h1>
+    </div>
+    <div class="inputs">
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input placeholder="name" [(ngModel)] ="booking.name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input placeholder="surname" [(ngModel)] ="booking.surname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input placeholder="cell" [(ngModel)] ="booking.cell"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input placeholder="hairstyle type" [(ngModel)] ="booking.hairstyletype"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input placeholder="estimated time for hairstyle" [(ngModel)] ="booking.estimatedtime"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input placeholder="session time" type ="time" [(ngModel)] ="booking.sessiontime" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input clear placeholder="session time" type ="date" 
+        displayFormat="DD/MM/YYYY" min='2019-01-01' [(ngModel)] ="booking.userdate"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Hair Dresser</ion-label>
+        <ion-select value="brown" okText="Okay" [(ngModel)] ="booking.hairdresser" >
+          <ion-select-option *ngFor ="let x of staff" >{{x.name}}</ion-select-option>
+         
+        </ion-select>
+      </ion-item>
+    </div>
+    <br>
+    <div class="btnz">
+      <ion-button color="dark" (click) ="testbooking(booking)">Validate booking</ion-button>
+      <ion-button color="dark" (click) ="setbooking(booking)">Submit</ion-button>
+      
+    </div>
+  </div>
 
 
 
-<ion-button (click) ="testbooking(booking)">Validate booking</ion-button>
-<ion-button (click) ="setbooking(booking)">Submit</ion-button>
+
 
 
 </ion-content>
