@@ -1,25 +1,152 @@
-<ion-content align ="center">
-  <pre>
-  
-  
-  
-  </pre>
-  <b><h1 style ="color:white">REGISTER</h1></b>
-  <pre>
-  </pre>
-    <img src ='../../assets/icon/add.png' style ="filter: invert(0%)" height ="100px" width ="100px">
-      
-  <br>
-  <br>
-  
-<ion-item>
-  <ion-label style ="color: white" floating>Enter email address</ion-label>
-  <ion-input ion-input  type ="text" [(ngModel)] ="user.email"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label style ="color: white" floating>Enter your password</ion-label>
-  <ion-input  type ="password"  [(ngModel)] ="user.password"></ion-input>
-</ion-item>
+<ion-content>
 
-    <button ion-button full (click) = "fun(user)" >SUBMIT<ion-icon name ="create"></ion-icon></button>
+
+    <div class="container" >
+        <div class="b1">
+    
+          <div class="topshape">
+            <div class="img">
+              <img src="../../assets/Path 1.png" style="width:100%;">
+            </div>
+            <div class="txt">
+              <p>Sign-Up</p>
+            </div>
+    
+          </div>
+    
+    
+          <div class="middleshape">
+            <div class="img1">
+              <img src="../../assets/Path 2.png" style="width:100%;">
+            </div>
+            <div class="details">
+                <div class="signup">
+                    <p (click)="signin()">Sign-In</p>
+                  </div>
+                  <div class="inputs">
+                      <ion-item>
+                          <ion-input type="email" placeholder="Enter Email" [(ngModel)]="user.email" id="npt"></ion-input>
+                        </ion-item>
+                  
+                  
+                        <ion-item>
+                          <ion-input type="password" placeholder="Enter Password" [(ngModel)]="user.password" id="npt"></ion-input>
+                        </ion-item>
+                  </div>
+                  
+                  <div class="signin" (click)="fun(user)" >
+                          <ion-icon slot="icon-only" name="arrow-round-forward" ></ion-icon> 
+                  </div>
+            </div>
+           
+    
+          </div>
+    
+    
+          <div class="bottomshape">
+            <div class="img2">
+                <img src="../../assets/Path 3.png" style="width:100%;">
+            </div>
+            <div class="social">
+              Or sign-in with : <br>
+                <ion-icon name="logo-facebook" id="icon"></ion-icon>
+                <ion-icon name="logo-google" id="icon"></ion-icon>
+            </div>
+          
+          </div>
+    
+        </div>
+    
+    
+    
+      </div>
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class="logo">
+      <img src='../../assets//Untitled-1.jpg'>
+    </div>
+
+    <div class="title">
+      <h1>REGISTER</h1>
+    </div>
+
+    <div class="inputs">
+      <ion-item>
+        <ion-input type="email" placeholder="Enter Email" [(ngModel)]="user.email"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-input type="password" placeholder="Enter Password" [(ngModel)]="user.password"></ion-input>
+      </ion-item>
+    </div>
+<br>
+    <div class="btn">
+      <ion-button color="dark" (click)="fun(user)" id="signup">
+        Sign-Up
+      </ion-button>
+    </div>
+    <div class="signin">
+      <p>Already have an account? <span (click)="signin()">Sign-In</span></p>
+    </div> -->
+ 
 </ion-content>

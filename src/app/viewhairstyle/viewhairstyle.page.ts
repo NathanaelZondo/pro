@@ -10,15 +10,27 @@ import { ControlsService } from '../controls.service';
 export class ViewhairstylePage implements OnInit {
   gender=[];
   fg ={};
+  hairstyledata:Array<any>=[];
   constructor(public backend:BackendService,public control:ControlsService) {
 
-    this.backend.getstyles().subscribe(val=>{
-      this.fg =  val;
+    this.backend.getHairSalon();
+    
+
+    this.hairstyledata =this.backend.hairstyledata;
+   }
+
+  ionViewDidEnter()
+{
+  this.backend.getstyles(this.backend.gend).subscribe(val=>{
+  //  this.fg =val;
 this.gender.push(this.fg);
 
-console.log(this.gender)
-    })
-   }
+
+
+
+console.log(this.gender[0].duration)
+  })
+}
 
   ngOnInit() {
   }

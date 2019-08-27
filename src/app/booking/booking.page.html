@@ -5,5 +5,16 @@
 </ion-header>
 
 <ion-content>
+  <div class="hair">
+
+    <ion-slides pager="true" (ionSlideDidChange)="slideChanged()">
+
+      <ion-slide *ngFor="let x of hairstyledata" (click)="choosehair(x)">
+        <img src='{{x.hairStyleImage}}'>
+        <p> {{x.hairstyleDesc}}></p>
+      </ion-slide>
+
+    </ion-slides>
+  </div>
 
 </ion-content>

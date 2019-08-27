@@ -38,7 +38,7 @@ if(result.user.uid)
   this.control.Loading();
 this.control.RegToast();
 
-this.control.router.navigate(['loginpage']);
+this.control.router.navigate(['createprofile']);
 }
 else{
   
@@ -51,12 +51,14 @@ else{
   var errorMessage = error.message;
   // ...
 });
-
-
  
 
-  
-
 }
+
+signin()
+{
+this.control.router.navigate(['login']);  
+}
+
 
 }

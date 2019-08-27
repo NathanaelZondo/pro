@@ -5,6 +5,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ControlContainer } from '@angular/forms';
 import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
+import { Profile } from '../profile';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-home',
@@ -13,29 +15,45 @@ import { BackendService } from '../backend.service';
 })
 export class HomePage {
 
-
+  hairstyledata:Array<any>=[];
   salon=[];
- 
+profiles:Profile[];
 cover;
 desc;
 location;
 salonname;
+salond =this.backend.salonsDisply;
   constructor(private camera:Camera,public control:ControlsService,public backend:BackendService) {
    // initializeApp(config);
    this.backend.authstate();
-
+console.log('check',this.salond)
    this.backend.getsalons().subscribe(val=>{
     this.salon =val;
     console.log(this.salon)
+   
+    this.hairstyledata =this.backend.hairstyledata.splice(0,1);
 
-this.cover =this.salon[0].coverImage;
-this.desc = this.salon[0].desc;
-this.location =this.salon[0].location;
-this.salonname=this.salon[0].nameOfSalon;
+this.backend.setsalondata(this.salonname,this.location)
+this.backend.getHairSalon()
     
   })
-  }
 
+  this.backend.getProfile().subscribe(val=>{
+    
+
+    this.profiles =val;
+
+    
+    
+    
+    
+this.backend.setuserdata(this.profiles[0].name,this.profiles[0].surname,this.profiles[0].cell)
+
+
+    console.log("this is the value for profile",)
+  })
+  }
+  db = firebase.firestore();
   async takePhoto()
   {
 const options:CameraOptions ={
@@ -68,9 +86,26 @@ this.backend.signout();
 this.control.router.navigate(['login']);
   }
 
-  selectsalon()
+  selectsalon(x)
   {
-    console.log(this.backend.getsalons());
+  
+
+console.log(x)
+this.cover =x.salonImage;
+this.desc = x.SalonDesc;
+this.location =x.location;
+this.backend.salonname=x.salonName;
+this.backend.selectedsalon.push(x);
+
+
+
+this.backend.setsalondata(x.salonName,x.location);
+
+
+
     this.control.router.navigate(['viewsalon']);
   }
+
+
+  
 }

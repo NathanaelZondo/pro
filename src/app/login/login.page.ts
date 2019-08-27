@@ -15,6 +15,7 @@ import { config } from '../cred';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage  {
+
   constructor(
     public backend:BackendService,
     public control:ControlsService,
@@ -44,7 +45,7 @@ firebase.auth().signInWithEmailAndPassword(user.email, user.password).then(resul
   
   if(result.user.uid>"")
   {
-    this.control.router.navigate(['createprofile']);
+    this.control.router.navigate(['home']);
     
     this.control.LoginToast();
   
@@ -77,4 +78,5 @@ signup()
 {
 this.control.router.navigate(['registration']);  
 }
+
 }

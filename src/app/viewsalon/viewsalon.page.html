@@ -1,11 +1,82 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>viewsalon</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="container" >
+    <div class="">
+      
+    </div>
+    <div class="salonimage"  *ngFor="let x of salond">
+      <img src="{{x.salonImage}}">
+    </div>
+    <!-- <div class="img1"  *ngFor="let x of salond">
+        <img src="{{x.salonImage}}">
+    </div> -->
+    <div class="details">
+      
+        <div class="card" *ngFor="let x of salond">
+        
+            <div class="subtitle">
+              {{x.location}}
+            </div>
+            <div class="title">
+              {{x.salonName}}
+            </div>
+
+            <div class="desc">
+                {{x.SalonDesc}}
+              </div>
+         
+        </div>
+      <div class=" buttonz">      
+          <ion-button (click)="selecthairstyle('female')" color="dark" id="btn"  (click)="viewHair()">Ladies</ion-button>
+          <ion-button (click)="selecthairstyle('male')" color="dark"  id="btn">Gents</ion-button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div [ngClass]="{'hair-inactive': !more, 'hair-active': more}" id="hair">
+    <div class="gallery" *ngFor="let x of hairstyledata">
+      <div class="card">
+          <div class="imagez" (click)="choosehair(x)">
+              <img src='{{x.hairStyleImage}}'>
+          </div>
+          <div class="style">
+              <p> {{x.hairstyleDesc}}></p>
+          </div>
+      </div>
+      
+    </div>
+    
+    </div>
+
  
-  <ion-button (click)="selecthairstyle(1)">Female hairstyle</ion-button>
-  <ion-button (click)="selecthairstyle(0)">Male hairstyle</ion-button>
+
 </ion-content>
+
+<!-- <div class="hair">
+  (ionSlideDidChange)="slideChanged()"
+      <ion-slides pager="true" (ionSlideDidChange)="slideChanged()">
+
+          <ion-slide *ngFor="let x of hairstyledata" (click)="choosehair(x)">
+              <img src='{{x.hairStyleImage}}'>
+              <p> {{x.hairstyleDesc}}></p>
+          </ion-slide>
+
+
+        </ion-slides>
+      
+
+
+    </div> -->
+
+
+    <!-- <ion-slides pager="true">
+
+          <ion-slide *ngFor="let x of hairstyledata" (click)="choosehair(x)">
+              <img src='{{x.hairStyleImage}}'><br>
+              <p> {{x.hairstyleDesc}}></p>
+          </ion-slide>
+
+
+        </ion-slides> -->
+      

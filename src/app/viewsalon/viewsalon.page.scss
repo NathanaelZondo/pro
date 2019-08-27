@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Teko|Abel|Anton|Dosis|Oxygen|Jura|Pacifico|Righteous|Roboto+Condensed|Ubuntu|Open+Sans+Condensed');
+
+* {
+    transition: 0.6s;
+}
+
+.container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.salonimage {
+    width: 100vh;
+    height: 100vh;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+    }
+}
+
+.img1 {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    z-index: 5;
+    top: 100px;
+    border-radius: 50%;
+    border: 10px solid rgba(255, 255, 255, 0.541);
+    overflow: hidden;
+
+    img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.details {
+    position: absolute;
+    z-index: 5;
+    bottom: 10px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.card {
+    position: absolute;
+    bottom: 150px;
+    font-family: 'Abel';
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    .subtitle {
+        font-size: 25px;
+        color: whitesmoke;
+    }
+
+    .title {
+        font-size: 45px;
+        color: whitesmoke;
+    }
+
+    .desc {
+        text-align: center;
+        color: whitesmoke;
+        font-size: 15px;
+    }
+}
+
+.hair-inactive {
+    position: absolute;
+    left: 5%;
+    bottom: 0;
+    right: 5%;
+    top: 100%;
+    z-index: 5;
+    background: red;
+}
+
+.hair-active {
+    position: absolute;
+    left: 5%;
+    bottom: 0%;
+    right: 5%;
+    top: 30%;
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.781);
+
+    .gallery {
+       height: 100vh;
+       overflow-y: auto;
+        .card {
+            position: absolute;
+            top: 40px;
+            left: 37px;
+            .imagez {
+                width: 300px;
+                height: 500px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}
+
+#hair {}
+
+.buttonz {
+    .button {
+        width: 150px;
+    }
+}

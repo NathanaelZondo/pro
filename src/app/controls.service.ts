@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ControlsService {
 
+
+
   constructor(
     public navCtrl: NavController, 
     public router:Router,
@@ -89,4 +91,38 @@ export class ControlsService {
     toast.present();
   }
 
+  async PastDateToast() {
+    const toast = await this.toastController.create({
+      message: 'You cannot select a past date',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+  async FutureDateToast() {
+    const toast = await this.toastController.create({
+      message: 'You cannot select a day further than 7 days from today.',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+  async SlotToast() {
+    const toast = await this.toastController.create({
+      message: 'This booking has already been taken.',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+  async SlotToast1()
+  {
+    const toast = await this.toastController.create({
+      message: 'Booking slot is currently empty.',
+      duration: 5000
+    });
+    toast.present();
+
 }
+}
+
