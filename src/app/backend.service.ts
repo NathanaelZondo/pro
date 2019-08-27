@@ -43,11 +43,24 @@ salons:Observable<any[]>;
 
    gend;
    type ='chiskop;'
-
+   profiles ={};
 getProfile()
 {
   return this.items;
 }
+
+viewprofile()
+{
+  this.afs.collection('userprofile').doc(firebase.auth().currentUser.uid).valueChanges().subscribe(val=>{
+    
+    this.profiles =val;
+    console.log("this.profiles ",this.profiles)
+    return this.profiles;
+  })
+
+}
+   
+
 
 getprofile2()
 {

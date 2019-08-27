@@ -30,7 +30,12 @@ console.log('check',this.salond)
    this.backend.getsalons().subscribe(val=>{
     this.salon =val;
     console.log(this.salon)
-   
+
+
+//view profile on the viewprofilepage 
+    this.backend.viewprofile();
+
+
     this.hairstyledata =this.backend.hairstyledata.splice(0,this.backend.hairstyledata.length);
 
 this.backend.setsalondata(this.salonname,this.location)

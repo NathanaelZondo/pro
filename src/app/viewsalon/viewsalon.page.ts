@@ -3,7 +3,7 @@ import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
 import { ModalController, } from '@ionic/angular';
 import * as firebase from 'firebase';
-
+import Swiper from 'swiper';
 
 @Component({
   selector: 'app-viewsalon',

@@ -9,15 +9,14 @@ import { ControlsService } from '../controls.service';
   styleUrls: ['./viewprofile.page.scss'],
 })
 export class ViewprofilePage implements OnInit {
-profiles:Profile[];
+profiles =[];
   constructor(public backend:BackendService, public control:ControlsService) { 
 
-    this.backend.getProfile().subscribe(val=>{
-      console.log(val)
+    
 
-      this.profiles =val;
-      console.log("This is de profile " ,val)
-    })
+      this.profiles.push(this.backend.profiles);
+     
+    console.log("look here !!!",this.backend.profiles)
   }
 
   ngOnInit() {
