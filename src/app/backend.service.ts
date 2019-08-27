@@ -26,6 +26,7 @@ salons:Observable<any[]>;
   womenstyles:Observable<unknown>;
   displayProfile;
   salonsDisply =[];
+  selectedsalon =[];
   constructor(public afs:AngularFirestore,public control:ControlsService,public loadingController: LoadingController,) {
 
     this.items=this.afs.collection('userprofile').valueChanges();

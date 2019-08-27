@@ -38,7 +38,7 @@ if(result.user.uid)
   this.control.Loading();
 this.control.RegToast();
 
-this.control.router.navigate(['login']);
+this.control.router.navigate(['createprofile']);
 }
 else{
   
@@ -59,5 +59,6 @@ signin()
 {
 this.control.router.navigate(['login']);  
 }
+
 
 }

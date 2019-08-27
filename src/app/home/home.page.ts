@@ -15,7 +15,7 @@ import * as firebase from 'firebase';
 })
 export class HomePage {
 
-
+  hairstyledata:Array<any>=[];
   salon=[];
 profiles:Profile[];
 cover;
@@ -31,7 +31,7 @@ console.log('check',this.salond)
     this.salon =val;
     console.log(this.salon)
    
-
+    this.hairstyledata =this.backend.hairstyledata.splice(0,1);
 
 this.backend.setsalondata(this.salonname,this.location)
 this.backend.getHairSalon()
@@ -95,6 +95,7 @@ this.cover =x.salonImage;
 this.desc = x.SalonDesc;
 this.location =x.location;
 this.backend.salonname=x.salonName;
+this.backend.selectedsalon.push(x);
 
 
 

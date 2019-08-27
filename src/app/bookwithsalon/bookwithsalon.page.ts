@@ -264,8 +264,8 @@ else if(mins+estimatedmins<59){
 if(this.blocker==false)
 {
   
-//this.presentAlertConfirm();
-//this.booking =booking;
+this.presentAlertConfirm();
+this.booking =booking;
 }
 this.testbooking(booking);
 //this.backend.userbookings(booking);
@@ -291,9 +291,9 @@ async presentAlertConfirm() {
         text: 'Confirm',
         handler: () => {
          
-          //this.backend.userbookings(this.booking);
-        //  this.control.router.navigate(['home']);
-          //this.control.BookToast();
+          this.backend.userbookings(this.booking);
+          this.control.router.navigate(['home']);
+          this.control.BookToast();
         }
       }
     ]

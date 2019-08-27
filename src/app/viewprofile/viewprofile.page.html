@@ -1,7 +1,70 @@
-
-
 <ion-content>
-<ion-item *ngFor ="let profile of profiles">
+
+  <div class="container" *ngFor="let profile of profiles">
+    <div class="img">
+      <img src="{{profile.image}}">
+    </div>
+
+    <div class="">
+      <p>{{profile.name}}</p>
+      <p>{{profile.surname}}</p>
+      <p>{{profile.cell}}</p>
+      <p>{{profile.bio}}</p>
+    </div>
+  </div>
+
+
+
+  </ion-item>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-item *ngFor ="let profile of profiles">
     <ion-thumbnail item-start>
         <img src ="{{profile.image}}">
       </ion-thumbnail>
@@ -11,8 +74,4 @@
 {{profile.surname}}
 {{profile.cell}}
 {{profile.bio}}
-</pre>
-
-
-</ion-item>
-</ion-content>
+</pre> -->
