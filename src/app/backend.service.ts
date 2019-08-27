@@ -27,6 +27,7 @@ salons:Observable<any[]>;
   displayProfile;
   salonsDisply =[];
   selectedsalon =[];
+  salonplaceholder =[];
   constructor(public afs:AngularFirestore,public control:ControlsService,public loadingController: LoadingController,) {
 
     this.items=this.afs.collection('userprofile').valueChanges();
@@ -42,10 +43,28 @@ salons:Observable<any[]>;
 
    gend;
    type ='chiskop;'
-
+   profiles ={};
 getProfile()
 {
   return this.items;
+}
+
+viewprofile()
+{
+  this.afs.collection('userprofile').doc(firebase.auth().currentUser.uid).valueChanges().subscribe(val=>{
+    
+    this.profiles =val;
+    console.log("this.profiles ",this.profiles)
+    return this.profiles;
+  })
+
+}
+   
+
+
+getprofile2()
+{
+ return this.db.collection('userprofile').doc(firebase.auth().currentUser.uid).get();
 }
 
 createprofile(profile:Profile)
@@ -125,7 +144,7 @@ username:string;
 name:string;
 surname:string;
 cell:string;
-salonname:string ='max';
+salonname:string ='Nakanjani';
 salonlocation:string;
 hairstyletype:string;
 hairstyleprice:string;

@@ -101,12 +101,14 @@
     left: 5%;
     bottom: 0%;
     right: 5%;
-    top: 30%;
+    top: 25%;
     z-index: 5;
-    background: rgba(0, 0, 0, 0.781);
+    background: rgb(0, 0, 0);
     overflow: hidden;
     overflow-x: auto;
     padding :10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     .gallery {
         height: 80%;
         width: 100%;
@@ -119,3 +121,7 @@
         width: 150px;
     }
 }
+
+
+
+    

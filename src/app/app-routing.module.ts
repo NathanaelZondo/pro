@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'viewhairstyle', loadChildren: './viewhairstyle/viewhairstyle.module#ViewhairstylePageModule' },
   { path: 'bookwithsalon', loadChildren: './bookwithsalon/bookwithsalon.module#BookwithsalonPageModule' },
   { path: 'booking', loadChildren: './booking/booking.module#BookingPageModule' },
-  { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },  { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordPageModule' },
+  { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
+  { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordPageModule' },
 
 
 ];

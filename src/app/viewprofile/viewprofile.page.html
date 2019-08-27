@@ -1,21 +1,41 @@
 <ion-content>
 
   <div class="container" *ngFor="let profile of profiles">
+
+    <div class="icons">
+      <div class="back">
+        <ion-icon name="arrow-round-back" style="font-size:30px;"></ion-icon>
+      </div>
+
+      <div class="edit">
+        <ion-icon name="create" style="font-size:30px;" (click)="update()"></ion-icon>
+      </div>
+    </div>
     <div class="img">
       <img src="{{profile.image}}">
     </div>
 
-    <div class="">
-      <p>{{profile.name}}</p>
-      <p>{{profile.surname}}</p>
-      <p>{{profile.cell}}</p>
-      <p>{{profile.bio}}</p>
+    <div class="info">
+      <p id="name">{{profile.name}} {{profile.surname}}</p>
+
+      <p id="cell">{{profile.cell}}</p>
+      <p id="about">{{profile.about}}</p>
     </div>
+
+    <div class="goUp">
+      <div class="sumt">
+
+      </div>
+      <div class="up">
+
+        </div>
+    </div>
+  
   </div>
 
 
 
-  </ion-item>
+
 </ion-content>
 
 

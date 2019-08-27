@@ -2,7 +2,7 @@ export interface Profile {
 key?:string;
 name:string;
 surname:string;
-cell:number;
+cell:string;
 about:string;
 image:string;
 
