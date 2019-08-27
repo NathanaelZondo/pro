@@ -30,7 +30,7 @@ picurl;
 profile:Profile = {
   name:"",
   surname:"",
-  cell:0,
+  cell:"",
   about:"",
   image:""
 }

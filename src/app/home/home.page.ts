@@ -108,6 +108,9 @@ this.backend.setsalondata(x.salonName,x.location);
     this.control.router.navigate(['viewsalon']);
   }
 
-
+  viewprofile()
+  {
+    this.control.router.navigate(['viewprofile']);
+  }
   
 }
