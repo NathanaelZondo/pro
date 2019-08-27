@@ -6,17 +6,17 @@
   </ion-toolbar>
 </ion-header> -->
 <ion-content>
-<div class="search">
-  <ion-searchbar placeholder="Search"></ion-searchbar>
-</div>
-<div class="container">
-  <div class="map">
+  <div class="search">
+    <ion-searchbar placeholder="Search"></ion-searchbar>
   </div>
-  <div class="place">
-    <p id="place">Soweto</p>
-  </div>
-  <div class="salonlist">
-    
+  <div class="container">
+    <div class="map">
+    </div>
+    <div class="place">
+      <p id="place">Soweto</p>
+    </div>
+    <div class="salonlist">
+
       <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
         <div class="image">
           <img src="{{x.salonImage}}">
@@ -30,12 +30,13 @@
           </div>
         </div>
       </div>
-    
+
+    </div>
   </div>
-</div>
+</ion-content>
 
 
-  <!-- <ion-item *ngFor="let sal of salon">
+<!-- <ion-item *ngFor="let sal of salon">
     <ion-thumbnail>
       <img src="{{sal.coverImage}}">
 
@@ -62,22 +63,17 @@
 
   </ion-item> -->
 
-
-
-</ion-content>
-
 <!-- <ion-button (click)="signout()">Sign Out</ion-button>
   <ion-button (click)="selectsalon()">Select Salon</ion-button> -->
 
 <!-- <ion-card *ngFor="let sal of salon">
-            <img src="{{sal.coverImage}}">
-
-            <ion-card-header>
-              <ion-card-subtitle> {{sal.location}}</ion-card-subtitle>
-              <ion-card-title> {{sal.nameOfSalon}}</ion-card-title>
-            </ion-card-header>
+  <img src="{{sal.coverImage}}">
+<ion-card-header>
+<ion-card-subtitle> {{sal.location}}</ion-card-subtitle>
+<ion-card-title> {{sal.nameOfSalon}}</ion-card-title>
+</ion-card-header>
           
-            <ion-card-content>
-                {{sal.desc}}
-            </ion-card-content>
-          </ion-card> -->
+<ion-card-content>
+{{sal.desc}}
+ </ion-card-content>
+ </ion-card> -->
