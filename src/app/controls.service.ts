@@ -118,7 +118,7 @@ export class ControlsService {
   async SlotToast1()
   {
     const toast = await this.toastController.create({
-      message: 'Booking slot currently empty.',
+      message: 'Booking slot is currently empty.',
       duration: 5000
     });
     toast.present();

@@ -58,7 +58,7 @@ dat:Date;
     
   }
   booking:bookings ={
-  name:this.backend.username,
+  name:this.backend.name,
   surname:this.backend.surname,
   cell:this.backend.cell,
   salonname:this.backend.salonname,
@@ -326,23 +326,48 @@ val.forEach(doc=>{
 }
 
 
+d1:Date;
+d2:Date;
 findtime(booking)
 {
+
+  console.log("This is the other booking",booking)
   let hourRange = parseFloat(booking.sessiontime[0]+booking.sessiontime[1]);
-let minuteRange =parseFloat(booking.sessiontime[3]+booking.sessiontime[4])
-  for(let i =0;i<this.testarray.length;i++)
+let minuteRange =parseFloat(booking.sessiontime[3]+booking.sessiontime[4]);
+
+this.d1 =new Date((booking.userdate+'T')+(booking.sessiontime));
+this.d2 =new Date((booking.userdate+'T0')+(booking.sessionendtime));
+
+
+
+
+console.log("this is date 1 and 2",this.d1>this.d2)
+
+
+
+
+for(let i =0;i<this.testarray.length;i++)
   {
-  if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])==hourRange)
-  {
-    //console.log(this.testarray)
-  console.log("Got Something")
+
+console.log("For loop 1",this.d1>=new Date(booking.userdate+'T'+this.testarray[i].sessiontime) )
+
+console.log("For loop 2",this.d2<=new Date(booking.userdate+'T0'+this.testarray[i].sessionendtime) )
+
+if(this.d1>=new Date(booking.userdate+'T'+this.testarray[i].sessiontime) && this.d2<=new Date(booking.userdate+'T0'+this.testarray[i].sessionendtime))
+{
   this.control.SlotToast();
-  }
-  else
-  {
-    this.control.SlotToast1();
-  }
-  }
+}
+  // if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])==hourRange)
+  // {
+  //   //console.log(this.testarray)
+  // console.log("Got Something")
+  // this.control.SlotToast();
+  // }
+  // else
+  // {
+  //   this.control.SlotToast();
+  // }
+   }
 }
 
 }
