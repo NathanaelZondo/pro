@@ -27,6 +27,7 @@ salons:Observable<any[]>;
   displayProfile;
   salonsDisply =[];
   selectedsalon =[];
+  salonplaceholder =[];
   constructor(public afs:AngularFirestore,public control:ControlsService,public loadingController: LoadingController,) {
 
     this.items=this.afs.collection('userprofile').valueChanges();
@@ -130,7 +131,7 @@ username:string;
 name:string;
 surname:string;
 cell:string;
-salonname:string ='max';
+salonname:string ='Nakanjani';
 salonlocation:string;
 hairstyletype:string;
 hairstyleprice:string;

@@ -4,6 +4,7 @@ import { Profile } from '../profile';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ControlsService } from '../controls.service';
 import {storage} from 'firebase';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-updateprofile',
@@ -70,4 +71,16 @@ pictures.getDownloadURL().then(val=>{
 
   }
 
+updateprofile(profile)
+{
+let uid =firebase.auth().currentUser.uid;
+
+firebase.firestore().collection('userprofile').doc(uid).update(profile).then(val=>
+  {
+    console.log(val)
+  })
+this.control.router.navigate(['viewprofile']);
+}
+
+  
 }
