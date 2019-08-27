@@ -5,11 +5,11 @@
       <img src="{{profile.image}}">
     </div>
 
-    <div class="">
-      <p>{{profile.name}}</p>
-      <p>{{profile.surname}}</p>
-      <p>{{profile.cell}}</p>
-      <p>{{profile.about}}</p>
+    <div class="info">
+      <p id="name">{{profile.name}} {{profile.surname}}</p>
+    
+      <p id="cell">{{profile.cell}}</p>
+      <p id="about">{{profile.about}}</p>
     </div>
     <ion-button (click)="update()">Edit <ion-icon name ="create"></ion-icon></ion-button>
   </div>

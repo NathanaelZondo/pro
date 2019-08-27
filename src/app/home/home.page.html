@@ -6,14 +6,17 @@
   </ion-toolbar>
 </ion-header> -->
 <ion-content>
-  <div class="search">
-    <ion-searchbar placeholder="Search"></ion-searchbar>
-  </div>
+ 
   <div class="container">
+      <div class="search">
+         
+        <ion-searchbar placeholder="Search" style="background: rgba(255, 255, 255, 0.651)"></ion-searchbar>
+        <ion-button (click) ="viewprofile()">View Profile</ion-button>  
+      </div>
     <div class="map">
     </div>
     <div class="place">
-      <ion-button (click) ="viewprofile()"> View Profile</ion-button>
+     
       <p id="place">Soweto</p>
     </div>
     <div class="salonlist">
