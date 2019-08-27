@@ -29,7 +29,7 @@ salons:Observable<any[]>;
   selectedsalon =[];
   salonplaceholder =[];
   constructor(public afs:AngularFirestore,public control:ControlsService,public loadingController: LoadingController,) {
-
+    this.viewprofile();
     this.items=this.afs.collection('userprofile').valueChanges();
 
     this.salons=this.afs.collection('Salons').valueChanges();
@@ -38,9 +38,9 @@ salons:Observable<any[]>;
 
   
    this.womenstyles=this.afs.collection('Salons').doc('sRkAEe3vxX5d7LR8WnhW').collection('Styles').doc('gender').collection('female').doc('AKVWEYRB3203GYtMfc3B').valueChanges();
-    
+   this.authstate();
    }
-
+uid='7oQNyj1Trdf9L2ZaXYjxknh7ofd2';
    gend;
    type ='chiskop;'
    profiles ={};
@@ -51,17 +51,14 @@ getProfile()
 
 viewprofile()
 {
-  this.afs.collection('userprofile').doc(firebase.auth().currentUser.uid).valueChanges().subscribe(val=>{
-    
+  //this.uid =firebase.auth().currentUser.uid;
+  this.afs.collection('userprofile').doc(this.uid).valueChanges().subscribe(val=>{ 
     this.profiles =val;
     console.log("this.profiles ",this.profiles)
     return this.profiles;
   })
-
 }
    
-
-
 getprofile2()
 {
  return this.db.collection('userprofile').doc(firebase.auth().currentUser.uid).get();
