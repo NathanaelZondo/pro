@@ -9,14 +9,16 @@ import * as firebase from 'firebase';
   styleUrls: ['./viewsalon.page.scss'],
 })
 export class ViewsalonPage implements OnInit {
+  more = false;
   hairstyledata:Array<any>=[];
+  viewhair = true;
   constructor(public control:ControlsService,public backend:BackendService,public modalController: ModalController) {
-  
+    this.backend.getHairSalon()
     this.gethairstyles();
-    this.hairstyledata =this.backend.hairstyledata;
-    console.log("Hhairstyle data",this.hairstyledata)
+    this.hairstyledata =this.backend.hairstyledata.splice(0,1);
+    console.log("selectedsalon data",this.salond)
    }
-
+   salond =this.backend.selectedsalon;
   ngOnInit() {
   }
 gender =0;
@@ -58,6 +60,10 @@ this.db.collection('SalonNode').doc(this.backend.salonname).collection('Styles')
     console.log(x);
     this.backend.sethairstyledata(x.hairstyleName,x.duration,x.hairstylePrice);
     this.control.router.navigate(['bookwithsalon']);
+  }
+
+  viewHair(){
+    this.more = !this.more
   }
 
 
