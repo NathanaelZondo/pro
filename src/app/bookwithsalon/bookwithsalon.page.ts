@@ -264,10 +264,10 @@ else if(mins+estimatedmins<59){
 if(this.blocker==false)
 {
   
-this.presentAlertConfirm();
+//this.presentAlertConfirm();
 this.booking =booking;
 }
-this.testbooking(booking);
+//this.testbooking(booking);
 //this.backend.userbookings(booking);
   //this.control.router.navigate(['home']);
 }
@@ -353,9 +353,12 @@ console.log("For loop 1",this.d1>=new Date(booking.userdate+'T'+this.testarray[i
 
 console.log("For loop 2",this.d2<=new Date(booking.userdate+'T0'+this.testarray[i].sessionendtime) )
 
-if(this.d1>=new Date(booking.userdate+'T'+this.testarray[i].sessiontime) && this.d2<=new Date(booking.userdate+'T0'+this.testarray[i].sessionendtime))
+if(this.d1.getHours()==new Date(booking.userdate+'T'+this.testarray[i].sessiontime).getHours() && this.d2<=new Date(booking.userdate+'T0'+this.testarray[i].sessionendtime) && this.d1)
 {
+  if(this.d1.getMinutes()<=this.d2.getMinutes())
+  {
   this.control.SlotToast();
+  }
 }
   // if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])==hourRange)
   // {
