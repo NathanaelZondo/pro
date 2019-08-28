@@ -6,6 +6,36 @@
 
 <ion-content padding>
   <div class="container"> 
+
+  <ion-title>{{viewTitle}}</ion-title>
+  <ion-buttons end>
+      <button ion-button [disabled]="isToday" (click)="today()">Today</button>
+      <button ion-button (click)="changeMode('month')">M</button>
+    
+  </ion-buttons>
+
+</ion-header>
+
+<ion-content class="has-header">
+
+
+
+    <calendar [eventSource]="eventSource"
+    [calendarMode]="calendar.mode"
+    [currentDate]="calendar.currentDate"
+    (onCurrentDateChanged)="onCurrentDateChanged($event)"
+    (onEventSelected)="onEventSelected($event)"
+    (onTitleChanged)="onViewTitleChanged($event)"
+    (onTimeSelected)="onTimeSelected($event)"
+    step="30">
+</calendar>
+
+
+
+
+
+
+  <div class="container" > 
     <div class="back">
         <ion-icon name="arrow-back" style="font-size: 30px;"></ion-icon>
     </div>
@@ -41,10 +71,7 @@
             </ion-item>
       </div>
     
-      <ion-item style="padding: 10px;">
-          <ion-label position="stacked">Phone</ion-label>
-        <ion-input placeholder="cell" [(ngModel)] ="booking.cell"></ion-input>
-      </ion-item>
+  
 
       <div class="hairstyle">
           <ion-item>
@@ -80,6 +107,7 @@
 
 
           </ion-item>
+
       </div>
       
     
