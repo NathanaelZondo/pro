@@ -38,8 +38,11 @@ salons:Observable<any[]>;
 
   
    this.womenstyles=this.afs.collection('Salons').doc('sRkAEe3vxX5d7LR8WnhW').collection('Styles').doc('gender').collection('female').doc('AKVWEYRB3203GYtMfc3B').valueChanges();
+    
    this.authstate();
    }
+   timeList:Array<{}>
+  
 uid='7oQNyj1Trdf9L2ZaXYjxknh7ofd2';
    gend;
    type ='chiskop;'

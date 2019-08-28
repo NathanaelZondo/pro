@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { ControlsService } from '../controls.service';
 import { bookings } from '../booking';
-import { AlertController } from '@ionic/angular';
+import { AlertController,ModalController } from '@ionic/angular';
 import * as firebase from 'firebase';
+import { ModalPage } from '../modal/modal.page';
 @Component({
   selector: 'app-bookwithsalon',
   templateUrl: './bookwithsalon.page.html',
@@ -13,7 +14,7 @@ export class BookwithsalonPage implements OnInit {
   unit:string;
   unit1:string;
   staff =[];
-  constructor(public backend:BackendService,public control:ControlsService,public alertController:AlertController) {
+  constructor(public backend:BackendService,public control:ControlsService,public alertController:AlertController,public modalController: ModalController) {
     let cdate =new Date();
     cdate.getFullYear();
     let cd1 =new Date();
@@ -159,7 +160,7 @@ else if(mins+estimatedmins<59){
   newmins =mins;
   if(newmins<10)
   {
-  console.log("this is the converted time",newhrs+":0"+newmins)
+  console.log("this is the converted time",'0'+newhrs+":0"+newmins)
   booking.sessionendtime=newhrs+":0"+newmins;
 
   
@@ -267,7 +268,7 @@ if(this.blocker==false)
 //this.presentAlertConfirm();
 this.booking =booking;
 }
-//this.testbooking(booking);
+this.testbooking(booking);
 //this.backend.userbookings(booking);
   //this.control.router.navigate(['home']);
 }
@@ -326,60 +327,117 @@ val.forEach(doc=>{
 }
 
 
+
+timeList:Array<{}> =[
+  {
+   message1:String, 
+   start:Date,
+   message2:String,
+   End:Date, 
+
+  }
+];
+
 d1:Date;
 d2:Date;
+d3:Date;
 findtime(booking)
 {
 
-  console.log("This is the other booking",booking)
+  
   let hourRange = parseFloat(booking.sessiontime[0]+booking.sessiontime[1]);
 let minuteRange =parseFloat(booking.sessiontime[3]+booking.sessiontime[4]);
 
 this.d1 =new Date((booking.userdate+'T')+(booking.sessiontime));
 this.d2 =new Date((booking.userdate+'T0')+(booking.sessionendtime));
+this.d3 ;
 
 
-
-
-console.log("this is date 1 and 2",this.d1>this.d2)
-
-
-
+this.formodal=false;
 
 for(let i =0;i<this.testarray.length;i++)
   {
 
-console.log("For loop 1",this.d1>=new Date(booking.userdate+'T'+this.testarray[i].sessiontime) )
+    this.d1 =new Date((booking.userdate+'T')+(booking.sessiontime));
+    
+    this.d2 =new Date((this.testarray[i].userdate+'T')+(this.testarray[i].sessiontime));
+    
 
-console.log("For loop 2",this.d2<=new Date(booking.userdate+'T0'+this.testarray[i].sessionendtime) )
+    console.log("Second condition for end time =",(this.testarray[i].sessionendtime[0]))
 
-if(this.d1.getHours()==new Date(booking.userdate+'T'+this.testarray[i].sessiontime).getHours() && this.d2<=new Date(booking.userdate+'T0'+this.testarray[i].sessionendtime) && this.d1)
+    
+    
+   
+    
+      this.d3 =new Date((this.testarray[i].userdate+'T')+(this.testarray[i].sessionendtime));
+
+     
+    let d4 =new Date((booking.userdate+'T')+(booking.sessionendtime));
+    
+
+    console.log("session end time = ",d4)
+
+let a ="From ";
+let b =" until";
+let x = this.d2;
+let y =this.d3;
+
+this.timeList.push({a,x,b,y});
+ 
+    console.log(this.timeList)
+if(this.d2>=this.d1 && this.d1<=this.d3)
 {
-  if(this.d1.getHours()==new Date(booking.userdate+'T'+this.testarray[i].sessiontime).getHours() && this.d1.getMinutes()>=this.d2.getMinutes())
-  {
-    this.control.SlotToast1();
-  }
-  else if((this.d1.getHours() ==this.d2.getHours() ||this.d1.getHours()+1 ==this.d2.getHours()) && this.d1.getMinutes()<=this.d2.getMinutes())
-  {
-    this.control.SlotToast();
-  }
-  else if
-  (this.d1.getMinutes()<=this.d2.getMinutes())
-  {
+this.formodal =true;
+ 
   this.control.SlotToast();
-  }
-}
-  // if(parseFloat(this.testarray[i].sessiontime[0]+this.testarray[i].sessiontime[1])==hourRange)
-  // {
-  //   //console.log(this.testarray)
-  // console.log("Got Something")
-  // this.control.SlotToast();
-  // }
-  // else
-  // {
-  //   this.control.SlotToast();
-  // }
-   }
 }
 
+else
+{
+  this.control.SlotToast1();
 }
+
+
+
+}
+
+if(this.formodal==true)
+{
+  this.backend.timeList =this.timeList;
+  this.presentModal(); 
+}
+
+   }
+
+formodal:boolean =false;
+
+   async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalPage
+    });
+    return await modal.present();
+  }
+
+
+  onEventSelected()
+  {
+
+  }
+
+  onViewTitleChanged()
+  {
+
+  }
+
+  onTimeSelected()
+  {
+
+  }
+
+
+  calendar ={
+    mode:'month',
+    currentDate:new Date()
+  }
+}
+

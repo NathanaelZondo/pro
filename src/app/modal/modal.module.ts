@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import {NgCalendarModule} from 'ionic2-calendar';
+
 import { IonicModule } from '@ionic/angular';
 
-import { BookwithsalonPage } from './bookwithsalon.page';
+import { ModalPage } from './modal.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: BookwithsalonPage
+    component: ModalPage
   }
 ];
 
@@ -19,9 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    NgCalendarModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [BookwithsalonPage]
+  declarations: [ModalPage]
 })
-export class BookwithsalonPageModule {}
+export class ModalPageModule {}
