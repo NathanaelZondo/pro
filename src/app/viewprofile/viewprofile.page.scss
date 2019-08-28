@@ -10,24 +10,27 @@
     flex-flow: row;
     justify-content: space-between;
     position: absolute;
-    top: 0;
+    top: 10px;
     z-index: 3;
     .edit{
         position: relative;
-        left:350px;
+        left:340px;
     }
  
 }
 
 .img{
     width: 100%;
-    height: 670px;
+    height:100vh;
+   
     img{
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
 }
+
+
 
 .info{
     display: flex;
