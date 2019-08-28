@@ -3,7 +3,7 @@ import { FormGroup, Validators, FormBuilder, ReactiveFormsModule, FormsModule } 
 import { LoadingController, AlertController } from '@ionic/angular';
 import { AuthService } from '../../app/auth.service';
 import { Router } from '@angular/router';
-
+import { ControlsService } from '../controls.service';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +22,7 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     public ReactiveFormsModule: ReactiveFormsModule,
     public FormsModule: FormsModule,
+    public control:ControlsService
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
@@ -61,5 +62,11 @@ export class LoginPage implements OnInit {
         }
       );
     }
+  }
+
+  login()
+  {
+
+this.control.router.navigate(['signup']);
   }
 }

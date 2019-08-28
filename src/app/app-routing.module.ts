@@ -5,7 +5,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'onboarding', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   { path: 'onboarding', loadChildren: './onboarding/onboarding.module#OnboardingPageModule' },
-  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule'},
   { path: 'createprofile', loadChildren: './createprofile/createprofile.module#CreateprofilePageModule' },
   { path: 'viewprofile', loadChildren: './viewprofile/viewprofile.module#ViewprofilePageModule' },
   { path: 'viewsalon', loadChildren: './viewsalon/viewsalon.module#ViewsalonPageModule' },

@@ -16,7 +16,7 @@ export class OnboardingPage implements OnInit {
   register()
   {
 
-this.control.router.navigate(['registration']);
+this.control.router.navigate(['signup']);
   }
 
 }

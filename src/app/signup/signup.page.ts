@@ -3,6 +3,7 @@ import { AuthService } from '../../app/auth.service';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ControlsService } from '../controls.service';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +18,8 @@ export class SignupPage implements OnInit {
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    public control:ControlsService
   ) {
     this.signupForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
@@ -59,5 +61,11 @@ export class SignupPage implements OnInit {
       this.loading = await this.loadingCtrl.create();
       await this.loading.present();
     }
+  }
+
+ signin()
+  {
+
+this.control.router.navigate(['login']);
   }
 }
