@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'bookwithsalon', loadChildren: './bookwithsalon/bookwithsalon.module#BookwithsalonPageModule' },
   { path: 'booking', loadChildren: './booking/booking.module#BookingPageModule' },
   { path: 'updateprofile', loadChildren: './updateprofile/updateprofile.module#UpdateprofilePageModule' },
+  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
 ];
 
 @NgModule({

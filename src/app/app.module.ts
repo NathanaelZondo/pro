@@ -14,11 +14,15 @@ import { config } from './cred';
 import * as firebase from 'firebase';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { ViewhairstylePipe } from './viewhairstyle.pipe'
+import {HttpClientModule} from '@angular/common/http';
+import { ModalPage } from './modal/modal.page';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
-  declarations: [AppComponent, ViewhairstylePipe],
-  entryComponents: [],
+  declarations: [AppComponent, ViewhairstylePipe,ModalPage],
+  entryComponents: [ModalPage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+    CommonModule,
   AngularFireModule.initializeApp(config),
   AngularFireDatabaseModule,
   AngularFireAuthModule,
