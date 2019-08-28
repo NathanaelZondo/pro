@@ -59,6 +59,21 @@
               <ion-label position="stacked">Date</ion-label>
             <ion-input clear placeholder="session time" type ="date" 
             displayFormat="DD/MM/YYYY" min='2019-01-01' [(ngModel)] ="booking.userdate"></ion-input>
+            <calendar
+[eventSource] ="eventSource"
+[calendarMode] ="calendar.mode"
+[currentDate]= "calendar.currentDate"
+(onEventSelected) ="onEventSelected"
+(onTitleChanged) ="onViewTitleChanged($event)"
+(onTimeSelected) ="onTimeSelected"
+startHour ="6"
+endHour ="20"
+step ="30"
+startingDayWeek ="1"
+>
+
+
+</calendar>
           </ion-item>
       </div>
       

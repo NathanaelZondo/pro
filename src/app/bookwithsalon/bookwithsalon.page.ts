@@ -417,5 +417,27 @@ formodal:boolean =false;
     });
     return await modal.present();
   }
+
+
+  onEventSelected()
+  {
+
+  }
+
+  onViewTitleChanged()
+  {
+
+  }
+
+  onTimeSelected()
+  {
+
+  }
+
+
+  calendar ={
+    mode:'month',
+    currentDate:new Date()
+  }
 }
 
