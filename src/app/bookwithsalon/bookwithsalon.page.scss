@@ -1,43 +1,43 @@
-.container{
-     display: flex;
-     flex-flow: column;
-     justify-content: center;
-     align-items: center;
-     width: 100%;
-     height: 100%;
-     background: black;
+.container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
-.logo{
+.back{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    .icon{
+        font-size: 20px;
+    }
+}
+
+.logo {
     width: 100px;
     height: 100px;
-   
+    background: black;
     border-radius: 50%;
+   margin: 20px 0px;
 }
 
-.heading{
+.heading {
     text-align: center;
 }
 
-.inputs{
-    
+.inputs {
     float: left;
-   
+    margin: 20px;
 }
 
-.item{
-    background: black;
-    width: 300px;
-color: white;
-border-bottom: red;
+.item {
+    width: 350px;
 }
 
-.input{
-    border-bottom: red;
-}
-
-.btnz{
-    .button{
-        width: 150px;
-}
+.btnz {
+    .button {
+        width:350px;
+    }
 }

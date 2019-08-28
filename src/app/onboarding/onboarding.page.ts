@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ControlsService } from '../controls.service';
 
 @Component({
   selector: 'app-onboarding',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OnboardingPage implements OnInit {
 
-  constructor() { }
+  constructor(public control:ControlsService) { }
 
   ngOnInit() {
+  }
+
+  register()
+  {
+
+this.control.router.navigate(['registration']);
   }
 
 }
