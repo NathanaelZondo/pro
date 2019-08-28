@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireModule} from '@angular/fire';
 import { config } from './cred';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { ViewhairstylePipe } from './viewhairstyle.pipe'
 
@@ -20,6 +20,7 @@ import { ViewhairstylePipe } from './viewhairstyle.pipe'
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
   AngularFireModule.initializeApp(config),
+  
   AngularFireDatabaseModule,
   AngularFireAuthModule,
  AngularFirestoreModule],
