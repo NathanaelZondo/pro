@@ -86,9 +86,8 @@ this.backend.setuserdata(this.profiles[0].name,this.profiles[0].surname,this.pro
     console.log("this is the value for profile",)
     
   })
-  //this.getLocation();
+ 
   }
-
 
 
   db = firebase.firestore();
@@ -118,11 +117,11 @@ pictures.getDownloadURL().then(val=>{
   }
 
 
-  signout()
-  {
-this.backend.signout();
-this.control.router.navigate(['login']);
-  }
+//   signout()
+//   {
+// this.backend.signout();
+// this.control.router.navigate(['login']);
+//   }
 
   selectsalon(x)
   {

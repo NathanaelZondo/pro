@@ -1,88 +1,76 @@
-<ion-header>
+<ion-header style="height: 50px">
 
   <ion-title>{{viewTitle}}</ion-title>
-  <ion-buttons end>
-      <button ion-button [disabled]="isToday" (click)="today()">Today</button>
-      <button ion-button (click)="changeMode('month')">M</button>
-    
+  <ion-buttons>
+    <button ion-button [disabled]="isToday" (click)="today()">Today</button>
+    <button ion-button (click)="changeMode('month')">M</button>
   </ion-buttons>
-
 </ion-header>
 
 <ion-content class="has-header">
+  <div class="container">
+    <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
+      (onCurrentDateChanged)="onCurrentDateChanged($event)" (onEventSelected)="onEventSelected($event)"
+      (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30">
+    </calendar>
 
-
-
-    <calendar [eventSource]="eventSource"
-    [calendarMode]="calendar.mode"
-    [currentDate]="calendar.currentDate"
-    (onCurrentDateChanged)="onCurrentDateChanged($event)"
-    (onEventSelected)="onEventSelected($event)"
-    (onTitleChanged)="onViewTitleChanged($event)"
-    (onTimeSelected)="onTimeSelected($event)"
-    step="30">
-</calendar>
-
-<div class="inputs">
-    <div class="username">
-        <ion-item >
-            <ion-label position="stacked">Name</ion-label>
-            <ion-input placeholder="name" [(ngModel)] ="booking.name"></ion-input>
-          </ion-item>
-          <ion-item>
-              <ion-label position="stacked">Surname</ion-label>
-            <ion-input placeholder="surname" [(ngModel)] ="booking.surname"></ion-input>
-          </ion-item>
-    </div>
-  
-
-
-    <div class="hairstyle">
+    <div class="inputs">
+      <div class="username">
         <ion-item>
-            <ion-label position="stacked">Hairstyle Type</ion-label>
-          <ion-input placeholder="hairstyle type" [(ngModel)] ="booking.hairstyletype"></ion-input>
+          <ion-label position="stacked">Name</ion-label>
+          <ion-input placeholder="name" [(ngModel)]="booking.name"></ion-input>
         </ion-item>
-  
+        <!--   
+          <ion-label position="stacked">Surname</ion-label>
+          <ion-input placeholder="surname" [(ngModel)]="booking.surname"></ion-input>
+        </ion-item> -->
+      </div>
+
+
+      <div class="hairstyle">
         <ion-item>
-            <ion-label position="stacked">Hairdresser</ion-label>
-          <ion-select value="brown" okText="Okay" [(ngModel)] ="booking.hairdresser" >
-            <ion-select-option *ngFor ="let x of staff" >{{x.name}}</ion-select-option>
-           
+          <ion-label position="stacked">Hairstyle Type</ion-label>
+          <ion-input placeholder="hairstyle type" [(ngModel)]="booking.hairstyletype"></ion-input>
+        </ion-item>
+
+        <ion-item style="padding: 10px;">
+            <ion-label position="stacked">Estimated Duration</ion-label>
+            <ion-input placeholder="estimated time for hairstyle" [(ngModel)]="booking.estimatedtime"></ion-input>
+          </ion-item>
+      </div>
+
+
+      <ion-item>
+          <ion-label position="stacked">Hairdresser</ion-label>
+          <ion-select value="brown" okText="Okay" [(ngModel)]="booking.hairdresser">
+            <ion-select-option *ngFor="let x of staff">{{x.name}}</ion-select-option>
+
           </ion-select>
         </ion-item>
-    </div>
-   
-
-    <ion-item style="padding: 10px;">
-        <ion-label position="stacked">Estimated Duration</ion-label>
-      <ion-input placeholder="estimated time for hairstyle" [(ngModel)] ="booking.estimatedtime"></ion-input>
-    </ion-item>
-    <div class="appmnts">
-        <ion-item>
-            <ion-label position="stacked">Time</ion-label>
-          <ion-input placeholder="session time" type ="time" [(ngModel)] ="booking.sessiontime" ></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label position="stacked">Date</ion-label>
-          <ion-input clear placeholder="session time" type ="date" 
-          displayFormat="DD/MM/YYYY" min='2019-01-01' [(ngModel)] ="booking.userdate"></ion-input>
-         
-
-
-
-        </ion-item>
-
-    </div>
 
     
-  
-  </div>
-  <div class="btnz">
-      <ion-button color="dark" (click) ="testbooking(booking)">Validate booking</ion-button><br>
-      <ion-button color="dark" (click) ="setbooking(booking)">Submit</ion-button>
-      
+      <div class="appmnts">
+        <ion-item>
+          <ion-label position="stacked">Time</ion-label>
+          <ion-input placeholder="session time" type="time" [(ngModel)]="booking.sessiontime"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Date</ion-label>
+          <ion-input clear placeholder="session time" type="date" displayFormat="DD/MM/YYYY" min='2019-01-01'
+            [(ngModel)]="booking.userdate"></ion-input>
+        </ion-item>
+
+      </div>
     </div>
-  
+    <div class="btnz">
+      <ion-button color="dark" (click)="testbooking(booking)">Validate booking</ion-button><br>
+      <ion-button color="dark" (click)="setbooking(booking)">Submit</ion-button>
+
+    </div>
+
+
+  </div>
+
 
 
 

@@ -1,18 +1,22 @@
 .container {
     display: flex;
     flex-flow: column;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
+
 }
 
 .userimage {
     position: relative;
+
     .img {
         width: 200px;
         height: 200px;
         border: 5px solid grey;
-        border-radius: 50%;
         overflow: hidden;
+        border-radius: 50%;
 
         img {
 
@@ -22,14 +26,37 @@
         }
     }
 
-    .chooseimg{
+    .chooseimg {
         border-radius: 50%;
         width: 50px;
         height: 50px;
         // background: red;
-        .icon{
+        position: absolute;
+        top: 90%;
+        left: 80%;
+
+        .icon {
             font-size: 50px;
-            color: white; 
         }
+    }
+}
+
+.inputs {
+    position: relative;
+    top: 120px;
+
+    .item {
+        text-align: center;
+        width: 300px;
+        margin: 5px;
+    }
+}
+
+.btn {
+    position: relative;
+    top: 150px;
+
+    .button {
+        width: 300px;
     }
 }
