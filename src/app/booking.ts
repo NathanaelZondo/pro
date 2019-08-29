@@ -11,9 +11,9 @@ salonlocation:string;
 hairstyleprice:string;
 hairstyletype:string;
 estimatedtime:number;
-sessiontime:number;
+sessiontime:string;
 sessionendtime:string;
 hairdresser:string;
-userdate:undefined
+userdate:string
 
 }
