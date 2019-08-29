@@ -9,33 +9,9 @@
 <div class="search">
   <ion-searchbar placeholder="Search"></ion-searchbar>
 </div>
-<div class="container">
-  <div class="map">
-  </div>
-  <div class="place">
-    <p id="place">Soweto</p>
-  </div>
-  <div class="salonlist">
-    
-      <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
-        <div class="image">
-          <img src="{{x.salonImage}}">
-        </div>
-        <div class="details">
-          <div class="subtitle">
-            {{x.location}}
-          </div>
-          <div class="title">
-            {{x.salonName}}
-          </div>
-        </div>
-      </div>
-    
-  </div>
-</div>
 
-
-  <!-- <ion-item *ngFor="let sal of salon">
+<button (click)="chec()" ion-button> map </button>
+  <ion-item *ngFor="let sal of salon">
     <ion-thumbnail>
       <img src="{{sal.coverImage}}">
 
@@ -60,7 +36,7 @@
 {{x.SalonDesc}}
 </pre>
 
-  </ion-item> -->
+  </ion-item> 
 
 
 

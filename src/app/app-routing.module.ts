@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'viewsalon', loadChildren: './viewsalon/viewsalon.module#ViewsalonPageModule' },
   { path: 'viewhairstyle', loadChildren: './viewhairstyle/viewhairstyle.module#ViewhairstylePageModule' },
   { path: 'bookwithsalon', loadChildren: './bookwithsalon/bookwithsalon.module#BookwithsalonPageModule' },
-  { path: 'booking', loadChildren: './booking/booking.module#BookingPageModule' },
+  { path: 'booking', loadChildren: './booking/booking.module#BookingPageModule' },  { path: 'maps', loadChildren: './maps/maps.module#MapsPageModule' },
+
 ];
 
 @NgModule({

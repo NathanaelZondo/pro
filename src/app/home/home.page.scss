@@ -5,7 +5,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.466)), url('../../assets/map.jpg');
+  
 }
 
 
@@ -66,4 +66,9 @@
             }
         }
     }
+    #map {
+        width: 100%;
+        height: 300px;
+      }
+    
 }
