@@ -8,61 +8,64 @@
 <ion-content>
  
   <div class="container">
-      <div class="search">
-         
-        <ion-searchbar placeholder="Search" style="background: rgba(255, 255, 255, 0.651)"></ion-searchbar>
-      
+    <div class="search">
+       
+      <ion-searchbar placeholder="Search" style="background: rgba(255, 255, 255, 0.651)"></ion-searchbar>
+    
+    </div>
+  <div class="map">
+  </div>
+  <div class="place">
+    <ion-button (click) ="viewprofile()">View Profile</ion-button> 
+    <ion-button (click) ="chec()">Log out</ion-button>  
+    <p id="place">Soweto</p>
+  </div>
+  <div class="salonlist">
+    <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
+      <div class="image">
+        <img src="{{x.salonImage}}">
       </div>
-    <div class="map">
-    </div>
-    <div class="place">
-      <ion-button (click) ="viewprofile()">View Profile</ion-button> 
-      <ion-button (click) ="chec()">Log out</ion-button>  
-      <p id="place">Soweto</p>
-    </div>
-    <div class="salonlist">
-
-      <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
-        <div class="image">
-          <img src="{{x.salonImage}}">
-        </div>
-        <div class="details">
-          <div class="subtitle">
-            {{x.location}}
-    <div #map id="map"></div>
-      <div class="container">
-          <div class="search">
-             
-              <ion-searchbar placeholder="Search" style="background: rgba(255, 255, 255, 0.651)"></ion-searchbar>
-            
-            </div>
-        
-          <div class="place">
-            <ion-button (click) ="viewprofile()">View Profile</ion-button> 
-            <ion-button (click) ="signout()">Log out</ion-button>  
+      <div class="details">
+        <div class="subtitle">
+          {{x.location}}
+  <div #map id="map"></div>
+    <div class="container">
+        <div class="search">
            
+            <ion-searchbar placeholder="Search" style="background: rgba(255, 255, 255, 0.651)"></ion-searchbar>
+          
           </div>
-          <div class="salonlist">
       
-            <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
-              <div class="image">
-                <img src="{{x.salonImage}}">
+        <div class="place">
+          <ion-button (click) ="viewprofile()">View Profile</ion-button> 
+          <ion-button (click) ="signout()">Log out</ion-button>  
+         
+        </div>
+        <div class="salonlist">
+    
+          <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
+            <div class="image">
+              <img src="{{x.salonImage}}">
+            </div>
+            <div class="details">
+              <div class="subtitle">
+                {{x.location}}
               </div>
-              <div class="details">
-                <div class="subtitle">
-                  {{x.location}}
-                </div>
-                <div class="title">
-                  {{x.salonName}}
-                </div>
+              <div class="title">
+                {{x.salonName}}
               </div>
             </div>
-      
           </div>
-          
-      </div>
-  
-  
+    
+        </div>
+        
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
 
 
 </ion-content>
