@@ -1,108 +1,77 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
 <ion-content>
+  <div class="container">
+    <div class="back">
+      <ion-icon name="arrow-back" style="font-size: 30px"></ion-icon>
+    </div>
+    <div class="logo">
+      <h1>Welcome <br> <span>Sign-In to continue</span></h1>
 
-  <div class="container" >
-    <div class="b1">
-      
-      <div class="topshape">
-        <div class="img">
-          <img src="../../assets/Path 4.png">
-        </div>
-        <div class="txt">
-          <p>Sign-In</p>
-        </div>
+    </div>
+    <br>
+    <div class="form">
+      <form [formGroup]="loginForm">
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!loginForm.controls['email'].valid &&
+             loginForm.controls['email'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!loginForm.controls['email'].valid &&
+              loginForm.controls['email'].touched">
+          <ion-label id="validate">Please enter a valid email address.</ion-label>
+        </ion-item>
 
-      </div>
+        <ion-item>
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input formControlName="password" type="password" placeholder="Your password"
+            [class.invalid]="!loginForm.controls['password'].valid&& loginForm.controls['password'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!loginForm.controls['password'].valid
+             && loginForm.controls['password'].touched" id="error">
+          <ion-label id="validate">Your password needs more than 6 characters.</ion-label>
+        </ion-item>
 
+        <ion-button (click)="loginUser(loginForm)" expand="block" color="dark" [disabled]="!loginForm.valid">
+          Log In
+        </ion-button>
+        <p routerLink="/reset-password">Forgot Password? </p>
+      </form>
+      <br>
+      <br>
+      <ion-button expand="block" color="dark" routerLink="/reset-password">
+        I forgot my password :(
+      </ion-button>
+    </div>
 
-      <div class="middleshape">
-        <div class="img1">
-          <img src="../../assets/Path 2.png">
-        </div>
-        <div class="details">
-            <div class="signup">
-                <p (click)="signup()">Sign-Up</p>
-              </div>
-              <div class="inputs">
-                  <ion-item>
-                      <ion-input type="email" placeholder="Enter Email" [(ngModel)]="user.email" id="npt"></ion-input>
-                    </ion-item>
-              
-              
-                    <ion-item>
-                      <ion-input type="password" placeholder="Enter Password" [(ngModel)]="user.password" id="npt"></ion-input>
-                    </ion-item>
-              </div>
-              <div class="reset">
-                  <p>Forgot Password?</p>
-              </div>
-              <div class="signin" (click)="fun(user)" >
-                      <ion-icon slot="icon-only" name="arrow-round-forward" ></ion-icon> 
-              </div>
-        </div>
-       
-
-      </div>
+    <div class="buttons">
 
 
-      <div class="bottomshape">
-        <div class="img2">
-            <img src="../../assets/Path 3.png">
-        </div>
-        <div class="social">
-          Or sign-in with : <br>
-            <ion-icon name="logo-facebook" id="icon"></ion-icon>
-            <ion-icon name="logo-google" id="icon"></ion-icon>
-        </div>
-      
-      </div>
 
     </div>
 
-
+    <div class="signup">
+      <p>Don't Have An Account <span routerLink="/signup">Sign-Up</span></p>
+    </div>
 
   </div>
 
 
-
-
-
-
-
-
-
-
-
-
-  <!-- <div class="logo">
-      <img src='../../assets/Untitled-1.jpg'>
-    </div>
-
-    <div class="title">
-      <h1>LOGIN</h1>
-    </div>
-
-    <div class="inputs">
-      <ion-item>
-        <ion-input type="email" placeholder="Enter Email" [(ngModel)]="user.email"></ion-input>
-      </ion-item>
-
-
-      <ion-item>
-        <ion-input type="password" placeholder="Enter Password" [(ngModel)]="user.password"></ion-input>
-      </ion-item>
-    </div>
-    <div class="reset">
-      <p>Forgot Password?</p>
-    </div>
-
-    <div class="btn">
-      <ion-button color="dark" (click)="fun(user)" id="signin">
-        Sign-In
-      </ion-button>
-    </div>
-
-    <div class="signup">
-      <p>Don't have an account yet? <span (click)="signup()">Sign-Up</span></p>
-    </div> -->
-
+  <!-- <ion-button expand="block" color="dark" fill="clear" routerLink="/signup">
+      Create a new account
+    </ion-button>
+  
+    <ion-button expand="block" fill="clear" routerLink="/reset-password">
+      I forgot my password :(
+    </ion-button> -->
 </ion-content>
+
+<!-- <ion-button expand="block" color="dark" fill="clear" routerLink="/signup">
+    Create a new account
+  </ion-button> -->

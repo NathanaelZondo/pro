@@ -11,16 +11,22 @@ import { AppRoutingModule } from './app-routing.module';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireModule} from '@angular/fire';
 import { config } from './cred';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { ViewhairstylePipe } from './viewhairstyle.pipe'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx'
+import {HttpClientModule} from '@angular/common/http';
+import { ModalPage } from './modal/modal.page';
+import {CommonModule} from '@angular/common';
+
 @NgModule({
-  declarations: [AppComponent, ViewhairstylePipe],
-  entryComponents: [],
+  declarations: [AppComponent, ViewhairstylePipe,ModalPage],
+  entryComponents: [ModalPage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+    CommonModule,
   AngularFireModule.initializeApp(config),
+  
   AngularFireDatabaseModule,
   AngularFireAuthModule,
  AngularFirestoreModule],

@@ -27,8 +27,9 @@ salons:Observable<any[]>;
   displayProfile;
   salonsDisply =[];
   selectedsalon =[];
+  salonplaceholder =[];
   constructor(public afs:AngularFirestore,public control:ControlsService,public loadingController: LoadingController,) {
-
+    this.viewprofile();
     this.items=this.afs.collection('userprofile').valueChanges();
 
     this.salons=this.afs.collection('Salons').valueChanges();
@@ -38,14 +39,32 @@ salons:Observable<any[]>;
   
    this.womenstyles=this.afs.collection('Salons').doc('sRkAEe3vxX5d7LR8WnhW').collection('Styles').doc('gender').collection('female').doc('AKVWEYRB3203GYtMfc3B').valueChanges();
     
+   this.authstate();
    }
-
+   timeList:Array<{}>
+  
+uid='7oQNyj1Trdf9L2ZaXYjxknh7ofd2';
    gend;
    type ='chiskop;'
-
+   profiles ={};
 getProfile()
 {
   return this.items;
+}
+
+viewprofile()
+{
+  //this.uid =firebase.auth().currentUser.uid;
+  this.afs.collection('userprofile').doc(this.uid).valueChanges().subscribe(val=>{ 
+    this.profiles =val;
+    console.log("this.profiles ",this.profiles)
+    return this.profiles;
+  })
+}
+   
+getprofile2()
+{
+ return this.db.collection('userprofile').doc(firebase.auth().currentUser.uid).get();
 }
 
 createprofile(profile:Profile)
@@ -125,7 +144,7 @@ username:string;
 name:string;
 surname:string;
 cell:string;
-salonname:string ='max';
+salonname:string ='Nakanjani';
 salonlocation:string;
 hairstyletype:string;
 hairstyleprice:string;
@@ -150,12 +169,12 @@ this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(b
 
 }
 
-
+salondisp;
 hairstyledata:Array<any>=[];
 
 getHairSalon(){
 
- 
+ this.hairstyledata=[];
  this.db.collection('SalonNode').get().then( snap => {
    if (snap.empty !== true){
     
@@ -168,7 +187,7 @@ getHairSalon(){
     this.db.collection('SalonNode').doc(doc.data().salonName).collection('Styles').get().then( qu =>{
       qu.forEach(doc =>{
       console.log(doc.data())
-     // this.hairstyledata.push(doc.data());
+     this.hairstyledata.push(doc.data());
         
       })
     })

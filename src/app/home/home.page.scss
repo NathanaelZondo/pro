@@ -1,17 +1,35 @@
 .container {
     display: flex;
     flex-flow: column;
-    justify-content: center;
-    align-items: center;
+
     width: 100%;
-    height: 100%;
-  
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.137)), url('../../assets/map.jpg');
+    // background-position: center;
+    // background-repeat: no-repeat;
+    // background-size: contain;
+}
+
+.search {
+    position: relative;
+    top: 0;
+    // display: flex;
+    // flex-flow: row;
+//  .button{
+//      width: 50px;
+//      height: 50px;
+//      background: black !important;
+//  }
 }
 
 
 .place {
     #place {
         font-size: 30px;
+        position: relative;
+        top: 450px;
+        left: 10px;
+        -webkit-text-stroke: 2px solid black;
     }
 }
 
@@ -23,22 +41,25 @@
     position: absolute;
     bottom: 0;
 
-  
     .card {
+
         width: 100%;
-        margin: 10px;
-        border-radius: 20px;
+        margin: 5px;
+        width: 400px;
+        height: 90px;
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
+        background: rgb(255, 255, 255);
+        color: black;
+        padding: 5px;
 
         .image {
             width: 110px;
-            height: 110px;
-            display: flex;
-            flex-flow: column;
-            align-items: center;
-            position: relative;
-            left: 10px;
-            top: 2px;
+            height: 80px;
             background: black;
+            flex-basis: 50%;
 
             img {
                 width: 100%;
@@ -51,18 +72,16 @@
         .details {
             display: flex;
             flex-flow: column;
-            align-items: center;
+            float: left;
             margin: 5px;
 
             .title {
-                font-size: 17px;
-                // font-weight: bold;
-                color: white;
+                font-size: 15px;
             }
 
             .subtitle {
-                font-size: 13px;
-                color: white;
+                font-size: 10px;
+
             }
         }
     }

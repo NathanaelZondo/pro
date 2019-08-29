@@ -4,6 +4,11 @@
     transition: 0.6s;
 }
 
+.back{
+    position: absolute;
+    z-index: 5;
+}
+
 .container {
     display: flex;
     flex-flow: column;
@@ -88,7 +93,7 @@
     right: 5%;
     top: 100%;
     z-index: 5;
-    background: red;
+    
 }
 
 .hair-active {
@@ -96,35 +101,27 @@
     left: 5%;
     bottom: 0%;
     right: 5%;
-    top: 30%;
+    top: 25%;
     z-index: 5;
-    background: rgba(0, 0, 0, 0.781);
-
+    background: rgb(0, 0, 0);
+    overflow: hidden;
+    overflow-x: auto;
+    padding :10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     .gallery {
-       height: 100vh;
-       overflow-y: auto;
-        .card {
-            position: absolute;
-            top: 40px;
-            left: 37px;
-            .imagez {
-                width: 300px;
-                height: 500px;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
-        }
+        height: 80%;
+        width: 100%;
+      
     }
 }
-
-#hair {}
 
 .buttonz {
     .button {
         width: 150px;
     }
 }
+
+
+
+    

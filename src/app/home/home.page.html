@@ -6,12 +6,42 @@
   </ion-toolbar>
 </ion-header> -->
 <ion-content>
-<div class="search">
-  <ion-searchbar placeholder="Search"></ion-searchbar>
-</div>
+ 
+  <div class="container">
+      <div class="search">
+         
+        <ion-searchbar placeholder="Search" style="background: rgba(255, 255, 255, 0.651)"></ion-searchbar>
+      
+      </div>
+    <div class="map">
+    </div>
+    <div class="place">
+      <ion-button (click) ="viewprofile()">View Profile</ion-button> 
+      <ion-button (click) ="signout()">Log out</ion-button>  
+      <p id="place">Soweto</p>
+    </div>
+    <div class="salonlist">
 
-<button (click)="chec()" ion-button> map </button>
-  <ion-item *ngFor="let sal of salon">
+      <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
+        <div class="image">
+          <img src="{{x.salonImage}}">
+        </div>
+        <div class="details">
+          <div class="subtitle">
+            {{x.location}}
+          </div>
+          <div class="title">
+            {{x.salonName}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ion-content>
+
+
+<!-- <ion-item *ngFor="let sal of salon">
     <ion-thumbnail>
       <img src="{{sal.coverImage}}">
 
@@ -38,22 +68,17 @@
 
   </ion-item> 
 
-
-
-</ion-content>
-
 <!-- <ion-button (click)="signout()">Sign Out</ion-button>
   <ion-button (click)="selectsalon()">Select Salon</ion-button> -->
 
 <!-- <ion-card *ngFor="let sal of salon">
-            <img src="{{sal.coverImage}}">
-
-            <ion-card-header>
-              <ion-card-subtitle> {{sal.location}}</ion-card-subtitle>
-              <ion-card-title> {{sal.nameOfSalon}}</ion-card-title>
-            </ion-card-header>
+  <img src="{{sal.coverImage}}">
+<ion-card-header>
+<ion-card-subtitle> {{sal.location}}</ion-card-subtitle>
+<ion-card-title> {{sal.nameOfSalon}}</ion-card-title>
+</ion-card-header>
           
-            <ion-card-content>
-                {{sal.desc}}
-            </ion-card-content>
-          </ion-card> -->
+<ion-card-content>
+{{sal.desc}}
+ </ion-card-content>
+ </ion-card> -->

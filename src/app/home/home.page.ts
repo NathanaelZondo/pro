@@ -38,8 +38,13 @@ console.log('check',this.salond)
    this.backend.getsalons().subscribe(val=>{
     this.salon =val;
     console.log(this.salon)
-   
-    this.hairstyledata =this.backend.hairstyledata.splice(0,1);
+
+
+//view profile on the viewprofilepage 
+    this.backend.viewprofile();
+
+
+    this.hairstyledata =this.backend.hairstyledata.splice(0,this.backend.hairstyledata.length);
 
 this.backend.setsalondata(this.salonname,this.location)
 this.backend.getHairSalon()
@@ -185,13 +190,15 @@ this.control.router.navigate(['login']);
   selectsalon(x)
   {
   
-
+this.backend.selectedsalon.splice(0,1);
 console.log(x)
 this.cover =x.salonImage;
 this.desc = x.SalonDesc;
 this.location =x.location;
 this.backend.salonname=x.salonName;
 this.backend.selectedsalon.push(x);
+this.backend.selectedsalon.splice(1,1);
+
 
 
 
@@ -205,5 +212,10 @@ this.backend.setsalondata(x.salonName,x.location);
   chec(){
     this.control.router.navigate(['maps']);
   }
+  viewprofile()
+  {
+    this.control.router.navigate(['viewprofile']);
+  }
   
+ 
 }
