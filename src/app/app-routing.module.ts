@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'updateprofile', loadChildren: './updateprofile/updateprofile.module#UpdateprofilePageModule' },
   { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
   { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
-  { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordPageModule' },
+  { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordPageModule' },  { path: 'navigation', loadChildren: './navigation/navigation.module#NavigationPageModule' },
+
 
 
 ];
