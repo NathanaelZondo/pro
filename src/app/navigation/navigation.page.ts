@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ControlsService } from '../controls.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,9 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationPage implements OnInit {
 
-  constructor() { }
+  constructor(public control:ControlsService) { }
 
   ngOnInit() {
+  }
+
+  map()
+  {
+
+this.control.router.navigate(['maps']);
+  }
+
+  profile()
+  {
+
+this.control.router.navigate(['viewprofile']);
+  }
+
+  bookings()
+  {
+
+this.control.router.navigate(['booking']);
+  }
+
+  info()
+  {
+
+this.control.router.navigate(['info']);
   }
 
 }

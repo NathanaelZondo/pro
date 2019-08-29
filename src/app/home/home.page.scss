@@ -4,12 +4,15 @@
 
     width: 100%;
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.137)), url('../../assets/map.jpg');
+   
     // background-position: center;
     // background-repeat: no-repeat;
     // background-size: contain;
 }
-
+#map {
+    width: 100%;
+    height: 100%;
+  }
 .search {
     position: relative;
     top: 0;
@@ -85,9 +88,6 @@
             }
         }
     }
-    #map {
-        width: 100%;
-        height: 300px;
-      }
+   
     
 }
