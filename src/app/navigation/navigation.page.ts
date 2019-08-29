@@ -34,7 +34,7 @@ this.control.router.navigate(['map']);
   info()
   {
 
-this.control.router.navigate(['info']);
+this.control.router.navigate(['home']);
   }
 
 }

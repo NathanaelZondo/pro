@@ -7,40 +7,43 @@
   </ion-buttons>
 </ion-header>
 
-<ion-content class="has-header">
-  <div class="container" class="has-header">
-    <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
-      (onCurrentDateChanged)="onCurrentDateChanged($event)" (onEventSelected)="onEventSelected($event)"
-      (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30">
-    </calendar>
+<ion-content >
     
-  <div class="container">
-
+  <div class="container" class="has-subheader">
+      <calendar [eventSource]="eventSource"
+      [calendarMode]="calendar.mode"
+      [currentDate]="calendar.currentDate"
+      (onCurrentDateChanged)="onCurrentDateChanged($event)"
+      (onEventSelected)="onEventSelected($event)"
+      (onTitleChanged)="onViewTitleChanged($event)"
+      (onTimeSelected)="onTimeSelected($event)"
+      step="30">
+</calendar>
 
     <div class="inputs">
+
+
+        <div class="hairstyle">
+
+            <pre>
+                <label >Price:   R{{booking.hairstyleprice}}.00 </label>  
+
+                <label >Hairstyle:{{booking.hairstyletype}}</label>
+                         
+                <label >Duration: {{booking.estimatedtime}} mins</label>
+
+                </pre>
+   
+        </div>
       <div class="username">
         <ion-item>
-          <ion-label position="stacked">Name</ion-label>
-          <ion-input placeholder="name" [(ngModel)]="booking.name"></ion-input>
+          
+          <ion-input placeholder="name" [(ngModel)]="booking.name" type ="text"></ion-input>
         </ion-item>
-        <!--   
-          <ion-label position="stacked">Surname</ion-label>
-          <ion-input placeholder="surname" [(ngModel)]="booking.surname"></ion-input>
-        </ion-item> -->
       </div>
 
 
-      <div class="hairstyle">
-        <ion-item>
-          <ion-label position="stacked">Hairstyle Type</ion-label>
-          <ion-input placeholder="hairstyle type" [(ngModel)]="booking.hairstyletype"></ion-input>
-        </ion-item>
 
-        <ion-item style="padding: 10px;">
-            <ion-label position="stacked">Estimated Duration</ion-label>
-            <ion-input placeholder="estimated time for hairstyle" [(ngModel)]="booking.estimatedtime"></ion-input>
-          </ion-item>
-      </div>
 
 
       <ion-item>
@@ -66,8 +69,8 @@
       </div>
     </div>
   <div class="btnz">
-      <ion-button color="dark" (click) ="setbooking(booking)">Validate booking</ion-button><br>
-      <ion-button color="dark" (click) ="submit(booking)">Submit</ion-button>
+      <ion-button color="dark"  (click) ="setbooking(booking)">Validate booking</ion-button><br>
+      <ion-button color="dark" [disabled]="isvalidated" (click) ="submit(booking)">Submit</ion-button>
      
     </div>
 
