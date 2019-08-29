@@ -66,93 +66,9 @@ this.backend.setuserdata(this.profiles[0].name,this.profiles[0].surname,this.pro
     console.log("this is the value for profile",)
     
   })
-  //this.getLocation();
+ 
   }
 
-
-  // ///MAPS \
-  // setlocation(coords) {
-  //   console.log(coords);
-    
-  //   this.infoWindow.setPosition(coords);
-  // }
-  // getLocation(){
-  //   // map options
-  //   // get the device geo location or handle any errors
-  //   this.geolocation.getCurrentPosition(res => {
-  //     this.mapCenter.lat = res.coords.latitude;
-  //     this.mapCenter.lng = res.coords.longitude;
-  //     this.geoAccuracy = res.coords.accuracy;
-
-  //     const marker = {
-  //       coords: {
-  //         lat: res.coords.latitude,
-  //       lng: res.coords.longitude
-  //       },
-  //       content: 'You',
-  //       name: ''
-  //     }
-      
-  //     this.infoWindow.setPosition(this.mapCenter);
-  //     this.infoWindow.open(this.mapElement);
-  //     this.initMap();
-  //     this.addMarker(marker);
-  //   } , async err => {
-  //     const alerter = await this.alertCtrl.create({
-  //       message: 'Error getting location '+JSON.stringify(err)
-  //     })
-  //     alerter.present()
-  //   })
-  // }
-  // mapOptions() {
-    
-  //   const mapOptions:  google.maps.MapOptions = {
-  //     center: this.mapCenter,
-  //     disableDefaultUI: true, 
-  //     minZoom: 10,
-  //     maxZoom: 17,
-  //     zoom: 10,
-  //     mapTypeId: google.maps.MapTypeId.ROADMAP,
-  //     restriction: {
-  //       latLngBounds: this.bounds,
-  //       strictBounds: false
-  //     }
-  //   }
-  //   return mapOptions;
-  // }
-  // initMap(){
-  //   // new map
-  //   this.mapElement = new google.maps.Map(this.mapElement.nativeElement, this.mapOptions());
-  // }
-  // // add marker function 
-  // addMarker(props) {
-  //   // add marker
-  //   const marker = new google.maps.Marker({
-  //     position: props.coords,
-  //     map: this.mapElement,
-  //   })
-  //   // check for custom icon
-  //   if(props.iconImage) {
-  //     // set custom icon
-  //     marker.setIcon(props.iconImage)
-  //   }
-
-  //   // check for content
-  //   if(props.content) {
-  //     // set custom content
-  //    let infoWindow = new google.maps.InfoWindow({
-  //      content: `<h5 style="margin:0;padding:0;">${props.name} </h5>`+props.content
-  //    });
-  //    marker.addListener('click', () => {
-  //     infoWindow.open(this.mapElement, marker);
-  //    })
-  //   }
-  // }
-  // handleLoacationError (content, position) {
-  //   this.infoWindow.setOptions(position);
-  //   this.infoWindow.setContent(content);
-  //   this.infoWindow.open(this.mapElement)
-  // }
 
   db = firebase.firestore();
   async takePhoto()
