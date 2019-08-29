@@ -97,11 +97,11 @@ pictures.getDownloadURL().then(val=>{
   }
 
 
-  signout()
-  {
-this.backend.signout();
-this.control.router.navigate(['login']);
-  }
+//   signout()
+//   {
+// this.backend.signout();
+// this.control.router.navigate(['login']);
+//   }
 
   selectsalon(x)
   {

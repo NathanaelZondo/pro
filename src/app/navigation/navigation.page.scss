@@ -1,0 +1,83 @@
+.container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(19, 18, 18, 0.637), rgb(0, 0, 0)), url('../../assets/onboardingImage.svg');
+    color: white;
+}
+
+.logo {
+    width: 200px;
+    height: 200px;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.title {
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    padding: 10px;
+
+    h1 {
+        font-size: 40px;
+    }
+}
+
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    top: 30px;
+    left: 55px;
+
+    .map {
+        width: 150px;
+        height: 150px;
+        border-right: 2px solid rgb(70, 69, 69);
+        border-bottom: 2px solid rgb(70, 69, 69);
+        background: rgba(37, 37, 37, 0.247);
+    }
+
+    .profile {
+        width: 150px;
+        height: 150px;
+        border-left: 2px solid rgb(70, 69, 69);
+        border-bottom: 2px solid rgb(70, 69, 69);
+        background: rgba(37, 37, 37, 0.247);
+    }
+
+    .booking {
+        width: 150px;
+        height: 150px;
+        border-right: 2px solid rgb(70, 69, 69);
+        border-top: 2px solid rgb(70, 69, 69);
+        background: rgba(37, 37, 37, 0.247);
+    }
+
+    .info {
+        width: 150px;
+        height: 150px;
+        border-left: 2px solid rgb(70, 69, 69);
+        border-top: 2px solid rgb(70, 69, 69);
+        background: rgba(37, 37, 37, 0.247);
+    }
+}
+
+.iconz {
+    margin: 15px;
+    color: rgba(75, 75, 75, 0.993);
+}
+
+.name {
+    color: rgba(75, 75, 75, 0.993);
+}

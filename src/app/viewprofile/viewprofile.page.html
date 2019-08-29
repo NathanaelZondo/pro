@@ -3,13 +3,13 @@
   <div class="container" *ngFor="let profile of profiles">
 
     <div class="icons">
-      <div class="back">
+      <div class="back" (click)="back()">
         <ion-icon name="arrow-round-back" style="font-size:30px;"></ion-icon>
       </div>
-
-      <div class="edit">
-        <ion-icon name="create" style="font-size:30px;" (click)="update()"></ion-icon>
+      <div class="exit" (click)="signout()">
+        <ion-icon name="exit" style="font-size:30px;"></ion-icon>
       </div>
+
     </div>
     <div class="img">
       <img src="{{profile.image}}">
@@ -28,9 +28,17 @@
       </div>
       <div class="up">
 
-        </div>
+      </div>
     </div>
-  
+
+    <div class="edit">
+      <ion-fab-button (click)="update()" style="background: rgba(255, 166, 0, 0.678); border-radius: 50%">
+        <ion-icon name="create"></ion-icon>
+      </ion-fab-button>
+      <!-- <ion-icon name="create" style="font-size:30px;" (click)="update()"></ion-icon> -->
+    </div>
+
+
   </div>
 
 

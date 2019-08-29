@@ -28,4 +28,14 @@ profiles =[];
     this.control.router.navigate(['updateprofile']);
   }
 
+  signout()
+  {
+this.backend.signout();
+this.control.router.navigate(['login']);
+  }
+
+  back(){
+    this.control.router.navigate(['navigation']);
+  }
+
 }
