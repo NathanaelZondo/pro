@@ -43,7 +43,7 @@ salons:Observable<any[]>;
    }
    timeList:Array<{}>
   
-uid='7oQNyj1Trdf9L2ZaXYjxknh7ofd2';
+uid=firebase.auth().currentUser.uid;
    gend;
    type ='chiskop;'
    profiles ={};
@@ -85,6 +85,7 @@ authstate()
    this.control.router.navigate(['home'])
  }
  else{
+  this.control.LogoutToast();
   this.control.router.navigate(['login'])
  }
 
@@ -150,7 +151,7 @@ salonlocation:string;
 hairstyletype:string;
 hairstyleprice:string;
 estimatedtime:number;
-sessiontime:number;
+sessiontime:string;
 hairdresser:string;
 bookingdate:string;
 

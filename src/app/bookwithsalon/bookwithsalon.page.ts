@@ -14,6 +14,8 @@ export class BookwithsalonPage implements OnInit {
   unit:string;
   unit1:string;
   staff =[];
+
+  isvalidated = true;
   constructor(public backend:BackendService,public control:ControlsService,public alertController:AlertController,public modalController: ModalController) {
     let cdate =new Date();
     cdate.getFullYear();
@@ -70,7 +72,7 @@ dat:Date;
   sessiontime:this.backend.sessiontime,
   sessionendtime:"",
   hairdresser:"",
-  userdate:undefined
+  userdate:""
 }
 //this is the date inputed by the user
 userdate;
@@ -82,6 +84,9 @@ salonoperatinghours =8;
 blocker:boolean=false;
 setbooking(booking:bookings)
 {
+
+console.log("This is the ==",booking)
+
   this.blocker =false;
   //this.backend.userbookings(booking);
 // prevents incorrect dates from being selected
@@ -162,7 +167,10 @@ else if(mins+estimatedmins<59){
   {
   console.log("this is the converted time",'0'+newhrs+":0"+newmins)
   booking.sessionendtime=newhrs+":0"+newmins;
-
+if(newhrs<10)
+{
+  booking.sessionendtime="0"+newhrs+":0"+newmins;
+}
   
   }
   else{
@@ -255,8 +263,28 @@ else if(mins+estimatedmins<59){
 
 ////////////////////////////////////////////validating booking sessions
 
+if(booking.hairdresser=="")
+{
+  this.control.name();
+}
+else if(booking.userdate=="")
+{
+this.control.date();
+}
+else if(booking.sessiontime=="")
+{
+this.control.time();
+}
 
-
+else if(this.blocker)
+{
+}
+else
+{
+  this.findtime(booking);
+  this.isvalidated =false;
+  this.testbooking(booking)
+}
 
 
 
@@ -268,10 +296,12 @@ if(this.blocker==false)
 
 this.booking =booking;
 }
-if(booking.name ="")
+else
+if(booking.name =="")
+{
 this.testbooking(booking);
-
-
+}
+this.submit(this.booking);
 }
 
 
@@ -356,6 +386,8 @@ this.d3 ;
 
 this.formodal=false;
 
+console.log("TestArray = ",this.testarray)
+
 for(let i =0;i<this.testarray.length;i++)
   {
 
@@ -385,7 +417,7 @@ let y =this.d3;
 
 this.timeList.push({a,x,b,y});
  
-    console.log(this.timeList)
+    console.log("Timelist =",this.timeList)
 if(this.d2>=this.d1 && this.d1<=this.d3)
 {
 this.formodal =true;
@@ -524,10 +556,11 @@ formodal:boolean =false;
 
 
 
-  submit(booking)
+  submit(booking:bookings)
   {
 
-    
+    //this.control.BookToast();
+   // this.backend.userbookings(booking);
   }
 }
 

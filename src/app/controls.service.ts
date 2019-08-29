@@ -127,5 +127,46 @@ export class ControlsService {
 
 
 
+async name()
+  {
+    const toast = await this.toastController.create({
+      message: 'Enter the name of the bookie.',
+      duration: 5000
+    });
+    toast.present();
+
+}
+
+
+async date()
+  {
+    const toast = await this.toastController.create({
+      message: 'Enter your booking date.',
+      duration: 5000
+    });
+    toast.present();
+
+}
+
+async employee()
+  {
+    const toast = await this.toastController.create({
+      message: 'Select the name of the hairdresser.',
+      duration: 5000
+    });
+    toast.present();
+
+}
+
+async time()
+  {
+    const toast = await this.toastController.create({
+      message: 'Enter the booking time.',
+      duration: 5000
+    });
+    toast.present();
+
+}
+
 }
 
