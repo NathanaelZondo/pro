@@ -203,6 +203,34 @@ this.backend.setsalondata(x.salonName,x.location);
        }).catch((error) => {
          alert('Error getting location'+ JSON.stringify(error));
        });
+       firebase.firestore().collection('SalonOwnerProfile').get().then((res)=>{
+      
+        res.forEach((doc)=> {
+        
+          console.log(doc.data().address.longitude);
+          let lat = doc.id +"<br>Salon name: "+ doc.data().ownername+ " yebo" + doc.data().price;
+          let coord = new google.maps.LatLng(doc.data().address.latitude, doc.data().address.longitude);
+           let marker = new google.maps.Marker({
+               map: this.map,
+               position: coord,
+               title: 'Click to view details',
+             })
+                  let infoWindow = new google.maps.InfoWindow({
+              content: lat
+         });
+         google.maps.event.addListener(marker, 'click', (resp)=>{
+          infoWindow.open(this.map, marker)
+          })
+          google.maps.event.addListener( marker,'click', (resp) => {
+            this.map.setZoom(15);
+            this.map.setCenter(marker.getPosition());
+          });
+       
+        })
+       
+      
+        // }
+      });
     }
   
     mapOptions() {
