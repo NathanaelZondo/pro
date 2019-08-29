@@ -448,22 +448,22 @@ formodal:boolean =false;
  
           if(parseFloat((new Date(ev.selectedTime).getMonth()+1).toString())<10 )
           {
-               this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-0"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-"+new Date(ev.selectedTime).getDate().toString();
+              // this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-0"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-"+new Date(ev.selectedTime).getDate().toString();
 
                if(parseFloat(new Date(ev.selectedTime).getDate().toString())<10)
                {
-                this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-0"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-0"+new Date(ev.selectedTime).getDate().toString();
+             //   this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-0"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-0"+new Date(ev.selectedTime).getDate().toString();
               console.log(this.booking.userdate) 
               }
           }
 
           else
           {
-            this.booking.userdate=new Date(ev.selectedTime).getFullYear().toString()+"-"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-"+new Date(ev.selectedTime).getDate();
+          //  this.booking.userdate=new Date(ev.selectedTime).getFullYear().toString()+"-"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-"+new Date(ev.selectedTime).getDate();
    
             if(parseFloat(new Date(ev.selectedTime).getDate().toString())<10)
             {
-             this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-0"+new Date(ev.selectedTime).getDate().toString();
+          //npm insta   this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-0"+new Date(ev.selectedTime).getDate().toString();
            console.log(this.booking.userdate) 
            }
 
