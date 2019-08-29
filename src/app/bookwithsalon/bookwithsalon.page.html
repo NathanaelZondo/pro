@@ -13,6 +13,9 @@
       (onCurrentDateChanged)="onCurrentDateChanged($event)" (onEventSelected)="onEventSelected($event)"
       (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30">
     </calendar>
+    
+  <div class="container">
+
 
     <div class="inputs">
       <div class="username">
@@ -62,10 +65,10 @@
 
       </div>
     </div>
-    <div class="btnz">
-      <ion-button color="dark" (click)="testbooking(booking)">Validate booking</ion-button><br>
-      <ion-button color="dark" (click)="setbooking(booking)">Submit</ion-button>
-
+  <div class="btnz">
+      <ion-button color="dark" (click) ="setbooking(booking)">Validate booking</ion-button><br>
+      <ion-button color="dark" (click) ="submit(booking)">Submit</ion-button>
+     
     </div>
 
 

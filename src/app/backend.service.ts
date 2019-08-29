@@ -79,6 +79,7 @@ signout()
 
 authstate()
 {
+
  if(firebase.auth().onAuthStateChanged)
  {
    this.control.router.navigate(['home'])

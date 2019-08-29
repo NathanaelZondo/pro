@@ -265,12 +265,13 @@ else if(mins+estimatedmins<59){
 if(this.blocker==false)
 {
   
-//this.presentAlertConfirm();
+
 this.booking =booking;
 }
+if(booking.name ="")
 this.testbooking(booking);
-//this.backend.userbookings(booking);
-  //this.control.router.navigate(['home']);
+
+
 }
 
 
@@ -444,7 +445,30 @@ formodal:boolean =false;
   onTimeSelected(ev) {
       console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
           (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
-  }
+ 
+          if(parseFloat((new Date(ev.selectedTime).getMonth()+1).toString())<10 )
+          {
+               this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-0"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-"+new Date(ev.selectedTime).getDate().toString();
+
+               if(parseFloat(new Date(ev.selectedTime).getDate().toString())<10)
+               {
+                this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-0"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-0"+new Date(ev.selectedTime).getDate().toString();
+              console.log(this.booking.userdate) 
+              }
+          }
+
+          else
+          {
+            this.booking.userdate=new Date(ev.selectedTime).getFullYear().toString()+"-"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-"+new Date(ev.selectedTime).getDate();
+   
+            if(parseFloat(new Date(ev.selectedTime).getDate().toString())<10)
+            {
+             this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-0"+new Date(ev.selectedTime).getDate().toString();
+           console.log(this.booking.userdate) 
+           }
+
+          }
+        }
   onCurrentDateChanged(event:Date) {
       var today = new Date();
       today.setHours(0, 0, 0, 0);
@@ -495,6 +519,16 @@ formodal:boolean =false;
       current.setHours(0, 0, 0);
       return date < current;
   };
+
+
+
+
+
+  submit(booking)
+  {
+
+    
+  }
 }
 
 
