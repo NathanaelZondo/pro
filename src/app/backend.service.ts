@@ -47,6 +47,7 @@ uid=firebase.auth().currentUser.uid;
    gend;
    type ='chiskop;'
    profiles ={};
+ 
 getProfile()
 {
   return this.items;
