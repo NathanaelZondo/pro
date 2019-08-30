@@ -31,10 +31,78 @@ db = firebase.firestore();
 geoAccuracy: number;
 geoAddress: string;
 showAutoHideLoader : any;
-  constructor(public alertCtrl: AlertController, private geolocation: Geolocation,public loadingController: LoadingController) { }
+  constructor(public alertCtrl: AlertController, private geolocation: Geolocation,public loadingController: LoadingController) {
+
+    this.db.collection('D').onSnapshot(snapshot => {
+      snapshot.forEach(doc => {
+   
+        this.users.push(doc.data());
+        console.log('Retrive messege:',this.users); 
+        //this.addMarkersOnTheCustomersCurrentLocation();
+
+        this.users.forEach(Customers => {
+      this.addMarkersOnTheCustomersCurrentLocation(Customers.coords.lat, Customers.coords.lng);
+      // Customers.coords.lat, Customers.coords.lng
+      console.log('coordsdddd', Customers);
+      
+     }) 
+
+
+      })
+
+    
+    });
+  
+    // this.users.forEach(Customers => {
+    //   this.addMarkersOnTheCustomersCurrentLocation(Customers.coords.lat, Customers.coords.lng);
+
+    //  }) 
+
+    
+
+   }
 
   ngOnInit() {
+    // this.addMarkersOnTheCustomersCurrentLocation();
+  
   }
+  addInfoWindow(marker, content){
+    let infoWindow = new google.maps.InfoWindow({
+      content: content
+    });
+    google.maps.event.addListener(marker, 'click', () => {
+      infoWindow.open(this.mapElement, marker);
+    });
+  }
+
+  // addMarkersOnTheCustomersCurrentLocation(lat, lng){
+
+  //   let marker = new google.maps.Marker({
+  //       map: this.map,
+  //       animation: google.maps.Animation.DROP,
+  //       position: new google.maps.LatLng(lat, lng),
+  //   });
+  //   let content = "<p>Customer's Location!</p>";          
+  //   this.addInfoWindow(marker, content);
+  // }
+
+  
+  addMarkersOnTheCustomersCurrentLocation(lat, lng){
+
+
+    
+    let marker = new google.maps.Marker({
+        map: this.mapElement,
+        animation: google.maps.Animation.DROP,
+        position: new google.maps.LatLng(lat, lng),
+    });
+    let content = "<p>Salon's location!</p>";          
+    this.addInfoWindow(marker, content);
+    
+    console.log('addMarkersOnTheCustomersCurrentLocation called');
+  }
+
+
   ionViewDidEnter(){
     console.log('check');
   
@@ -50,7 +118,7 @@ showAutoHideLoader : any;
       });
     
     this.getGeolocation();
-    this.getSalon();
+    // this.getSalon();
   }
 
     ///MAPS \
@@ -65,6 +133,8 @@ showAutoHideLoader : any;
         // this.geoLongitude = resp.coords.longitude; 
         // this.geoAccuracy = resp.coords.accuracy; 
         // this.getGeoencoder(this.geoLatitude,this.geoLongitude);
+        console.log(resp);
+        
         this.mapCenter.lat = resp.coords.latitude;
         this.mapCenter.lng = resp.coords.longitude;
         this.geoAccuracy = resp.coords.accuracy;
@@ -77,11 +147,20 @@ showAutoHideLoader : any;
           content: 'ME',
           name: ''
         }
+
+        const markers = {
+          coords: {
+            lat: this.obj.lat,
+          lng: this.obj.lng
+          }
+        }
         
         this.infoWindow.setPosition(this.mapCenter);
         this.infoWindow.open(this.mapElement);
         this.initMap();
         this.addMarker(marker);
+        // this.addMarke(markers);
+        
        }).catch((error) => {
          alert('Error getting location'+ JSON.stringify(error));
        });
@@ -107,22 +186,45 @@ showAutoHideLoader : any;
      
       this.mapElement = new google.maps.Map(this.mapElement.nativeElement, this.mapOptions());
     }
-   
-    addMarker(props) {
-      // add marker
+
+    obj = {
+      lat : -26.1562825,
+      lng : 27.7639596
+    }
+       
+    addMarke(props) {
+  
       const marker = new google.maps.Marker({
         position: props.coords,
         map: this.mapElement,
       })
-      // check for custom icon
+   
+     
+    
+       let infoWindow = new google.maps.InfoWindow({
+       
+       });
+       marker.addListener('click', () => {
+        infoWindow.open(this.mapElement, marker);
+       })
+     
+    }
+
+   
+    addMarker(props) {
+  
+      const marker = new google.maps.Marker({
+        position: props.coords,
+        map: this.mapElement,
+      })
+   
       if(props.iconImage) {
-        // set custom icon
+       
         marker.setIcon(props.iconImage)
       }
-  
-      // check for content
+ 
       if(props.content) {
-        // set custom content
+    
        let infoWindow = new google.maps.InfoWindow({
          content: `<h5 style="margin:0;padding:0;">${props.name} </h5>`+props.content
        });
