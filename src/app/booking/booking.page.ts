@@ -8,11 +8,19 @@ import { ControlsService } from '../controls.service';
   styleUrls: ['./booking.page.scss'],
 })
 export class BookingPage implements OnInit {
-
-  constructor(public backend:BackendService,public control:ControlsService) { }
+  userbooking=[];
+  constructor(public backend:BackendService,public control:ControlsService) {
+    this.backend.getuserbookings().get().then(val =>{
+      val.forEach(doc =>{
+      this.userbooking.push(doc.data())
+      console.log(this.userbooking);
+      })
+    })
+   
+   }
 
   ngOnInit() {
-    this.control.BookToast();
+    
   }
 
 }

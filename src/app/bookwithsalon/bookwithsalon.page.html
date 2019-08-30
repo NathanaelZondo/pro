@@ -7,54 +7,28 @@
   </ion-buttons>
 </ion-header>
 
-<ion-content >
-    
+<ion-content>
+
   <div class="container" class="has-subheader">
-      <calendar [eventSource]="eventSource"
-      [calendarMode]="calendar.mode"
-      [currentDate]="calendar.currentDate"
-      (onCurrentDateChanged)="onCurrentDateChanged($event)"
-      (onEventSelected)="onEventSelected($event)"
-      (onTitleChanged)="onViewTitleChanged($event)"
-      (onTimeSelected)="onTimeSelected($event)"
-      step="30">
-</calendar>
+    <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
+      (onCurrentDateChanged)="onCurrentDateChanged($event)" (onEventSelected)="onEventSelected($event)"
+      (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30">
+    </calendar>
 
     <div class="inputs">
 
+      <div class="hairstyle">
 
-        <div class="hairstyle">
-
-            <pre>
-                <label >Price:   {{booking.hairstyleprice | currency:'&#82;'}} </label>  
-
-                <label >Hairstyle:{{booking.hairstyletype}}</label>
-                         
-                <label >Duration: {{booking.estimatedtime}} mins</label>
-
-                </pre>
-   
+        <div class="info">
+          <label>Hairstyle:{{booking.hairstyletype}}</label>
+          <label>Duration: {{booking.estimatedtime}} mins</label>
         </div>
-      <div class="username">
-        <ion-item>
-          
-          <ion-input placeholder="name" [(ngModel)]="booking.name" type ="text"></ion-input>
-        </ion-item>
+        <div class="prc">
+          <label>Price: {{booking.hairstyleprice | currency:'&#82;'}} </label>
+        </div>
+
       </div>
 
-
-
-
-
-      <ion-item>
-          <ion-label position="stacked">Hairdresser</ion-label>
-          <ion-select value="brown" okText="Okay" [(ngModel)]="booking.hairdresser">
-            <ion-select-option *ngFor="let x of staff">{{x.name}}</ion-select-option>
-
-          </ion-select>
-        </ion-item>
-
-    
       <div class="appmnts">
         <ion-item>
           <ion-label position="stacked">Time</ion-label>
@@ -67,11 +41,29 @@
         </ion-item>
 
       </div>
+
+      <!-- <div class="username">
+        <ion-item>
+
+          <ion-input placeholder="name" [(ngModel)]="booking.name" type="text"></ion-input>
+        </ion-item>
+      </div> -->
+
+
+      <ion-item>
+        <ion-label position="stacked">Hairdresser</ion-label>
+        <ion-select value="brown" okText="Okay" [(ngModel)]="booking.hairdresser">
+          <ion-select-option *ngFor="let x of staff">{{x.name}}</ion-select-option>
+
+        </ion-select>
+      </ion-item>
+
     </div>
-  <div class="btnz">
-      <ion-button color="dark"  (click) ="setbooking(booking)">Validate booking</ion-button><br>
-      <ion-button color="dark" [disabled]="isvalidated" (click) ="submit(booking)">Submit</ion-button>
-     
+    <br>
+    <div class="btnz">
+      <ion-button color="dark" (click)="setbooking(booking)">Validate booking</ion-button><br>
+      <ion-button color="dark" [disabled]="isvalidated" (click)="submit(booking)">Submit</ion-button>
+
     </div>
 
 

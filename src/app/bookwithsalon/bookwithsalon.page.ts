@@ -315,7 +315,7 @@ async presentAlertConfirm() {
         handler: () => {
          
           this.backend.userbookings(this.booking);
-          this.control.router.navigate(['navigation']);
+          this.control.router.navigate(['success']);
           this.control.BookToast();
         }
       }
