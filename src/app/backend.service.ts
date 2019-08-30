@@ -212,7 +212,14 @@ getHairSalon(){
 
 gethairdresser()
 {
- return this.db.collection('SalonNode').doc('Nakanjani').collection('staff');
+ return this.db.collection('SalonNode').doc(this.salonname).collection('staff');
+}
+userbooking=[];
+
+getuserbookings()
+{
+  this.userbooking=[];
+  return this.db.collection('Bookings').doc(this.uid).collection('userbookings');
 }
 
  }

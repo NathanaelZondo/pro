@@ -1,20 +1,33 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>booking</ion-title>
+   
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="hair">
 
-    <ion-slides pager="true" (ionSlideDidChange)="slideChanged()">
+  <h1 align ="center">User Bookings</h1>
+  
+<ion-item *ngFor ="let x of userbooking">
+<pre>
+  <h2>Bookie Info</h2>
+  x.name
+  x.surname
+<h2>Booking Info</h2>
+Hairstyle: x.hairstyletype
+Price:     x.hairstyleprice
+<h2>Time Info</h2>
+Start Time:x.sessiontime
+End Time:  x.sessionendtime
+Duration:  x.estimatedtime
+Date:      x.userdate
+<h2>Salon Location</h2>
+Salon:     x.salonname
+Location:  x.salon.location   
+</pre>
 
-      <ion-slide *ngFor="let x of hairstyledata" (click)="choosehair(x)">
-        <img src='{{x.hairStyleImage}}'>
-        <p> {{x.hairstyleDesc}}></p>
-      </ion-slide>
+</ion-item>
+   
 
-    </ion-slides>
-  </div>
 
 </ion-content>

@@ -28,13 +28,13 @@ this.control.router.navigate(['viewprofile']);
   bookings()
   {
 
-this.control.router.navigate(['map']);
+this.control.router.navigate(['booking']);
   }
 
-  info()
-  {
+//   info()
+//   {
 
-this.control.router.navigate(['home']);
-  }
+// this.control.router.navigate(['home']);
+//   }
 
 }
