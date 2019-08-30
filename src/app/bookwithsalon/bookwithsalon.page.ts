@@ -20,7 +20,8 @@ export class BookwithsalonPage implements OnInit {
     let cdate =new Date();
     cdate.getFullYear();
     let cd1 =new Date();
-    
+    this.backend.timeList=[];
+    this.testarray=[];
     this.backend.gethairdresser().get().then(val=>{
       val.forEach(stav=>{
         console.log(stav.data())
@@ -57,11 +58,12 @@ this.staff.push(stav.data());
 currentdate ;
 futuredate;
 dat:Date;
+formodal:boolean =false;
   ngOnInit() {
     
   }
   booking:bookings ={
-  name:this.backend.name,
+  name:this.backend.username,
   surname:this.backend.surname,
   cell:this.backend.cell,
   salonname:this.backend.salonname,
@@ -87,6 +89,7 @@ setbooking(booking:bookings)
 
 console.log("This is the ==",booking)
 
+this.testarray =[];
   this.blocker =false;
   //this.backend.userbookings(booking);
 // prevents incorrect dates from being selected
@@ -275,33 +278,21 @@ else if(booking.sessiontime=="")
 {
 this.control.time();
 }
-
-else if(this.blocker)
-{
-}
 else
 {
-  this.findtime(booking);
-  this.isvalidated =false;
+
+  
   this.testbooking(booking)
+  
+ 
+  
+  
 }
 
 
 
 
 /////////////////////////////////////////////////////////////////
-if(this.blocker==false)
-{
-  
-
-this.booking =booking;
-}
-else
-if(booking.name =="")
-{
-this.testbooking(booking);
-}
-this.submit(this.booking);
 }
 
 
@@ -324,7 +315,7 @@ async presentAlertConfirm() {
         handler: () => {
          
           this.backend.userbookings(this.booking);
-          this.control.router.navigate(['home']);
+          this.control.router.navigate(['navigation']);
           this.control.BookToast();
         }
       }
@@ -334,7 +325,7 @@ async presentAlertConfirm() {
   await alert.present();
 
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 db =firebase.firestore();
 testarray=[];
 testbooking(booking)
@@ -343,18 +334,25 @@ testbooking(booking)
 let minuteRange =parseFloat(booking.sessiontime[3]+booking.sessiontime[4])
 console.log("Test booking here",booking);
 this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).get().then(val=>{
+if(val.size==0)
+{
+  this.isvalidated =false;
+  this.control.SlotToast2();
+}
 val.forEach(doc=>{
   this.testarray.push(doc.data());
+  
   if(this.testarray)
   {
     this.findtime(booking);
   }
+ 
  });
  
 });
 
 
-
+this.testarray=[];
 }
 
 
@@ -372,6 +370,8 @@ timeList:Array<{}> =[
 d1:Date;
 d2:Date;
 d3:Date;
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 findtime(booking)
 {
 
@@ -384,7 +384,7 @@ this.d2 =new Date((booking.userdate+'T0')+(booking.sessionendtime));
 this.d3 ;
 
 
-this.formodal=false;
+//this.formodal=false;
 
 console.log("TestArray = ",this.testarray)
 
@@ -417,32 +417,43 @@ let y =this.d3;
 
 this.timeList.push({a,x,b,y});
  
-    console.log("Timelist =",this.timeList)
+this.formodal =false;
+
+  console.log("Timelist =",this.timeList)
 if(this.d2>=this.d1 && this.d1<=this.d3)
 {
 this.formodal =true;
- 
+
+console.log("This is de cond = ",this.formodal)
+
+
+
+
+if(this.formodal==true)
+{
+  this.isvalidated =true;
+  this.backend.timeList =this.timeList;
   this.control.SlotToast();
+ this.presentModal(); 
+}
+
+  
 }
 
 else
 {
+  this.isvalidated =false;
   this.control.SlotToast1();
-}
-
-
 
 }
 
-if(this.formodal==true)
-{
-  this.backend.timeList =this.timeList;
-  this.presentModal(); 
+
+
 }
 
    }
 
-formodal:boolean =false;
+
 
    async presentModal() {
     const modal = await this.modalController.create({
@@ -480,22 +491,22 @@ formodal:boolean =false;
  
           if(parseFloat((new Date(ev.selectedTime).getMonth()+1).toString())<10 )
           {
-              // this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-0"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-"+new Date(ev.selectedTime).getDate().toString();
+              this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-0"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-"+new Date(ev.selectedTime).getDate().toString();
 
                if(parseFloat(new Date(ev.selectedTime).getDate().toString())<10)
                {
-             //   this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-0"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-0"+new Date(ev.selectedTime).getDate().toString();
+                this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-0"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-0"+new Date(ev.selectedTime).getDate().toString();
               console.log(this.booking.userdate) 
               }
           }
 
           else
           {
-          //  this.booking.userdate=new Date(ev.selectedTime).getFullYear().toString()+"-"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-"+new Date(ev.selectedTime).getDate();
+           this.booking.userdate=new Date(ev.selectedTime).getFullYear().toString()+"-"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-"+new Date(ev.selectedTime).getDate();
    
             if(parseFloat(new Date(ev.selectedTime).getDate().toString())<10)
             {
-          //npm insta   this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-0"+new Date(ev.selectedTime).getDate().toString();
+         this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-0"+new Date(ev.selectedTime).getDate().toString();
            console.log(this.booking.userdate) 
            }
 
@@ -558,9 +569,9 @@ formodal:boolean =false;
 
   submit(booking:bookings)
   {
-
-    //this.control.BookToast();
-   // this.backend.userbookings(booking);
+    this.presentAlertConfirm()
+    
+   
   }
 }
 

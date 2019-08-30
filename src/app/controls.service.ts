@@ -168,5 +168,15 @@ async time()
 
 }
 
+async SlotToast2()
+{
+  const toast = await this.toastController.create({
+    message: 'Hairdresser is completely free for the day.',
+    duration: 5000
+  });
+  toast.present();
+
+}
+
 }
 

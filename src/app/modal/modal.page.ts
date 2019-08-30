@@ -23,6 +23,7 @@ console.log(this.timeList)
   
   async closemod()
   {
+    this.backend.timeList=[];
     await this.modalController.dismiss();
   }
 
