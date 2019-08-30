@@ -28,7 +28,7 @@ this.control.router.navigate(['viewprofile']);
   bookings()
   {
 
-this.control.router.navigate(['map']);
+this.control.router.navigate(['booking']);
   }
 
   info()
