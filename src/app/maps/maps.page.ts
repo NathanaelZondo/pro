@@ -33,7 +33,7 @@ geoAddress: string;
 showAutoHideLoader : any;
   constructor(public alertCtrl: AlertController, private geolocation: Geolocation,public loadingController: LoadingController) {
 
-    this.db.collection('D').onSnapshot(snapshot => {
+    this.db.collection('SalonNode').onSnapshot(snapshot => {
       snapshot.forEach(doc => {
    
         this.users.push(doc.data());
@@ -145,7 +145,8 @@ showAutoHideLoader : any;
           lng: resp.coords.longitude
           },
           content: 'ME',
-          name: ''
+          name: '',
+          //icon: iconBase + 'parking_lot_maps.png'
         }
 
         const markers = {
