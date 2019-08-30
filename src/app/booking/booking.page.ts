@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from '../backend.service';
+import { ControlsService } from '../controls.service';
 
 @Component({
   selector: 'app-booking',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookingPage implements OnInit {
 
-  constructor() { }
+  constructor(public backend:BackendService,public control:ControlsService) { }
 
   ngOnInit() {
+    this.control.BookToast();
   }
 
 }
