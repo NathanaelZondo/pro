@@ -31,10 +31,10 @@ this.control.router.navigate(['viewprofile']);
 this.control.router.navigate(['booking']);
   }
 
-//   info()
-//   {
+  info()
+  {
 
-// this.control.router.navigate(['home']);
-//   }
+ this.control.router.navigate(['home']);
+   }
 
 }
