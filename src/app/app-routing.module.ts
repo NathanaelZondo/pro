@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'maps', loadChildren: './maps/maps.module#MapsPageModule' },
   { path: 'success', loadChildren: './success/success.module#SuccessPageModule' },
   { path: 'info', loadChildren: './info/info.module#InfoPageModule' },
+  { path: 'reviews', loadChildren: './reviews/reviews.module#ReviewsPageModule' },
 ]
 // const routes: Routes = [
 //   { path: '', redirectTo: 'login', pathMatch: 'full' },

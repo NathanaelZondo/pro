@@ -1,66 +1,197 @@
-.container{
+.container {
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
-
+    background: rgba(189, 186, 186, 0.438);
+    position: fixed;
 }
 
-.logo{
-    width: 200px;
-    height: 200px;
+
+.left {
     position: absolute;
-    top: 10%;
-    text-align: center;
-    h1{
-        font-size: 35px;
-        font-weight: bold;
-        text-align: center;
+    top: -18%;
+    .img {  
+        img {
+            transform: rotateY(180deg);
+            height: 500px;
+            width: 500px;
+        }
     }
-    span{
-        font-weight: normal ;
-        font-size: 15px;
+
+    .text {
+        position: relative;
+        z-index: 5;
+        bottom: 320px;
+        left: 200px;
+
+        h1 {
+            font-size: 35px;
+            color: purple;
+        }
+
     }
 }
 
-.back{
-
+.right {
     position: absolute;
-    top: 10px;
+    bottom: -18%;
+
+    .img {
+        img {
+            transform: rotateY(180deg);
+            height: 500px;
+            width: 500px;
+        }
+    }
+
+    .icons {
+        position: absolute;
+        z-index: 5;
+        bottom: 37%;
+        right: 5%;
+        padding: 10px;
+        // .fabz{
+        //     display: flex;
+        //     flex-flow: row;
+        //     .icon{
+        //         font-size: 50px;
+        //     }
+        // }
+    }
+}
+
+.signup {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    z-index: 5;
+    font-size: 20px;
+}
+
+.middle {
+    position: absolute;
+    top: 6%;
     left: 10px;
-    .icon{
-        font-size: 30px;
+
+    .img {
+        img {
+            height: 700px;
+            transform: rotateY(180deg);
+            width: 380px;
+        }
+    }
+
+    .form {
+        position: absolute;
+        z-index: 5;
+        top: 35%;
+        left: 8%;
+        height: 250px;
+        overflow: hidden;
+        padding: 10px;
+
+        .item {
+            width: 230px;
+        }
+
+        .btn {
+            position: absolute;
+            top: 40px;
+            left: 30px;
+           
+            .fab-button {
+                background: purple;
+            }
+
+        }
     }
 }
 
-.form{
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    top: 10%;
-
-    .button{
-        width: 300px;
-    }
-
-    .item{
-        text-align: center;
-        margin: 10px;
-    }
-}
 
 
-.signin{
-    position: absolute;
-    bottom: 0;
-    
-    p{
-    span{
-        color: blue;
-    }
-}
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .container{
+//     display: flex;
+//     flex-flow: column;
+//     justify-content: center;
+//     align-items: center;
+//     width: 100%;
+//     height: 100%;
+
+// }
+
+// .logo{
+//     width: 200px;
+//     height: 200px;
+//     position: absolute;
+//     top: 10%;
+//     text-align: center;
+//     h1{
+//         font-size: 35px;
+//         font-weight: bold;
+//         text-align: center;
+//     }
+//     span{
+//         font-weight: normal ;
+//         font-size: 15px;
+//     }
+// }
+
+// .back{
+
+//     position: absolute;
+//     top: 10px;
+//     left: 10px;
+//     .icon{
+//         font-size: 30px;
+//     }
+// }
+
+// .form{
+//     display: flex;
+//     flex-flow: column;
+//     justify-content: center;
+//     align-items: center;
+//     position: relative;
+//     top: 10%;
+
+//     .button{
+//         width: 300px;
+//     }
+
+//     .item{
+//         text-align: center;
+//         margin: 10px;
+//     }
+// }
+
+
+// .signin{
+//     position: absolute;
+//     bottom: 0;
+
+//     p{
+//     span{
+//         color: blue;
+//     }
+// }
+// }

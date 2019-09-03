@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ControlsService } from '../controls.service';
 
 @Component({
   selector: 'app-info',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoPage implements OnInit {
 
-  constructor() { }
+  constructor(public control:ControlsService) { }
 
   ngOnInit() {
+  }
+
+  goback(){
+    
+  }
+
+  back(){
+    this.control.router.navigate(['navigation']);
   }
 
 }

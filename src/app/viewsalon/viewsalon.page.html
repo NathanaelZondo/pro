@@ -1,44 +1,61 @@
 <ion-content>
-  <div class="container" >
-    
-    <div class="salonimage"  *ngFor="let x of salond">
+  <div class="container">
+    <div class="salonimage" *ngFor="let x of salond">
       <img src="{{x.salonImage}}">
-      <ion-icon name="arrow-back"></ion-icon>
-      <div class="back">
-        <ion-buttons slot="start">
+
+      <div class="back" routerLink="/navigation">
+        <ion-icon name="arrow-back" style="color: white; font-size: 20px;"></ion-icon>
+        <!-- <ion-buttons slot="start">
           <ion-back-button>Back</ion-back-button>
-        </ion-buttons>
+        </ion-buttons> -->
       </div>
     </div>
-    <div class="img1" *ngFor="let x of salond">
+    <!-- <div class="img1" *ngFor="let x of salond">
             <img src="{{x.salonImage}}">
-    </div>
+    </div> -->
     <div class="details">
-
+      <div class="blur"></div>
       <div class="card" *ngFor="let x of salond">
 
         <div class="subtitle">
-          {{x.location}}
-        </div>
-        <div class="title">
           {{x.salonName}}
         </div>
-
-        <div class="desc">
-          {{x.SalonDesc}}
+        <div class="title">
+          {{x.location}}
         </div>
-
+        <div class="rating">
+          <ion-icon name="star" style="font-size: 30px;"></ion-icon>
+          <ion-icon name="star" style="font-size: 30px;"></ion-icon>
+          <ion-icon name="star" style="font-size: 30px;"></ion-icon>
+          <ion-icon name="star" style="font-size: 30px;"></ion-icon>
+          <ion-icon name="star-half" style="font-size: 30px;"></ion-icon>
+        </div>
       </div>
-      <div class=" buttonz">
-        <ion-button (click)="selecthairstyle('female')" color="dark" id="btn" (click)="viewHair()">Ladies</ion-button>
-        <ion-button (click)="selecthairstyle('male')" color="dark" id="btn">Gents</ion-button>
-      </div>
+    </div>
+    <div class="reviews" routerLink="/reviews">
+      <p>Reviews <ion-icon name="arrow-dropright" style="color: white"></ion-icon>
+      </p>
+    </div>
+    <div class="desc" *ngFor="let x of salond">
 
+      <p>{{x.SalonDesc}}</p>
+    </div>
+
+    <div class=" buttonz">
+      <ion-button (click)="selecthairstyle('female')" color="dark" id="btn" (click)="viewHair()">Ladies</ion-button>
+      <ion-button (click)="selecthairstyle('male')" color="dark" id="btn">Gents</ion-button>
     </div>
   </div>
 
-
   <div [ngClass]="{'hair-inactive': !more, 'hair-active': more}" id="hair">
+    <div class="close" (click)="viewHair()">
+      <ion-fab-button style="float: right">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-fab-button>
+    </div>
+    <br>
+    <br>
+    <br>
     <div class="gallery">
       <div class="hair">
 
@@ -57,20 +74,9 @@
               </ion-card-header>
 
             </ion-card>
-            <!-- <img src='{{x.hairStyleImage}}'>
 
-  <ion-card-content>
-                          Awesome content
-                        </ion-card-content>
-
-                        <p> {{x.hairstyleDesc}}></p> -->
           </ion-slide>
-
-
         </ion-slides>
-
-
-
       </div>
     </div>
 
@@ -79,30 +85,3 @@
 
 
 </ion-content>
-
-<!-- <div class="hair">
-  (ionSlideDidChange)="slideChanged()"
-      <ion-slides pager="true" (ionSlideDidChange)="slideChanged()">
-
-          <ion-slide *ngFor="let x of hairstyledata" (click)="choosehair(x)">
-              <img src='{{x.hairStyleImage}}'>
-              <p> {{x.hairstyleDesc}}></p>
-          </ion-slide>
-
-
-        </ion-slides>
-      
-
-
-    </div> -->
-
-
-<!-- <ion-slides pager="true">
-
-          <ion-slide *ngFor="let x of hairstyledata" (click)="choosehair(x)">
-              <img src='{{x.hairStyleImage}}'><br>
-              <p> {{x.hairstyleDesc}}></p>
-          </ion-slide>
-
-
-        </ion-slides> -->
