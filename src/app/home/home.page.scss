@@ -3,26 +3,25 @@
     flex-flow: column;
 
     width: 100%;
-    height: 100vh;
-   
+    height: 100%;
+
     // background-position: center;
     // background-repeat: no-repeat;
     // background-size: contain;
 }
+
 #map {
     width: 100%;
     height: 100%;
-  }
+}
+
 .search {
-    position: relative;
-    top: 0;
-    // display: flex;
-    // flex-flow: row;
-//  .button{
-//      width: 50px;
-//      height: 50px;
-//      background: black !important;
-//  }
+    position: absolute;
+    z-index: 5;
+    // left: 10px;
+    // right: 10px;
+    top: 10px;
+    width: 100%;
 }
 
 
@@ -47,22 +46,22 @@
     .card {
 
         width: 100%;
+        padding: 5px;
         margin: 5px;
         width: 400px;
-        height: 90px;
+        height: 200px;
         display: flex;
-        flex-flow: row;
+        flex-flow: column;
         justify-content: center;
         align-items: center;
         background: rgb(255, 255, 255);
         color: black;
-        padding: 5px;
 
         .image {
-            width: 110px;
-            height: 80px;
+            width: 150px;
+            height: 200px;
             background: black;
-            flex-basis: 50%;
+            padding: 5px;
 
             img {
                 width: 100%;
@@ -76,18 +75,14 @@
             display: flex;
             flex-flow: column;
             float: left;
-            margin: 5px;
-
-            .title {
-                font-size: 15px;
-            }
 
             .subtitle {
-                font-size: 10px;
-
+                p {
+                    font-size: 13px;
+                }
             }
         }
     }
-   
-    
+
+
 }

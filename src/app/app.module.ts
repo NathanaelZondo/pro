@@ -19,6 +19,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx'
 import {HttpClientModule} from '@angular/common/http';
 import { ModalPage } from './modal/modal.page';
 import {CommonModule} from '@angular/common';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 @NgModule({
   declarations: [AppComponent, ViewhairstylePipe,ModalPage],
@@ -37,7 +38,8 @@ import {CommonModule} from '@angular/common';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
    ,
    Geolocation,
-   NativeGeocoder
+   NativeGeocoder,
+   GoogleMaps
   ],
   bootstrap: [AppComponent]
 })
