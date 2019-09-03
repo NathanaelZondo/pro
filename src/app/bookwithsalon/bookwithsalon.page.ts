@@ -74,7 +74,8 @@ formodal:boolean =false;
   sessiontime:this.backend.sessiontime,
   sessionendtime:"",
   hairdresser:"",
-  userdate:""
+  userdate:"",
+  status:""
 }
 //this is the date inputed by the user
 userdate;
@@ -597,13 +598,6 @@ return this.events;
   setevents(setve)
 {
 this.events=setve;
-
-
-
-
-
-
-
 
 this.loadEvents();
 console.log(this.events)

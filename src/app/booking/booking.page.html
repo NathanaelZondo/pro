@@ -10,21 +10,22 @@
   
 <ion-item *ngFor ="let x of userbooking">
 <pre>
-  <h2>Bookie Info</h2>
+  <h3>Client Info</h3>
 Username: {{x.name}}
 Surname:  {{x.surname}}
-<h2>Booking Info</h2>
+<h3>Booking Info</h3>
 
 Hairstyle: {{x.hairstyletype}}
 Price:     {{x.hairstyleprice}}
-<h2>Time Info</h2>
+<h3>Time Info</h3>
 Start Time:{{x.sessiontime}}
 End Time:  {{x.sessionendtime}}
 Duration:  {{x.estimatedtime}}
 Date:      {{x.userdate}}
-<h2>Salon Location</h2>
+<h3>Salon Info</h3>
 Salon:     {{x.salonname}}
-Location:  {{x.salon.location   }}
+Stylist:   {{x.hairdresser}}
+Location   {{x.salonlocation}}
 </pre>
 
 </ion-item>
