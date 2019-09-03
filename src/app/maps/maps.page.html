@@ -1,14 +1,13 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>maps</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
- 
+  <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder=" search salon"></ion-searchbar>
+  <ion-list class="ion-margin-horizontal" [hidden]="!search.length">
+    <ion-item (click)="calcRoute(result)" *ngFor="let result of searchResults">
+     {{result.description}}
+    </ion-item>
+  </ion-list>
 <div #map id="map">
-
-  
+ 
 </div>
-
 </ion-content>
