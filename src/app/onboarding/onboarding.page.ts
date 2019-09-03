@@ -19,4 +19,8 @@ export class OnboardingPage implements OnInit {
 this.control.router.navigate(['signup']);
   }
 
+  signin(){
+    this.control.router.navigate(['login']);
+  }
+
 }
