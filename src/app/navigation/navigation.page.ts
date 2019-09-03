@@ -34,7 +34,7 @@ this.control.router.navigate(['booking']);
   info()
   {
 
- this.control.router.navigate(['home']);
-   }
+this.control.router.navigate(['info']);
+  }
 
 }
