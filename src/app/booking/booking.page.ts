@@ -17,6 +17,7 @@ export class BookingPage implements OnInit {
    salonname;
    useruid;
   newdata =[];
+   ob ={};
   constructor(public backend:BackendService,public control:ControlsService) {
     let currentdate = (new Date().getFullYear().toString())+'-'+(new Date().getMonth())+'-'+(new Date().getDate());
     if((new Date().getMonth()+1)<10)
@@ -32,19 +33,22 @@ export class BookingPage implements OnInit {
     this.backend.getuserbookings().get().then(val =>{
       val.forEach(doc =>{
       this.userbooking.push(doc.data())
-      //console.log(doc.data());
+      console.log(doc.data());
+     console.log(doc.data().surname,doc.data().hairdresser,doc.data().userdate,doc.data().salonname)
      
-      this.surname =doc.data().surname;
-      this.hairdresser =doc.data().hairdresser;
-      this.userdate = doc.data().userdate;
-      this.salonname =doc.data().salonname;
-      console.log(this.surname,this.hairdresser,this.salonname,this.userdate)
-  
-      firebase.firestore().collection('SalonNode').doc(this.salonname).collection('staff').doc(this.hairdresser).collection(this.userdate).where("surname","==",this.surname).where("userdate","==",currentdate).get().then(val=>{
-        val.forEach(val2=>{
 
-       ( { ... val2 , ... val2.data()})
-        
+      console.log(currentdate)
+  
+      firebase.firestore().collection('SalonNode').doc(doc.data().salonname).collection('staff').doc(doc.data().hairdresser).collection(doc.data().userdate).where("surname","==",doc.data().surname).where("userdate","==",currentdate).get().then(val=>{
+        val.forEach(val2=>{
+          console.log(val2.data())
+var obj ={id:val2.id}
+
+console.log(console.log(obj))
+
+      this.newdata.push( { ...obj ,... val2.data()})
+            
+console.log(this.newdata)
       });
       });
 
@@ -52,9 +56,8 @@ export class BookingPage implements OnInit {
       });
     });
 
-    console.log(this.surname,this.hairdresser,this.salonname,this.userdate)
+   
 
-    
 
   
    }
