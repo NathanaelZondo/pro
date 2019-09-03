@@ -5,10 +5,38 @@
 </ion-header>
 
 <ion-content>
+<h1>Current Bookings</h1>
+<ion-item *ngFor = "let x of newdata">
 
-  <h1 >User Bookings</h1>
+    <pre>
+        <h3>Client Info</h3>
+      Username: {{x.name}}
+      Surname:  {{x.surname}}
+      <h3>Booking Info</h3>
+      
+      Hairstyle: {{x.hairstyletype}}
+      Price:     {{x.hairstyleprice}}
+      <h3>Time Info</h3>
+      Start Time:{{x.sessiontime}}
+      End Time:  {{x.sessionendtime}}
+      Duration:  {{x.estimatedtime}}
+      Date:      {{x.userdate}}
+      <h3>Salon Info</h3>
+      Salon:     {{x.salonname}}
+      Stylist:   {{x.hairdresser}}
+      Location   {{x.salonlocation}}
+
+      </pre>
+
+
+</ion-item>
+
+
+<h1>All User Bookings</h1>
   
 <ion-item *ngFor ="let x of userbooking">
+
+    
 <pre>
   <h3>Client Info</h3>
 Username: {{x.name}}
