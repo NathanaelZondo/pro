@@ -415,6 +415,9 @@ let b =" until";
 let x = this.d2;
 let y =this.d3;
 
+
+
+
 this.timeList.push({a,x,b,y});
  
 this.formodal =false;
@@ -422,6 +425,16 @@ this.formodal =false;
   console.log("Timelist =",this.timeList)
 if(this.d2>=this.d1 && this.d1<=this.d3)
 {
+
+  this.events.push({
+    title: this.testarray[i].hairstyletype,
+    startTime: new Date(x),
+    endTime: new Date(y),
+    allDay: false
+  })
+  console.log(this.events);
+  this.setevents(this.events);
+  
 this.formodal =true;
 
 console.log("This is de cond = ",this.formodal)
@@ -434,7 +447,7 @@ if(this.formodal==true)
   this.isvalidated =true;
   this.backend.timeList =this.timeList;
   this.control.SlotToast();
- this.presentModal(); 
+// this.presentModal(); 
 }
 
   
@@ -471,7 +484,8 @@ else
       currentDate: new Date()
   }; // these are the variable used by the calendar.
   loadEvents() {
-      this.eventSource = this.createRandomEvents();
+    this.eventSource = this.getevents();
+    console.log(this.eventSource)
   }
   onViewTitleChanged(title) {
       this.viewTitle = title;
@@ -563,16 +577,37 @@ else
       return date < current;
   };
 
-
+  events =[];
 
 
 
   submit(booking:bookings)
   {
-    this.presentAlertConfirm()
+   this.presentAlertConfirm()
     
    
   }
+
+  getevents()
+{
+return this.events;
+}
+
+
+  setevents(setve)
+{
+this.events=setve;
+
+
+
+
+
+
+
+
+this.loadEvents();
+console.log(this.events)
+}
 }
 
 
