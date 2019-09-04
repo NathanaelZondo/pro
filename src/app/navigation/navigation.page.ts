@@ -16,7 +16,7 @@ export class NavigationPage implements OnInit {
   map()
   {
 
-this.control.router.navigate(['home']);
+this.control.router.navigate(['maps']);
   }
 
   profile()
@@ -34,7 +34,7 @@ this.control.router.navigate(['booking']);
   info()
   {
 
-this.control.router.navigate(['info']);
+this.control.router.navigate(['maps']);
   }
 
 }

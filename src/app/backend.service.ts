@@ -83,7 +83,7 @@ authstate()
 
  if(firebase.auth().onAuthStateChanged)
  {
-   this.control.router.navigate(['home'])
+   this.control.router.navigate(['maps'])
  }
  else{
   this.control.LogoutToast();
