@@ -6,7 +6,7 @@
 
 <ion-content>
 <h1>Current Bookings</h1>
-<ion-item *ngFor = "let x of newdata">
+<!-- <ion-item *ngFor = "let x of newdata">
 
     <pre>
         <h3>Client Info</h3>
@@ -29,10 +29,32 @@
       </pre>
 
 
-</ion-item>
+</ion-item> -->
+
+<div class="container" *ngFor = "let x of newdata">
+  <div class="date">
+      Date:      {{x.userdate}} 
+  </div>
+  <div class="style">
+      Hairstyle: {{x.hairstyletype}} &nbsp;
+      Price:     {{x.hairstyleprice | currency:'&#82;'}}
+  </div>
+  <div class="time">
+      Time:{{x.sessiontime}} for {{x.estimatedtime}} minutes<br>
+      Date:      {{x.userdate}} 
+      <!-- Duration:  {{x.estimatedtime}} minutes -->
+  </div>
+
+  <div class="stylist">
+      Salon:    {{x.salonname}}<br>
+      Stylist:  {{x.hairdresser}}<br>
+      Location  {{x.salonlocation}}
+  </div>
+
+</div>
 
 
-<h1>All User Bookings</h1>
+<!-- <h1>All User Bookings</h1>
   
 <ion-item *ngFor ="let x of userbooking">
 
@@ -56,7 +78,7 @@ Stylist:   {{x.hairdresser}}
 Location   {{x.salonlocation}}
 </pre>
 
-</ion-item>
+</ion-item> -->
    
 
 
