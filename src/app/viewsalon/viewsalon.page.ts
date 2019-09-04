@@ -14,7 +14,7 @@ export class ViewsalonPage implements OnInit {
 
   sliderConfig = {
     spaceBetween: 5,
-    slidesPerView: 1
+    slidesPerView: 1.5
   }
 
   more = false;

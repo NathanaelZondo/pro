@@ -10,6 +10,7 @@ import { ModalPage } from '../modal/modal.page';
   templateUrl: './bookwithsalon.page.html',
   styleUrls: ['./bookwithsalon.page.scss'],
 })
+
 export class BookwithsalonPage implements OnInit {
   unit:string;
   unit1:string;
@@ -74,7 +75,9 @@ formodal:boolean =false;
   sessiontime:this.backend.sessiontime,
   sessionendtime:"",
   hairdresser:"",
-  userdate:""
+  userdate:"",
+  status:"Active",
+  status2:"Active"
 }
 //this is the date inputed by the user
 userdate;
@@ -597,13 +600,6 @@ return this.events;
   setevents(setve)
 {
 this.events=setve;
-
-
-
-
-
-
-
 
 this.loadEvents();
 console.log(this.events)

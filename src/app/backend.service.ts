@@ -189,7 +189,6 @@ getHairSalon(){
 
     this.db.collection('SalonNode').doc(doc.data().salonName).collection('Styles').get().then( qu =>{
       qu.forEach(doc =>{
-      console.log(doc.data())
      this.hairstyledata.push(doc.data());
         
       })

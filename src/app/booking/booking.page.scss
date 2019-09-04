@@ -1,0 +1,14 @@
+.container{
+    display: flex;
+    flex-flow: column;
+  position: relative;
+  top:10%;
+  margin: 10px;
+}
+
+.date{
+    position: absolute;
+    top: 6%;
+    right: 10px;
+}
+
