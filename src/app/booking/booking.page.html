@@ -34,6 +34,7 @@
 <div class="container" *ngFor = "let x of newdata">
   <div class="date">
       Date:      {{x.userdate}} 
+      Status:    {{x.status2}}
   </div>
   <div class="style">
       Hairstyle: {{x.hairstyletype}} &nbsp;
@@ -50,7 +51,7 @@
       Stylist:  {{x.hairdresser}}<br>
       Location  {{x.salonlocation}}
   </div>
-
+  <ion-button  *ngIf= "x.status=='cancelled'"   (click) ="cancel(x)">Cancel</ion-button>>
 </div>
 
 

@@ -19,6 +19,7 @@ export class BookingPage implements OnInit {
    useruid;
   newdata =[];
    ob ={};
+   buttonactive ;
   constructor(public backend:BackendService,public control:ControlsService) {
     let currentdate = (new Date().getFullYear().toString())+'-'+(new Date().getMonth())+'-'+(new Date().getDate());
     if((new Date().getMonth()+1)<10)
@@ -71,7 +72,7 @@ console.log(this.newdata)
 
   cancel(x)
   {
-console.log(x);
+console.log("USER Clicked",x);
 
 
 x.status ="cancelled";
