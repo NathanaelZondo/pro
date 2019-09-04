@@ -22,7 +22,13 @@
 .detail{
     position: absolute;
     bottom: 10%;
-    background: white;
+    background: rgba(255, 255, 255, 0.774);
+    width: 100px;
+    height: 50px;
+    p{
+        position: relative;
+        bottom: 10px;
+    }
 }
 
 .salonimage {
