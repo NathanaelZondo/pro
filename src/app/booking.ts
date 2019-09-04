@@ -15,6 +15,7 @@ sessiontime:string;
 sessionendtime:string;
 hairdresser:string;
 userdate:string,
-status:string
+status:string,
+status2
 
 }

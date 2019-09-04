@@ -10,6 +10,7 @@ import { ModalPage } from '../modal/modal.page';
   templateUrl: './bookwithsalon.page.html',
   styleUrls: ['./bookwithsalon.page.scss'],
 })
+
 export class BookwithsalonPage implements OnInit {
   unit:string;
   unit1:string;
@@ -75,7 +76,8 @@ formodal:boolean =false;
   sessionendtime:"",
   hairdresser:"",
   userdate:"",
-  status:""
+  status:"Active",
+  status2:"Active"
 }
 //this is the date inputed by the user
 userdate;
