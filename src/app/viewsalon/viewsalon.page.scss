@@ -19,6 +19,12 @@
     position: fixed;
 }
 
+.detail{
+    position: absolute;
+    bottom: 10%;
+    background: white;
+}
+
 .salonimage {
     position: absolute;
     top: 0;
@@ -101,7 +107,7 @@
     right: 0;
     top: 15%;
     z-index: 5;
-    background: rgb(156, 154, 154);
+    background: rgba(156, 154, 154, 0.644);
     overflow: hidden;
     overflow-x: auto;
     padding: 10px;

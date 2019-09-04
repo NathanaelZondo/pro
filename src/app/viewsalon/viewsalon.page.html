@@ -32,10 +32,10 @@
         </div>
       </div>
     </div>
-    <div class="reviews" routerLink="/reviews">
+    <!-- <div class="reviews" routerLink="/reviews">
       <p>Reviews <ion-icon name="arrow-dropright" style="color: white"></ion-icon>
       </p>
-    </div>
+    </div> -->
     <div class="desc" *ngFor="let x of salond">
 
       <p>{{x.SalonDesc}}</p>
@@ -61,10 +61,11 @@
 
         <ion-slides [options]="sliderConfig">
 
-          <ion-slide *ngFor="let x of hair" (click)="choosehair(x)">
+          <ion-slide *ngFor="let x of hair" (click)="choosehair(x)" style="display: flex; flex-flow: column">
             <ion-card>
               <ion-card-header>
-                <img src='{{x.hairStyleImage}}'>
+                <img src='{{x.hairStyleImage}}'> >
+                
                 <br>
                 <ion-card-subtitle>{{x.hairstyleName}}</ion-card-subtitle>
                 <ion-card-title style="color: white; font-size: 15px;">
@@ -74,6 +75,10 @@
               </ion-card-header>
 
             </ion-card>
+            <div class="detail" *ngFor="let x of hair">
+
+              <p>{{x.hairstyleName}} <br> {{x.hairstylePrice | currency:'&#82;'}}</p>
+            </div>
 
           </ion-slide>
         </ion-slides>
