@@ -7,7 +7,10 @@ import { snapshotChanges } from '@angular/fire/database';
 import { Button } from 'protractor';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import {Marker, Geocoder} from '@ionic-native/google-maps';
+import {Marker, Geocoder, GoogleMap} from '@ionic-native/google-maps';
+import { BackendService } from '../backend.service';
+import { Profile } from '../profile';
+import { ControlsService } from '../controls.service';
 declare var google
 @Component({
   selector: 'app-maps',
@@ -24,7 +27,10 @@ public searchResults = new Array<any>();
 public search : string ='';
 private originMarker : Marker;
 public destination : any;
+private maps : GoogleMap;
  geocoder = new google.maps.Geocoder;
+ directionsService = new google.maps.DirectionsService;
+directionsDisplay = new google.maps.DirectionsRenderer;
 bounds = {
   north: -21.914461,
   south: -35.800139,
@@ -34,6 +40,7 @@ bounds = {
 
 users = []
 mark = []
+salonArray = []
 mapCenter = {
   lat: 0,
   lng: 0
@@ -45,8 +52,17 @@ geoAddress: string;
 showAutoHideLoader : any;
   salonName: any;
   sname: any;
-  constructor(public alertCtrl: AlertController, private geolocation: Geolocation,public loadingController: LoadingController, private router : Router,private ngZone : NgZone) {
+  hairstyledata:Array<any>=[];
+  salon=[];
+
+cover;
+desc;
+location;
+
+  
+  constructor(public control:ControlsService,public backend :BackendService, private nativeGeocoder: NativeGeocoder,public alertCtrl: AlertController, private geolocation: Geolocation,public loadingController: LoadingController, private router : Router,private ngZone : NgZone) {
 console.log(google);
+///////////////////////////////////////////////////////////////////////////
 
     this.db.collection('SalonNode').onSnapshot(snapshot => {
       snapshot.forEach(doc => {
@@ -68,7 +84,7 @@ console.log(google);
               icon: icon
               
           });
-          let content = 'Salon Name' + Customers.salonName + '<br>' + Customers.SalonContactNo + '<br>' + '<button (click)="move()" size="small"  color="secondary">View more</button>'
+          let content = '<b>Salon Name : ' + Customers.salonName + '<br>' +'SALON CONTACT NO:' + Customers.SalonContactNo + '<br>' + 'SALON ADDRESS: ' + Customers.location
           this.addInfoWindow(marker, content);
       // Customers.coords.lat, Customers.coords.lng
       console.log('coordsdddd', Customers);
@@ -82,26 +98,103 @@ move(){
 // this.router.navigate(['navigation']);
 console.log('checkl')
 }
+ngOnInit(){
+  
+}
+
+
+
+selectsalon(x)
+{
+
+this.backend.selectedsalon.splice(0,1);
+console.log(x)
+this.cover =x.salonImage;
+this.desc = x.SalonDesc;
+this.location =x.location;
+this.backend.salonname=x.salonName;
+this.backend.selectedsalon.push(x);
+this.backend.selectedsalon.splice(1,1);
+
+
+
+
+this.backend.setsalondata(x.salonName,x.location);
+
+
+
+  this.control.router.navigate(['viewsalon']);
+}
+
+
+  ionViewDidEnter(){
+    console.log('check');
+  
+      this.loadingController.create({
+        message: 'This Loader Will Auto Hide in 2 Seconds',
+        duration: 2000
+      }).then((res) => {
+        res.present();
+   
+        res.onDidDismiss().then((dis) => {
+          console.log('Loading dismissed! after 2 Seconds');
+        });
+      });
+    
+    this.getGeolocation();
+    this.getSalon();
+  }
+
 searchChanged(){
+  
  if(!this.search.trim().length) return;
   this.googleAutoComplete.getPlacePredictions({ input: this.search}, predictions =>{
     //console.log(predictions);
-    this.ngZone.run(() =>{
+   
       this.searchResults = predictions;
-    });
+   
   });
 }
 async calcRoute(item:any){
   this.search = ''  
-  this.destination = item;
-  const info: any = await Geocoder.geocode({address: this.destination.description});
-  console.log('mama',info);
+ this.destination = item;
+  // const info: any = await Geocoder.geocode({address: this.destination.description});
+  let options: NativeGeocoderOptions = {
+    useLocale: true,
+    maxResults: 5
+};
+this.nativeGeocoder.forwardGeocode(this.destination.description, options).then((result: NativeGeocoderResult[]) =>{
+  console.log('The coordinates are latitude=' + result[0].latitude + ' and longitude=' + result[0].longitude)
+  let directions = {
+    lat: result[0].latitude,
+    lng: result[0].longitude
+  }
+  this.directionsService.route({
+    origin: this.mapCenter,
+    destination: directions,
+    travelMode: 'DRIVING'
+  }, (response, status) => {
+    if (status === 'OK') {
+      this.directionsDisplay.setDirections(response);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
+
+  this.db.collection('values').add({
+    lat: result[0].latitude,
+    lng: result[0].longitude
+  })
+})
+  .catch((error: any) => console.log(error));
+  console.log(this.destination.description);
+ 
   
 }
-  ngOnInit() {
-    // this.addMarkersOnTheCustomersCurrentLocation();
-  
-  }
+ngAfterViewInit(): void {
+
+  this.directionsDisplay.setMap(this.mapElement);
+}
   addInfoWindow(marker, content){
 
     let infoWindow = new google.maps.InfoWindow({
@@ -146,24 +239,6 @@ this.db.collection('SalonNode').get().then(snap =>{
     console.log('addMarkersOnTheCustomersCurrentLocation called');
   }
 
-
-  ionViewDidEnter(){
-    console.log('check');
-  
-      this.loadingController.create({
-        message: 'This Loader Will Auto Hide in 2 Seconds',
-        duration: 2000
-      }).then((res) => {
-        res.present();
-   
-        res.onDidDismiss().then((dis) => {
-          console.log('Loading dismissed! after 2 Seconds');
-        });
-      });
-    
-    this.getGeolocation();
-    // this.getSalon();
-  }
 
     ///MAPS \
     setlocation(coords) {
@@ -306,9 +381,12 @@ this.db.collection('SalonNode').get().then(snap =>{
     }
 
     getSalon(){
-this.db.collection('SalonOwnerProfile').get().then( res =>{res.forEach(doc =>{
-  console.log(doc.data());
-})
+this.db.collection('SalonNode').get().then(res =>{
+  this.salonArray = [];
+      res.forEach(doc =>{
+        this.salonArray.push(doc.data()) 
+      })
+      console.log('listen', this.salonArray);
 })
     }
 }
