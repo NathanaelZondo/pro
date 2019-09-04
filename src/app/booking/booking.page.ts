@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
   templateUrl: './booking.page.html',
   styleUrls: ['./booking.page.scss'],
 })
+
 export class BookingPage implements OnInit {
   userbooking=[];
    low = false;
@@ -64,6 +65,22 @@ console.log(this.newdata)
 
   ngOnInit() {
     
+  }
+
+
+
+  cancel(x)
+  {
+console.log(x);
+
+
+x.status ="cancelled";
+firebase.firestore().collection('SalonNode').doc(x.salonname).collection('staff').doc(x.hairdresser).collection(x.userdate).doc(x.id).update({
+  status: 'cancelled'
+}).then(res=>{
+  console.log(res)
+});
+
   }
 
 }
