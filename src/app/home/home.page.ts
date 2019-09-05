@@ -65,12 +65,12 @@ salonname;
 salond =this.backend.salonsDisply;
   constructor(private nativeGeocoder: NativeGeocoder,private camera:Camera,public control:ControlsService,public backend:BackendService,public alertCtrl: AlertController,private geolocation: Geolocation,public loadingController: LoadingController) {
    // initializeApp(config);  
-   this.backend.authstate();
+   
 console.log('check',this.salond)
    this.backend.getsalons().subscribe(val=>{
     this.salon =val;
     console.log(this.salon)
-
+   
 
 //view profile on the viewprofilepage 
     this.backend.viewprofile();
@@ -185,7 +185,7 @@ firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('num
   }
   ionViewDidEnter(){
     console.log('check');
-  
+    this.control.router.navigate([('maps')]);
       this.loadingController.create({
         message: 'This Loader Will Auto Hide in 2 Seconds',
         duration: 2000

@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { config } from './cred';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -19,6 +20,7 @@ export class AppComponent {
     private router: Router
   ) {
     firebase.initializeApp(config);
+    this.listenToAuth();
   }
 
   initializeApp() {
@@ -26,5 +28,16 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  listenToAuth() {
+    if(firebase.auth().onAuthStateChanged)
+    {
+      this.router.navigateByUrl('/navigation');
+    }
+    else
+    {
+      this.router.navigate(['login']);
+    }
   }
 }

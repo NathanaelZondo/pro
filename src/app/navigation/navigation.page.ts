@@ -13,6 +13,11 @@ export class NavigationPage implements OnInit {
   ngOnInit() {
   }
 
+
+  home()
+  {
+  this.control.router.navigate([('home')]);  
+  }
   map()
   {
 
@@ -34,7 +39,7 @@ this.control.router.navigate(['booking']);
   info()
   {
 
-this.control.router.navigate(['maps']);
+this.control.router.navigate(['info']);
   }
 
 }
