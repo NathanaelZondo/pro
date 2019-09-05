@@ -341,8 +341,9 @@ let click = 1;
           
 
 
-          this.control.router.navigate(['success']);
+         
           this.control.BookToast();
+          this.control.router.navigateByUrl('/success');
         }
       }
     ]
