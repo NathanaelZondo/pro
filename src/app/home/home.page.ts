@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, ɵDEFAULT_LOCALE_ID } from '@angular/core';
 import {storage,initializeApp} from 'firebase';
 import { config } from '../cred';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
@@ -135,18 +135,41 @@ this.backend.setuserdata(this.profiles[0].name,this.profiles[0].surname,this.pro
   {
   
 this.backend.selectedsalon.splice(0,1);
-console.log(x)
+console.log(x.userUID)
 this.cover =x.salonImage;
 this.desc = x.SalonDesc;
 this.location =x.location;
 this.backend.salonname=x.salonName;
 this.backend.selectedsalon.push(x);
 this.backend.selectedsalon.splice(1,1);
-
-
-
-
 this.backend.setsalondata(x.salonName,x.location);
+
+let click = 1;
+let v1;
+let docid;
+
+this.backend.salonuid =x.userUID;
+firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').get().then(val=>{
+  console.log("These are the numbers",val)
+  val.forEach(qu=> 
+
+    {
+    docid =qu.id;
+    console.log(docid)
+    console.log(qu.data().numberofclicks)
+    v1 =qu.data().numberofclicks;
+
+    firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').doc(qu.id).update({"numberofclicks":v1+click}).then(zet=>{
+      console.log(zet)
+    })
+    }
+    
+  
+  )
+})
+
+
+
 
 
 

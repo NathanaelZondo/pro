@@ -18,7 +18,7 @@ export class BookingPage implements OnInit {
    salonname;
    useruid;
   newdata =[];
-   ob ={};
+  ob ={};
    buttonactive ;
   constructor(public backend:BackendService,public control:ControlsService) {
     let currentdate = (new Date().getFullYear().toString())+'-'+(new Date().getMonth())+'-'+(new Date().getDate());

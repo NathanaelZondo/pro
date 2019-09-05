@@ -286,7 +286,7 @@ else
 
   
   this.testbooking(booking)
-  
+  this.control.Loading();
  
   
   
@@ -318,6 +318,29 @@ async presentAlertConfirm() {
         handler: () => {
          
           this.backend.userbookings(this.booking);
+let v1;
+let click = 1;
+          firebase.firestore().collection('salonAnalytics').doc(this.backend.salonuid).collection('numbers').get().then(val=>{
+            console.log("These are the numbers",val)
+            val.forEach(qu=> 
+          
+              {
+            qu.id;
+              console.log(qu.id)
+              console.log(qu.data().numberofbookings)
+              v1 =qu.data().numberofbookings;
+          
+              firebase.firestore().collection('salonAnalytics').doc(this.backend.salonuid).collection('numbers').doc(qu.id).update({"numberofbookings": v1+click}).then(zet=>{
+                console.log(zet)
+              })
+              }
+              
+            
+            )
+          })
+          
+
+
           this.control.router.navigate(['success']);
           this.control.BookToast();
         }
