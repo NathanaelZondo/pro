@@ -111,7 +111,7 @@ else{
   return this.womenstyles;
 }
 }
-
+salonuid;
 setuserdata(username,surname,cell)
 {
 this.username=username;

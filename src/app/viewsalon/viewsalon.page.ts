@@ -16,7 +16,7 @@ export class ViewsalonPage implements OnInit {
     spaceBetween: 5,
     slidesPerView: 1.5
   }
-
+likes;
   more = false;
   hair = [];
   viewhair = true;
@@ -27,6 +27,17 @@ export class ViewsalonPage implements OnInit {
     //this.gethairstyles(this.gend);
 
     console.log("selectedsalon data", this.salond)
+
+    firebase.firestore().collection('salonAnalytics').doc(this.salond[0].userUID).collection('numbers').get().then(val=>{
+      val.forEach(doc=>{
+        console.log("These are the likes =",doc.data().likes);
+        this.likes =doc.data().likes;
+})})
+
+   
+    console.log(this.likes)
+
+
   }
   salond = this.backend.selectedsalon;
   ngOnInit() {
@@ -71,11 +82,33 @@ export class ViewsalonPage implements OnInit {
     this.more = !this.more
   }
 
+  like(x)
+  {
+    console.log(x)
+    let click = 1;
+let v1;
+let docid;
 
+this.backend.salonuid =x.userUID;
+firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').get().then(val=>{
+  console.log("These are the numbers",val)
+  val.forEach(qu=> 
 
+    {
+    docid =qu.id;
+    console.log(docid)
+    console.log(qu.data().likes)
+    v1 =qu.data().likes;
 
+    firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').doc(qu.id).update({"likes":v1+click}).then(zet=>{
+      console.log(zet)
+    })
+  
+  })
+})
+  }
 }
 
 
-
+  
 
