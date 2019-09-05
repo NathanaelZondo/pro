@@ -177,7 +177,7 @@ firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('num
   }
 
   chec(){
-    this.control.router.navigate(['maps']);
+    //this.control.router.navigate(['maps']);
   }
   viewprofile()
   {

@@ -3,11 +3,11 @@ import { ControlsService } from '../controls.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-navigation',
-  templateUrl: './navigation.page.html',
-  styleUrls: ['./navigation.page.scss'],
+  selector: 'app-zero',
+  templateUrl: './zero.page.html',
+  styleUrls: ['./zero.page.scss'],
 })
-export class NavigationPage implements OnInit {
+export class ZeroPage implements OnInit {
 
   constructor(public control:ControlsService,public router:Router) { }
 
