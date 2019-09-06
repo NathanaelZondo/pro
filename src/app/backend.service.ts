@@ -39,7 +39,7 @@ salons:Observable<any[]>;
   
    this.womenstyles=this.afs.collection('Salons').doc('sRkAEe3vxX5d7LR8WnhW').collection('Styles').doc('gender').collection('female').doc('AKVWEYRB3203GYtMfc3B').valueChanges();
     
-   this.authstate();
+   
    }
    timeList:Array<{}>
   
@@ -78,20 +78,20 @@ signout()
   firebase.auth().signOut()
 }
 
-authstate()
-{
+// authstate()
+// {
 
- if(firebase.auth().onAuthStateChanged)
- {
-   this.control.router.navigate(['maps'])
- }
- else{
-  this.control.LogoutToast();
-  this.control.router.navigate(['login'])
- }
+//  if(firebase.auth().onAuthStateChanged)
+//  {
+//    this.control.router.navigate(['maps'])
+//  }
+//  else{
+//   this.control.LogoutToast();
+//   this.control.router.navigate(['login'])
+//  }
 
- console.log(firebase.auth().onAuthStateChanged)
-}
+//  console.log(firebase.auth().onAuthStateChanged)
+// }
 
  getsalons()
 {

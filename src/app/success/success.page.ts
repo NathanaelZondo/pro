@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ControlsService } from '../controls.service';
 
 @Component({
   selector: 'app-success',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuccessPage implements OnInit {
 
-  constructor() { }
+  constructor(public control:ControlsService) { }
 
   ngOnInit() {
   }
+
+
+success()
+{
+  this.control.router.navigateByUrl('/navigation');  
+}
 
 }

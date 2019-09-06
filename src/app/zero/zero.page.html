@@ -1,9 +1,3 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>navigation</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
   <div class="container">
 
@@ -15,7 +9,7 @@
       <h1>AirSkedge</h1>
     </div>
 
-    <div class="navigation" routerLink="/home" >
+    <div class="navigation" (click) ="home()" >
       <div class="map">
         <div class="iconz">
           <ion-icon name="map" style="font-size: 60px;"></ion-icon>
@@ -25,7 +19,7 @@
         </div>
       </div>
 
-      <div class="profile" routerLink="/viewprofile" >
+      <div class="profile" (click) ="profile()" >
         <div class="iconz">
           <ion-icon name="person" style="font-size: 60px;"></ion-icon>
         </div>
@@ -34,7 +28,7 @@
         </div>
       </div>
 
-      <div class="booking" routerLink="/booking" >
+      <div class="booking" (click) ="bookings()" >
         <div class="iconz">
           <ion-icon name="bookmark" style="font-size: 60px;"></ion-icon>
         </div>
@@ -43,7 +37,7 @@
         </div>
       </div>
 
-      <div class="info" routerLink="/info">
+      <div class="info" (click) ="info()">
         <div class="iconz">
           <ion-icon name="information-circle" style="font-size: 60px;"></ion-icon>
         </div>
