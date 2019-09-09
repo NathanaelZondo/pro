@@ -13,11 +13,11 @@ export class NavigationPage implements OnInit {
   ngOnInit() {
   }
 
-  map()
-  {
+//   map()
+//   {
 
-this.control.router.navigate(['maps']);
-  }
+// this.control.router.navigate(['maps']);
+//   }
 
   profile()
   {
