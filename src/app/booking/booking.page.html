@@ -51,13 +51,13 @@
       Stylist:  {{x.hairdresser}}<br>
       Location  {{x.salonlocation}}
   </div>
-  <ion-button  *ngIf= "x.status=='cancelled'"   (click) ="cancel(x)">Cancel</ion-button>>
+  <ion-button color ="danger" *ngIf= "x.status!='cancelled'"   (click) ="cancel(x)"><ion-icon name ="close"></ion-icon></ion-button>
 </div>
 
 
- <h1>All User Bookings</h1>
+ <!-- <h1>All User Bookings</h1> -->
   
-<ion-item *ngFor ="let x of userbooking">
+<!-- <ion-item *ngFor ="let x of userbooking">
 
     
 <pre>
@@ -78,7 +78,7 @@ Stylist:   {{x.hairdresser}}
 Location   {{x.salonlocation}}
 </pre>
 
-</ion-item> 
+</ion-item>  -->
    
 
 

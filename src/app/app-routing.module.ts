@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'onboarding', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   { path: 'onboarding', loadChildren: './onboarding/onboarding.module#OnboardingPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule'},
@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
   { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordPageModule' },
   { path: 'navigation', loadChildren: './navigation/navigation.module#NavigationPageModule' },
-  // { path: 'maps', loadChildren: './maps/maps.module#MapsPageModule' },
+ // { path: 'maps', loadChildren: './maps/maps.module#MapsPageModule'},
+ //  { path: 'maps', loadChildren: './maps/maps.module#MapsPageModule' },
   { path: 'success', loadChildren: './success/success.module#SuccessPageModule' },
   { path: 'info', loadChildren: './info/info.module#InfoPageModule' },
   { path: 'reviews', loadChildren: './reviews/reviews.module#ReviewsPageModule' },

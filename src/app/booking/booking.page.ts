@@ -21,6 +21,8 @@ export class BookingPage implements OnInit {
   ob ={};
    buttonactive ;
   constructor(public backend:BackendService,public control:ControlsService) {
+   this.newdata =[];
+   
     let currentdate = (new Date().getFullYear().toString())+'-'+(new Date().getMonth())+'-'+(new Date().getDate());
     if((new Date().getMonth()+1)<10)
     {
@@ -48,9 +50,28 @@ var obj ={id:val2.id}
 
 console.log(console.log(obj))
 
+
+
+
+
+
+
+
+
       this.newdata.push( { ...obj ,... val2.data()})
+
             
-console.log(this.newdata)
+console.log("New data = ",this.newdata)
+
+for(let v = 0;this.newdata.length;v++)
+{
+
+  if(this.newdata[v].id==this.newdata[v+1].id)
+  {
+    this.newdata.splice(v,1);
+  }
+}
+
       });
       });
 
@@ -58,7 +79,6 @@ console.log(this.newdata)
       });
     });
 
-   
 
 
   
@@ -82,6 +102,33 @@ firebase.firestore().collection('SalonNode').doc(x.salonname).collection('staff'
   console.log(res)
 });
 
-  }
+  
 
+  let click = 1;
+  let v1;
+  let docid;
+  
+  firebase.firestore().collection('salonAnalytics').doc(x.salonuid).collection('numbers').get().then(val=>{
+    console.log("These are the numbers",val)
+    val.forEach(qu=> 
+  
+      {
+      docid =qu.id;
+      console.log(docid)
+      console.log(qu.data().usercancellations)
+      v1 =qu.data().usercancellations;
+  
+      firebase.firestore().collection('salonAnalytics').doc(x.salonuid).collection('numbers').doc(qu.id).update({"usercancellations":v1+click}).then(zet=>{
+        console.log(zet)
+      })
+      })
+    })
+
+
+  }
 }
+  
+  
+
+
+

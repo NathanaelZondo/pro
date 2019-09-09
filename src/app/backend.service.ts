@@ -16,6 +16,8 @@ import { bookings } from './booking';
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class BackendService {
   itemsCollection:AngularFirestoreCollection<Profile>;
   items:Observable<any[]>;
@@ -46,7 +48,7 @@ salons:Observable<any[]>;
 uid=firebase.auth().currentUser.uid;
    gend;
    type ='chiskop;'
-   profiles ={};
+   profiles =[];
  
 getProfile()
 {
@@ -55,10 +57,16 @@ getProfile()
 
 viewprofile()
 {
+  this.profiles.splice(1,1);
   //this.uid =firebase.auth().currentUser.uid;
   this.afs.collection('userprofile').doc(this.uid).valueChanges().subscribe(val=>{ 
-    this.profiles =val;
-    console.log("this.profiles ",this.profiles)
+    this.profiles.push(val);
+    this.profiles.splice(1,1);
+    console.log("This.profile ",this.profiles)
+    if(this.profiles==undefined)
+    {
+      this.control.router.navigate(['createprofile']);
+    }
     return this.profiles;
   })
 }
@@ -191,6 +199,8 @@ getHairSalon(){
       qu.forEach(doc =>{
      this.hairstyledata.push(doc.data());
         
+        this.hairstyledata.splice(1,1);
+        console.log(this.hairstyledata.length)
       })
     })
 

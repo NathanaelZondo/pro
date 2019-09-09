@@ -15,7 +15,7 @@
       <h1>AirSkedge</h1>
     </div>
 
-    <div class="navigation" (click) ="home()" >
+    <div class="navigation" (click) ="map()" >
       <div class="map">
         <div class="iconz">
           <ion-icon name="map" style="font-size: 60px;"></ion-icon>
@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <div class="info" (click) ="info()">
+      <div class="info" routerLink = '/info' routerDirection ='root' replaceUrl ='true'>
         <div class="iconz">
           <ion-icon name="information-circle" style="font-size: 60px;"></ion-icon>
         </div>

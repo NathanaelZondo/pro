@@ -1,28 +1,22 @@
-
-
 <ion-content>
-  <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder=" search salon"></ion-searchbar>
-  <ion-list class="ion-margin-horizontal" [hidden]="!search.length">
-    <ion-item (click)="calcRoute(result)" *ngFor="let result of searchResults">
-     {{result.description}}
-    </ion-item>
-  </ion-list>
-<div #map id="map">
- 
-</div>
-<div class="salonlist">
-  <div class="card" *ngFor="let x of salonArray" (click)="selectsalon(x)">
-    <div class="image">
-      <img src="{{x.salonImage}}">
-    </div>
-    <div class="details">
-      <div class="subtitle">
-        <p>{{x.salonName}}</p>
-        <p> {{x.location}}</p>
+
+  <div class="salonlist">
+    <div class="card" *ngFor="let x of salonArray" (click)="selectsalon(x)">
+      <div class="image">
+        <img src="{{x.salonImage}}">
       </div>
-
+      <div class="details">
+        <div class="subtitle">
+          <p>{{x.salonName}}</p>
+          <p> {{x.location}}</p>
+        </div>
+  
+      </div>
     </div>
+  
   </div>
+  </ion-content>
+  
 
-</div>
-</ion-content>
+
+

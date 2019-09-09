@@ -12,9 +12,9 @@ export class ViewprofilePage implements OnInit {
 profiles =[];
   constructor(public backend:BackendService, public control:ControlsService) { 
 
-    
+    this.backend.profiles.splice(1,1);
 
-      this.profiles.push(this.backend.profiles);
+      this.profiles =this.backend.profiles;
      
     console.log("look here !!!",this.backend.profiles)
   }

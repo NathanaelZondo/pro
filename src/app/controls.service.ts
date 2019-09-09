@@ -77,7 +77,7 @@ export class ControlsService {
 
   async ProfileupdateToast() {
     const toast = await this.toastController.create({
-      message: 'Profile updated.',
+      message: 'Profile successfully updated. Changes will be visible after refreshing the page.',
       duration: 5000
     });
     toast.present();

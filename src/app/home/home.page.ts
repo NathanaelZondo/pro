@@ -86,7 +86,7 @@ this.backend.getHairSalon()
   this.backend.getProfile().subscribe(val=>{
     
 
-    this.profiles =val;
+    this.profiles =this.backend.profiles;
 
     
     
