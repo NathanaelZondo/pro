@@ -22,13 +22,13 @@ export class NavigationPage implements OnInit {
   map()
   {
 
-this.router.navigate(['home']);
+this.router.navigate(['/maps']);
   }
 
   profile()
   {
 
-this.router.navigate(['viewprofile']);
+this.router.navigate(['/viewprofile']);
   }
 
   bookings()
@@ -42,5 +42,8 @@ this.router.navigate(['booking']);
 
 this.router.navigate(['info']);
   }
+
+
+ 
 
 }

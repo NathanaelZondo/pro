@@ -483,6 +483,9 @@ if(this.formodal==true)
 
 else
 {
+
+  console.log(" d1 =",this.d1," d2 =",this.d2," d3= ",this.d3);
+  console.log(this.d2>=this.d1)
   this.isvalidated =false;
   this.control.SlotToast1();
 

@@ -22,8 +22,27 @@ export class BookingPage implements OnInit {
    buttonactive ;
   constructor(public backend:BackendService,public control:ControlsService) {
    this.newdata =[];
-   
-    let currentdate = (new Date().getFullYear().toString())+'-'+(new Date().getMonth())+'-'+(new Date().getDate());
+   let v =0;    
+
+   this.backend.getuserbookings().orderBy("userdate").limit(10).get().then(val=>{
+     val.forEach(doc=>{
+       console.log("top 10",doc.data())
+       this.userbooking.push(doc.data())
+     })
+   })
+
+
+
+
+
+
+
+
+
+
+
+
+   let currentdate = (new Date().getFullYear().toString())+'-'+(new Date().getMonth())+'-'+(new Date().getDate());
     if((new Date().getMonth()+1)<10)
     {
 
@@ -34,52 +53,24 @@ export class BookingPage implements OnInit {
     }
     }
 
-    this.backend.getuserbookings().get().then(val =>{
+    firebase.firestore().collection('Bookings').doc(firebase.auth().currentUser.uid).collection('userbookings').where("userdate","==",currentdate).get().then(val =>{
       val.forEach(doc =>{
       this.userbooking.push(doc.data())
-      console.log(doc.data());
-     console.log(doc.data().surname,doc.data().hairdresser,doc.data().userdate,doc.data().salonname)
+     // console.log(doc.data());
+     //console.log(doc.data().surname,doc.data().hairdresser,doc.data().userdate,doc.data().salonname)
      
-
-      console.log(currentdate)
-  
-      firebase.firestore().collection('SalonNode').doc(doc.data().salonname).collection('staff').doc(doc.data().hairdresser).collection(doc.data().userdate).where("surname","==",doc.data().surname).where("userdate","==",currentdate).get().then(val=>{
-        val.forEach(val2=>{
-          console.log(val2.data())
-var obj ={id:val2.id}
-
-console.log(console.log(obj))
-
-
-
-
-
-
-
-
-
-      this.newdata.push( { ...obj ,... val2.data()})
-
-            
-console.log("New data = ",this.newdata)
-
-for(let v = 0;this.newdata.length;v++)
+if(doc.data().userdate == currentdate && v ==1)
 {
-
-  if(this.newdata[v].id==this.newdata[v+1].id)
-  {
-    this.newdata.splice(v,1);
-  }
-}
-
-      });
-      });
-
+     this.values(doc.data().salonname,doc.data().hairdresser,doc.data().userdate,currentdate,doc.data().surname)
+}   
+ v = v+1;     
+  
+ console.log("surname is",v ) 
 
       });
     });
 
-
+   
 
   
    }
@@ -124,6 +115,39 @@ firebase.firestore().collection('SalonNode').doc(x.salonname).collection('staff'
       })
     })
 
+
+  }
+
+
+  values(a,b,c,d,e)
+  {
+console.log("line 127 ",a,b,c,d);
+//this.values(doc.data().salonname,doc.data().hairdresser,doc.data().userdate,currentdate)
+
+
+firebase.firestore().collection('SalonNode').doc(a).collection('staff').doc(b).collection(c).where("surname","==",e).where("userdate","==",d).get().then(val=>{
+  val.forEach(val2=>{
+    console.log(val2.data())
+var obj ={id:val2.id}
+
+console.log(console.log(obj))
+
+
+
+
+
+
+
+
+
+this.newdata.push( { ...obj ,... val2.data()})
+
+console.log("New data = ",this.newdata)
+
+
+
+});
+});
 
   }
 }
