@@ -74,11 +74,13 @@ pictures.getDownloadURL().then(val=>{
 updateprofile(profile)
 {
 let uid =firebase.auth().currentUser.uid;
-
+this.backend.profiles =[];
 firebase.firestore().collection('userprofile').doc(uid).update(profile).then(val=>
   {
     console.log(val)
   })
+
+  this.control.ProfileupdateToast()
 this.control.router.navigate(['viewprofile']);
 }
 

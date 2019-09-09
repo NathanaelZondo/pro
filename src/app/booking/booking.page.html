@@ -1,11 +1,5 @@
-<ion-header>
-  <ion-toolbar>
-   
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-<h1>Current Bookings</h1>
+<h1 align = "center">Current Bookings</h1>
 <!-- <ion-item *ngFor = "let x of newdata">
 
     <pre>
@@ -31,9 +25,10 @@
 
 </ion-item> -->
 
-<div class="container" *ngFor = "let x of newdata">
+<div class="container" *ngFor = "let x of newdata" >
   <div class="date">
       Date:      {{x.userdate}} 
+      Status:    {{x.status2}}
   </div>
   <div class="style">
       Hairstyle: {{x.hairstyletype}} &nbsp;
@@ -42,6 +37,7 @@
   <div class="time">
       Time:{{x.sessiontime}} for {{x.estimatedtime}} minutes<br>
       Date:      {{x.userdate}} 
+      Status:   {{x.status2}}
       <!-- Duration:  {{x.estimatedtime}} minutes -->
   </div>
 
@@ -50,13 +46,39 @@
       Stylist:  {{x.hairdresser}}<br>
       Location  {{x.salonlocation}}
   </div>
-
+  <ion-button color ="danger" *ngIf= "x.status!='cancelled'"   (click) ="cancel(x)"><ion-icon name ="close"></ion-icon></ion-button>
 </div>
 
 
-<!-- <h1>All User Bookings</h1>
+<h1 align = "center">Booking History</h1>
+
+<div class="container2" *ngFor = "let x of userbooking" >
+  <div class="date">
+      Date:      {{x.userdate}} 
+     
+  </div>
+  <div class="style">
+      Hairstyle: {{x.hairstyletype}} &nbsp;
+      Price:     {{x.hairstyleprice | currency:'&#82;'}}
+  </div>
+  <div class="time">
+      Time:{{x.sessiontime}} for {{x.estimatedtime}} minutes<br>
+      Date:      {{x.userdate}} 
+      Status:    {{x.status2}}
+      <!-- Duration:  {{x.estimatedtime}} minutes -->
+  </div>
+
+  <div class="stylist">
+      Salon:    {{x.salonname}}<br>
+      Stylist:  {{x.hairdresser}}<br>
+      Location  {{x.salonlocation}}
+  </div>
+</div>
+
+
+ <!-- <h1>All User Bookings</h1> -->
   
-<ion-item *ngFor ="let x of userbooking">
+<!-- <ion-item *ngFor ="let x of userbooking">
 
     
 <pre>
@@ -77,7 +99,7 @@ Stylist:   {{x.hairdresser}}
 Location   {{x.salonlocation}}
 </pre>
 
-</ion-item> -->
+</ion-item>  -->
    
 
 

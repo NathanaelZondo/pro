@@ -1,10 +1,23 @@
 .container{
     display: flex;
     flex-flow: column;
-  position: relative;
+ 
   top:10%;
   margin: 10px;
+  background-color: green;
+  color:white;
 }
+
+.container2{
+  display: flex;
+  flex-flow: column;
+
+top:10%;
+margin: 10px;
+background-color: dodgerblue;
+color:white;
+}
+
 
 .date{
     position: absolute;
@@ -12,3 +25,6 @@
     right: 10px;
 }
 
+
+
+  

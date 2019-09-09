@@ -77,7 +77,8 @@ formodal:boolean =false;
   hairdresser:"",
   userdate:"",
   status:"Active",
-  status2:"Active"
+  status2:"Active",
+  salonuid:this.backend.salonuid
 }
 //this is the date inputed by the user
 userdate;
@@ -286,7 +287,7 @@ else
 
   
   this.testbooking(booking)
-  
+  this.control.Loading();
  
   
   
@@ -318,8 +319,32 @@ async presentAlertConfirm() {
         handler: () => {
          
           this.backend.userbookings(this.booking);
-          this.control.router.navigate(['success']);
+let v1;
+let click = 1;
+          firebase.firestore().collection('salonAnalytics').doc(this.backend.salonuid).collection('numbers').get().then(val=>{
+            console.log("These are the numbers",val)
+            val.forEach(qu=> 
+          
+              {
+            qu.id;
+              console.log(qu.id)
+              console.log(qu.data().numberofbookings)
+              v1 =qu.data().numberofbookings;
+          
+              firebase.firestore().collection('salonAnalytics').doc(this.backend.salonuid).collection('numbers').doc(qu.id).update({"numberofbookings": v1+click}).then(zet=>{
+                console.log(zet)
+              })
+              }
+              
+            
+            )
+          })
+          
+
+
+         
           this.control.BookToast();
+          this.control.router.navigateByUrl('/success');
         }
       }
     ]
@@ -458,6 +483,9 @@ if(this.formodal==true)
 
 else
 {
+
+  console.log(" d1 =",this.d1," d2 =",this.d2," d3= ",this.d3);
+  console.log(this.d2>=this.d1)
   this.isvalidated =false;
   this.control.SlotToast1();
 
