@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ViewsalonPage } from './viewsalon.page';
-
+import { StarRating } from 'ionic4-star-rating';
 const routes: Routes = [
   {
     path: '',
@@ -21,6 +21,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ViewsalonPage]
+  declarations: [ViewsalonPage,StarRating],
+  exports: [ StarRating ]
 })
 export class ViewsalonPageModule {}

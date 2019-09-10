@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordPageModule' },
   { path: 'navigation', loadChildren: './navigation/navigation.module#NavigationPageModule' },
  //{ path: 'maps', loadChildren: './maps/maps.module#MapsPageModule'},
- //  { path: 'maps', loadChildren: './maps/maps.module#MapsPageModule' },
+   { path: 'maps', loadChildren: './maps/maps.module#MapsPageModule' },
   { path: 'success', loadChildren: './success/success.module#SuccessPageModule' },
   { path: 'info', loadChildren: './info/info.module#InfoPageModule' },
   { path: 'reviews', loadChildren: './reviews/reviews.module#ReviewsPageModule' },

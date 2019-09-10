@@ -21,11 +21,15 @@ import { ModalPage } from './modal/modal.page';
 import {CommonModule} from '@angular/common';
 import { GoogleMaps } from '@ionic-native/google-maps';
 
+import { IonicRatingModule } from 'ionic-rating';
+import { ReviewsPageModule } from './reviews/reviews.module';
+import { ViewsalonPageModule } from './viewsalon/viewsalon.module';
+
 @NgModule({
   declarations: [AppComponent, ViewhairstylePipe,ModalPage],
   entryComponents: [ModalPage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-    CommonModule,
+    CommonModule,ViewsalonPageModule,
   AngularFireModule.initializeApp(config),
   
   AngularFireDatabaseModule,
@@ -35,6 +39,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
     StatusBar,
     SplashScreen,
     Camera,
+    IonicRatingModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
    ,
    Geolocation,

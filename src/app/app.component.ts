@@ -33,11 +33,11 @@ export class AppComponent {
   listenToAuth() {
     if(firebase.auth().onAuthStateChanged)
     {
-      this.router.navigateByUrl('/navigation');
+      this.router.navigateByUrl('/login');
     }
     else
     {
-      this.router.navigate(['login']);
+      this.router.navigate(['navigate']);
     }
   }
 }

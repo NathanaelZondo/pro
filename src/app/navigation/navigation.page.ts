@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlsService } from '../controls.service';
 import { Router } from '@angular/router';
+import { BackendService } from '../backend.service';
 
 @Component({
   selector: 'app-navigation',
@@ -9,11 +10,14 @@ import { Router } from '@angular/router';
 })
 export class NavigationPage implements OnInit {
 
-  constructor(public control:ControlsService,public router:Router) { }
+  constructor(public control:ControlsService,public router:Router, public backend: BackendService) { }
 
   ngOnInit() {
   }
-
+  signout() {
+    this.backend.signout();
+    this.control.router.navigate(['login']);
+  }
 
   home()
   {
@@ -40,7 +44,7 @@ this.router.navigate(['booking']);
   info()
   {
 
-this.router.navigate(['info']);
+this.router.navigate(['maps']);
   }
 
 

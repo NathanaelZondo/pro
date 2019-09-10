@@ -1,6 +1,7 @@
 <ion-content>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
   <div #map id="map">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT55USDnQ-tZLHJlzryDJbxseD8sLSdZE&libraries=places&language=en"></script>
+   
   </div>
   <div class="salonlist">
     <div class="card" *ngFor="let x of salonArray" (click)="selectsalon(x)">
@@ -19,7 +20,7 @@
   </div>
   </ion-content>
   
-</body>
 
-</html>
+
+
 

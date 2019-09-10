@@ -10,65 +10,43 @@
         <ion-icon name="arrow-back" style="color: black; font-size: 20px;"></ion-icon>
     
       </div>
+      <ionic4-star-rating #rating
+      activeIcon = "ios-star"
+      defaultIcon = "ios-star-outline"
+      activeColor = "#db981a" 
+      defaultColor = "#A9A9A9"
+      readonly="false"
+      rating="3"
+      fontSize = "32px"
+      (ratingChanged)="logRatingChange($event)">
+  </ionic4-star-rating>
     <div class="peeps">
       <p>What Are People Saying</p>
     </div>
     <div class="reviews">
-      <div class="review">
+
+      <div class="review" *ngFor="let n of reviews">
         <div class="text">
-          <p>Lorem ipsum dolor sit amet, mollis
-            nulla quis numquam enim sit quisque,
+          <p>{{n.review}}
           </p>
+          
+      <ionic4-star-rating #rating
+      activeIcon = "ios-star"
+      defaultIcon = "ios-star-outline"
+      activeColor = "#db981a" 
+      defaultColor = "#A9A9A9"
+      readonly="false"
+      rating= {{n.rating}}
+      fontSize = "12px"
+      >
+  </ionic4-star-rating>
         </div>
 
         <div class="pic">
-          <img src="../../assets/danai.jpg">
+          <img src="{{n.image}}">
         </div>
       </div>
-      <div class="review">
-        <div class="text">
-          <p>Lorem ipsum dolor sit amet, mollis
-            nulla quis numquam enim sit quisque,
-          </p>
-        </div>
 
-        <div class="pic">
-          <img src="../../assets/danai.jpg">
-        </div>
-      </div>
-      <div class="review">
-        <div class="text">
-          <p>Lorem ipsum dolor sit amet, mollis
-            nulla quis numquam enim sit quisque,
-          </p>
-        </div>
-
-        <div class="pic">
-          <img src="../../assets/danai.jpg">
-        </div>
-      </div>
-      <div class="review">
-        <div class="text">
-          <p>Lorem ipsum dolor sit amet, mollis
-            nulla quis numquam enim sit quisque,
-          </p>
-        </div>
-
-        <div class="pic">
-          <img src="../../assets/danai.jpg">
-        </div>
-      </div>
-      <div class="review">
-        <div class="text">
-          <p>Lorem ipsum dolor sit amet, mollis
-            nulla quis numquam enim sit quisque,
-          </p>
-        </div>
-
-        <div class="pic">
-          <img src="../../assets/danai.jpg">
-        </div>
-      </div>
     </div>
 
     <div class="addreview">
