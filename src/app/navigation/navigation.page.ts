@@ -41,7 +41,7 @@ this.router.navigate(['booking']);
   info()
   {
 
-this.router.navigate(['info']);
+this.router.navigate(['maps']);
   }
 
   signout() {
