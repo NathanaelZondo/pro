@@ -24,3 +24,4 @@ const routes: Routes = [
   declarations: [ModalPage]
 })
 export class ModalPageModule {}
+

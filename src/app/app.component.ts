@@ -20,7 +20,7 @@ export class AppComponent {
     private router: Router
   ) {
     firebase.initializeApp(config);
-    //this.listenToAuth();
+    this.listenToAuth();
   }
 
   initializeApp() {

@@ -77,7 +77,8 @@ formodal:boolean =false;
   hairdresser:"",
   userdate:"",
   status:"Active",
-  status2:"Active"
+  status2:"Active",
+  salonuid:this.backend.salonuid
 }
 //this is the date inputed by the user
 userdate;
@@ -482,6 +483,9 @@ if(this.formodal==true)
 
 else
 {
+
+  console.log(" d1 =",this.d1," d2 =",this.d2," d3= ",this.d3);
+  console.log(this.d2>=this.d1)
   this.isvalidated =false;
   this.control.SlotToast1();
 

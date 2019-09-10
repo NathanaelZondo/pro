@@ -9,32 +9,30 @@ import { ControlsService } from '../controls.service';
   styleUrls: ['./viewprofile.page.scss'],
 })
 export class ViewprofilePage implements OnInit {
-profiles =[];
-  constructor(public backend:BackendService, public control:ControlsService) { 
+  profiles = [];
+  constructor(public backend: BackendService, public control: ControlsService) {
 
-    
+    this.backend.profiles.splice(1, 1);
 
-      this.profiles.push(this.backend.profiles);
-     
-    console.log("look here !!!",this.backend.profiles)
+    this.profiles = this.backend.profiles;
+
+    console.log("look here !!!", this.backend.profiles)
   }
 
   ngOnInit() {
   }
 
 
-  update()
-  {
+  update() {
     this.control.router.navigate(['updateprofile']);
   }
 
-  signout()
-  {
-this.backend.signout();
-this.control.router.navigate(['login']);
+  signout() {
+    this.backend.signout();
+    this.control.router.navigate(['login']);
   }
 
-  back(){
+  back() {
     this.control.router.navigate(['navigation']);
   }
 
