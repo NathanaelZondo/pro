@@ -1,14 +1,25 @@
+<!-- <ion-header>
+    <ion-toolbar>
+      <ion-title>viewhairstyle</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
 <ion-content>
   <div class="container">
     <div class="salonimage" *ngFor="let x of salond">
       <img src="{{x.salonImage}}">
 
-      <div class="back" routerLink="/navigation">
-        <ion-icon name="arrow-back" style="color: white; font-size: 20px;"></ion-icon>
-        <!-- <ion-buttons slot="start">
-          <ion-back-button>Back</ion-back-button>
-        </ion-buttons> -->
+      <div class="topbar">
+        <div class="likes">
+        <ion-icon name="heart"(click)="like(x)" id="heart"
+        style="font-size: 30px; color: red"></ion-icon>
+        <!-- <p>{{likes}}</p> -->
       </div>
+
+      <div class="back" routerLink="/navigation">
+        <ion-icon name="arrow-back" style="color: white; font-size: 25px;"></ion-icon>
+      </div>
+      </div>
+
     </div>
     <!-- <div class="img1" *ngFor="let x of salond">
             <img src="{{x.salonImage}}">
@@ -16,7 +27,8 @@
     <div class="details">
       <div class="blur"></div>
       <div class="card" *ngFor="let x of salond">
-<ion-button (click) = "like(x)">Likes = {{likes}}<ion-icon name = "like"></ion-icon></ion-button>
+        <!-- <ion-button (click)="like(x)">Likes = {{likes}}<ion-icon name="like"></ion-icon>
+        </ion-button> -->
         <div class="subtitle">
           {{x.salonName}}
         </div>
@@ -24,21 +36,21 @@
           {{x.location}}
         </div>
         <div class="rating">
-          <ion-icon name="star" style="font-size: 30px;"></ion-icon>
-          <ion-icon name="star" style="font-size: 30px;"></ion-icon>
-          <ion-icon name="star" style="font-size: 30px;"></ion-icon>
-          <ion-icon name="star" style="font-size: 30px;"></ion-icon>
-          <ion-icon name="star-half" style="font-size: 30px;"></ion-icon>
+          <ion-icon name="star" style="font-size: 4vw;"></ion-icon>
+          <ion-icon name="star" style="font-size: 4vw;"></ion-icon>
+          <ion-icon name="star" style="font-size: 4vw;"></ion-icon>
+          <ion-icon name="star" style="font-size: 4vw;"></ion-icon>
+          <ion-icon name="star-half" style="font-size: 4vw;"></ion-icon>
         </div>
       </div>
     </div>
-    <!-- <div class="reviews" routerLink="/reviews">
+    <div class="reviews" routerLink="/reviews">
       <p>Reviews <ion-icon name="arrow-dropright" style="color: white"></ion-icon>
       </p>
-    </div> -->
+    </div>
     <div class="desc" *ngFor="let x of salond">
 
-      <p>{{x.SalonDesc}}</p>
+      <p>{{x.SalonDesc}}</p>    
     </div>
 
     <div class=" buttonz">
@@ -65,7 +77,7 @@
             <ion-card>
               <ion-card-header>
                 <img src='{{x.hairStyleImage}}'> >
-                
+
                 <br>
                 <!-- <ion-card-subtitle>{{x.hairstyleName}}</ion-card-subtitle> -->
                 <ion-card-title style="color: white; font-size: 15px;">

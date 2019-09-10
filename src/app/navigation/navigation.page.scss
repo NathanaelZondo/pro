@@ -1,8 +1,8 @@
 .container {
     display: flex;
     flex-flow: column;
-    justify-content: center;
-    align-items: center;
+    // justify-content: center;
+    // align-items: center;
     width: 100%;
     height: 100%;
     background: linear-gradient(rgba(19, 18, 18, 0.63), rgb(0, 0, 0)), url('../../assets/onboardingImage.svg');
@@ -11,9 +11,12 @@
 }
 
 .logo {
-    width: 200px;
-    height: 200px;
-
+    width: 20vh;
+    height: 20vh;
+    position: absolute;
+    top: 12%;
+    left: 33%;
+align-items: center;
     img {
         width: 100%;
         height: 100%;
@@ -24,12 +27,15 @@
 .title {
     display: flex;
     flex-flow: column;
-    text-align: center;
+    align-items: center;
     padding: 10px;
+    position: absolute;
+    top: 30%;
+    left: 28%;
 
     h1 {
-        font-size: 40px;
-        color: rgba(134, 133, 133, 0.74);
+        font-size: 9vw;
+        color: white;
     }
 }
 
@@ -39,36 +45,36 @@
     align-items: center;
     text-align: center;
     position: relative;
-    top: 30px;
-    left: 55px;
+    top: 50%;
+    left: 15%;
 
     .map {
-        width: 150px;
-        height: 150px;
+        width: 20vh;
+        height: 20vh;;
         border-right: 2px solid rgb(70, 69, 69);
         border-bottom: 2px solid rgb(70, 69, 69);
         background: rgba(114, 114, 114, 0.247);
     }
 
     .profile {
-        width: 150px;
-        height: 150px;
+        width: 20vh;
+        height: 20vh;
         border-left: 2px solid rgb(70, 69, 69);
         border-bottom: 2px solid rgb(70, 69, 69);
         background: rgba(114, 114, 114, 0.247);
     }
 
     .booking {
-        width: 150px;
-        height: 150px;
+        width: 20vh;
+        height: 20vh;
         border-right: 2px solid rgb(70, 69, 69);
         border-top: 2px solid rgb(70, 69, 69);
         background: rgba(114, 114, 114, 0.247);
     }
 
     .info {
-        width: 150px;
-        height: 150px;
+        width: 20vh;
+        height: 20vh;
         border-left: 2px solid rgb(70, 69, 69);
         border-top: 2px solid rgb(70, 69, 69);
         background: rgba(114, 114, 114, 0.247);
@@ -76,10 +82,10 @@
 }
 
 .iconz {
-    margin: 15px;
-    color: rgba(134, 133, 133, 0.74);
+    margin: 10px;
+    color: white;
 }
 
 .name {
-    color: rgba(134, 133, 133, 0.74);
+    color: white;
 }
