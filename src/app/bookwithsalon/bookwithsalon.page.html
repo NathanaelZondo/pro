@@ -10,7 +10,7 @@
 <ion-content>
 
   <div class="container" class="has-subheader">
-    <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
+    <calendar (click)="setbooking(booking)" [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
       (onCurrentDateChanged)="onCurrentDateChanged($event)" (onEventSelected)="onEventSelected($event)"
       (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30">
     </calendar>
@@ -34,11 +34,11 @@
       <div class="appmnts">
         <ion-item>
           <ion-label position="stacked">Time</ion-label>
-          <ion-input placeholder="session time" type="time" [(ngModel)]="booking.sessiontime"></ion-input>
+          <ion-input placeholder="session time" type="time" [(ngModel)]="booking.sessiontime" ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked">Date</ion-label>
-          <ion-input clear placeholder="session time" type="date" displayFormat="DD/MM/YYYY" min='2019-01-01'
+          <ion-label position="stacked">Selected Date</ion-label>
+          <ion-input (click) ="cdate()"  clear placeholder="session time" type="date" displayFormat="DD/MM/YYYY" min='2019-01-01' readonly
             [(ngModel)]="booking.userdate"></ion-input>
         </ion-item>
         
@@ -55,7 +55,7 @@
     </div>
     <br>
     <div class="btnz">
-      <ion-button color="dark" (click)="setbooking(booking)">Validate booking</ion-button><br>
+    
       <ion-button color="dark" [disabled]="isvalidated" (click)="submit(booking)">Submit</ion-button>
 
     </div>

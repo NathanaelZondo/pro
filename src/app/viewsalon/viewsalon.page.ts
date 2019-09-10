@@ -14,7 +14,7 @@ export class ViewsalonPage implements OnInit {
 db = firebase.firestore();
   sliderConfig = {
     spaceBetween: 5,
-    slidesPerView: 1.5
+    slidesPerView: 1.3
   }
 likes;
 total = 0;

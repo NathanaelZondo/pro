@@ -141,7 +141,7 @@ export class HomePage {
     this.backend.salonname = x.salonName;
     this.backend.selectedsalon.push(x);
     this.backend.selectedsalon.splice(1, 1);
-    this.backend.setsalondata(x.salonName, x.location);
+    this.backend.setsalondata(x.salonName, x.streetName);
 
     let click = 1;
     let v1;

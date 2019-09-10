@@ -41,7 +41,7 @@ saveprofile(profile)
 console.log(profile)
 
 this.backend.createprofile(profile);
-this.control.router.navigate(['home']);
+this.control.router.navigate(['viewprofile']);
 
 
 }
