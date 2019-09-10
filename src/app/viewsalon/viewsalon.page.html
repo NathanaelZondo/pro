@@ -11,7 +11,7 @@
       <div class="topbar">
         <div class="likes">
         <ion-icon name="heart"(click)="like(x)" id="heart"
-        style="font-size: 30px; color: red"></ion-icon>
+        style="font-size: 30px; color: rgb(92, 11, 11)"></ion-icon>
         <!-- <p>{{likes}}</p> -->
       </div>
 
@@ -71,26 +71,28 @@
     <div class="gallery">
       <div class="hair">
 
+        <p style="text-align: center; color: white">Pick the hairstyle that you want and make an appointment</p>
+
         <ion-slides [options]="sliderConfig">
 
           <ion-slide *ngFor="let x of hair" (click)="choosehair(x)" style="display: flex; flex-flow: column">
             <ion-card>
-              <ion-card-header>
-                <img src='{{x.hairStyleImage}}'> >
+              <ion-card-header id="head">
+                <img src='{{x.hairStyleImage}}' style="width: 40vh; height: 50vh;"> 
 
                 <br>
-                <!-- <ion-card-subtitle>{{x.hairstyleName}}</ion-card-subtitle> -->
+                <ion-card-subtitle>{{x.hairstyleName}}</ion-card-subtitle>
                 <ion-card-title style="color: white; font-size: 15px;">
-                  <!-- <p>
-                    {{x.hairstylePrice | currency:'&#82;'}}</p> -->
+                  <p>
+                    {{x.hairstylePrice | currency:'&#82;'}}</p>
                 </ion-card-title>
               </ion-card-header>
 
             </ion-card>
-            <div class="detail" *ngFor="let x of hair">
+            <!-- <div class="detail" *ngFor="let x of hair">
 
               <p>{{x.hairstyleName}} <br> {{x.hairstylePrice | currency:'&#82;'}}</p>
-            </div>
+            </div> -->
 
           </ion-slide>
         </ion-slides>
