@@ -22,7 +22,7 @@ export class NavigationPage implements OnInit {
   map()
   {
 
-this.router.navigate(['/home']);
+this.router.navigate(['home']);
   }
 
   profile()

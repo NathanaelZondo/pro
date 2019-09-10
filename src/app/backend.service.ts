@@ -60,8 +60,8 @@ export class BackendService {
     this.afs.collection('userprofile').doc(this.uid).valueChanges().subscribe(val => {
       this.profiles.push(val);
       this.profiles.splice(1, 1);
-      console.log("This.profile ", this.profiles)
-      if (this.profiles == undefined) {
+      console.log("This.profile ", val)
+      if (val == undefined) {
         this.control.router.navigate(['./createprofile']);
       }
       return this.profiles;
@@ -119,7 +119,7 @@ export class BackendService {
       this.control.router.navigate(['createprofile']);
     }
     else {
-      this.control.router.navigate(['home']);
+      this.control.router.navigate(['navigation']);
       console.log("logged in user name", name)
     }
   }
