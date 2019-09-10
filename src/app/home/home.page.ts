@@ -137,11 +137,11 @@ export class HomePage {
     console.log(x.userUID)
     this.cover = x.salonImage;
     this.desc = x.SalonDesc;
-    this.location = x.location;
+    this.location = x.streetName;
     this.backend.salonname = x.salonName;
     this.backend.selectedsalon.push(x);
     this.backend.selectedsalon.splice(1, 1);
-    this.backend.setsalondata(x.salonName, x.location);
+    this.backend.setsalondata(x.salonName, x.streetName);
 
     let click = 1;
     let v1;

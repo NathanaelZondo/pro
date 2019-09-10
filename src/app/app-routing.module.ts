@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'success', loadChildren: './success/success.module#SuccessPageModule' },
   { path: 'info', loadChildren: './info/info.module#InfoPageModule' },
   { path: 'reviews', loadChildren: './reviews/reviews.module#ReviewsPageModule' },
-   { path: 'zero', loadChildren: './zero/zero.module#ZeroPageModule' },
+  // { path: 'zero', loadChildren: './zero/zero.module#ZeroPageModule' },
 
 ]
 // const routes: Routes = [
