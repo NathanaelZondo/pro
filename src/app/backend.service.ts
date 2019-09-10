@@ -45,6 +45,8 @@ export class BackendService {
   }
   timeList: Array<{}>
 
+  
+  
   uid = firebase.auth().currentUser.uid;
   gend;
   type = 'chiskop;'
@@ -57,7 +59,7 @@ export class BackendService {
   viewprofile() {
     this.profiles.splice(1, 1);
     //this.uid =firebase.auth().currentUser.uid;
-    this.afs.collection('userprofile').doc(this.uid).valueChanges().subscribe(val => {
+    this.afs.collection('userprofile').doc(firebase.auth().currentUser.uid).valueChanges().subscribe(val => {
       this.profiles.push(val);
       this.profiles.splice(1, 1);
       console.log("This.profile ", val)
@@ -211,7 +213,7 @@ export class BackendService {
 
   getuserbookings() {
     this.userbooking = [];
-    return this.db.collection('Bookings').doc(this.uid).collection('userbookings');
+    return this.db.collection('Bookings').doc(firebase.auth().currentUser.uid).collection('userbookings');
   }
 
 }

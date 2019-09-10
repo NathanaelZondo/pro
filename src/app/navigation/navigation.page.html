@@ -8,7 +8,7 @@
   <div class="container">
 
     <div class="logo">
-      <img src="../../assets/Untitled-1.svg">
+      <img src="../../assets/Untitled-1.svg" (click)="signout()">
     </div>
 
     <div class="title">
@@ -17,7 +17,7 @@
 
     <div class="navigation"  >
 
-      <div class="map" (click) ="map()">
+      <div class="map" routerLink="/home">
         <div class="iconz">
           <ion-icon name="map" style="font-size: 60px;"></ion-icon>
         </div>
@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <div class="profile"  (click) ="profile()">
+      <div class="profile"  routerLink="/viewprofile">
         <div class="iconz">
           <ion-icon name="person" style="font-size: 60px;"></ion-icon>
         </div>
@@ -35,7 +35,7 @@
         </div>
       </div>
 
-      <div class="booking"  (click) ="bookings()">
+      <div class="booking"  routerLink="/booking">
         <div class="iconz">
           <ion-icon name="bookmark" style="font-size: 60px;"></ion-icon>
         </div>
@@ -44,7 +44,7 @@
         </div>
       </div>
 
-      <div class="info" (click) ="info()">
+      <div class="info" routerLink="/info">
         <div class="iconz">
           <ion-icon name="information-circle" style="font-size: 60px;"></ion-icon>
         </div>

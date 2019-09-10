@@ -6,7 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ViewsalonPage } from './viewsalon.page';
-
+import { StarRating } from 'ionic4-star-rating';
+import { SharedmoduleModule } from '../sharedmodule/sharedmodule.module';
 const routes: Routes = [
   {
     path: '',
@@ -19,8 +20,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedmoduleModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ViewsalonPage]
+  declarations: [ViewsalonPage],
+
 })
 export class ViewsalonPageModule {}

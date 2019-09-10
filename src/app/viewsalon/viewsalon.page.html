@@ -11,7 +11,7 @@
       <div class="topbar">
         <div class="likes">
         <ion-icon name="heart"(click)="like(x)" id="heart"
-        style="font-size: 30px; color: red"></ion-icon>
+        style="font-size: 30px; color: rgb(92, 11, 11)"></ion-icon>
         <!-- <p>{{likes}}</p> -->
       </div>
 
@@ -27,8 +27,7 @@
     <div class="details">
       <div class="blur"></div>
       <div class="card" *ngFor="let x of salond">
-        <!-- <ion-button (click)="like(x)">Likes = {{likes}}<ion-icon name="like"></ion-icon>
-        </ion-button> -->
+<ion-button (click) = "like(x)">Likes = {{likes}}<ion-icon name = "like"></ion-icon></ion-button>
         <div class="subtitle">
           {{x.salonName}}
         </div>
@@ -36,21 +35,28 @@
           {{x.location}}
         </div>
         <div class="rating">
-          <ion-icon name="star" style="font-size: 4vw;"></ion-icon>
-          <ion-icon name="star" style="font-size: 4vw;"></ion-icon>
-          <ion-icon name="star" style="font-size: 4vw;"></ion-icon>
-          <ion-icon name="star" style="font-size: 4vw;"></ion-icon>
-          <ion-icon name="star-half" style="font-size: 4vw;"></ion-icon>
+                    
+      <ionic4-star-rating #rating
+      activeIcon = "ios-star"
+      defaultIcon = "ios-star-outline"
+      activeColor = "#db981a" 
+      defaultColor = "#A9A9A9"
+      readonly="true"
+      rating= {{aveg}}
+      fontSize = "25px"
+      halfStar = "true"
+      >
+  </ionic4-star-rating>
         </div>
       </div>
     </div>
-    <div class="reviews" routerLink="/reviews">
-      <p>Reviews <ion-icon name="arrow-dropright" style="color: white"></ion-icon>
+     <div class="reviews" routerLink="/reviews">
+      <p>Reviews {{aveg}} <ion-icon name="arrow-dropright" style="color: white"></ion-icon>
       </p>
-    </div>
+    </div> 
     <div class="desc" *ngFor="let x of salond">
 
-      <p>{{x.SalonDesc}}</p>    
+      <p>{{x.SalonDesc}} </p>
     </div>
 
     <div class=" buttonz">
@@ -71,26 +77,28 @@
     <div class="gallery">
       <div class="hair">
 
+        <p style="text-align: center; color: white">Pick the hairstyle that you want and make an appointment</p>
+
         <ion-slides [options]="sliderConfig">
 
           <ion-slide *ngFor="let x of hair" (click)="choosehair(x)" style="display: flex; flex-flow: column">
             <ion-card>
-              <ion-card-header>
-                <img src='{{x.hairStyleImage}}'> >
+              <ion-card-header id="head">
+                <img src='{{x.hairStyleImage}}' style="width: 40vh; height: 50vh;"> 
 
                 <br>
-                <!-- <ion-card-subtitle>{{x.hairstyleName}}</ion-card-subtitle> -->
+                <ion-card-subtitle>{{x.hairstyleName}}</ion-card-subtitle>
                 <ion-card-title style="color: white; font-size: 15px;">
-                  <!-- <p>
-                    {{x.hairstylePrice | currency:'&#82;'}}</p> -->
+                  <p>
+                    {{x.hairstylePrice | currency:'&#82;'}}</p>
                 </ion-card-title>
               </ion-card-header>
 
             </ion-card>
-            <div class="detail" *ngFor="let x of hair">
+            <!-- <div class="detail" *ngFor="let x of hair">
 
               <p>{{x.hairstyleName}} <br> {{x.hairstylePrice | currency:'&#82;'}}</p>
-            </div>
+            </div> -->
 
           </ion-slide>
         </ion-slides>
