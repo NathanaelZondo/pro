@@ -94,60 +94,9 @@ export class MapsPage implements OnInit {
     });
   }
 
-  move() {
-    this.router.navigate(['navigation']);
-    // this.router.navigate(['navigation']);
-    console.log('checkl')
-  }
   ngOnInit() {
 
   }
-
-
-
-  selectsalon(x) {
-
-    this.backend.selectedsalon.splice(0, 1);
-    console.log(x.userUID)
-    this.cover = x.salonImage;
-    this.desc = x.SalonDesc;
-    this.location = x.location;
-    this.backend.salonname = x.salonName;
-    this.backend.selectedsalon.push(x);
-    this.backend.selectedsalon.splice(1, 1);
-    this.backend.setsalondata(x.salonName, x.location);
-
-    let click = 1;
-    let v1;
-    let docid;
-
-    this.backend.salonuid = x.userUID;
-    firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').get().then(val => {
-      console.log("These are the numbers", val)
-      val.forEach(qu => {
-        docid = qu.id;
-        console.log(docid)
-        console.log(qu.data().numberofclicks)
-        v1 = qu.data().numberofclicks;
-
-        firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').doc(qu.id).update({ "numberofclicks": v1 + click }).then(zet => {
-          console.log(zet)
-        })
-      }
-
-
-      )
-    })
-
-
-
-
-
-
-    this.control.router.navigate(['viewsalon']);
-  }
-
-
   ionViewDidEnter() {
     console.log('check');
 
@@ -312,7 +261,7 @@ export class MapsPage implements OnInit {
       }
 
       this.infoWindow.setPosition(this.mapCenter);
-      this.infoWindow.open(this.mapElement);
+      this.infoWindow.open(this.map);
       this.initMap();
       this.addMarker(marker);
       // this.addMarke(markers);
@@ -340,8 +289,64 @@ export class MapsPage implements OnInit {
   }
   initMap() {
 
-    this.mapElement = new google.maps.Map(this.mapElement.nativeElement, this.mapOptions());
-    this.initAutocomplete()
+   this.map = new google.maps.Map(this.mapElement.nativeElement, this.mapOptions());
+   //this.mapElement = new google.maps.Map(this.mapElement.nativeElement, this.mapOptions());
+    let input = document.getElementById('pac-input');
+    let searchBox = new google.maps.places.SearchBox(input);
+    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    // Bias the SearchBox results towards current map's viewport.
+    this.map.addListener('bounds_changed', (res) => {
+      searchBox.setBounds(this.map.getBounds());
+    });
+    let markers = [];
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener('places_changed', (res) => {
+      let places = searchBox.getPlaces();
+
+      if (places.length == 0) {
+        return;
+      }
+
+      // Clear out the old markers.
+      markers.forEach((marker) => {
+        marker.setMap(null);
+      });
+      markers = [];
+
+      // For each place, get the icon, name and location.
+      let bounds = new google.maps.LatLngBounds();
+      places.forEach((place) =>{
+        if (!place.geometry) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+        let icon = {
+          url: place.icon,
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(25, 25)
+        };
+
+        // Create a marker for each place.
+        markers.push(new google.maps.Marker({
+          map: this.map,
+          icon: icon,
+          title: place.name,
+          position: place.geometry.location
+        }));
+
+        if (place.geometry.viewport) {
+          // Only geocodes have viewport.
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+      this.map.fitBounds(bounds);
+    });
   }
 
   obj = {
@@ -419,62 +424,6 @@ export class MapsPage implements OnInit {
     // });
 
     // Create the search box and link it to the UI element.
-    let input = document.getElementById('pac-input');
-    let searchBox = new google.maps.places.SearchBox(input);
-    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-    // Bias the SearchBox results towards current map's viewport.
-    this.map.addListener('bounds_changed', (r) =>{
-      searchBox.setBounds(this.map.getBounds());
-    });
-
-    let markers = [];
-    // Listen for the event fired when the user selects a prediction and retrieve
-    // more details for that place.
-    searchBox.addListener('places_changed', (res) => {
-      let places = searchBox.getPlaces();
-
-      if (places.length == 0) {
-        return;
-      }
-
-      // Clear out the old markers.
-      markers.forEach((marker) => {
-        marker.setMap(null);
-      });
-      markers = [];
-
-      // For each place, get the icon, name and location.
-      let bounds = new google.maps.LatLngBounds();
-      places.forEach((place) =>{
-        if (!place.geometry) {
-          console.log("Returned place contains no geometry");
-          return;
-        }
-        let icon = {
-          url: place.icon,
-          size: new google.maps.Size(71, 71),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(17, 34),
-          scaledSize: new google.maps.Size(25, 25)
-        };
-
-        // Create a marker for each place.
-        markers.push(new google.maps.Marker({
-          map: this.map,
-          icon: icon,
-          title: place.name,
-          position: place.geometry.location
-        }));
-
-        if (place.geometry.viewport) {
-          // Only geocodes have viewport.
-          bounds.union(place.geometry.viewport);
-        } else {
-          bounds.extend(place.geometry.location);
-        }
-      });
-      this.map.fitBounds(bounds);
-    });
+    
   }
 }

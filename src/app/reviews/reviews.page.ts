@@ -36,6 +36,10 @@ export class ReviewsPage implements OnInit {
     this.getSalon();
     this.getProfile();
     console.log('user uid', firebase.auth().currentUser.uid);
+  
+    
+    
+ 
     
   }
 ngOnInit(){}
@@ -103,7 +107,12 @@ getSalon(){
     }
   })
 }
-getProfile(){
+async getProfile(){
+  const loading = await this.loadingController.create({
+    message: 'getting you ready ',
+    duration: 2000
+  });
+  await loading.present();
   this.db.collection('userprofile').where("uid","==", firebase.auth().currentUser.uid).get().then(res =>{
     if(res.empty !== true){
       console.log('Got user data', res);

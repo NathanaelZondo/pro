@@ -20,7 +20,7 @@ export class AppComponent {
     private router: Router
   ) {
     firebase.initializeApp(config);
-    this.listenToAuth();
+   // this.listenToAuth();
   }
 
   initializeApp() {
@@ -33,7 +33,7 @@ export class AppComponent {
   listenToAuth() {
     if(firebase.auth().onAuthStateChanged)
     {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/navigation');
     }
     else
     {
