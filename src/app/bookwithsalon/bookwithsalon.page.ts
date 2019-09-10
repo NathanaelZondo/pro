@@ -30,6 +30,8 @@ this.staff.push(stav.data());
       })
     })
     
+this.cdate();
+
     cdate.getDay();
   this.currentdate= (cdate.getFullYear()+"-"+(cd1.getMonth()+1)+"-"+cdate.getDate());
 
@@ -75,7 +77,7 @@ formodal:boolean =false;
   sessiontime:this.backend.sessiontime,
   sessionendtime:"",
   hairdresser:"",
-  userdate:"",
+  userdate:this.cdate(),
   status:"Active",
   status2:"Active",
   salonuid:this.backend.salonuid
@@ -631,6 +633,28 @@ this.events=setve;
 
 this.loadEvents();
 console.log(this.events)
+}
+////////////////////////////////////////////////////////////////
+
+todate;
+//Get current date
+cdate()
+{
+
+  this.control.tip();
+  this.todate = (new Date().getFullYear().toString())+'-'+(new Date().getMonth())+'-'+(new Date().getDate());
+  if((new Date().getMonth()+1)<10)
+  {
+
+    this.todate = (new Date().getFullYear().toString())+'-0'+(new Date().getMonth()+1)+'-'+(new Date().getDate());
+  if((new Date().getDate())<10)
+  {
+    this.todate = (new Date().getFullYear().toString())+'-0'+(new Date().getMonth()+1)+'-0'+(new Date().getDate());
+  }
+
+}
+console.log("Currentdate =",this.todate)
+return this.todate;
 }
 }
 

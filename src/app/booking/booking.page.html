@@ -97,7 +97,9 @@
         <div style ="color:white;font-family:sans-serif">
             Salon:    {{x.salonname}}<br>
             Stylist:  {{x.hairdresser}}<br>
-            Location  {{x.salonlocation}}
+            Location  {{x.salonlocation}}<br>
+            Date:     {{x.userdate}} <br>
+            Status:   {{x.status2}}
             <ion-button color ="danger" *ngIf= "x.status!='cancelled'"   (click) ="cancel(x)"><ion-icon name ="close"></ion-icon></ion-button>
         </div>
     </div>
@@ -123,8 +125,9 @@
     <div class="personal-info">
         <div style ="color:rgb(214, 248, 240);font-family:sans-serif">
             Salon:    {{x.salonname}}<br>
-            Stylist:  {{x.hairdresser}}<br>
             Location  {{x.salonlocation}}
+            Date:     {{x.userdate}} <br>
+            Status:   {{x.status2}}
         </div>
     </div>
     <div class="bottom dots"></div>

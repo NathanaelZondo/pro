@@ -24,7 +24,7 @@ export class BookingPage implements OnInit {
    this.newdata =[];
    let v =0;    
 
-   this.backend.getuserbookings().orderBy("userdate").limit(10).get().then(val=>{
+   this.backend.getuserbookings().orderBy("userdate","desc").limit(10).get().then(val=>{
      val.forEach(doc=>{
        console.log("top 10",doc.data())
        this.userbooking.push(doc.data())
@@ -59,13 +59,15 @@ export class BookingPage implements OnInit {
      // console.log(doc.data());
      //console.log(doc.data().surname,doc.data().hairdresser,doc.data().userdate,doc.data().salonname)
      
+    
 if(doc.data().userdate == currentdate && v ==1)
 {
+  console.log("surname is",v ) 
      this.values(doc.data().salonname,doc.data().hairdresser,doc.data().userdate,currentdate,doc.data().surname)
 }   
  v = v+1;     
   
- console.log("surname is",v ) 
+ 
 
       });
     });
