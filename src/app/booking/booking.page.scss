@@ -1,3 +1,10 @@
+.backg{
+ 
+border-image-repeat:no-repeat;
+background-position: center; 
+height:100Vh;
+}
+
 .container{
     display: flex;
     flex-flow: column;
@@ -37,12 +44,12 @@ color:white;
   grid-row: 1 / span 4;
 }
 .front .yellow {
-  background-color: #f1ef1c;
+  background-color: gold;
   grid-column: 1 / span 7;
   grid-row: 1 / span 4;
 }
 .front .pink {
-  background-color: #fa001a;
+  background-color: navy;
   -webkit-clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
           clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
   grid-row: 1 / span 3;
@@ -51,7 +58,7 @@ color:white;
   z-index: 2;
 }
 .front .dots {
-  background: radial-gradient(#fa001a 20%, transparent 19%), radial-gradient(#fa001a 20%, transparent 19%), transparent;
+  background: radial-gradient(wheat 20%, transparent 19%), radial-gradient( rgb(245, 179, 188) 20%, transparent 19%), transparent;
   background-size: 6px 6px;
   background-position: 0 0, 3px 3px;
   grid-column: 1 / span 12;
@@ -86,12 +93,12 @@ color:white;
   grid-template-rows: repeat(12, 1fr);
 }
 .back .yellow {
-  background-color: #f1ef1c;
+  background-color: wheat;
   grid-column: 1 / span 9;
   grid-row: 1 / span 3;
 }
 .back .top.dots {
-  background: radial-gradient(#4cc9c8 20%, transparent 19%), radial-gradient(#4cc9c8 20%, transparent 19%), transparent;
+  background: radial-gradient( darkcyan 20%, transparent 19%), radial-gradient(darkcyan 20%, transparent 19%), transparent;
   background-size: 6px 6px;
   background-position: 0 0, 3px 3px;
   grid-column: 8 / span 6;
@@ -115,7 +122,7 @@ color:white;
   margin-bottom: 15px;
 }
 .back .bottom.dots {
-  background: radial-gradient(#4cc9c8 20%, transparent 19%), radial-gradient(#4cc9c8 20%, transparent 19%), transparent;
+  background: radial-gradient(gold 20%, transparent 19%), radial-gradient(gold 20%, transparent 19%), transparent;
   background-size: 6px 6px;
   background-position: 0 0, 3px 3px;
   grid-column: 1 / span 8;
@@ -123,7 +130,7 @@ color:white;
   z-index: 2;
 }
 .back .pink {
-  background-color: #fa001a;
+  background-color: darkcyan;
   grid-column: 8 / span 5;
   grid-row: 10 / span 3;
 }
