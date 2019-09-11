@@ -368,8 +368,65 @@ export class HomePage {
   }
   initMap() {
 
-    this.mapElement = new google.maps.Map(this.mapElement.nativeElement, this.mapOptions());
-  }
+    this.map = new google.maps.Map(this.mapElement.nativeElement, this.mapOptions());
+    //this.mapElement = new google.maps.Map(this.mapElement.nativeElement, this.mapOptions());
+     let input = document.getElementById('pac-input');
+     let searchBox = new google.maps.places.SearchBox(input);
+     this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+ 
+     // Bias the SearchBox results towards current map's viewport.
+     this.map.addListener('bounds_changed', (res) => {
+       searchBox.setBounds(this.map.getBounds());
+     });
+     let markers = [];
+     // Listen for the event fired when the user selects a prediction and retrieve
+     // more details for that place.
+     searchBox.addListener('places_changed', (res) => {
+       let places = searchBox.getPlaces();
+ 
+       if (places.length == 0) {
+         return;
+       }
+ 
+       // Clear out the old markers.
+       markers.forEach((marker) => {
+         marker.setMap(null);
+       });
+       markers = [];
+ 
+       // For each place, get the icon, name and location.
+       let bounds = new google.maps.LatLngBounds();
+       places.forEach((place) =>{
+         if (!place.geometry) {
+           console.log("Returned place contains no geometry");
+           return;
+         }
+         let icon = {
+           url: place.icon,
+           size: new google.maps.Size(71, 71),
+           origin: new google.maps.Point(0, 0),
+           anchor: new google.maps.Point(17, 34),
+           scaledSize: new google.maps.Size(25, 25)
+         };
+ 
+         // Create a marker for each place.
+         markers.push(new google.maps.Marker({
+           map: this.map,
+           icon: icon,
+           title: place.name,
+           position: place.geometry.location
+         }));
+ 
+         if (place.geometry.viewport) {
+           // Only geocodes have viewport.
+           bounds.union(place.geometry.viewport);
+         } else {
+           bounds.extend(place.geometry.location);
+         }
+       });
+       this.map.fitBounds(bounds);
+     });
+   }
 
   obj = {
     lat: -26.1562825,
