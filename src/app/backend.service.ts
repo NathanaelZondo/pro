@@ -126,11 +126,11 @@ export class BackendService {
     }
   }
 
-  setsalondata(name, location) {
+  setsalondata(name, streetname) {
     this.salonname = name;
-    this.salonlocation = location;
+    this.salonlocation = streetname;
 
-    console.log(name, location);
+    console.log(name, streetname);
   }
 
   sethairstyledata(name, duration, price) {

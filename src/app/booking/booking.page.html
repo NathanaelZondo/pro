@@ -76,7 +76,7 @@
 </div> -->
 
 
-<div style ="background-image: url('https://images.pexels.com/photos/1546035/pexels-photo-1546035.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260') ;border-image-repeat:no-repeat;background-position: center; ">
+<div class ="backg">
 
 
 
@@ -94,13 +94,13 @@
     <div class="yellow"></div>
     <div class="top dots"></div>
     <div class="personal-info">
-        <div style ="color:white;font-family:sans-serif">
+        <div style ="color:black;font-family:sans-serif">
             Salon:    {{x.salonname}}<br>
             Stylist:  {{x.hairdresser}}<br>
             Location  {{x.salonlocation}}<br>
-            Date:     {{x.userdate}} <br>
-            Status:   {{x.status2}}
-            <ion-button color ="danger" *ngIf= "x.status!='cancelled'"   (click) ="cancel(x)"><ion-icon name ="close"></ion-icon></ion-button>
+            Date:     {{x.userdate}}&nbsp; {{x.sessiontime}} <br>
+            Stylist:   {{x.status2}}
+            <ion-button color ="danger" *ngIf= "x.status2!='cancelled' && x.status!='cancelled' "   (click) ="cancel(x)"><ion-icon name ="close"></ion-icon></ion-button>
         </div>
     </div>
     <div class="bottom dots"></div>
@@ -123,11 +123,12 @@
     <div class="yellow"></div>
     <div class="top dots"></div>
     <div class="personal-info">
-        <div style ="color:rgb(214, 248, 240);font-family:sans-serif">
+        <div style ="color:black;font-family:sans-serif">
             Salon:    {{x.salonname}}<br>
-            Location  {{x.salonlocation}}
-            Date:     {{x.userdate}} <br>
-            Status:   {{x.status2}}
+            Location  {{x.salonlocation}}<br>
+            Date:     {{x.userdate}}&nbsp; {{x.sessiontime}}<br>
+            You:{{x.status2}}<br>
+            Stylist:   {{x.status2}}
         </div>
     </div>
     <div class="bottom dots"></div>

@@ -58,13 +58,13 @@ export class BookingPage implements OnInit {
       this.userbooking.push(doc.data())
      // console.log(doc.data());
      //console.log(doc.data().surname,doc.data().hairdresser,doc.data().userdate,doc.data().salonname)
-     
+     this.values(doc.data().salonname,doc.data().hairdresser,doc.data().userdate,currentdate,doc.data().surname) 
     
-if(doc.data().userdate == currentdate && v ==1)
-{
-  console.log("surname is",v ) 
-     this.values(doc.data().salonname,doc.data().hairdresser,doc.data().userdate,currentdate,doc.data().surname)
-}   
+// if(doc.data().userdate == currentdate && v ==1)
+// {
+//   console.log("surname is",v ) 
+//      this.values(doc.data().salonname,doc.data().hairdresser,doc.data().userdate,currentdate,doc.data().surname)
+// }   
  v = v+1;     
   
  
