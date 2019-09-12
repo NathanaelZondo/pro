@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { AuthService } from '../../app/auth.service';
 import { Router } from '@angular/router';
 import { ControlsService } from '../controls.service';
@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
   public loading: HTMLIonLoadingElement;
 
   constructor(
+    public nav:NavController,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     private authService: AuthService,
@@ -48,7 +49,8 @@ export class LoginPage implements OnInit {
       this.authService.loginUser(email, password).then(
         () => {
           this.loading.dismiss().then(() => {
-            this.router.navigateByUrl('navigation');
+          //  this.nav.navigateRoot('/navigation');
+            this.control.router.navigateByUrl('/navigation',{ replaceUrl: true });
           });
         },
         error => {
