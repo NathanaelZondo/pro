@@ -11,7 +11,7 @@
       <div class="topbar">
         <div class="likes">
         <ion-icon name="heart"(click)="like(x)" id="heart"
-        style="font-size: 30px; color: rgb(92, 11, 11)"></ion-icon>
+        style="font-size: 30px; color: rgb(155, 15, 15)"></ion-icon>
         <!-- <p>{{likes}}</p> -->
       </div>
 
@@ -24,6 +24,17 @@
     <!-- <div class="img1" *ngFor="let x of salond">
             <img src="{{x.salonImage}}">
     </div> -->
+    <ionic4-star-rating #rating
+    activeIcon = "ios-star"
+    defaultIcon = "ios-star-outline"
+    activeColor = "#db981a" 
+    defaultColor = "white"
+    readonly="true"
+    rating= {{aveg}}
+    fontSize = "25px"
+    halfStar = "true"
+    >
+  </ionic4-star-rating>
     <div class="details">
       <div class="blur"></div>
       <div class="card" *ngFor="let x of salond">
@@ -36,20 +47,21 @@
         </div>
         <div class="rating">
                     
-      <ionic4-star-rating #rating
-      activeIcon = "ios-star"
-      defaultIcon = "ios-star-outline"
-      activeColor = "#db981a" 
-      defaultColor = "#A9A9A9"
-      readonly="true"
-      rating= {{aveg}}
-      fontSize = "25px"
-      halfStar = "true"
-      >
-  </ionic4-star-rating>
+
         </div>
       </div>
     </div>
+    <!-- <ionic4-star-rating #rating
+    activeIcon = "ios-star"
+    defaultIcon = "ios-star-outline"
+    activeColor = "#db981a" 
+    defaultColor = "#A9A9A9"
+    readonly="true"
+    rating= {{aveg}}
+    fontSize = "25px"
+    halfStar = "true"
+    >
+</ionic4-star-rating> -->
      <div class="reviews" routerLink="/reviews">
       <p>Reviews {{aveg}} <ion-icon name="arrow-dropright" style="color: white"></ion-icon>
       </p>
@@ -60,8 +72,8 @@
     </div>
 
     <div class=" buttonz">
-      <ion-button (click)="selecthairstyle('female')" color="dark" id="btn" (click)="viewHair()">Ladies</ion-button>
-      <ion-button (click)="selecthairstyle('male')" color="dark" id="btn" (click)="viewHair()">Gents</ion-button>
+      <ion-button (click)="selecthairstyle('female')" color="dark" id="btn" (click)="viewHair()"clear round>Ladies</ion-button>
+      <ion-button (click)="selecthairstyle('male')" color="dark" id="btn" (click)="viewHair()" round>Gents</ion-button>
     </div>
   </div>
 
