@@ -9,11 +9,11 @@ import { BackendService } from '../backend.service';
   styleUrls: ['./modal.page.scss'],
 })
 export class ModalPage implements OnInit {
-  timeList:Array<{}>
+  bookingdetails:Array<{}>
   constructor(private modalController: ModalController,public backend:BackendService) { 
-this.timeList=this.backend.timeList;
+this.bookingdetails=this.backend.bookingdetails;
 
-console.log(this.timeList)
+console.log(this.bookingdetails)
 
   }
 
@@ -21,10 +21,11 @@ console.log(this.timeList)
   }
 
   
-  async closemod()
+  async back()
   {
-    this.backend.timeList=[];
+    
     await this.modalController.dismiss();
   }
 
+  
 }
