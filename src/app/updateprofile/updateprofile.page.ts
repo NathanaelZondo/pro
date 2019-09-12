@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { Profile } from '../profile';
@@ -88,8 +87,6 @@ firebase.firestore().collection('userprofile').doc(uid).update(profile).then(val
 this.control.router.navigate(['navigation']);
 }
 }
-
-
 
 
 
