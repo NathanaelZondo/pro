@@ -107,7 +107,7 @@ export class BackendService {
       this.control.router.navigate(['createprofile']);
     }
     else {
-      this.control.router.navigate(['navigation']);
+     // this.control.router.navigate(['navigation']);
       console.log("logged in user name", name)
     }
   }
