@@ -19,6 +19,10 @@
     }
  
 }
+.searchbar{
+    width: 70vh;
+    height: 20vh;
+}
 
 .img{
     width: 100%;
@@ -35,7 +39,7 @@
     display: flex;
     flex-flow: column; 
     position: absolute;
-    bottom: 25px;
+    bottom: 150px;
     left: 10px;
     z-index: 5;
     color: rgb(255, 255, 255);

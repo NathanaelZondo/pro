@@ -8,6 +8,12 @@ import { ControlsService } from '../controls.service';
 })
 export class InfoPage implements OnInit {
 
+  aboutUs=true;
+disclaimer=true;
+terms=true;
+legal=true;
+
+
   constructor(public control:ControlsService) { }
 
   ngOnInit() {
@@ -20,5 +26,22 @@ export class InfoPage implements OnInit {
   back(){
     this.control.router.navigate(['navigation']);
   }
+
+  getAbout(){
+    this.aboutUs=!this.aboutUs
+  }
+
+  getdisclaimer(){
+    this.disclaimer=!this.disclaimer
+  }
+
+  getterms(){
+    this.terms=!this.terms
+  }
+
+  getlegal(){
+    this.legal=!this.legal
+  }
+
 
 }

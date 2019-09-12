@@ -8,10 +8,12 @@
 <ion-content>
   
   <div class="container">
+
+      <div class="search">
+          <ion-searchbar id="pac-input" placeholder="Search" style="background: rgba(255, 255, 255, 0.651)"></ion-searchbar>
+        </div>
       <div #map id="map"></div>
-    <div class="search">
-      <ion-searchbar id="pac-input" placeholder="Search" style="background: rgba(255, 255, 255, 0.651)"></ion-searchbar>
-    </div>
+    
 
     <div class="salonlist">
       <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
