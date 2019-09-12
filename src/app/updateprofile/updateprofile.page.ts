@@ -14,7 +14,15 @@ import * as firebase from 'firebase';
 export class UpdateprofilePage implements OnInit {
 profiles =[];
 name;surname;image;about;cell;uid;
+styleImage;
+storage = firebase.storage().ref();
+  uploadprogress
+  
+  isuploading: false
   constructor(private camera:Camera,public control:ControlsService,public backend:BackendService) { 
+
+
+
 
     this.backend.getprofile2().then(res=>{
     //  res.data()
@@ -45,31 +53,48 @@ image:this.image
 
 picurl;
 
-  async takePhoto()
-  {
+async takePhoto()
+{
 const options:CameraOptions ={
-  quality:50,
-  targetHeight:600,
-  targetWidth:600,
-  destinationType:this.camera.DestinationType.DATA_URL,
-  encodingType:this.camera.EncodingType.JPEG,
-  mediaType:this.camera.MediaType.PICTURE
+quality: 100,
+destinationType: this.camera.DestinationType.DATA_URL,
+encodingType: this.camera.EncodingType.JPEG,
+mediaType: this.camera.MediaType.PICTURE,
+correctOrientation: true,
+sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM
 }
 
-const result = await this.camera.getPicture(options);
+await this.camera.getPicture(options).then(res => {
+console.log(res);
+const image = `data:image/jpeg;base64,${res}`;
 
-const image =`data:image/jpeg;base64,${result}`;
+this.styleImage = image;
+const filename = Math.floor(Date.now() / 1000);
+let file = 'Userprofiles/' + firebase.auth().currentUser + '.jpg';
+const UserImage = this.storage.child(file);
 
-const pictures = storage().ref('pictures');
+const upload = UserImage.putString(image, 'data_url');
+upload.on('state_changed', snapshot => {
+  let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  this.uploadprogress = progress;
+  if (progress == 100) {
+    this.isuploading = false;
+  }
+}, err => {
+}, () => {
+  upload.snapshot.ref.getDownloadURL().then(downUrl => {
+    this.profile.image = downUrl;
+    console.log('Image downUrl', downUrl);
 
-pictures.putString(image,'data_url');
 
-pictures.getDownloadURL().then(val=>{
-  console.log(val)
-  this.picurl = val;
+  })
+})
+}, err => {
+console.log("Something went wrong: ", err);
 })
 
-  }
+
+}
 
 updateprofile(profile)
 {
@@ -81,7 +106,7 @@ firebase.firestore().collection('userprofile').doc(uid).update(profile).then(val
   })
 
   this.control.ProfileupdateToast()
-this.control.router.navigate(['viewprofile']);
+this.control.router.navigate(['navigation']);
 }
 
   

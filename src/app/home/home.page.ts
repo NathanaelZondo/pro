@@ -72,9 +72,7 @@ export class HomePage {
       console.log(this.salon)
 
 
-      //view profile on the viewprofilepage 
-      this.backend.viewprofile();
-
+    
 
       this.hairstyledata = this.backend.hairstyledata.splice(0, this.backend.hairstyledata.length);
 
