@@ -39,12 +39,12 @@ color:white;
   grid-template-rows: repeat(4, 1fr);
 }
 .front .blue {
-  background-color: #4cc9c8;
+  background-color: #100049;
   grid-column: 8 / span 5;
   grid-row: 1 / span 4;
 }
 .front .yellow {
-  background-color: gold;
+  background-color: rgb(39, 39, 39);
   grid-column: 1 / span 7;
   grid-row: 1 / span 4;
 }
@@ -58,7 +58,7 @@ color:white;
   z-index: 2;
 }
 .front .dots {
-  background: radial-gradient(wheat 20%, transparent 19%), radial-gradient( rgb(245, 179, 188) 20%, transparent 19%), transparent;
+  background: radial-gradient(rgb(44, 0, 116) 20%, transparent 19%), radial-gradient( rgb(1, 141, 55) 20%, transparent 19%), transparent;
   background-size: 6px 6px;
   background-position: 0 0, 3px 3px;
   grid-column: 1 / span 12;
@@ -93,12 +93,12 @@ color:white;
   grid-template-rows: repeat(12, 1fr);
 }
 .back .yellow {
-  background-color: wheat;
+  background-color: rgb(40, 44, 59);
   grid-column: 1 / span 9;
   grid-row: 1 / span 3;
 }
 .back .top.dots {
-  background: radial-gradient( wheat 20%, transparent 19%), radial-gradient(wheat  20%, transparent 19%), transparent;
+  background: radial-gradient( rgb(40, 44, 59) 20%, transparent 19%), radial-gradient(rgb(64, 71, 95)  20%, transparent 19%), transparent;
   background-size: 6px 6px;
   background-position: 0 0, 3px 3px;
   grid-column: 8 / span 6;
@@ -122,7 +122,7 @@ color:white;
   margin-bottom: 15px;
 }
 .back .bottom.dots {
-  background: radial-gradient(gold 20%, transparent 19%), radial-gradient(gold 20%, transparent 19%), transparent;
+  background: radial-gradient(rgb(26, 33, 51) 20%, transparent 19%), radial-gradient(rgb(26, 33, 51) 20%, transparent 19%), transparent;
   background-size: 6px 6px;
   background-position: 0 0, 3px 3px;
   grid-column: 1 / span 8;
@@ -130,7 +130,7 @@ color:white;
   z-index: 2;
 }
 .back .pink {
-  background-color: gold;
+  background-color: rgb(10, 9, 20);
   grid-column: 8 / span 5;
   grid-row: 10 / span 3;
 }
