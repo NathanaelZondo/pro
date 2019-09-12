@@ -84,7 +84,7 @@ upload.on('state_changed', snapshot => {
 }, () => {
   upload.snapshot.ref.getDownloadURL().then(downUrl => {
     this.profile.image = downUrl;
-    console.log('Image downUrl', downUrl);
+    console.log('Image downUrl', this.profile.image);
 
 
   })
