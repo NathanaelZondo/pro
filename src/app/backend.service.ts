@@ -30,7 +30,7 @@ export class BackendService {
   salonsDisply = [];
   selectedsalon = [];
   salonplaceholder = [];
-  constructor(public afs: AngularFirestore, public control: ControlsService, public loadingController: LoadingController, ) {
+  constructor(public navCtrl:NavController,public afs: AngularFirestore, public control: ControlsService, public loadingController: LoadingController, ) {
   
     this.items = this.afs.collection('userprofile').valueChanges();
 
@@ -65,6 +65,8 @@ export class BackendService {
  
 
   signout() {
+    this.navCtrl.setDirection('root');
+    this.navCtrl.navigateRoot('/updateprofile');
     firebase.auth().signOut()
   }
 
@@ -103,13 +105,7 @@ export class BackendService {
     this.username = username;
     this.surname = surname;
     this.cell = cell;
-    if (username == "" || surname == "" || cell == "") {
-      this.control.router.navigate(['createprofile']);
-    }
-    else {
-     // this.control.router.navigate(['navigation']);
-      console.log("logged in user name", name)
-    }
+    
   }
 
   setsalondata(name, streetname) {
