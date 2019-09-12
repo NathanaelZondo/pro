@@ -1,0 +1,32 @@
+.flex-container {
+    display: flex;
+   
+  }
+  
+  .flex-container > div {
+    background:linear-gradient(black,black,black);
+    width: 100%;
+   height:100%;
+    font-size: 12px;
+    color: gray;
+
+  }
+
+
+  .flex-container2 {
+    display: flex;
+    width: 100%;
+    margin-right:3px; 
+   
+  }
+
+
+  .flex-container2 > div {
+    background:linear-gradient(black,black,black);
+    width: 100%;
+    text-align: center;
+   height:100%;
+    font-size: 15px;
+    flex-direction: row;
+
+  }

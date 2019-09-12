@@ -80,7 +80,8 @@ formodal:boolean =false;
   userdate:this.cdate(),
   status:"Active",
   status2:"Active",
-  salonuid:this.backend.salonuid
+  salonuid:this.backend.salonuid,
+  hairstyleimage:this.backend.hairstyleimage
 }
 //this is the date inputed by the user
 userdate;

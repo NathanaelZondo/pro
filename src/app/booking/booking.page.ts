@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { ControlsService } from '../controls.service';
 import * as firebase from 'firebase';
+import { ModalPage } from '../modal/modal.page';
+import { ModalController } from '@ionic/angular';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-booking',
@@ -20,7 +23,7 @@ export class BookingPage implements OnInit {
   newdata =[];
   ob ={};
    buttonactive ;
-  constructor(public backend:BackendService,public control:ControlsService) {
+  constructor(public backend:BackendService,public control:ControlsService,public modalController:ModalController,public controls:ControlsService) {
    this.newdata =[];
    let v =0;    
 
@@ -152,6 +155,27 @@ console.log("New data = ",this.newdata)
 });
 
   }
+
+
+viewdetails(x)
+{
+console.log(x)
+this.backend.setbookingdetails(x)
+ this.presentModal();
+}
+
+
+async presentModal() {
+  const modal = await this.modalController.create({
+    component: ModalPage
+  });
+  return await modal.present();
+}
+
+back()
+{
+  this.controls.router.navigate(['navigation']);
+}
 }
   
   

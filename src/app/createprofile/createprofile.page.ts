@@ -39,7 +39,7 @@ profile:Profile = {
 
 saveprofile(profile)
 {
-  profile.image = ""; //this.picurl;
+   //this.picurl;
 console.log(profile)
 
 
