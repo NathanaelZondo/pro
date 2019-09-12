@@ -1,15 +1,61 @@
 
 
+<ion-header>
+  <ion-toolbar color="dark">
+      <ion-icon name="arrow-round-back" style="font-size: 30px" (click)="back()"></ion-icon>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+
+    <div class="flex-container">
+        <div *ngFor = "let x of bookingdetails">
+        
+            <img src="{{x.hairstyleimage}}" height ="450px" width="100%" />
+         <div class="flex-container2">
+           <div>
+            
+                <h3>Client Info</h3>
+                <p> Name: {{x.name}}</p>
+                <p> Surname:  {{x.surname}}</p>
+                
+              </div> 
+                
+<div>
+    <h3>Time Info</h3>
+    <p>   Start Time:{{x.sessiontime}}</p>
+     <p>  End Time:  {{x.sessionendtime}}</p>
+     <p>  Duration:  {{x.estimatedtime}}</p>
+     <p>  Date:      {{x.userdate}}</p>
 
 
-<body style ="background:transparent;background-color:transparent">
-  <h1>Current User Bookings</h1>
-  <ion-button (click) ="closemod()"></ion-button>
 
 
-  <ion-item *ngFor ="let x of timeList">
-<pre>
-{{x.a}} {{x.x}} 
-{{x.b}} {{x.y}} </pre>
-  </ion-item>
-</body>
+</div>
+
+<div>
+    
+  
+  
+  <h3>Salon Info</h3>
+    <p>  Salon:     {{x.salonname}}</p>
+    <p>  Stylist:   {{x.hairdresser}}</p>
+    <p>  Location   {{x.salonlocation}}</p>
+   </div>
+
+
+
+ 
+
+
+            </div>
+            <div  align = "center">
+                <h3>Booking Info</h3>
+                <p>  Status:   {{x.status2}}</p>
+                <p>  Hairstyle: {{x.hairstyletype}}</p>
+                <p>  Price:     {{x.hairstyleprice}}</p>
+            </div>
+         
+      </div>
+    </div>
+</ion-content>

@@ -98,7 +98,7 @@ console.log('toatl for ratings',this.total)
 
   choosehair(x) {
     console.log(x);
-    this.backend.sethairstyledata(x.hairstyleName, x.duration, x.hairstylePrice);
+    this.backend.sethairstyledata(x.hairstyleName, x.duration, x.hairstylePrice,x.hairStyleImage);
     this.control.router.navigate(['bookwithsalon']);
   }
 

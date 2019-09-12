@@ -72,7 +72,10 @@ export class HomePage {
       console.log(this.salon)
 
 
+      //view profile on the viewprofilepage 
     
+    
+
 
       this.hairstyledata = this.backend.hairstyledata.splice(0, this.backend.hairstyledata.length);
 
@@ -81,21 +84,6 @@ export class HomePage {
 
     })
 
-    this.backend.getProfile().subscribe(val => {
-
-
-      this.profiles = this.backend.profiles;
-
-
-
-
-
-      this.backend.setuserdata(this.profiles[0].name, this.profiles[0].surname, this.profiles[0].cell)
-
-
-      console.log("this is the value for profile")
-
-    })
     ///maps
     this.db.collection('SalonNode').onSnapshot(snapshot => {
       snapshot.forEach(doc => {

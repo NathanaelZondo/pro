@@ -98,7 +98,7 @@
     </div>
   </div>
   <div class="card back" *ngFor = "let x of newdata">
-    <div class="yellow"></div>
+    <div class="yellow" (click) ="viewdetails(x)"><p style ="color:white;font-family:sans-serif;font-size: 14px">View Details</p></div>
     <div class="top dots"></div>
     <div class="personal-info">
         <div style ="color:white;font-family:sans-serif;font-size: 14px;">
@@ -127,7 +127,7 @@
     </div>
   </div>
   <div class="card back" *ngFor = "let x of userbooking">
-    <div class="yellow"></div>
+    <div class="yellow"  (click) ="viewdetails(x)"><p style ="color:white;font-family:sans-serif;font-size: 14px">View Details</p></div>
     <div class="top dots"></div>
     <div class="personal-info">
         <div style ="color:white;font-family:sans-serif;font-size: 14px">

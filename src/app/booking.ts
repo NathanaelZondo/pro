@@ -17,6 +17,7 @@ hairdresser:string;
 userdate:string,
 status:string,
 status2:string,
-salonuid:string
+salonuid:string,
+hairstyleimage:string
 
 }
