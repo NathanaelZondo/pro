@@ -31,7 +31,7 @@ export class BackendService {
   selectedsalon = [];
   salonplaceholder = [];
   constructor(public afs: AngularFirestore, public control: ControlsService, public loadingController: LoadingController, ) {
-    this.viewprofile();
+  
     this.items = this.afs.collection('userprofile').valueChanges();
 
     this.salons = this.afs.collection('Salons').valueChanges();
@@ -56,27 +56,13 @@ export class BackendService {
     return this.items;
   }
 
-  viewprofile() {
-    this.profiles.splice(1, 1);
-    //this.uid =firebase.auth().currentUser.uid;
-    this.afs.collection('userprofile').doc(firebase.auth().currentUser.uid).valueChanges().subscribe(val => {
-      this.profiles.push(val);
-      this.profiles.splice(1, 1);
-      console.log("This.profile ", val)
-      if (val == undefined) {
-        this.control.router.navigate(['./createprofile']);
-      }
-      return this.profiles;
-    })
-  }
+  
 
   getprofile2() {
     return this.db.collection('userprofile').doc(firebase.auth().currentUser.uid).get();
   }
 
-  createprofile(profile: Profile) {
-    this.afs.collection('userprofile').doc(firebase.auth().currentUser.uid).set(profile);
-  }
+ 
 
   signout() {
     firebase.auth().signOut()

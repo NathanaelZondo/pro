@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { Profile } from '../profile';
 import { ControlsService } from '../controls.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-viewprofile',
@@ -11,15 +12,20 @@ import { ControlsService } from '../controls.service';
 export class ViewprofilePage implements OnInit {
   profiles = [];
   constructor(public backend: BackendService, public control: ControlsService) {
-
-    this.backend.profiles.splice(1, 1);
-
-    this.profiles = this.backend.profiles;
-
-    console.log("look here !!!", this.backend.profiles)
+   
   }
 
   ngOnInit() {
+
+
+
+firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).onSnapshot(val=>{
+ 
+this.profiles.push(val.data());
+console.log(this.profiles)
+this.profiles.splice(1,1);
+
+})
   }
 
 
