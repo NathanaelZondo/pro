@@ -144,16 +144,8 @@ salond = this.backend.salonsDisply;
           console.log(zet)
         })
       }
-
-
       )
     })
-
-
-
-
-
-
     this.control.router.navigate(['viewsalon']);
   }
 
@@ -330,7 +322,7 @@ salond = this.backend.salonsDisply;
   addMarkersOnTheCustomersCurrentLocation(lat, lng, content) {
     console.log('Called ');
     const icon = {
-      url: '../../assets/icon/salon.png', // image url
+      url: '../../assets/icon/58889201bc2fc2ef3a1860a7.png', // image url
       scaledSize: new google.maps.Size(50, 50), // scaled size
       origin: new google.maps.Point(0, 0), // origin
       anchor: new google.maps.Point(0, 0) // anchor
