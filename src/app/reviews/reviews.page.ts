@@ -30,17 +30,13 @@ export class ReviewsPage implements OnInit {
   }
   reviews = [];
   db = firebase.firestore();
-  constructor(public alertController: AlertController,public loadingController: LoadingController,public backend:BackendService) { this.getSalon();  this.getProfile(); }
+  constructor(public alertController: AlertController,public loadingController: LoadingController,public backend:BackendService) { this.getSalon();  this.getProfile(); console.log('i think so');
+   }
 
   ionViewDidLoad() {
     this.getSalon();
     this.getProfile();
     console.log('user uid', firebase.auth().currentUser.uid);
-  
-    
-    
- 
-    
   }
 ngOnInit(){}
   onRateChange(event){
@@ -75,9 +71,10 @@ ngOnInit(){}
               name: this.Profile.name,
               image : this.Profile.image
             })
+          this.getSalon();
             const loading = await this.loadingController.create({
               message: 'Thank You ',
-              duration: 2000
+              duration: 1000
             });
             await loading.present();
           }
@@ -89,7 +86,7 @@ ngOnInit(){}
   }
 
 getSalon(){
-  this.db.collection('SalonNode').where("salonName" , "==",this.backend.salonname).get().then(res =>{
+  this.db.collection('SalonNode').where("salonName" , "==",this.backend.salonname).onSnapshot(res =>{
     if (res.empty !== true){
       console.log('Got data', res);
       res.forEach(doc => {
@@ -99,7 +96,9 @@ getSalon(){
         let query =  this.db.collection('SalonNode').doc(this.SalonNode.salonName).collection('ratings');
         query.get().then( res =>{
           res.forEach(DOC =>{
-            this.reviews.push(DOC.data())
+            this.reviews = []
+            this.reviews.push(DOC.data());
+
           })
         })
       
