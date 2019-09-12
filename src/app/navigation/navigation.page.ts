@@ -14,47 +14,63 @@ export class NavigationPage implements OnInit {
 profiles =[];
   ngOnInit() {
 
-    
+    this.control.Loading()
+    this.profiles =[];
     firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).onSnapshot(val=>{
  
-      this.profiles.push(val.data());
+     console.log(val.data())
+
+      if(val.data()==undefined)
+      {
+        this.control.profileToast()
+        this.control.navCtrl.setDirection('root');
+        this.control.navCtrl.navigateRoot('/createprofile');
+      }
+      else{
+        this.profiles.push(val.data());
        this.backend.profiles =this.profiles;
        console.log("Profile data =",this.profiles)
-      this.profiles.splice(1,1);
       this.backend.setuserdata(this.profiles[0].name, this.profiles[0].surname, this.profiles[0].cell)
-      })
+      }  
+    
+    })
 
 
   }
 
+ 
 
-  home()
-  {
-  this.router.navigate([('home')]);  
-  }
-  map()
-  {
 
-this.router.navigate(['home']);
-  }
 
-  profile()
-  {
 
-this.router.navigate(['/viewprofile']);
-  }
 
-  bookings()
-  {
+//   home()
+//   {
+//   this.router.navigate([('home')]);  
+//   }
+//   map()
+//   {
 
-this.router.navigate(['booking']);
-  }
+// this.router.navigate(['home']);
+//   }
 
-  info()
-  {
+//   profile()
+//   {
 
-this.router.navigate(['maps']);
-  }
+// this.router.navigate(['/viewprofile']);
+//   }
+
+//   bookings()
+//   {
+
+// this.router.navigate(['booking']);
+//   }
+
+//   info()
+//   {
+
+// this.router.navigate(['info']);
+//   }
 
   signout() {
     this.backend.signout();
