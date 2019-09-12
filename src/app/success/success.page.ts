@@ -11,12 +11,14 @@ export class SuccessPage implements OnInit {
   constructor(public control:ControlsService) { }
 
   ngOnInit() {
+    this.control.Loading();
   }
 
 
 success()
 {
-  this.control.router.navigateByUrl('/navigation');  
+  this.control.navCtrl.setDirection('root');
+    this.control.navCtrl.navigateRoot('/login'); 
 }
 
 }

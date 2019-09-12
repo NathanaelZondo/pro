@@ -77,6 +77,7 @@ console.log("Something went wrong: ", err);
 }
 updateprofile(profile)
 {
+  
 let uid =firebase.auth().currentUser.uid;
 this.backend.profiles =[];
 firebase.firestore().collection('userprofile').doc(uid).update(profile).then(val=>
