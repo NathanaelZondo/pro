@@ -23,7 +23,7 @@ export class BookingPage implements OnInit {
   newdata =[];
   ob ={};
    buttonactive ;
-  constructor(public backend:BackendService,public control:ControlsService,public modalController:ModalController) {
+  constructor(public backend:BackendService,public control:ControlsService,public modalController:ModalController,public controls:ControlsService) {
    this.newdata =[];
    let v =0;    
 
@@ -170,6 +170,11 @@ async presentModal() {
     component: ModalPage
   });
   return await modal.present();
+}
+
+back()
+{
+  this.controls.router.navigate(['navigation']);
 }
 }
   

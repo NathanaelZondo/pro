@@ -7,40 +7,36 @@
   </ion-toolbar>
 </ion-header>
 <ion-content >
-
+<div style ="height: 100vh;background:black;">
     <div class="flex-container">
         <div *ngFor = "let x of bookingdetails">
         
-            <img src="{{x.hairstyleimage}}" height ="450px" width="100%" />
+            <img src="{{x.hairstyleimage}}" height ="350px" width="100%" />
          <div class="flex-container2">
            <div>
             
-                <h3>Client Info</h3>
-                <p> Name: {{x.name}}</p>
-                <p> Surname:  {{x.surname}}</p>
+            <p style ="font-size:18px;color:white;font-family: sans-serif">Client Info </p>
+                <p style ="font-size:15px;color:rgb(206, 206, 206)"> 
+                 Name: {{x.name}}<br>
+                 Surname:  {{x.surname}}</p>
                 
               </div> 
                 
 <div>
-    <h3>Time Info</h3>
-    <p>   Start Time:{{x.sessiontime}}</p>
-     <p>  End Time:  {{x.sessionendtime}}</p>
-     <p>  Duration:  {{x.estimatedtime}}</p>
-     <p>  Date:      {{x.userdate}}</p>
-
-
-
-
+  <p style ="font-size:18px;color:white;font-family: sans-serif">Time Info </p>
+    <p style ="font-size:15px;color:rgb(206, 206, 206)">   Start Time:{{x.sessiontime}}<br>
+       End Time:  {{x.sessionendtime}}<br>
+       Duration:  {{x.estimatedtime}}<br>
+       Date:      {{x.userdate}}</p>
 </div>
 
 <div>
     
   
-  
-  <h3>Salon Info</h3>
-    <p>  Salon:     {{x.salonname}}</p>
-    <p>  Stylist:   {{x.hairdresser}}</p>
-    <p>  Location   {{x.salonlocation}}</p>
+  <p style ="font-size:18px;color:white;font-family: sans-serif">Salon Info </p>
+    <p style ="font-size:15px;color:rgb(206, 206, 206);font-family: sans-serif">  Salon:     {{x.salonname}}<br>
+      Stylist:   {{x.hairdresser}}<br>
+     Location   {{x.salonlocation}}<br>
    </div>
 
 
@@ -50,12 +46,14 @@
 
             </div>
             <div  align = "center">
-                <h3>Booking Info</h3>
-                <p>  Status:   {{x.status2}}</p>
-                <p>  Hairstyle: {{x.hairstyletype}}</p>
-                <p>  Price:     {{x.hairstyleprice}}</p>
+                <!-- <title style ="font-size:18px;color:white;font-family: sans-serif">Booking Info </title> -->
+                 <p style ="font-size:15px;color:rgb(206, 206, 206);font-family: sans-serif"> Status:   {{x.status2}}<br>
+                  Hairstyle: {{x.hairstyletype}}<br>
+                  Price:     R{{x.hairstyleprice}}.00
+                </p>
             </div>
          
       </div>
     </div>
+  </div>
 </ion-content>
