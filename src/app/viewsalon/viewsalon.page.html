@@ -24,17 +24,7 @@
     <!-- <div class="img1" *ngFor="let x of salond">
             <img src="{{x.salonImage}}">
     </div> -->
-    <ionic4-star-rating #rating
-    activeIcon = "ios-star"
-    defaultIcon = "ios-star-outline"
-    activeColor = "#db981a" 
-    defaultColor = "white"
-    readonly="true"
-    rating= {{aveg}}
-    fontSize = "25px"
-    halfStar = "true"
-    >
-  </ionic4-star-rating>
+
     <div class="details">
       <div class="blur"></div>
       <div class="card" *ngFor="let x of salond">
@@ -43,10 +33,20 @@
           {{x.salonName}}
         </div>
         <div class="title">
-          {{x.location}}
+          {{x.streetName}}
         </div>
         <div class="rating">
-                    
+          <ionic4-star-rating #rating
+          activeIcon = "ios-star"
+          defaultIcon = "ios-star-outline"
+          activeColor = "#db981a" 
+          defaultColor = "white"
+          readonly="true"
+          rating= {{aveg}}
+          fontSize = "25px"
+          halfStar = "true"
+          >
+        </ionic4-star-rating>
 
         </div>
       </div>

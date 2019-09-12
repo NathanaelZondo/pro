@@ -12,20 +12,20 @@
 
 .left {
     position: absolute;
-    top: -18%;
+    top: -12%;
 
     .img {
         img {
 
-            height: 500px;
-            width: 500px;
+            height: 50vh;
+            width: 60vh;
         }
     }
 
     .text {
         position: relative;
         z-index: 5;
-        bottom: 320px;
+        bottom: 260px;
         left: 30px;
 
         h1 {
@@ -38,13 +38,13 @@
 
 .right {
     position: absolute;
-    bottom: -18%;
+    bottom: -12%;
 
     .img {
         img {
 
-            height: 500px;
-            width: 500px;
+            height: 50vh;
+            width: 60vh;
         }
     }
 
@@ -78,8 +78,8 @@
 
     .img {
         img {
-            height: 700px;
-            width: 380px;
+            height: 70vh;
+            width: 50vh;
         }
     }
 

@@ -88,3 +88,7 @@ firebase.firestore().collection('userprofile').doc(uid).update(profile).then(val
 this.control.router.navigate(['navigation']);
 }
 }
+
+
+
+
