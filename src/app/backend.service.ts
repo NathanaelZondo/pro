@@ -118,11 +118,12 @@ export class BackendService {
 
     console.log(name, streetname);
   }
-
-  sethairstyledata(name, duration, price) {
+hairstyleimage;
+  sethairstyledata(name, duration, price,hairstyle) {
     this.hairstyletype = name;
     this.hairstyleprice = price;
     this.estimatedtime = duration;
+this.hairstyleimage =hairstyle;
     console.log(name, duration, price);
   }
   username: string;
@@ -200,6 +201,15 @@ export class BackendService {
   getuserbookings() {
     this.userbooking = [];
     return this.db.collection('Bookings').doc(firebase.auth().currentUser.uid).collection('userbookings');
+  }
+  
+
+  bookingdetails =[];
+  setbookingdetails(bd)
+  {
+this.bookingdetails.push(bd);
+this.bookingdetails.splice(1,1);
+
   }
 
 }
