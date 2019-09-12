@@ -45,7 +45,7 @@ export class SignupPage implements OnInit {
       this.authService.signupUser(email, password).then(
         () => {
           this.loading.dismiss().then(() => {
-            this.router.navigateByUrl('createprofile');
+            this.control.router.navigateByUrl('/createprofile',{ skipLocationChange: true });
           });
         },
         error => {

@@ -3,6 +3,7 @@ import { BackendService } from '../backend.service';
 import { Profile } from '../profile';
 import { ControlsService } from '../controls.service';
 import * as firebase from 'firebase';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-viewprofile',
@@ -11,35 +12,37 @@ import * as firebase from 'firebase';
 })
 export class ViewprofilePage implements OnInit {
   profiles = [];
-  constructor(public backend: BackendService, public control: ControlsService) {
-   
+  constructor(private navCtrl:NavController,public backend: BackendService, public control: ControlsService) {
+    this.profiles =this.backend.profiles;
+    console.log(this.profiles)
   }
 
   ngOnInit() {
 
+   
 
 
-firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).onSnapshot(val=>{
- 
-this.profiles.push(val.data());
-console.log(this.profiles)
-this.profiles.splice(1,1);
-
-})
   }
 
 
   update() {
-    this.control.router.navigate(['updateprofile']);
+    this.navCtrl.setDirection('root');
+    this.navCtrl.navigateRoot('/updateprofile');
   }
 
   signout() {
     this.backend.signout();
-    this.control.router.navigate(['login']);
+    
+
+  
+    
+    this.navCtrl.setDirection('root');
+    this.navCtrl.navigateRoot('/login');
   }
 
   back() {
-    this.control.router.navigate(['navigation']);
+    this.navCtrl.setDirection('root');
+    this.navCtrl.navigateRoot('/navigation');
   }
 
 }

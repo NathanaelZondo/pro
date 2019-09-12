@@ -1,25 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { BackendService } from '../backend.service';
-import { Profile } from '../profile';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { ControlsService } from '../controls.service';
+
 import {storage} from 'firebase';
 import * as firebase from 'firebase';
 
-@Component({
-  selector: 'app-updateprofile',
-  templateUrl: './updateprofile.page.html',
-  styleUrls: ['./updateprofile.page.scss'],
-})
-export class UpdateprofilePage implements OnInit {
-profiles =[];
-name;surname;image;about;cell;uid;
-styleImage;
-storage = firebase.storage().ref();
-  uploadprogress
-  
-  isuploading: false
-  constructor(private camera:Camera,public control:ControlsService,public backend:BackendService) { 
 
 
 
