@@ -28,33 +28,33 @@ profiles =[];
   }
 
 
-  home()
-  {
-  this.router.navigate([('home')]);  
-  }
-  map()
-  {
+//   home()
+//   {
+//   this.router.navigate([('home')]);  
+//   }
+//   map()
+//   {
 
-this.router.navigate(['home']);
-  }
+// this.router.navigate(['home']);
+//   }
 
-  profile()
-  {
+//   profile()
+//   {
 
-this.router.navigate(['/viewprofile']);
-  }
+// this.router.navigate(['/viewprofile']);
+//   }
 
-  bookings()
-  {
+//   bookings()
+//   {
 
-this.router.navigate(['booking']);
-  }
+// this.router.navigate(['booking']);
+//   }
 
-  info()
-  {
+//   info()
+//   {
 
-this.router.navigate(['maps']);
-  }
+// this.router.navigate(['info']);
+//   }
 
   signout() {
     this.backend.signout();
