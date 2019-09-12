@@ -26,7 +26,7 @@ export class BookingPage implements OnInit {
   constructor(public backend:BackendService,public control:ControlsService,public modalController:ModalController,public controls:ControlsService) {
    this.newdata =[];
    let v =0;    
-
+   this.control.Loading();
    this.backend.getuserbookings().orderBy("userdate","desc").limit(10).get().then(val=>{
      val.forEach(doc=>{
        console.log("top 10",doc.data())

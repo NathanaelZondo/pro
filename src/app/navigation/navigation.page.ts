@@ -13,7 +13,7 @@ export class NavigationPage implements OnInit {
   constructor(public control:ControlsService,public router:Router,public backend:BackendService) { }
 profiles =[];
   ngOnInit() {
-
+this.backend.uid =firebase.auth().currentUser.uid;
     this.control.Loading()
     this.profiles =[];
     firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).onSnapshot(val=>{
