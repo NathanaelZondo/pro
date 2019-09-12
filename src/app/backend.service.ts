@@ -207,8 +207,9 @@ this.hairstyleimage =hairstyle;
   bookingdetails =[];
   setbookingdetails(bd)
   {
+    this.bookingdetails=[];
 this.bookingdetails.push(bd);
-this.bookingdetails.splice(1,1);
+
 
   }
 
