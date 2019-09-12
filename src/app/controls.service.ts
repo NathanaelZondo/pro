@@ -189,5 +189,14 @@ async tip()
 
 }
 
+async profileToast() {
+  const toast = await this.toastController.create({
+    message: 'You cannot proceed without a profile.',
+    duration: 5000
+  });
+  toast.present();
+}
+
+
 }
 

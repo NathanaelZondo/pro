@@ -14,18 +14,34 @@ export class NavigationPage implements OnInit {
 profiles =[];
   ngOnInit() {
 
-    
+    this.control.Loading()
+    this.profiles =[];
     firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).onSnapshot(val=>{
  
-      this.profiles.push(val.data());
+     console.log(val.data())
+
+      if(val.data()==undefined)
+      {
+        this.control.profileToast()
+        this.control.navCtrl.setDirection('root');
+        this.control.navCtrl.navigateRoot('/createprofile');
+      }
+      else{
+        this.profiles.push(val.data());
        this.backend.profiles =this.profiles;
        console.log("Profile data =",this.profiles)
-      this.profiles.splice(1,1);
       this.backend.setuserdata(this.profiles[0].name, this.profiles[0].surname, this.profiles[0].cell)
-      })
+      }  
+    
+    })
 
 
   }
+
+ 
+
+
+
 
 
 //   home()
