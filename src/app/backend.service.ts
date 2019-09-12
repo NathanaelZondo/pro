@@ -156,7 +156,7 @@ this.hairstyleimage =hairstyle;
   getHairSalon() {
 
     this.hairstyledata = [];
-    this.db.collection('SalonNode').get().then(snap => {
+    this.db.collection('SalonNode').onSnapshot(snap => {
       if (snap.empty !== true) {
 
         snap.forEach(doc => {
@@ -165,7 +165,7 @@ this.hairstyleimage =hairstyle;
           this.name = doc.data().salonName;
           this.salonsDisply.push(doc.data())
 
-          this.db.collection('SalonNode').doc(doc.data().salonName).collection('Styles').get().then(qu => {
+          this.db.collection('SalonNode').doc(doc.data().salonName).collection('Styles').onSnapshot(qu => {
             qu.forEach(doc => {
               this.hairstyledata.push(doc.data());
 
@@ -180,9 +180,6 @@ this.hairstyleimage =hairstyle;
         console.log('No data');
 
       }
-
-    }).catch(err => {
-      console.log("Query Results: ", err);
 
     })
   }

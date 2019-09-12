@@ -19,7 +19,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx'
 import {HttpClientModule} from '@angular/common/http';
 import { ModalPage } from './modal/modal.page';
 import {CommonModule} from '@angular/common';
-import { GoogleMaps } from '@ionic-native/google-maps';
+
 import { ReviewsPageModule } from './reviews/reviews.module';
 import { ViewsalonPageModule } from './viewsalon/viewsalon.module';
 
@@ -41,7 +41,7 @@ import { ViewsalonPageModule } from './viewsalon/viewsalon.module';
    ,
    Geolocation,
    NativeGeocoder,
-   GoogleMaps
+   
   ],
   bootstrap: [AppComponent]
 })

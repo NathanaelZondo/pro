@@ -1,92 +1,100 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
+import { GeolocationOptions, Geoposition, PositionError } from '@ionic-native/geolocation';
+import { ViewChild, ElementRef } from '@angular/core';
+import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import * as firebase from 'firebase';
-import { snapshotChanges } from '@angular/fire/database';
-import { Button } from 'protractor';
+
+import { LoginPage } from '../login/login.page';
 import { Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { Marker, Geocoder, GoogleMap } from '@ionic-native/google-maps';
+
+// import undefined = require('firebase/empty-import');
+import { AlertController, LoadingController } from '@ionic/angular';
 import { BackendService } from '../backend.service';
 import { Profile } from '../profile';
 import { ControlsService } from '../controls.service';
-declare let google
+
+
+
+
+declare var google;
 @Component({
   selector: 'app-maps',
   templateUrl: './maps.page.html',
   styleUrls: ['./maps.page.scss'],
 })
 export class MapsPage implements OnInit {
-  //MAPS DECLARATION
-  @ViewChild("map", { static: false }) mapElement: ElementRef;
-  infoWindow = new google.maps.InfoWindow;
-  map: any;
-  private googleAutoComplete = new google.maps.places.AutocompleteService();
-  public searchResults = new Array<any>();
-  public search: string = '';
-  private originMarker: Marker;
-  public destination: any;
-  private maps: GoogleMap;
-  geocoder = new google.maps.Geocoder;
-  directionsService = new google.maps.DirectionsService;
-  directionsDisplay = new google.maps.DirectionsRenderer;
-  bounds = {
-    north: -22.0913127581,
-    south: -34.8191663551,
-    west: 10.830120477,
-    east: 32.830120477,
-  }
 
-  users = []
-  mark = []
-  salonArray = []
-  mapCenter = {
-    lat: 0,
-    lng: 0
+  // toggles the div, goes up if true, goes down if false
+  display = false;
+  swipeUp() {
+    this.display = !this.display;
   }
+  options: GeolocationOptions;
+  currentPos: Geoposition;
+  @ViewChild('map', { static: false }) mapElement: ElementRef;
   db = firebase.firestore();
+  users = [];
+  map: any;
+  latitude: number;
+  longitude: number;
+  NewUseArray = {};
+  schools = [];
+  requests = [];
+  NewRequeste = [];
+/// nathaneal declarations
+hairstyledata: Array<any> = [];
+salon = [];
+profiles: Profile[];
+cover;
+desc;
+location;
+salonname;
+salond = this.backend.salonsDisply;
+  constructor(private geolocation: Geolocation, public alertController: AlertController, public router: Router, private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, public backend: BackendService, public control: ControlsService) {
+   ////////get salons
+   
+   this.backend.getsalons().subscribe(val => {
+    this.salon = val;
+    console.log(this.salon)
 
-  geoAccuracy: number;
-  geoAddress: string;
-  showAutoHideLoader: any;
-  salonName: any;
-  sname: any;
-  hairstyledata: Array<any> = [];
-  salon = [];
 
-  cover;
-  desc;
-  location;
+  
+
+    this.hairstyledata = this.backend.hairstyledata.splice(0, this.backend.hairstyledata.length);
+
+    this.backend.setsalondata(this.salonname, this.location)
+    this.backend.getHairSalon()
+
+  })
+
+  this.backend.getProfile().subscribe(val => {
+
+
+    this.profiles = this.backend.profiles;
 
 
 
-  constructor(public control: ControlsService, public backend: BackendService, private nativeGeocoder: NativeGeocoder, public alertCtrl: AlertController, private geolocation: Geolocation, public loadingController: LoadingController, private router: Router, private ngZone: NgZone) {
-    console.log(google);
-    ///////////////////////////////////////////////////////////////////////////
 
+
+    this.backend.setuserdata(this.profiles[0].name, this.profiles[0].surname, this.profiles[0].cell)
+
+
+    console.log("this is the value for profile")
+
+  })
+
+
+
+   ///////////////////////////
     this.db.collection('SalonNode').onSnapshot(snapshot => {
       snapshot.forEach(doc => {
 
         this.users.push(doc.data());
         console.log('Retrive messege:', this.users);
         this.users.forEach(Customers => {
-          const icon = {
-            url: '../../assets/icon/salon.png', // image url
-            scaledSize: new google.maps.Size(50, 50), // scaled size
-            origin: new google.maps.Point(0, 0), // origin
-            anchor: new google.maps.Point(0, 0) // anchor
-          };
-
-          let marker = new google.maps.Marker({
-            map: this.mapElement,
-            animation: google.maps.Animation.DROP,
-            position: new google.maps.LatLng(Customers.coords.lat, Customers.coords.lng),
-            icon: icon
-
-          });
           let content = '<b>Salon Name : ' + Customers.salonName + '<br>' + 'SALON CONTACT NO:' + Customers.SalonContactNo + '<br>' + 'SALON ADDRESS: ' + Customers.location
-          this.addInfoWindow(marker, content);
+          this.addMarkersOnTheCustomersCurrentLocation(Customers.coords.lat, Customers.coords.lng, content);
           // Customers.coords.lat, Customers.coords.lng
           console.log('coordsdddd', Customers);
         })
@@ -94,12 +102,66 @@ export class MapsPage implements OnInit {
     });
   }
 
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Added to booking list.',
+      subHeader: '',
+      message: '',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  
+
+  selectsalon(x) {
+
+    this.backend.selectedsalon.splice(0, 1);
+    console.log(x.userUID)
+    this.cover = x.salonImage;
+    this.desc = x.SalonDesc;
+    this.location = x.streetName;
+    this.backend.salonname = x.salonName;
+    this.backend.selectedsalon.push(x);
+    this.backend.selectedsalon.splice(1, 1);
+    this.backend.setsalondata(x.salonName, x.streetName);
+
+    let click = 1;
+    let v1;
+    let docid;
+
+    this.backend.salonuid = x.userUID;
+    firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').get().then(val => {
+      console.log("These are the numbers", val)
+      val.forEach(qu => {
+        docid = qu.id;
+        console.log(docid)
+        console.log(qu.data().numberofclicks)
+        v1 = qu.data().numberofclicks;
+
+        firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').doc(qu.id).update({ "numberofclicks": v1 + click }).then(zet => {
+          console.log(zet)
+        })
+      }
+
+
+      )
+    })
+
+
+
+
+
+
+    this.control.router.navigate(['viewsalon']);
+  }
+
   ngOnInit() {
 
   }
-  ionViewDidEnter() {
-    console.log('check');
 
+  ionViewWillEnter() {
     this.loadingController.create({
       message: 'This Loader Will Auto Hide in 2 Seconds',
       duration: 2000
@@ -110,62 +172,10 @@ export class MapsPage implements OnInit {
         console.log('Loading dismissed! after 2 Seconds');
       });
     });
-
-    this.getGeolocation();
-    this.getSalon();
+    this.getUserPosition();
   }
 
-  searchChanged() {
-
-    if (!this.search.trim().length) return;
-    this.googleAutoComplete.getPlacePredictions({ input: this.search }, predictions => {
-      //console.log(predictions);
-
-      this.searchResults = predictions;
-
-    });
-  }
-  async calcRoute(item: any) {
-    this.search = ''
-    this.destination = item;
-    // const info: any = await Geocoder.geocode({address: this.destination.description});
-    let options: NativeGeocoderOptions = {
-      useLocale: true,
-      maxResults: 5
-    };
-    this.nativeGeocoder.forwardGeocode(this.destination.description, options).then((result: NativeGeocoderResult[]) => {
-      console.log('The coordinates are latitude=' + result[0].latitude + ' and longitude=' + result[0].longitude)
-      let directions = {
-        lat: result[0].latitude,
-        lng: result[0].longitude
-      }
-      this.directionsService.route({
-        origin: this.mapCenter,
-        destination: directions,
-        travelMode: 'DRIVING'
-      }, (response, status) => {
-        if (status === 'OK') {
-          this.directionsDisplay.setDirections(response);
-        } else {
-          window.alert('Directions request failed due to ' + status);
-        }
-      });
-
-      this.db.collection('values').add({
-        lat: result[0].latitude,
-        lng: result[0].longitude
-      })
-    })
-      .catch((error: any) => console.log(error));
-    console.log(this.destination.description);
-
-
-  }
-  ngAfterViewInit(): void {
-
-    this.directionsDisplay.setMap(this.mapElement);
-  }
-  addInfoWindow(marker, content) {
+  addInfoWindows(marker, content) {
 
     let infoWindow = new google.maps.InfoWindow({
       content: content
@@ -175,9 +185,150 @@ export class MapsPage implements OnInit {
     });
   }
 
-  v: string = 'sdfdfgd';
-  addMarkersOnTheCustomersCurrentLocation(lat, lng) {
+  getUserPosition() {
+    this.options = {
+      enableHighAccuracy: true
+    };
 
+    this.geolocation.getCurrentPosition(this.options).then((pos: Geoposition) => {
+
+      this.currentPos = pos;
+      console.log(pos);
+      this.addMap(pos.coords.latitude, pos.coords.longitude);
+      console.log('Current Location', pos);
+      this.addMarker();
+    }, (err: PositionError) => {
+      console.log("error : " + err.message);
+    });
+  }
+
+
+
+  addMap(lat: number, long: number) {
+    let latLng = new google.maps.LatLng(lat, long);
+    var grayStyles = [
+      {
+        featureType: "all",
+        stylers: [
+          { saturation: -10 },
+          { lightness: 0 }
+        ]
+      },
+    ];
+
+    let mapOptions = {
+      center: latLng,
+      zoom: 10,
+      disableDefaultUI: true,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      styles: grayStyles
+    }
+
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+     ////////////////////////////////////////////////////////////////////////////////////////////////////
+     let input = document.getElementById('pac-input');
+     let searchBox = new google.maps.places.SearchBox(input);
+     this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+ 
+     // Bias the SearchBox results towards current map's viewport.
+     this.map.addListener('bounds_changed', (res) => {
+       searchBox.setBounds(this.map.getBounds());
+     });
+     let markers = [];
+     // Listen for the event fired when the user selects a prediction and retrieve
+     // more details for that place.
+     searchBox.addListener('places_changed', (res) => {
+       let places = searchBox.getPlaces();
+ 
+       if (places.length == 0) {
+         return;
+       }
+ 
+       // Clear out the old markers.
+       markers.forEach((marker) => {
+         marker.setMap(null);
+       });
+       markers = [];
+ 
+       // For each place, get the icon, name and location.
+       let bounds = new google.maps.LatLngBounds();
+       places.forEach((place) =>{
+         if (!place.geometry) {
+           console.log("Returned place contains no geometry");
+           return;
+         }
+         let icon = {
+           url: place.icon,
+           size: new google.maps.Size(71, 71),
+           origin: new google.maps.Point(0, 0),
+           anchor: new google.maps.Point(17, 34),
+           scaledSize: new google.maps.Size(25, 25)
+         };
+ 
+         // Create a marker for each place.
+         markers.push(new google.maps.Marker({
+           map: this.map,
+           icon: icon,
+           title: place.name,
+           position: place.geometry.location
+         }));
+ 
+         if (place.geometry.viewport) {
+           // Only geocodes have viewport.
+           bounds.union(place.geometry.viewport);
+         } else {
+           bounds.extend(place.geometry.location);
+         }
+       });
+       this.map.fitBounds(bounds);
+     });
+  }
+
+  //=====================
+
+  loadMap() {
+    let latLng = new google.maps.LatLng(48.8513735, 2.3861292);
+
+    let mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+    var locations = [
+      ['Bondi Beach', -33.890542, 151.274856, 4],
+      ['Coogee Beach', -33.923036, 151.259052, 5],
+      ['Cronulla Beach', -34.028249, 151.157507, 3],
+      ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+      ['Maroubra Beach', -33.950198, 151.259302, 1]
+    ];
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: this.map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function (marker, i) {
+        return function () {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(this.map, marker);
+        }
+      })(marker, i));
+    }
+  }
+
+  //==============================
+  //addMarkers method adds the customer's location 
+  addMarkersOnTheCustomersCurrentLocation(lat, lng, content) {
+    console.log('Called ');
     const icon = {
       url: '../../assets/icon/salon.png', // image url
       scaledSize: new google.maps.Size(50, 50), // scaled size
@@ -186,244 +337,57 @@ export class MapsPage implements OnInit {
     };
 
     let marker = new google.maps.Marker({
-      map: this.mapElement,
+      map: this.map,
       animation: google.maps.Animation.DROP,
       position: new google.maps.LatLng(lat, lng),
       icon: icon
     });
-    this.db.collection('SalonNode').get().then(snap => {
-      snap.forEach(doc => {
-        this.mark.push(doc.data())
-        this.mark.forEach(Cus => {
-          this.sname = Cus.salonName;
-        })
-        let content = ' ' + this.sname
+    this.addInfoWindow(marker, content);
+
+}
 
 
-        this.addInfoWindow(marker, content);
-      })
-    })
-
-
-
-    console.log('addMarkersOnTheCustomersCurrentLocation called');
-  }
-
-
-  ///MAPS \
-  setlocation(coords) {
-    console.log(coords);
-
-    this.infoWindow.setPosition(coords);
-  }
+  //getGeolocation method gets the surrent location of the device
   getGeolocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
-      console.log(resp);
-      this.mapCenter.lat = resp.coords.latitude;
-      this.mapCenter.lng = resp.coords.longitude;
-      this.geoAccuracy = resp.coords.accuracy;
-      const contentString = '<div id="content"> ' +
-        '<div id="siteNotice">' +
-        '</div>' +
-        '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
-        '<div id="bodyContent">' +
-        '<img src="assets/icon/user.png" width="200">' +
-        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-        'sandstone rock formation in the southern part of the ' +
-        'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) ' +
-        'south west of the nearest large town, Alice Springs; 450&#160;km ' +
-        '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major ' +
-        'features of the Uluru - Kata Tjuta National Park. Uluru is ' +
-        'sacred to the Pitjantjatjara and Yankunytjatjara, the ' +
-        'Aboriginal people of the area. It has many springs, waterholes, ' +
-        'rock caves and ancient paintings. Uluru is listed as a World ' +
-        'Heritage Site.</p>' +
-        '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
-        'https://en.wikipedia.org/w/index.php?title=Uluru</a> ' +
-        '(last visited June 22, 2009).</p>' +
-        '</div>' +
-        '</div>';
-      const marker = {
-        coords: {
-          lat: resp.coords.latitude,
-          lng: resp.coords.longitude
-        },
-        content: contentString,
-        name: 'My Current Location',
-
-      }
-
-      const markers = {
-        coords: {
-          lat: this.obj.lat,
-          lng: this.obj.lng
-        }
-      }
-
-      this.infoWindow.setPosition(this.mapCenter);
-      this.infoWindow.open(this.map);
-      this.initMap();
-      this.addMarker(marker);
-      // this.addMarke(markers);
-
+    
     }).catch((error) => {
       alert('Error getting location' + JSON.stringify(error));
     });
   }
 
-  mapOptions() {
-
-    let mapOptions = google.maps.MapOptions = {
-      center: this.mapCenter,
-      disableDefaultUI: true,
-      minZoom: 10,
-      maxZoom: 17,
-      zoom: 10,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      restriction: {
-        latLngBounds: this.bounds,
-        strictBounds: false
-      }
-    }
-    return mapOptions;
-  }
-  initMap() {
-
-   this.map = new google.maps.Map(this.mapElement.nativeElement, this.mapOptions());
-   //this.mapElement = new google.maps.Map(this.mapElement.nativeElement, this.mapOptions());
-    let input = document.getElementById('pac-input');
-    let searchBox = new google.maps.places.SearchBox(input);
-    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-    // Bias the SearchBox results towards current map's viewport.
-    this.map.addListener('bounds_changed', (res) => {
-      searchBox.setBounds(this.map.getBounds());
-    });
-    let markers = [];
-    // Listen for the event fired when the user selects a prediction and retrieve
-    // more details for that place.
-    searchBox.addListener('places_changed', (res) => {
-      let places = searchBox.getPlaces();
-
-      if (places.length == 0) {
-        return;
-      }
-
-      // Clear out the old markers.
-      markers.forEach((marker) => {
-        marker.setMap(null);
-      });
-      markers = [];
-
-      // For each place, get the icon, name and location.
-      let bounds = new google.maps.LatLngBounds();
-      places.forEach((place) =>{
-        if (!place.geometry) {
-          console.log("Returned place contains no geometry");
-          return;
-        }
-        let icon = {
-          url: place.icon,
-          size: new google.maps.Size(71, 71),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(17, 34),
-          scaledSize: new google.maps.Size(25, 25)
-        };
-
-        // Create a marker for each place.
-        markers.push(new google.maps.Marker({
-          map: this.map,
-          icon: icon,
-          title: place.name,
-          position: place.geometry.location
-        }));
-
-        if (place.geometry.viewport) {
-          // Only geocodes have viewport.
-          bounds.union(place.geometry.viewport);
-        } else {
-          bounds.extend(place.geometry.location);
-        }
-      });
-      this.map.fitBounds(bounds);
-    });
-  }
-
-  obj = {
-    lat: -26.1562825,
-    lng: 27.7639596
-  }
-
-  addMarke(props) {
-
-    const marker = new google.maps.Marker({
-      position: props.coords,
-      map: this.mapElement,
-    })
-
-
+  addInfoWindow(marker, content) {
 
     let infoWindow = new google.maps.InfoWindow({
-
+      content: content
     });
-    marker.addListener('click', () => {
-      infoWindow.open(this.mapElement, marker);
-    })
+
+    google.maps.event.addListener(marker, 'click', () => {
+      infoWindow.open(this.map, marker);
+    });
 
   }
 
+  //addMarker method adds the marker on the on the current location of the device
+  addMarker() {
 
-  addMarker(props) {
-    const icon = {
-      url: '../../assets/icon/u.png', // image url
-      scaledSize: new google.maps.Size(50, 50), // scaled size
-      origin: new google.maps.Point(0, 0), // origin
-      anchor: new google.maps.Point(0, 0) // anchor
-    };
-    const marker = new google.maps.Marker({
-      position: props.coords,
-      map: this.mapElement,
-      icon: icon
-    })
+    //here
+    let marker = new google.maps.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      position: this.map.getCenter()
+    });
 
-    if (props.iconImage) {
+    let content = "<p>Your current location!</p>";
+    let infoWindow = new google.maps.InfoWindow({
+      content: content
+    });
 
-      marker.setIcon(props.iconImage)
-    }
-
-    if (props.content) {
-
-      let infoWindow = new google.maps.InfoWindow({
-        content: `<h5 style="margin:0;padding:0;">${props.name} </h5>` + props.content
-      });
-      marker.addListener('click', () => {
-        infoWindow.open(this.mapElement, marker);
-      })
-    }
+    google.maps.event.addListener(marker, 'click', () => {
+      infoWindow.open(this.map, marker);
+    });
   }
-  handleLoacationError(content, position) {
-    this.infoWindow.setOptions(position);
-    this.infoWindow.setContent(content);
-    this.infoWindow.open(this.mapElement)
-  }
-
-  getSalon() {
-    this.db.collection('SalonNode').get().then(res => {
-      this.salonArray = [];
-      res.forEach(doc => {
-        this.salonArray.push(doc.data())
-      })
-      console.log('listen', this.salonArray);
-    })
-  }
- initAutocomplete() {
-    // let map = new google.maps.Map(document.getElementById('map'), {
-    //   center: {lat: -33.8688, lng: 151.2195},
-    //   zoom: 13,
-    //   mapTypeId: 'roadmap'
-    // });
-
-    // Create the search box and link it to the UI element.
-    
+  goToProfile() {
+    this.router.navigate(['profile']);
   }
 }
