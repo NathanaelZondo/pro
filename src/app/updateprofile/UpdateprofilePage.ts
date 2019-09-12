@@ -88,6 +88,3 @@ export class UpdateprofilePage implements OnInit {
     this.control.router.navigate(['navigation']);
   }
 }
-
-
-
