@@ -1,3 +1,10 @@
+
+<ion-header>
+  <ion-toolbar color="dark">
+      <ion-icon name="arrow-round-back" style="font-size: 30px" (click)="back()"></ion-icon>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content >
 <!-- <h1 align = "center">Current Bookings</h1> -->
 <!-- <ion-item *ngFor = "let x of newdata">
@@ -94,17 +101,17 @@
     <div class="yellow"></div>
     <div class="top dots"></div>
     <div class="personal-info">
-        <div style ="color:black;font-family:sans-serif">
+        <div style ="color:white;font-family:sans-serif;font-size: 14px;">
             Salon:    {{x.salonname}}<br>
             Stylist:  {{x.hairdresser}}<br>
             Location  {{x.salonlocation}}<br>
             Date:     {{x.userdate}}&nbsp; {{x.sessiontime}} <br>
             Stylist:   {{x.status2}}
-            <ion-button color ="danger" *ngIf= "x.status2!='cancelled' && x.status!='cancelled' "   (click) ="cancel(x)"><ion-icon name ="close"></ion-icon></ion-button>
+           
         </div>
     </div>
-    <div class="bottom dots"></div>
-    <div class="pink"></div>
+    <div class="bottom dots"> </div>
+    <div class="pink"  align="right"><ion-button color ="danger" *ngIf= "x.status2!='cancelled' && x.status!='cancelled' "   (click) ="cancel(x)"><ion-icon name ="close"></ion-icon></ion-button></div>
   </div>
 
 
@@ -123,7 +130,7 @@
     <div class="yellow"></div>
     <div class="top dots"></div>
     <div class="personal-info">
-        <div style ="color:black;font-family:sans-serif">
+        <div style ="color:white;font-family:sans-serif;font-size: 14px">
             Salon:    {{x.salonname}}<br>
             Location  {{x.salonlocation}}<br>
             Date:     {{x.userdate}}&nbsp; {{x.sessiontime}}<br>

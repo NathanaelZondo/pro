@@ -1,8 +1,8 @@
 .backg{
- 
-border-image-repeat:no-repeat;
-background-position: center; 
-height:100Vh;
+ background-color: rgb(0, 0, 37);
+// border-image-repeat:no-repeat;
+// background-position: center; 
+//height:100Vh;
 }
 
 .container{
@@ -98,7 +98,7 @@ color:white;
   grid-row: 1 / span 3;
 }
 .back .top.dots {
-  background: radial-gradient( darkcyan 20%, transparent 19%), radial-gradient(darkcyan 20%, transparent 19%), transparent;
+  background: radial-gradient( wheat 20%, transparent 19%), radial-gradient(wheat  20%, transparent 19%), transparent;
   background-size: 6px 6px;
   background-position: 0 0, 3px 3px;
   grid-column: 8 / span 6;
@@ -130,7 +130,7 @@ color:white;
   z-index: 2;
 }
 .back .pink {
-  background-color: darkcyan;
+  background-color: gold;
   grid-column: 8 / span 5;
   grid-row: 10 / span 3;
 }
