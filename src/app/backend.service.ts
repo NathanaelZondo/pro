@@ -59,7 +59,7 @@ export class BackendService {
   
 
   getprofile2() {
-    return this.db.collection('userprofile').doc(firebase.auth().currentUser.uid).get();
+    return this.db.collection('userprofile').doc(this.uid).get();
   }
 
  
@@ -141,7 +141,7 @@ this.hairstyleimage =hairstyle;
     console.log(booking)
 
 
-    this.afs.collection('Bookings').doc(firebase.auth().currentUser.uid).collection('userbookings').add(booking).then(result => {
+    this.afs.collection('Bookings').doc(this.uid).collection('userbookings').add(booking).then(result => {
       console.log(result)
     });
 
@@ -193,7 +193,7 @@ this.hairstyleimage =hairstyle;
 
   getuserbookings() {
     this.userbooking = [];
-    return this.db.collection('Bookings').doc(firebase.auth().currentUser.uid).collection('userbookings');
+    return this.db.collection('Bookings').doc(this.uid).collection('userbookings');
   }
   
 

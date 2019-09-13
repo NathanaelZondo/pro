@@ -198,5 +198,17 @@ async profileToast() {
 }
 
 
+async picLoading() {
+  const loading = await this.loadingController.create({
+    message: 'Please wait...',
+    duration: 15000
+  });
+  await loading.present();
+
+  const { role, data } = await loading.onDidDismiss();
+
+  console.log('Loading dismissed!');
+}
+
 }
 
