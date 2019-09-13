@@ -12,9 +12,13 @@ import { ModalPage } from '../modal/modal.page';
 })
 
 export class BookwithsalonPage implements OnInit {
+
+  item = true;
   unit:string;
   unit1:string;
   staff =[];
+
+  
 
   isvalidated = true;
   constructor(public backend:BackendService,public control:ControlsService,public alertController:AlertController,public modalController: ModalController) {
