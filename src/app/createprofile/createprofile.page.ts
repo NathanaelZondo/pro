@@ -6,6 +6,7 @@ import { Profile } from '../profile';
 import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
 import * as firebase from 'firebase';
+import { ToastController, LoadingController } from '@ionic/angular';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class CreateprofilePage  {
   uploadprogress
   profiles =[];
   isuploading: false
-  constructor(private camera:Camera,public control:ControlsService,public backend:BackendService) {
+  constructor(public loadingController:LoadingController,public toastController:ToastController,private camera:Camera,public control:ControlsService,public backend:BackendService) {
 
 
   }
@@ -42,13 +43,34 @@ saveprofile(profile)
    //this.picurl;
 console.log(profile)
 
-
+if(profile.name =="" ||profile.name ==undefined)
+{
+ console.log("entername") 
+ this.nameToast();
+}
+else if(profile.surname=="" ||profile.surname ==undefined){
+  console.log("entersurname")
+  this.surnameToast(); 
+}
+else if(profile.about=="" ||profile.about ==undefined){
+  console.log("enterabout")
+   this.bioToast();
+}
+else if(profile.cell=="" ||profile.cell ==undefined){
+  console.log("entercell")
+  this.cellToast(); 
+}
+else if(profile.image=="" || profile.image ==undefined)
+{
+ this.imageToast() 
+}
+else{
  
   firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).set(profile);
 
 
   this.control.navCtrl.navigateRoot('/navigation');
-
+}
 }
 
 
@@ -84,7 +106,7 @@ await this.camera.getPicture(options).then(res => {
     upload.snapshot.ref.getDownloadURL().then(downUrl => {
       this.profile.image = downUrl;
       console.log('Image downUrl', downUrl);
-
+this.imageLoading();
 
     })
   })
@@ -94,6 +116,73 @@ await this.camera.getPicture(options).then(res => {
 
 
   }
+
+
+  async nameToast() {
+    const toast = await this.toastController.create({
+      message: 'Enter your name.',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+
+  async surnameToast() {
+    const toast = await this.toastController.create({
+      message: 'Enter your surname.',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+  async cellToast() {
+    const toast = await this.toastController.create({
+      message: 'Enter your cell phone number.',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+  async imageToast() {
+    const toast = await this.toastController.create({
+      message: 'Select an image from your gallery.',
+      duration: 5000
+    });
+    toast.present();
+  }
+  async bioToast() {
+    const toast = await this.toastController.create({
+      message: 'Tell us about yourself.',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+
+
+
+  async imageLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+      translucent: true,
+      duration: 20000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+
+    console.log('Loading dismissed!');
+  }
+
+
+
+
+
+
+
+
+
+
 
 }
 

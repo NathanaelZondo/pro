@@ -4,6 +4,7 @@ import { Profile } from '../profile';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ControlsService } from '../controls.service';
 import * as firebase from 'firebase';
+
 @Component({
   selector: 'app-updateprofile',
   templateUrl: './updateprofile.page.html',
@@ -18,6 +19,7 @@ export class UpdateprofilePage implements OnInit {
   cell;
   uid;
   styleImage;
+  sub = false;
   storage = firebase.storage().ref();
   uploadprogress;
   isuploading: false;
@@ -78,17 +80,50 @@ export class UpdateprofilePage implements OnInit {
       console.log("Something went wrong: ", err);
     });
   }
-  updateprofile(profile) {
+
+
+
+
+
+
+
+  updateprofile(profile)
+   {
+  
     let uid = firebase.auth().currentUser.uid;
     this.backend.profiles = [];
-    firebase.firestore().collection('userprofile').doc(uid).update(profile).then(val => {
-      console.log(val);
-    });
-    this.control.ProfileupdateToast();
+    if(profile.name =="" ||profile.name ==undefined)
+    {
+     console.log("entername") 
+    }
+    else if(profile.surname=="" ||profile.surname ==undefined){
+      console.log("entersurname") 
+    }
+    else if(profile.about=="" ||profile.about ==undefined){
+      console.log("enterabout") 
+    }
+    else if(profile.cell=="" ||profile.cell ==undefined){
+      console.log("entercell") 
+    }
+    else
+    {
+
+
+
+      firebase.firestore().collection('userprofile').doc(uid).update(profile).then(val => {
+        console.log(val);
+      });
+      this.control.ProfileupdateToast();
+  
+      this.control.navCtrl.setDirection('root');
+      this.control.navCtrl.navigateRoot('/navigation'); 
     
-    this.control.navCtrl.setDirection('root');
-    this.control.navCtrl.navigateRoot('/navigation'); 
-  }
+    }
+
+    }
+  
+
+    
 }
 
 
