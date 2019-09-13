@@ -5,7 +5,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    background: rgba(189, 186, 186, 0.438);
+    background: #2B2B2B;
     position: fixed;
 }
 
@@ -13,7 +13,9 @@
 .left {
     position: absolute;
     top: -18%;
-    .img {  
+    opacity: 0.5;
+
+    .img {
         img {
             transform: rotateY(180deg);
             height: 500px;
@@ -29,7 +31,7 @@
 
         h1 {
             font-size: 35px;
-            color: purple;
+            color: orangered;
         }
 
     }
@@ -38,6 +40,7 @@
 .right {
     position: absolute;
     bottom: -18%;
+    opacity: 0.5;
 
     .img {
         img {
@@ -75,6 +78,7 @@
     position: absolute;
     top: 6%;
     left: 10px;
+    opacity: 0.5;
 
     .img {
         img {
@@ -101,9 +105,9 @@
             position: absolute;
             top: 40px;
             left: 30px;
-           
+
             .fab-button {
-                background: purple;
+                background: orangered;
             }
 
         }
