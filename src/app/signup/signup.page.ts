@@ -4,7 +4,7 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ControlsService } from '../controls.service';
-
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -45,6 +45,11 @@ export class SignupPage implements OnInit {
       this.authService.signupUser(email, password).then(
         () => {
           this.loading.dismiss().then(() => {
+            firebase.auth().currentUser.uid
+firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser.uid).collection('numbers').add({numberofbookings:0,usercancellations:0}).then(val=>{
+  console.log(val)
+})
+
             this.control.router.navigateByUrl('/createprofile',{ skipLocationChange: true });
           });
         },

@@ -11,12 +11,12 @@
       <div class="topbar">
         <div class="likes">
         <ion-icon name="heart"(click)="like(x)" id="heart"
-        style="font-size: 30px; color: rgb(155, 15, 15)"></ion-icon>
+        style="font-size: 30px; color: rgb(240, 10, 10)"></ion-icon>
         <!-- <p>{{likes}}</p> -->
       </div>
 
       <div class="back" routerLink="/navigation">
-        <ion-icon name="arrow-back" style="color: white; font-size: 25px;"></ion-icon>
+        <ion-icon name="arrow-back" style="color: grey; font-size: 25px;"></ion-icon>
       </div>
       </div>
 
@@ -24,17 +24,7 @@
     <!-- <div class="img1" *ngFor="let x of salond">
             <img src="{{x.salonImage}}">
     </div> -->
-    <ionic4-star-rating #rating
-    activeIcon = "ios-star"
-    defaultIcon = "ios-star-outline"
-    activeColor = "#db981a" 
-    defaultColor = "white"
-    readonly="true"
-    rating= {{aveg}}
-    fontSize = "25px"
-    halfStar = "true"
-    >
-  </ionic4-star-rating>
+
     <div class="details">
       <div class="blur"></div>
       <div class="card" *ngFor="let x of salond">
@@ -43,10 +33,20 @@
           {{x.salonName}}
         </div>
         <div class="title">
-          {{x.location}}
+          {{x.streetName}}
         </div>
         <div class="rating">
-                    
+          <ionic4-star-rating #rating
+          activeIcon = "ios-star"
+          defaultIcon = "ios-star-outline"
+          activeColor = "#db981a" 
+          defaultColor = "white"
+          readonly="true"
+          rating= {{aveg}}
+          fontSize = "25px"
+          halfStar = "true"
+          >
+        </ionic4-star-rating>
 
         </div>
       </div>

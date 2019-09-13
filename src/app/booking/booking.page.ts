@@ -26,7 +26,7 @@ export class BookingPage implements OnInit {
   constructor(public backend:BackendService,public control:ControlsService,public modalController:ModalController,public controls:ControlsService) {
    this.newdata =[];
    let v =0;    
-
+   this.control.Loading();
    this.backend.getuserbookings().orderBy("userdate","desc").limit(10).get().then(val=>{
      val.forEach(doc=>{
        console.log("top 10",doc.data())
@@ -121,6 +121,25 @@ firebase.firestore().collection('SalonNode').doc(x.salonname).collection('staff'
     })
 
 
+
+
+    firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser.uid).collection('numbers').get().then(val=>{
+      console.log("These are the numbers",val)
+      val.forEach(qu=> 
+    
+        {
+        docid =qu.id;
+        console.log(docid)
+        console.log(qu.data().usercancellations)
+        v1 =qu.data().usercancellations;
+    
+        firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser.uid).collection('numbers').doc(qu.id).update({"usercancellations":v1+click}).then(zet=>{
+          console.log(zet)
+        })
+        })
+      })
+
+
   }
 
 
@@ -174,7 +193,8 @@ async presentModal() {
 
 back()
 {
-  this.controls.router.navigate(['navigation']);
+  this.control.navCtrl.setDirection('root');
+  this.control.navCtrl.navigateRoot('/navigation'); 
 }
 }
   

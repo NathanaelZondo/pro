@@ -3,23 +3,18 @@
     flex-flow: column;
     width: 100%;
     height: 100%;
-   
-}
-
-#map {
+ }
+ #map {
     width: 100%;
     height: 100%;
-}
-
-.search {
+ }
+ .search {
     position: absolute;
     z-index: 5;
     top: 10px;
     width: 100%;
-}
-
-
-.place {
+ }
+ .place {
     #place {
         font-size: 30px;
         position: relative;
@@ -27,9 +22,8 @@
         left: 10px;
         -webkit-text-stroke: 2px solid black;
     }
-}
-
-.salonlist {
+ }
+ .salonlist {
     width: 100%;
     display: flex;
     flex-flow: row;
@@ -37,14 +31,11 @@
     position: absolute;
     bottom: 0;
     height: 24%;
-    // background: rgba(190, 190, 190, 0.699);
+    background: rgba(150, 142, 123, 0.644);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     margin-bottom: 1px;
-
     .card {
-
-    
         padding: 5px;
         margin: 5px;
         width: 90%;
@@ -54,19 +45,14 @@
         justify-content: center;
         align-items: center;
         // background: rgb(255, 255, 255);
-        color: rgba(122, 121, 121, 0.322);
-        border-radius: 20px;
-
+        color: rgba(29, 29, 29, 0.322);
+        border-radius: 30px;
         .image {
             width: 45vh;
-            height: 60vh;
-      
-            //  background: rgb(214, 181, 118);
+            height: 45vh;
+            // background: rgb(214, 181, 118);
             padding: 2px;
-           
-            
-            border-radius: 20px;
-
+            border-radius: 30px;
             img {
                 width: 100%;
                 height: 100%;
@@ -75,7 +61,6 @@
                 // opacity: 0.7;
             }
         }
-
         .details {
             display: flex;
             flex-flow: column;
@@ -84,13 +69,9 @@
             z-index: 5;
             height: 85px;
             width: 150px;
-            background: rgba(82, 82, 82, 0.89);
+            background: rgba(49, 49, 49, 0.89);
             justify-content: center;
             text-align: center;
-            
-
-           
-
             .subtitle {
                 // background: rgba(0, 0, 0, 0.582);
                 width: 14vh;
@@ -101,11 +82,9 @@
                     justify-content: center;
                     text-align: center;
                     font-size: 14px;
-                    color: rgb(255, 255, 255);
+                    color: rgb(252, 252, 252);
                 }
             }
         }
     }
-
-
-}
+ }

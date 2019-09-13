@@ -53,10 +53,15 @@
 
     }
 }
+.has-subheader{
+    position: absolute;
+    top: 28%;
+    left: 3%;
+}
 
 .hairstyle {
     position: absolute;
-    top: 50%;
+    top:1%;
     left: 10px;
     right: 10px;
     display: flex;
@@ -84,11 +89,13 @@
 .appmnts {
     display: flex;
     flex-flow: row;
+    justify-content: baseline;
     position: absolute;
-    top: 65%;
+    top: 15%;
     left: 10px;
     right: 10px;
-
+    box-shadow: 5px 10px 15px #888888b6;
+margin: 5px;
     .item {
         width: 200px;
  
@@ -96,13 +103,9 @@
 }
 
 #dresser {
-    position: absolute;
-    top: 75%;
-    left: 10px;
-    right: 10px;
-
+margin: 5px;
 }
 
-.calender {
-    background: black;
-}
+// .calender {
+//     background: black;
+// }
