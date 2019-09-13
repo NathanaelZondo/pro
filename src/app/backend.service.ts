@@ -156,6 +156,7 @@ this.hairstyleimage =hairstyle;
   getHairSalon() {
 
     this.hairstyledata = [];
+  
     this.db.collection('SalonNode').onSnapshot(snap => {
       if (snap.empty !== true) {
 
