@@ -12,6 +12,23 @@
  <br>
 
 
+ <div class="analytics" style="text-align: center">
+  <div class="name" (click)="getanalytics()">
+    <h2>Analytics</h2>
+  </div>
+  <div class="text" *ngIf="!analytics" style="text-align: left; margin: 10px;">
+    <ion-item *ngFor="let x of analitics">
+      <p>
+
+        All bookings :&nbsp;{{x.numberofbookings}}<br>
+
+        User booking cancellations:&nbsp;{{x.usercancellations}}<br>
+      </p>
+    </ion-item>
+  </div>
+
+</div>
+
   <div class="AboutUs" style="text-align: center">
     <div class="name" (click)="getAbout()">
       <h2>About Us</h2>
