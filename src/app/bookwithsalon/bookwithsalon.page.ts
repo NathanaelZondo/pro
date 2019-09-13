@@ -370,7 +370,7 @@ let click = 1;
 
          
           this.control.BookToast();
-          this.control.router.navigateByUrl('/success');
+          this.control.navCtrl.navigateRoot('/success');
         }
       }
     ]

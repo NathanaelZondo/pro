@@ -109,7 +109,7 @@ export class ControlsService {
 
   async SlotToast() {
     const toast = await this.toastController.create({
-      message: 'This booking has already been taken.',
+      message: 'Your selected time has already been booked.',
       duration: 5000
     });
     toast.present();
@@ -118,7 +118,7 @@ export class ControlsService {
   async SlotToast1()
   {
     const toast = await this.toastController.create({
-      message: 'Booking slot is currently empty.',
+      message: 'Time slot is currently empty.',
       duration: 5000
     });
     toast.present();
@@ -210,5 +210,14 @@ async picLoading() {
   console.log('Loading dismissed!');
 }
 
+
+
+async newprofileToast() {
+  const toast = await this.toastController.create({
+    message: 'You have successfully registered.',
+    duration: 15000
+  });
+  toast.present();
+}
 }
 

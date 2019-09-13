@@ -50,6 +50,7 @@ export class LoginPage implements OnInit {
         () => {
           this.loading.dismiss().then(() => {
           //  this.nav.navigateRoot('/navigation');
+          this.control.LoginToast();
             this.control.router.navigateByUrl('/navigation',{ replaceUrl: true });
           });
         },

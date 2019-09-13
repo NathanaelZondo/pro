@@ -67,8 +67,7 @@ else if(profile.image=="" || profile.image ==undefined)
 else{
  
   firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).set(profile);
-
-
+this.control.newprofileToast();
   this.control.navCtrl.navigateRoot('/navigation');
 }
 }
@@ -93,7 +92,7 @@ await this.camera.getPicture(options).then(res => {
   const filename = Math.floor(Date.now() / 1000);
   let file = 'Userprofiles/' + firebase.auth().currentUser + '.jpg';
   const UserImage = this.storage.child(file);
-
+  this.imageLoading();
   const upload = UserImage.putString(image, 'data_url');
   upload.on('state_changed', snapshot => {
     let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;

@@ -19,15 +19,15 @@ export class ViewprofilePage implements OnInit {
 
   ngOnInit() {
 
-   
+   this.control.Loading();
 
 
   }
 
 
   update() {
-    this.navCtrl.setDirection('root');
-    this.navCtrl.navigateRoot('/updateprofile');
+    
+    this.control.router.navigateByUrl('/updateprofile');
   }
 
   signout() {
