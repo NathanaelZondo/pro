@@ -18,7 +18,7 @@ export class SuccessPage implements OnInit {
 success()
 {
   this.control.navCtrl.setDirection('root');
-    this.control.navCtrl.navigateRoot('/login'); 
+    this.control.navCtrl.navigateRoot('/navigation'); 
 }
 
 }

@@ -82,7 +82,7 @@ console.log('toatl for ratings',this.total)
   gethairstyles(x) {
 
     console.log(this.backend.salonname)
-
+this.hair =[];
     let user = this.db.collection('SalonNode').doc(this.backend.salonname).collection('Styles')
 
 
