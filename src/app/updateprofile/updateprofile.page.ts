@@ -85,7 +85,9 @@ export class UpdateprofilePage implements OnInit {
       console.log(val);
     });
     this.control.ProfileupdateToast();
-    this.control.router.navigate(['navigation']);
+    
+    this.control.navCtrl.setDirection('root');
+    this.control.navCtrl.navigateRoot('/navigation'); 
   }
 }
 
