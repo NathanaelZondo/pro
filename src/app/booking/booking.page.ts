@@ -121,6 +121,25 @@ firebase.firestore().collection('SalonNode').doc(x.salonname).collection('staff'
     })
 
 
+
+
+    firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser.uid).collection('numbers').get().then(val=>{
+      console.log("These are the numbers",val)
+      val.forEach(qu=> 
+    
+        {
+        docid =qu.id;
+        console.log(docid)
+        console.log(qu.data().usercancellations)
+        v1 =qu.data().usercancellations;
+    
+        firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser.uid).collection('numbers').doc(qu.id).update({"usercancellations":v1+click}).then(zet=>{
+          console.log(zet)
+        })
+        })
+      })
+
+
   }
 
 
@@ -174,7 +193,8 @@ async presentModal() {
 
 back()
 {
-  this.controls.router.navigate(['navigation']);
+  this.control.navCtrl.setDirection('root');
+  this.control.navCtrl.navigateRoot('/navigation'); 
 }
 }
   

@@ -47,7 +47,7 @@ console.log(profile)
   firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).set(profile);
 
 
-this.control.router.navigate(['viewprofile']);
+  this.control.navCtrl.navigateRoot('/navigation');
 
 }
 

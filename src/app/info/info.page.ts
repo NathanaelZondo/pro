@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlsService } from '../controls.service';
-
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-info',
   templateUrl: './info.page.html',
@@ -12,11 +12,19 @@ export class InfoPage implements OnInit {
 disclaimer=true;
 terms=true;
 legal=true;
-
-
+analitics= [];
+analytics=true;
   constructor(public control:ControlsService) { }
 
   ngOnInit() {
+
+    firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser.uid).collection('numbers').get().then(val=>{
+      val.forEach(data=>{
+        console.log(data.data())
+        this.analitics.push(data.data());
+      })
+    })
+    
   }
 
   goback(){
@@ -24,7 +32,8 @@ legal=true;
   }
 
   back(){
-    this.control.router.navigate(['navigation']);
+    this.control.navCtrl.setDirection('root');
+    this.control.navCtrl.navigateRoot('/navigation'); 
   }
 
   getAbout(){
@@ -41,6 +50,9 @@ legal=true;
 
   getlegal(){
     this.legal=!this.legal
+  }
+  getanalytics(){
+    this.analytics=!this.analytics
   }
 
 
