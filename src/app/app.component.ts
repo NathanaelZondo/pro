@@ -7,6 +7,8 @@ import { config } from './cred';
 import { Router } from '@angular/router';
 import {AngularFireModule} from '@angular/fire';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { BackendService } from './backend.service';
+import { ControlsService } from './controls.service';
 
 @Component({
   selector: 'app-root',
@@ -19,21 +21,28 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private router: Router
+    private router: Router,
+    private backend:BackendService,
+    private control:ControlsService
   ) {
     //firebase.initializeApp(config);
     AngularFireModule.initializeApp(config)
-   // this.listenToAuth();
+  
 
    this.afAuth.authState.subscribe(data => {
     console.log(data)
+    this.backend.uid =data.uid;
     if(data)
     {
-    this.router.navigate(['navigation'])  
+    this.control.navCtrl.setDirection('root');
+    this.control.navCtrl.navigateRoot('/navigation');
+    
     }
 
     else{
-      this.router.navigate(['login']) ; 
+      
+      this.control.navCtrl.setDirection('root');
+      this.control.navCtrl.navigateRoot('/login');
     }
     });
 
@@ -47,14 +56,5 @@ export class AppComponent {
     });
   }
 
-  listenToAuth() {
-    if(firebase.auth().onAuthStateChanged)
-    {
-      this.router.navigateByUrl('/navigation');
-    }
-    else
-    {
-      this.router.navigateByUrl('/login');
-    }
-  }
+  
 }
