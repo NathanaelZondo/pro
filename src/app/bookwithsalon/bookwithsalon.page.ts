@@ -119,10 +119,18 @@ else if(parseFloat(booking.sessiontime[3]+booking.sessiontime[4])>30 && parseFlo
 
 }
 else
-  if(new Date(this.booking.userdate)<new Date(this.currentdate))
+  if(new Date(this.booking.userdate)<new Date(this.currentdate+'T08:00'))
   {
+
+
+    console.log("pdate 1 =",new Date(this.booking.userdate));
+
+    console.log("pdate 2 =",new Date(this.currentdate));
    this.control.PastDateToast();
-   this.blocker =true;
+   this.isvalidated =true;
+  
+console.log()
+
    console.log("pastdate")
   }
   else if(new Date(this.booking.userdate)>new Date(this.futuredate))
@@ -192,23 +200,30 @@ else if(mins+estimatedmins<59){
   console.log("this is the converted time",hrs+":"+mins)
   newhrs =parseFloat(hrs.toString())+estimatedhours;
   newmins =mins;
-  if(newhrs<10)
+  if(newmins<10)
   {
   console.log("this is the converted time",'0'+newhrs+":0"+newmins)
-  booking.sessionendtime="0"+newhrs+":"+newmins;
-  if(newmins<10)
-{
   booking.sessionendtime=newhrs+":0"+newmins;
+  if(newhrs<10)
+{
+  booking.sessionendtime="0"+newhrs+newmins;
 }
 
-if(newhrs<10)
-{
-  booking.sessionendtime="0"+newhrs+":0"+newmins;
-}
+
   
   }
-  else{
-    console.log("this is the converted time",newhrs+":"+newmins)
+  else if(newhrs<10){
+
+    booking.sessionendtime="0"+newhrs+newmins;
+    if(newmins<10)
+{
+  booking.sessionendtime=newhrs+"0"+newmins;
+}
+
+  }
+
+else
+  {  console.log("this is the converted time",newhrs+":"+newmins)
    
     booking.sessionendtime=newhrs+":"+newmins;
   }
@@ -451,8 +466,7 @@ findtime(booking)
 {
 
   
-  let hourRange = parseFloat(booking.sessiontime[0]+booking.sessiontime[1]);
-let minuteRange =parseFloat(booking.sessiontime[3]+booking.sessiontime[4]);
+ 
 
 this.d1 =new Date((booking.userdate+'T')+(booking.sessiontime));
 this.d2 =new Date((booking.userdate+'T0')+(booking.sessionendtime));
@@ -501,31 +515,10 @@ this.formodal =false;
 if(this.d2>=this.d1 && this.d1<=this.d3)
 {
 
-  this.events.push({
-    title: this.testarray[i].hairstyletype,
-    startTime: new Date(x),
-    endTime: new Date(y),
-    allDay: false
-  })
-  console.log(this.events);
-  this.setevents(this.events);
-  
 this.formodal =true;
-
+this.isvalidated =true;
 console.log("This is de cond = ",this.formodal)
 
-
-
-
-if(this.formodal==true)
-{
-  //this.isvalidated =true;
-  this.backend.timeList =this.timeList;
- 
-// this.presentModal(); 
-}
-
-  
 }
 
 else
@@ -574,25 +567,70 @@ this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(b
   })
   })
 
+this.testarray = [];
 
 
-
-  this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).where("sessionendtime",">",booking.sessiontime).orderBy("sessionendtime").get().then(val=>{
+  this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).get().then(val=>{
     val.forEach(value=>{
       console.log("Order-by =",value.data())
-      if(value.data().sessiontime!="")
-      {
-        this.isvalidated =true;
-        this.backend.timeList =this.timeList;
-        this.control.SlotToast();
-      }
-      else{
-        this.isvalidated =true;
-        this.backend.timeList =this.timeList;
-        this.control.SlotToast();
-      }
-    })
-    })
+      this.d1 =new Date((booking.userdate+'T')+(booking.sessiontime));
+      this.d2 =new Date((booking.userdate+'T0')+(booking.sessionendtime));
+      this.d3 ;
+      
+      
+      this.testarray.push(value.data());
+      
+      console.log("TestArray = ",this.testarray)
+      
+      for(let i =0;i<this.testarray.length;i++)
+        {
+      
+          this.d1 =new Date((booking.userdate+'T')+(booking.sessiontime));
+          
+          this.d2 =new Date((this.testarray[i].userdate+'T')+(this.testarray[i].sessiontime));
+          
+      
+          console.log("Second condition for end time =",(this.testarray[i].sessionendtime[0]))
+      
+          
+          
+         
+          
+            this.d3 =new Date((this.testarray[i].userdate+'T')+(this.testarray[i].sessionendtime));
+      
+           
+          let d4 =new Date((booking.userdate+'T')+(booking.sessionendtime));
+          
+      
+          console.log("session end time = ",d4)
+      
+      let a ="From ";
+      let b =" until";
+      let x = this.d2;
+      let y =this.d3;
+      
+      
+      
+      
+      this.timeList.push({a,x,b,y});
+       
+      this.formodal =false;
+      
+        console.log("Timelist =",this.timeList)
+   
+      
+        this.events.push({
+          title: this.testarray[i].hairstyletype,
+          startTime: new Date(x),
+          endTime: new Date(y),
+          allDay: false
+        })
+        console.log(this.events);
+        this.setevents(this.events);
+      
+
+    }
+  })})
 
 
 }

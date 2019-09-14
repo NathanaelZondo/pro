@@ -107,7 +107,7 @@ export class ControlsService {
   async PastDateToast() {
     const toast = await this.toastController.create({
       message: 'You cannot select a past date',
-      duration: 5000
+      duration: 15000
     });
     toast.present();
   }
