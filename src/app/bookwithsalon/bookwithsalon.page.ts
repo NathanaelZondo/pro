@@ -192,10 +192,15 @@ else if(mins+estimatedmins<59){
   console.log("this is the converted time",hrs+":"+mins)
   newhrs =parseFloat(hrs.toString())+estimatedhours;
   newmins =mins;
-  if(newmins<10)
+  if(newhrs<10)
   {
   console.log("this is the converted time",'0'+newhrs+":0"+newmins)
+  booking.sessionendtime="0"+newhrs+":"+newmins;
+  if(newmins<10)
+{
   booking.sessionendtime=newhrs+":0"+newmins;
+}
+
 if(newhrs<10)
 {
   booking.sessionendtime="0"+newhrs+":0"+newmins;
@@ -572,9 +577,9 @@ this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(b
 
 
 
-  this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).where("sessionendtime"&& "sessiontime","==",booking.sessiontime).get().then(val=>{
+  this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).where("sessionendtime",">",booking.sessiontime).orderBy("sessionendtime").get().then(val=>{
     val.forEach(value=>{
-      console.log(value.data())
+      console.log("Order-by =",value.data())
       if(value.data().sessiontime!="")
       {
         this.isvalidated =true;
