@@ -104,6 +104,21 @@ this.testarray =[];
   this.blocker =false;
   //this.backend.userbookings(booking);
 // prevents incorrect dates from being selected
+
+if(parseFloat(booking.sessiontime[3]+booking.sessiontime[4])>0 && parseFloat(booking.sessiontime[3]+booking.sessiontime[4])<30 )
+{
+console.log("block =",parseFloat(booking.sessiontime[3]+booking.sessiontime[4]) )
+this.control.BlockToast();
+this.isvalidated =true;
+}
+else if(parseFloat(booking.sessiontime[3]+booking.sessiontime[4])>30 && parseFloat(booking.sessiontime[3]+booking.sessiontime[4])<=59)
+{
+  console.log("block2 =",parseFloat(booking.sessiontime[3]+booking.sessiontime[4]) )
+  this.control.BlockToast();
+  this.isvalidated =true;
+
+}
+else
   if(new Date(this.booking.userdate)<new Date(this.currentdate))
   {
    this.control.PastDateToast();
@@ -195,6 +210,7 @@ if(newhrs<10)
 
 
 }
+
 
 
 
@@ -498,9 +514,9 @@ console.log("This is de cond = ",this.formodal)
 
 if(this.formodal==true)
 {
-  this.isvalidated =true;
+  //this.isvalidated =true;
   this.backend.timeList =this.timeList;
-  this.control.SlotToast();
+ 
 // this.presentModal(); 
 }
 
@@ -513,10 +529,65 @@ else
   console.log(" d1 =",this.d1," d2 =",this.d2," d3= ",this.d3);
   console.log(this.d2>=this.d1)
   this.isvalidated =false;
-  this.control.SlotToast1();
+  //this.control.SlotToast1();
 
 }
 
+this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).where("sessiontime","==",booking.sessiontime).get().then(val=>{
+val.forEach(value=>{
+  console.log(value.data())
+  if(value.data().sessiontime!="")
+  {
+    this.isvalidated =true;
+    this.backend.timeList =this.timeList;
+    this.control.SlotToast();
+  }
+  else{
+    this.isvalidated =true;
+    this.backend.timeList =this.timeList;
+    this.control.SlotToast();
+  }
+})
+})
+
+
+
+this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).where("sessionendtime","==",booking.sessiontime).get().then(val=>{
+  val.forEach(value=>{
+    console.log(value.data())
+    if(value.data().sessiontime!="")
+    {
+      this.isvalidated =true;
+      this.backend.timeList =this.timeList;
+      this.control.SlotToast();
+    }
+    else{
+      this.isvalidated =true;
+      this.backend.timeList =this.timeList;
+      this.control.SlotToast();
+    }
+  })
+  })
+
+
+
+
+  this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).where("sessionendtime"&& "sessiontime","==",booking.sessiontime).get().then(val=>{
+    val.forEach(value=>{
+      console.log(value.data())
+      if(value.data().sessiontime!="")
+      {
+        this.isvalidated =true;
+        this.backend.timeList =this.timeList;
+        this.control.SlotToast();
+      }
+      else{
+        this.isvalidated =true;
+        this.backend.timeList =this.timeList;
+        this.control.SlotToast();
+      }
+    })
+    })
 
 
 }
@@ -679,6 +750,14 @@ cdate()
 }
 console.log("Currentdate =",this.todate)
 return this.todate;
+}
+
+
+
+
+back()
+{
+  this.control.router.navigateByUrl('/viewsalon');
 }
 }
 

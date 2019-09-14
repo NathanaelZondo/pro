@@ -48,6 +48,7 @@
         font-size: 30px;
         position: relative;
         top: 120px;
+        font-family: sans-serif;
     }
     #about{
         position: relative;
@@ -59,6 +60,8 @@
     #cell{
         position: relative;
         top: 100px;
+        font-family: sans-serif;
+        font-size: 20px;
     }
 }
 
@@ -74,5 +77,20 @@
     
 }
 
-
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: auto;
+    position: absolute;
+    bottom: 0;
+    justify-content: center;
+    font-family:sans-serif;
+  }
+  .flex-container > div {
+   font-family:sans-serif;
+    width:auto;
+    text-align: left;
+    background :linear-gradient(rgba(236, 240, 241, 0),rgb(0, 0, 0),rgb(0, 0, 0));
+    height: 270px;
+  }
 

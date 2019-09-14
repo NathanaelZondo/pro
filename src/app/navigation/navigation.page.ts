@@ -13,8 +13,8 @@ export class NavigationPage implements OnInit {
   constructor(public control:ControlsService,public router:Router,public backend:BackendService) { }
 profiles =[];
   ngOnInit() {
-this.backend.uid =firebase.auth().currentUser.uid;
-    this.control.Loading()
+
+    this.control.Loading2()
     this.profiles =[];
     firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).onSnapshot(val=>{
  
@@ -27,7 +27,7 @@ this.backend.uid =firebase.auth().currentUser.uid;
         this.control.navCtrl.navigateRoot('/createprofile');
       }
       else{
-        this.profiles.push(val.data());
+       this.profiles.push(val.data());
        this.backend.profiles =this.profiles;
        console.log("Profile data =",this.profiles)
       this.backend.setuserdata(this.profiles[0].name, this.profiles[0].surname, this.profiles[0].cell)

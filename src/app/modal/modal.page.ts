@@ -19,7 +19,7 @@ console.log(this.bookingdetails)
   }
 
   ngOnInit() {
-    this.control.Loading();
+   
   }
 
   

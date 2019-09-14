@@ -30,6 +30,19 @@ export class ControlsService {
   
     console.log('Loading dismissed!');
   }
+
+
+  async Loading2() {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+  
+    const { role, data } = await loading.onDidDismiss();
+  
+    console.log('Loading dismissed!');
+  }
   
   async LoginToast() {
     const toast = await this.toastController.create({
@@ -216,6 +229,14 @@ async newprofileToast() {
   const toast = await this.toastController.create({
     message: 'You have successfully registered.',
     duration: 15000
+  });
+  toast.present();
+}
+
+async BlockToast() {
+  const toast = await this.toastController.create({
+    message: 'You can only input an hour or 30 mins after an hour.',
+    duration: 5000
   });
   toast.present();
 }

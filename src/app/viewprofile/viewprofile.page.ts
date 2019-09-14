@@ -19,7 +19,7 @@ export class ViewprofilePage implements OnInit {
 
   ngOnInit() {
 
-   this.control.Loading();
+   this.control.Loading2();
 
 
   }

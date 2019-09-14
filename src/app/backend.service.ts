@@ -30,7 +30,7 @@ export class BackendService {
   salonsDisply = [];
   selectedsalon = [];
   salonplaceholder = [];
-  constructor(public navCtrl:NavController,public afs: AngularFirestore, public control: ControlsService, public loadingController: LoadingController, ) {
+  constructor(public toastController:ToastController,public navCtrl:NavController,public afs: AngularFirestore, public control: ControlsService, public loadingController: LoadingController, ) {
   
     this.items = this.afs.collection('userprofile').valueChanges();
 
@@ -205,6 +205,15 @@ this.hairstyleimage =hairstyle;
 this.bookingdetails.push(bd);
 
 
+  }
+
+  async welcomeToast() {
+    console.log(this.name)
+    const toast = await this.toastController.create({
+      message: 'Welcome back '+this.name+' '+this.surname,
+      duration: 7000
+    });
+    toast.present();
   }
 
 }

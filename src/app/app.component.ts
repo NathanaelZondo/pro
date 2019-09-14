@@ -34,8 +34,31 @@ export class AppComponent {
     this.backend.uid =data.uid;
     if(data)
     {
-    this.control.navCtrl.setDirection('root');
-    this.control.navCtrl.navigateRoot('/navigation');
+
+     
+      firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).onSnapshot(val=>{
+   
+       console.log(val.data())
+  
+        if(val.data()==undefined)
+        {
+          this.control.profileToast()
+          this.control.navCtrl.setDirection('root');
+          this.control.navCtrl.navigateRoot('/createprofile');
+        }
+        else{
+          this.backend.name = val.data().name;
+          this.backend.surname = val.data().surname;
+          this.backend.welcomeToast();
+          this.control.navCtrl.setDirection('root');
+          this.control.navCtrl.navigateRoot('/navigation');
+        }  
+      
+      })
+  
+
+
+ 
     
     }
 
