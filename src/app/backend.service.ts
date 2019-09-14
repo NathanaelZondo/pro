@@ -47,7 +47,7 @@ export class BackendService {
 
   
   
-  uid = firebase.auth().currentUser.uid;
+  uid;
   gend;
   type = 'chiskop;'
   profiles = [];
