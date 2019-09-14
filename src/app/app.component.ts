@@ -5,7 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { config } from './cred';
 import { Router } from '@angular/router';
-
+import {AngularFireModule} from '@angular/fire';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +15,29 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   constructor(
+    private afAuth: AngularFireAuth,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router
   ) {
-    firebase.initializeApp(config);
-   this.listenToAuth();
+    //firebase.initializeApp(config);
+    AngularFireModule.initializeApp(config)
+   // this.listenToAuth();
+
+   this.afAuth.authState.subscribe(data => {
+    console.log(data)
+    if(data)
+    {
+    this.router.navigate(['navigation'])  
+    }
+
+    else{
+      this.router.navigate(['login']) ; 
+    }
+    });
+
+
   }
 
   initializeApp() {
@@ -33,7 +50,7 @@ export class AppComponent {
   listenToAuth() {
     if(firebase.auth().onAuthStateChanged)
     {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/navigation');
     }
     else
     {
