@@ -142,7 +142,7 @@ salond = this.backend.salonsDisply;
   ngOnInit() {
     this.platform.ready().then(() =>{
       this.getUserPosition();
-      this.getSalonmarkrs();
+  
     })
     this.loadingController.create({
       message: 'Please wait',
@@ -158,81 +158,7 @@ salond = this.backend.salonsDisply;
     
   }
 
-  // ionViewWillEnter() {
-  //   this.loadingController.create({
-  //     message: 'Please wait',
-  //     duration: 2000
-  //   }).then((res) => {
-  //     res.present();
-
-  //     res.onDidDismiss().then((dis) => {
-  //       console.log('Loading dismissed! after 2 Seconds');
-  //     });
-  //   });
-  //   this.getUserPosition();
-   
-  //   ///////////////
- 
-  //   this.db.collection('SalonNode').onSnapshot(snapshot => {
-  //     snapshot.forEach(doc => {
   
-       
-  //         let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().location
-  //         //  this.addMarkersOnTheCustomersCurrentLocation(doc.data().lat, doc.data().lng, content);
-  
-  
-  
-  //          const icon = {
-  //           url: '../../assets/icon/58889201bc2fc2ef3a1860a7.png', // image url
-  //           scaledSize: new google.maps.Size(50, 50), // scaled size
-  //           origin: new google.maps.Point(0, 0), // origin
-  //           anchor: new google.maps.Point(0, 0) // anchor
-  //         };
-      
-  //         let marker = new google.maps.Marker({
-  //           map: this.map,
-  //           animation: google.maps.Animation.DROP,
-  //           position: new google.maps.LatLng(doc.data().lat, doc.data().lng),
-  //           icon: icon
-  //         });
-  //         // this.addInfoWindow(marker, content);
-  
-  //         let infoWindow = new google.maps.InfoWindow({
-  //           content: content
-  //         });
-      
-  //         google.maps.event.addListener(marker, 'click', () => {
-  //           infoWindow.open(this.map, marker);
-  //         });
-  
-  
-  //         console.log('cords',doc.data().lat,doc.data().lng);
-          
-  //         // Customers.coords.lat, Customers.coords.lng
-  //         // console.log('coordsdddd', Customers);
-  //       //   let coord = new google.maps.LatLng(doc.data().lat, doc.data().lng);
-  //       //   console.log('coords',coord );
-          
-  //       //   let marker = new google.maps.Marker({
-  //       //       map: this.map,
-  //       //       position: coord,
-  //       //       draggable: false,
-  //       //      animation: google.maps.Animation.DROP,
-  //       //       title: 'Click to view details',
-  //       //     })
-  //       //     this.addInfoWindow(marker, content);
-  //       //          let infoWindow = new google.maps.InfoWindow({
-  //       //      content: content
-  //       // });
-  //       // google.maps.event.addListener(marker, 'click', (resp)=>{
-  //       //   //infoWindow.open(this.map, marker)
-  //       //   this.viewBuilderInfo(doc.data());
-  //       //  })
-  //     })
-  //   }); 
-    
-   
-  // }
 
   addInfoWindows(marker, content) {
 
@@ -286,7 +212,7 @@ getSalonmarkrs(){
           icon: icon
         });
         // this.addInfoWindow(marker, content);
-
+        marker.setMap(this.map);
         let infoWindow = new google.maps.InfoWindow({
           content: content
         });
@@ -324,7 +250,7 @@ getSalonmarkrs(){
     }
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
+this.getSalonmarkrs();
      ////////////////////////////////////////////////////////////////////////////////////////////////////
      let input = document.getElementById('pac-input');
      let searchBox = new google.maps.places.SearchBox(input);
