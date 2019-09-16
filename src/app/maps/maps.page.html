@@ -1,5 +1,5 @@
 <ion-content>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <input id="pac-input" class="controls" type="text" placeholder="Search Location">
   <div #map id="map"></div>
   <div class="salonlist">
     <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
@@ -8,8 +8,9 @@
       </div>
       <div class="details">
         <div class="subtitle">
-          <p>{{x.salonName}}</p>
-          <p> {{x.streetName}}</p>
+          <p>{{x.salonName}} <br> 
+            {{x.streetName}}
+          </p>
         </div>
 
       </div>
@@ -18,7 +19,3 @@
   </div>
   </ion-content>
   
-
-
-
-

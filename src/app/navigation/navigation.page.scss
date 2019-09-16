@@ -1,13 +1,13 @@
-// .container{
-//     background: rgb(36, 36, 36);
-//     width: 100%;
-//     height: 100%;
-// }
+.container{
+    background: rgb(36, 36, 36);
+    width: 100%;
+    height: 100%;
+}
 
-// .content{
-//     width: 100%;
-//     height: 100%;
-// }
+.content{
+    width: 100%;
+    height: 100%;
+}
 
 .text{
     position: absolute;
@@ -22,92 +22,91 @@
 
  }
 
-// .slideno{
-//     position: absolute;
-//     top: 40%;
-//     h1{
-//         color: white;
-//         font-size: 13vw;
-//     }
-// }
+.slideno{
+    position: absolute;
+    top: 40%;
+    h1{
+        color: white;
+        font-size: 13vw;
+    }
+}
 
-// .desc{
-//     color: white;
-//     width: 45vh;
-//     position: absolute;
-//     top: 65%;
-//     p{
-//         font-size: 4vw;
+.desc{
+    color: white;
+    width: 45vh;
+    position: absolute;
+    top: 65%;
+    p{
+        font-size: 4vw;
         
-//     }
-// }
+    }
+}
 
-// .buttz{
-//     position: absolute;
-//     top: 85%;
-//     .button{
-//         width: 30vh;
-//         background: white;
-//         color: black;  
-//         border-radius: 30px;
-//     }
-// }
+.buttz{
+    position: absolute;
+    top: 85%;
+    .button{
+        width: 30vh;
+        background: white;
+        color: black;  
+        border-radius: 30px;
+    }
+}
 
-// .navigation {
-//     display: flex;
-//     flex-wrap: wrap;
-//     align-items: center;
-//     text-align: center;
-//     position: relative;
-//     top: 50%;
-//     left: 13%;
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    left: 13%;
 
-//     .map {
-//         width: 20vh;
-//         height: 20vh;;
-//         border-right: 2px solid rgb(70, 69, 69);
-//         border-bottom: 2px solid rgb(70, 69, 69);
-//         background: rgba(114, 114, 114, 0.247);
-//     }
+    .map {
+        width: 20vh;
+        height: 20vh;;
+        border-right: 2px solid rgb(70, 69, 69);
+        border-bottom: 2px solid rgb(70, 69, 69);
+        background: rgba(114, 114, 114, 0.247);
+    }
 
-//     .profile {
-//         width: 20vh;
-//         height: 20vh;
-//         border-left: 2px solid rgb(70, 69, 69);
-//         border-bottom: 2px solid rgb(70, 69, 69);
-//         background: rgba(114, 114, 114, 0.247);
-//     }
+    .profile {
+        width: 20vh;
+        height: 20vh;
+        border-left: 2px solid rgb(70, 69, 69);
+        border-bottom: 2px solid rgb(70, 69, 69);
+        background: rgba(114, 114, 114, 0.247);
+    }
 
-//     .booking {
-//         width: 20vh;
-//         height: 20vh;
-//         border-right: 2px solid rgb(70, 69, 69);
-//         border-top: 2px solid rgb(70, 69, 69);
-//         background: rgba(114, 114, 114, 0.247);
-//     }
+    .booking {
+        width: 20vh;
+        height: 20vh;
+        border-right: 2px solid rgb(70, 69, 69);
+        border-top: 2px solid rgb(70, 69, 69);
+        background: rgba(114, 114, 114, 0.247);
+    }
 
-//     .info {
-//         width: 20vh;
-//         height: 20vh;
-//         border-left: 2px solid rgb(70, 69, 69);
-//         border-top: 2px solid rgb(70, 69, 69);
-//         background: rgba(114, 114, 114, 0.247);
-//     }
-// }
+    .info {
+        width: 20vh;
+        height: 20vh;
+        border-left: 2px solid rgb(70, 69, 69);
+        border-top: 2px solid rgb(70, 69, 69);
+        background: rgba(114, 114, 114, 0.247);
+    }
+}
 
-// .iconz {
-//     margin: 10px;
-//     color: white;
-// }
+.iconz {
+    margin: 10px;
+    color: white;
+}
 
-// .name {
-//     color: white;
-// }
+.name {
+    color: white;
+}
 
-// .desc{
-//     position: absolute;
-//     top: 25%;
-//     left: 15%;
-//     text-align: center;
-// }
+.desc{
+    position: absolute;
+    top: 25%;
+    left: 15%;
+    text-align: center;
 }
