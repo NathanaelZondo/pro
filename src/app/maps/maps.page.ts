@@ -85,10 +85,7 @@ salond = this.backend.salonsDisply;
 
   })
 
-
-
-   ///////////////////////////
-
+   //////////////////////////
 
   }
 
@@ -155,10 +152,7 @@ salond = this.backend.salonsDisply;
       });
     });
    
-    
   }
-
-  
 
   addInfoWindows(marker, content) {
 
@@ -208,7 +202,7 @@ getSalonmarkrs(){
         let marker = new google.maps.Marker({
           map: this.map,
           animation: google.maps.Animation.DROP,
-          position: new google.maps.LatLng(doc.data().lat, doc.data().lng),
+          position: new google.maps.LatLng(doc.data().coords.lat, doc.data().coords.lng),
           icon: icon
         });
         // this.addInfoWindow(marker, content);
@@ -220,7 +214,9 @@ getSalonmarkrs(){
         google.maps.event.addListener(marker, 'click', () => {
           infoWindow.open(this.map, marker);
         });
-
+        google.maps.event.addListener(marker, 'click', () => {
+        this.selectsalon(doc.data());
+        });
 
         console.log('cords',doc.data().lat,doc.data().lng);
         
@@ -312,43 +308,7 @@ this.getSalonmarkrs();
 
   //=====================
 
-  loadMap() {
-    let latLng = new google.maps.LatLng(48.8513735, 2.3861292);
 
-    let mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
-    var locations = [
-      ['Bondi Beach', -33.890542, 151.274856, 4],
-      ['Coogee Beach', -33.923036, 151.259052, 5],
-      ['Cronulla Beach', -34.028249, 151.157507, 3],
-      ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-      ['Maroubra Beach', -33.950198, 151.259302, 1]
-    ];
-
-    var infowindow = new google.maps.InfoWindow();
-
-    var marker, i;
-
-    for (i = 0; i < locations.length; i++) {
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: this.map
-      });
-
-      google.maps.event.addListener(marker, 'click', (function (marker, i) {
-        return function () {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(this.map, marker);
-        }
-      })(marker, i));
-    }
-  }
 
   //==============================
   //addMarkers method adds the customer's location 
