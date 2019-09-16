@@ -6,26 +6,26 @@
   </ion-toolbar>
 </ion-header> -->
 <ion-content>
-  
-    <div class="container">
-        <div class="search">
-            <ion-searchbar id="pac-input" placeholder="Search" style="background: rgba(255, 255, 255, 0.651)"></ion-searchbar>
-          </div>
-        <div #map id="map"></div>
-      <div class="salonlist">
-        <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
-          <div class="image">
-            <img src="{{x.salonImage}}">
-          </div>
-          <div class="details">
-            <div class="subtitle">
-              <p><strong>{{x.salonName}}</strong></p>
-              <p> {{x.streetName}}</p>
-            </div>
+
+  <div class="container">
+    <div class="search">
+      <ion-searchbar id="pac-input" placeholder="Search" style="background: rgba(255, 255, 255, 0.651);"></ion-searchbar>
+    </div>
+    <div #map id="map"></div>
+    <div class="salonlist">
+      <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
+        <div class="image">
+          <img src="{{x.salonImage}}">
+        </div>
+        <div class="details">
+          <div class="subtitle">
+            <p><strong>{{x.salonName}}</strong></p>
+            <p> {{x.streetName}}</p>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </ion-content>
 
 

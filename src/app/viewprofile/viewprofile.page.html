@@ -45,17 +45,22 @@
 
 
 </ion-content> -->
-
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-icon name="arrow-round-back" style= "font-size: 20px" (click)="back()"></ion-icon>
+        <ion-icon name="exit" style="font-size: 20px; float: right;" (click)="signout()"></ion-icon>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content>
-    <div class="icons">
+    <!-- <div class="icons">
         <div class="back" (click)="back()">
           <ion-icon name="arrow-round-back" style="font-size:30px; color: white"></ion-icon>
         </div>
         <div class="exit" (click)="signout()">
           <ion-icon name="exit" style="font-size:30px; color: white;"></ion-icon>
         </div>
-        </div>
+        </div> -->
    
 <body style ="background:url(https://images.pexels.com/photos/2873486/pexels-photo-2873486.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260) no-repeat center center fixed;" *ngFor="let profile of profiles">
 
@@ -63,17 +68,13 @@
     <div class="flex-container">
         <div style="width:100vw;padding-left:0px" >
           <pre>
-
-
-
+            
           </pre>
           <div class="info">
               <p id="name">{{profile.name}} {{profile.surname}}</p>
         
               <p id="cell"><strong>{{profile.cell}}</strong></p> 
 
-
-            
               <!-- <p id="about">{{profile.about}}</p> -->
              </div>
 
