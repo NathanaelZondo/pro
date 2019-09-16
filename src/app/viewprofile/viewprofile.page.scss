@@ -1,3 +1,13 @@
+.header {
+    border: none;
+    // box-shadow: none;
+
+    .toolbar-background {
+      background: transparent;
+      border: none;
+    }
+  }
+
 .container{
     display: flex;
     flex-flow: column;

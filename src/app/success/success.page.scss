@@ -3,21 +3,23 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    background: #313131;
 }
 
 .main {
     font-size: 60px;
-    color: black;
+    color: white;
 }
 
 .icon {
     font-size: 200px;
     flex-grow: 3;
+    color: orangered;
 }
 
 .msg {
     font-size: 35px;
-    color: black;
+    color: white;
     text-align: center;
     flex-grow: 2;
 }
@@ -29,5 +31,6 @@
         position: absolute;
         bottom: 10%;
         left: 15%;
+        font-size: 5vh;
     }
 }

@@ -8,51 +8,51 @@ import * as firebase from 'firebase';
 })
 export class InfoPage implements OnInit {
 
-  aboutUs=true;
-disclaimer=true;
-terms=true;
-legal=true;
-analitics= [];
-analytics=true;
-  constructor(public control:ControlsService) { }
+  aboutUs = true;
+  disclaimer = true;
+  terms = true;
+  legal = true;
+  analitics = [];
+  analytics = true;
+  constructor(public control: ControlsService) { }
 
   ngOnInit() {
 
-    firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser.uid).collection('numbers').get().then(val=>{
-      val.forEach(data=>{
+    firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser.uid).collection('numbers').get().then(val => {
+      val.forEach(data => {
         console.log(data.data())
         this.analitics.push(data.data());
       })
     })
-    
+
   }
 
-  goback(){
-    
+  goback() {
+
   }
 
-  back(){
+  back() {
     this.control.navCtrl.setDirection('root');
-    this.control.navCtrl.navigateRoot('/navigation'); 
+    this.control.navCtrl.navigateRoot('/navigation');
   }
 
-  getAbout(){
-    this.aboutUs=!this.aboutUs
+  getAbout() {
+    this.aboutUs = !this.aboutUs
   }
 
-  getdisclaimer(){
-    this.disclaimer=!this.disclaimer
+  getdisclaimer() {
+    this.disclaimer = !this.disclaimer
   }
 
-  getterms(){
-    this.terms=!this.terms
+  getterms() {
+    this.terms = !this.terms
   }
 
-  getlegal(){
-    this.legal=!this.legal
+  getlegal() {
+    this.legal = !this.legal
   }
-  getanalytics(){
-    this.analytics=!this.analytics
+  getanalytics() {
+    this.analytics = !this.analytics
   }
 
 
