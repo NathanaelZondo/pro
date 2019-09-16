@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { GeolocationOptions, Geoposition, PositionError } from '@ionic-native/geolocation';
 import { ViewChild, ElementRef } from '@angular/core';
@@ -9,7 +9,7 @@ import { LoginPage } from '../login/login.page';
 import { Router } from '@angular/router';
 
 // import undefined = require('firebase/empty-import');
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, Platform } from '@ionic/angular';
 import { BackendService } from '../backend.service';
 import { Profile } from '../profile';
 import { ControlsService } from '../controls.service';
@@ -51,9 +51,10 @@ desc;
 location;
 salonname;
 salond = this.backend.salonsDisply;
-  constructor(private geolocation: Geolocation, public alertController: AlertController, public router: Router, private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, public backend: BackendService, public control: ControlsService) {
+  constructor(private ngZone: NgZone,private geolocation: Geolocation, public alertController: AlertController, public router: Router, private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, public backend: BackendService, public control: ControlsService,private platform: Platform) {
    ////////get salons
    
+
    this.backend.getsalons().subscribe(val => {
     this.salon = val;
     console.log(this.salon)
@@ -87,19 +88,7 @@ salond = this.backend.salonsDisply;
 
 
    ///////////////////////////
-   this.db.collection('SalonNode').onSnapshot(snapshot => {
-    snapshot.forEach(doc => {
 
-      this.users.push(doc.data());
-      console.log('Retrive messege:', this.users);
-      this.users.forEach(Customers => {
-        let content = '<b>Salon Name : ' + Customers.salonName + '<br>' + 'SALON CONTACT NO:' + Customers.SalonContactNo + '<br>' + 'SALON ADDRESS: ' + Customers.location
-        this.addMarkersOnTheCustomersCurrentLocation(Customers.coords.lat, Customers.coords.lng, content);
-        // Customers.coords.lat, Customers.coords.lng
-        console.log('coordsdddd', Customers);
-      })
-    })
-  });
 
   }
 
@@ -151,10 +140,10 @@ salond = this.backend.salonsDisply;
   }
 
   ngOnInit() {
-
-  }
-
-  ionViewWillEnter() {
+    this.platform.ready().then(() =>{
+      this.getUserPosition();
+      this.getSalonmarkrs();
+    })
     this.loadingController.create({
       message: 'Please wait',
       duration: 2000
@@ -165,9 +154,85 @@ salond = this.backend.salonsDisply;
         console.log('Loading dismissed! after 2 Seconds');
       });
     });
-    this.getUserPosition();
+   
     
   }
+
+  // ionViewWillEnter() {
+  //   this.loadingController.create({
+  //     message: 'Please wait',
+  //     duration: 2000
+  //   }).then((res) => {
+  //     res.present();
+
+  //     res.onDidDismiss().then((dis) => {
+  //       console.log('Loading dismissed! after 2 Seconds');
+  //     });
+  //   });
+  //   this.getUserPosition();
+   
+  //   ///////////////
+ 
+  //   this.db.collection('SalonNode').onSnapshot(snapshot => {
+  //     snapshot.forEach(doc => {
+  
+       
+  //         let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().location
+  //         //  this.addMarkersOnTheCustomersCurrentLocation(doc.data().lat, doc.data().lng, content);
+  
+  
+  
+  //          const icon = {
+  //           url: '../../assets/icon/58889201bc2fc2ef3a1860a7.png', // image url
+  //           scaledSize: new google.maps.Size(50, 50), // scaled size
+  //           origin: new google.maps.Point(0, 0), // origin
+  //           anchor: new google.maps.Point(0, 0) // anchor
+  //         };
+      
+  //         let marker = new google.maps.Marker({
+  //           map: this.map,
+  //           animation: google.maps.Animation.DROP,
+  //           position: new google.maps.LatLng(doc.data().lat, doc.data().lng),
+  //           icon: icon
+  //         });
+  //         // this.addInfoWindow(marker, content);
+  
+  //         let infoWindow = new google.maps.InfoWindow({
+  //           content: content
+  //         });
+      
+  //         google.maps.event.addListener(marker, 'click', () => {
+  //           infoWindow.open(this.map, marker);
+  //         });
+  
+  
+  //         console.log('cords',doc.data().lat,doc.data().lng);
+          
+  //         // Customers.coords.lat, Customers.coords.lng
+  //         // console.log('coordsdddd', Customers);
+  //       //   let coord = new google.maps.LatLng(doc.data().lat, doc.data().lng);
+  //       //   console.log('coords',coord );
+          
+  //       //   let marker = new google.maps.Marker({
+  //       //       map: this.map,
+  //       //       position: coord,
+  //       //       draggable: false,
+  //       //      animation: google.maps.Animation.DROP,
+  //       //       title: 'Click to view details',
+  //       //     })
+  //       //     this.addInfoWindow(marker, content);
+  //       //          let infoWindow = new google.maps.InfoWindow({
+  //       //      content: content
+  //       // });
+  //       // google.maps.event.addListener(marker, 'click', (resp)=>{
+  //       //   //infoWindow.open(this.map, marker)
+  //       //   this.viewBuilderInfo(doc.data());
+  //       //  })
+  //     })
+  //   }); 
+    
+   
+  // }
 
   addInfoWindows(marker, content) {
 
@@ -194,9 +259,49 @@ salond = this.backend.salonsDisply;
     }, (err: PositionError) => {
       console.log("error : " + err.message);
     });
+    
   }
 
+getSalonmarkrs(){
+  this.db.collection('SalonNode').onSnapshot(snapshot => {
+    snapshot.forEach(doc => {
 
+     
+        let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().location
+        //  this.addMarkersOnTheCustomersCurrentLocation(doc.data().lat, doc.data().lng, content);
+
+
+
+         const icon = {
+          url: '../../assets/icon/58889201bc2fc2ef3a1860a7.png', // image url
+          scaledSize: new google.maps.Size(50, 50), // scaled size
+          origin: new google.maps.Point(0, 0), // origin
+          anchor: new google.maps.Point(0, 0) // anchor
+        };
+    
+        let marker = new google.maps.Marker({
+          map: this.map,
+          animation: google.maps.Animation.DROP,
+          position: new google.maps.LatLng(doc.data().lat, doc.data().lng),
+          icon: icon
+        });
+        // this.addInfoWindow(marker, content);
+
+        let infoWindow = new google.maps.InfoWindow({
+          content: content
+        });
+    
+        google.maps.event.addListener(marker, 'click', () => {
+          infoWindow.open(this.map, marker);
+        });
+
+
+        console.log('cords',doc.data().lat,doc.data().lng);
+        
+
+    })
+  }); 
+}
 
   addMap(lat: number, long: number) {
     let latLng = new google.maps.LatLng(lat, long);
