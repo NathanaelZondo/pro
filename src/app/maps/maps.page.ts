@@ -87,19 +87,20 @@ salond = this.backend.salonsDisply;
 
 
    ///////////////////////////
-    this.db.collection('SalonNode').onSnapshot(snapshot => {
-      snapshot.forEach(doc => {
+   this.db.collection('SalonNode').onSnapshot(snapshot => {
+    snapshot.forEach(doc => {
 
-        this.users.push(doc.data());
-        console.log('Retrive messege:', this.users);
-        this.users.forEach(Customers => {
-          let content = '<b>Salon Name : ' + Customers.salonName + '<br>' + 'SALON CONTACT NO:' + Customers.SalonContactNo + '<br>' + 'SALON ADDRESS: ' + Customers.location
-          this.addMarkersOnTheCustomersCurrentLocation(Customers.coords.lat, Customers.coords.lng, content);
-          // Customers.coords.lat, Customers.coords.lng
-          console.log('coordsdddd', Customers);
-        })
+      this.users.push(doc.data());
+      console.log('Retrive messege:', this.users);
+      this.users.forEach(Customers => {
+        let content = '<b>Salon Name : ' + Customers.salonName + '<br>' + 'SALON CONTACT NO:' + Customers.SalonContactNo + '<br>' + 'SALON ADDRESS: ' + Customers.location
+        this.addMarkersOnTheCustomersCurrentLocation(Customers.coords.lat, Customers.coords.lng, content);
+        // Customers.coords.lat, Customers.coords.lng
+        console.log('coordsdddd', Customers);
       })
-    });
+    })
+  });
+
   }
 
 
@@ -155,7 +156,7 @@ salond = this.backend.salonsDisply;
 
   ionViewWillEnter() {
     this.loadingController.create({
-      message: 'This Loader Will Auto Hide in 2 Seconds',
+      message: 'Please wait',
       duration: 2000
     }).then((res) => {
       res.present();
@@ -165,6 +166,7 @@ salond = this.backend.salonsDisply;
       });
     });
     this.getUserPosition();
+    
   }
 
   addInfoWindows(marker, content) {

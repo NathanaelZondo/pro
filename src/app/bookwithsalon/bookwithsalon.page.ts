@@ -5,6 +5,8 @@ import { bookings } from '../booking';
 import { AlertController,ModalController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { ModalPage } from '../modal/modal.page';
+
+
 @Component({
   selector: 'app-bookwithsalon',
   templateUrl: './bookwithsalon.page.html',
@@ -104,10 +106,34 @@ this.testarray =[];
   this.blocker =false;
   //this.backend.userbookings(booking);
 // prevents incorrect dates from being selected
-  if(new Date(this.booking.userdate)<new Date(this.currentdate))
+
+if(parseFloat(booking.sessiontime[3]+booking.sessiontime[4])>0 && parseFloat(booking.sessiontime[3]+booking.sessiontime[4])<30 )
+{
+
+console.log("block =",parseFloat(booking.sessiontime[3]+booking.sessiontime[4]) )
+this.control.BlockToast();
+this.isvalidated =true;
+
+}
+else if(parseFloat(booking.sessiontime[3]+booking.sessiontime[4])>30 && parseFloat(booking.sessiontime[3]+booking.sessiontime[4])<=59)
+{
+
+  console.log("block2 =",parseFloat(booking.sessiontime[3]+booking.sessiontime[4]) )
+  this.control.BlockToast();
+  this.isvalidated =true;
+
+}
+else
+  if(new Date(this.booking.userdate)<new Date(this.currentdate+'T08:00'))
   {
+ console.log("pdate 1 =",new Date(this.booking.userdate));
+
+    console.log("pdate 2 =",new Date(this.currentdate));
    this.control.PastDateToast();
-   this.blocker =true;
+   this.isvalidated =true;
+  
+console.log()
+
    console.log("pastdate")
   }
   else if(new Date(this.booking.userdate)>new Date(this.futuredate))
@@ -127,8 +153,6 @@ let estimatedmins =booking.estimatedtime%60;
 
 console.log("look here",estimatedmins)
 
-
-
 console.log("these are the estimated hours",estimatedhours)
 let overlap =0;
 //initial time variables
@@ -139,8 +163,6 @@ console.log("Also look here",mins)
 //new time variables
 let newhrs;
 let newmins;
-
-
 
 if(mins+estimatedmins>59)
 {
@@ -152,26 +174,22 @@ mins =overlap;
 console.log("this is the converted time",hrs+":"+mins)
 newhrs =parseFloat(this.booking.sessiontime[0]+this.booking.sessiontime[1]) +hrs;
 newmins =mins;
+
 if(newmins<10)
 {
 console.log("this is the converted time",newhrs+":0"+newmins)
 booking.sessionendtime=newhrs+":0"+newmins;
 
-
-
 }
 else{
+
   console.log("this is the converted time",newhrs+":"+newmins)
   booking.sessionendtime=newhrs+":"+newmins;
-  
-
 
 }
 }
 else if(mins+estimatedmins<59){
-  
-
-  
+   
   mins =mins+estimatedmins;
    
   console.log("this is the converted time",hrs+":"+mins)
@@ -179,38 +197,43 @@ else if(mins+estimatedmins<59){
   newmins =mins;
   if(newmins<10)
   {
+
   console.log("this is the converted time",'0'+newhrs+":0"+newmins)
   booking.sessionendtime=newhrs+":0"+newmins;
-if(newhrs<10)
+
+  if(newhrs<10)
 {
-  booking.sessionendtime="0"+newhrs+":0"+newmins;
+
+  booking.sessionendtime="0"+newhrs+newmins;
+
 }
   
   }
-  else{
-    console.log("this is the converted time",newhrs+":"+newmins)
-   
-    booking.sessionendtime=newhrs+":"+newmins;
-  }
+  else if(newhrs<10){
 
-
+    booking.sessionendtime="0"+newhrs+newmins;
+    if(newmins<10)
+{
+  booking.sessionendtime=newhrs+"0"+newmins;
 }
 
+  }
 
-
-
-
-
+else
+  { 
+     console.log("this is the converted time",newhrs+":"+newmins)
+    booking.sessionendtime=newhrs+":"+newmins;
+  }
+}
   }
   else if(parseFloat(booking.sessiontime[0])>0)
   {
+
 //time estimated by the salon
 let estimatedhours = parseInt((booking.estimatedtime/60).toString());
 let estimatedmins =booking.estimatedtime%60;
 
 console.log("look here",estimatedmins)
-
-
 
 console.log("these are the estimated hours",estimatedhours)
 let overlap =0;
@@ -222,11 +245,10 @@ console.log("Also look here",mins)
 //new time variables
 let newhrs;
 let newmins;
-
-
-
+///////////////////////////////////////////////////////////////////////////////////
 if(mins+estimatedmins>59)
 {
+
 overlap =  mins+estimatedmins-60;
 
 hrs=hrs+ estimatedhours+1;
@@ -235,43 +257,46 @@ mins =overlap;
 console.log("this is the converted time",hrs+":"+mins)
 newhrs =parseFloat(this.booking.sessiontime[0]+this.booking.sessiontime[1]) +hrs;
 newmins =mins;
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
 if(newmins<10)
 {
+
 console.log("this is the converted time",newhrs+":0"+newmins)
 booking.sessionendtime=newhrs+":0"+newmins;
+
 }
 else{
   console.log("this is the converted time",newhrs+":"+newmins)
   booking.sessionendtime=newhrs+":"+newmins;
+
 }
 }
 else if(mins+estimatedmins<59){
-  
 
-  
   mins =mins+estimatedmins;
    
   console.log("this is the converted time",hrs+":"+mins)
   newhrs =hrs+estimatedhours ;
   newmins =mins;
+
   if(newmins<10)
   {
+
   console.log("this is the converted time",newhrs+":0"+newmins)
   booking.sessionendtime=newhrs+":0"+newmins;
+
   }
   else{
+
     console.log("this is the converted time",newhrs+":"+newmins)
     booking.sessionendtime=newhrs+":"+newmins;
+
   }
-
-
 }
-
-
-
-
   }
-  
+ 
 }
 
 
@@ -279,34 +304,31 @@ else if(mins+estimatedmins<59){
 
 if(booking.hairdresser=="")
 {
+
   this.control.name();
+
 }
 else if(booking.userdate=="")
 {
+
 this.control.date();
+
 }
 else if(booking.sessiontime=="")
 {
+
 this.control.time();
+
 }
 else
-{
-
-  
+{  
   this.testbooking(booking)
-  this.control.Loading();
- 
-  
-  
+  this.control.Loading();  
 }
-
-
 
 
 /////////////////////////////////////////////////////////////////
 }
-
-
 
 async presentAlertConfirm() {
   const alert = await this.alertController.create({
@@ -368,9 +390,8 @@ let click = 1;
             )
           })
 
-         
           this.control.BookToast();
-          this.control.router.navigateByUrl('/success');
+          this.control.navCtrl.navigateRoot('/success');
         }
       }
     ]
@@ -429,14 +450,9 @@ d3:Date;
 findtime(booking)
 {
 
-  
-  let hourRange = parseFloat(booking.sessiontime[0]+booking.sessiontime[1]);
-let minuteRange =parseFloat(booking.sessiontime[3]+booking.sessiontime[4]);
-
 this.d1 =new Date((booking.userdate+'T')+(booking.sessiontime));
 this.d2 =new Date((booking.userdate+'T0')+(booking.sessionendtime));
 this.d3 ;
-
 
 //this.formodal=false;
 
@@ -452,10 +468,6 @@ for(let i =0;i<this.testarray.length;i++)
 
     console.log("Second condition for end time =",(this.testarray[i].sessionendtime[0]))
 
-    
-    
-   
-    
       this.d3 =new Date((this.testarray[i].userdate+'T')+(this.testarray[i].sessionendtime));
 
      
@@ -480,31 +492,10 @@ this.formodal =false;
 if(this.d2>=this.d1 && this.d1<=this.d3)
 {
 
-  this.events.push({
-    title: this.testarray[i].hairstyletype,
-    startTime: new Date(x),
-    endTime: new Date(y),
-    allDay: false
-  })
-  console.log(this.events);
-  this.setevents(this.events);
-  
 this.formodal =true;
-
+this.isvalidated =true;
 console.log("This is de cond = ",this.formodal)
 
-
-
-
-if(this.formodal==true)
-{
-  this.isvalidated =true;
-  this.backend.timeList =this.timeList;
-  this.control.SlotToast();
-// this.presentModal(); 
-}
-
-  
 }
 
 else
@@ -513,17 +504,121 @@ else
   console.log(" d1 =",this.d1," d2 =",this.d2," d3= ",this.d3);
   console.log(this.d2>=this.d1)
   this.isvalidated =false;
-  this.control.SlotToast1();
+  //this.control.SlotToast1();
 
 }
 
+this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).where("sessiontime","==",booking.sessiontime).get().then(val=>{
+val.forEach(value=>{
+  console.log(value.data())
+  if(value.data().sessiontime!="")
+  {
+    this.isvalidated =true;
+    this.backend.timeList =this.timeList;
+    this.control.SlotToast();
+  }
+  else{
+    this.isvalidated =true;
+    this.backend.timeList =this.timeList;
+    this.control.SlotToast();
+  }
+})
+})
 
+
+
+this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).where("sessionendtime","==",booking.sessiontime).get().then(val=>{
+  val.forEach(value=>{
+    console.log(value.data())
+    if(value.data().sessiontime!="")
+    {
+      this.isvalidated =true;
+      this.backend.timeList =this.timeList;
+      this.control.SlotToast();
+    }
+    else{
+      this.isvalidated =true;
+      this.backend.timeList =this.timeList;
+      this.control.SlotToast();
+    }
+  })
+  })
+
+this.testarray = [];
+
+
+  this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).get().then(val=>{
+    val.forEach(value=>{
+      console.log("Order-by =",value.data())
+    
+      
+      this.testarray.push(value.data());
+      
+      console.log("TestArray = ",this.testarray)
+      
+    
+      
+
+    
+  })})
+
+
+  for(let i =0;i<this.testarray.length;i++)
+  {
+
+    this.d1 =new Date((booking.userdate+'T')+(booking.sessiontime));
+    
+    this.d2 =new Date((this.testarray[i].userdate+'T')+(this.testarray[i].sessiontime));
+    
+
+    console.log("Second condition for end time =",(this.testarray[i].sessionendtime[0]))
+
+  
+      this.d3 =new Date((this.testarray[i].userdate+'T')+(this.testarray[i].sessionendtime));
+
+     
+    let d4 =new Date((booking.userdate+'T')+(booking.sessionendtime));
+    
+
+    console.log("session end time = ",d4)
+
+let a ="From ";
+let b =" until";
+let x = this.d2;
+let y =this.d3;
+
+
+this.d1 =new Date((booking.userdate+'T')+(booking.sessiontime));
+this.d2 =new Date((booking.userdate+'T0')+(booking.sessionendtime));
+this.d3 ;
+
+
+this.timeList.push({a,x,b,y});
+ 
+this.formodal =false;
+
+  console.log("Timelist =",this.timeList)
+
+
+  this.events.push({
+    title: this.testarray[i].hairstyletype,
+    startTime: new Date(x),
+    endTime: new Date(y),
+    allDay: false
+  })
+  console.log(this.events);
+  this.setevents(this.events);
+}
 
 }
 
    }
 
 
+
+
+
+   
 
    async presentModal() {
     const modal = await this.modalController.create({
@@ -562,22 +657,22 @@ else
  
           if(parseFloat((new Date(ev.selectedTime).getMonth()+1).toString())<10 )
           {
-              this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-0"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-"+new Date(ev.selectedTime).getDate().toString();
+this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-0"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-"+new Date(ev.selectedTime).getDate().toString();
 
                if(parseFloat(new Date(ev.selectedTime).getDate().toString())<10)
                {
-                this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-0"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-0"+new Date(ev.selectedTime).getDate().toString();
+this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-0"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-0"+new Date(ev.selectedTime).getDate().toString();
               console.log(this.booking.userdate) 
               }
           }
 
           else
           {
-           this.booking.userdate=new Date(ev.selectedTime).getFullYear().toString()+"-"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-"+new Date(ev.selectedTime).getDate();
+this.booking.userdate=new Date(ev.selectedTime).getFullYear().toString()+"-"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-"+new Date(ev.selectedTime).getDate();
    
             if(parseFloat(new Date(ev.selectedTime).getDate().toString())<10)
             {
-         this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-0"+new Date(ev.selectedTime).getDate().toString();
+this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-"+(new Date(ev.selectedTime).getMonth()+1).toString()+"-0"+new Date(ev.selectedTime).getDate().toString();
            console.log(this.booking.userdate) 
            }
 
@@ -664,7 +759,6 @@ todate;
 //Get current date
 cdate()
 {
-
   this.control.tip();
   this.todate = (new Date().getFullYear().toString())+'-'+(new Date().getMonth())+'-'+(new Date().getDate());
   if((new Date().getMonth()+1)<10)
@@ -679,6 +773,11 @@ cdate()
 }
 console.log("Currentdate =",this.todate)
 return this.todate;
+}
+
+back()
+{
+  this.control.router.navigateByUrl('/viewsalon');
 }
 }
 

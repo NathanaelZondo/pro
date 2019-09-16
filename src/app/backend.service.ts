@@ -30,16 +30,11 @@ export class BackendService {
   salonsDisply = [];
   selectedsalon = [];
   salonplaceholder = [];
-  constructor(public navCtrl:NavController,public afs: AngularFirestore, public control: ControlsService, public loadingController: LoadingController, ) {
+  constructor(public toastController:ToastController,public navCtrl:NavController,public afs: AngularFirestore, public control: ControlsService, public loadingController: LoadingController, ) {
   
     this.items = this.afs.collection('userprofile').valueChanges();
 
     this.salons = this.afs.collection('Salons').valueChanges();
-
-    this.menstyles = this.afs.collection('Salons').doc('sRkAEe3vxX5d7LR8WnhW').collection('Styles').doc('gender').collection('male').doc('ESdvVuyYbccge3Au9Qlq').valueChanges();
-
-
-    this.womenstyles = this.afs.collection('Salons').doc('sRkAEe3vxX5d7LR8WnhW').collection('Styles').doc('gender').collection('female').doc('AKVWEYRB3203GYtMfc3B').valueChanges();
 
 
   }
@@ -47,45 +42,36 @@ export class BackendService {
 
   
   
-  uid = firebase.auth().currentUser.uid;
+  uid;
   gend;
   type = 'chiskop;'
   profiles = [];
 
-  getProfile() {
+  getProfile() 
+  {
     return this.items;
   }
 
   
 
-  getprofile2() {
+  getprofile2() 
+  {
     return this.db.collection('userprofile').doc(this.uid).get();
   }
 
  
 
-  signout() {
+  signout()
+   {
     this.navCtrl.setDirection('root');
-    this.navCtrl.navigateRoot('/updateprofile');
+    this.navCtrl.navigateRoot('/login');
     firebase.auth().signOut()
   }
 
-  // authstate()
-  // {
 
-  //  if(firebase.auth().onAuthStateChanged)
-  //  {
-  //    this.control.router.navigate(['maps'])
-  //  }
-  //  else{
-  //   this.control.LogoutToast();
-  //   this.control.router.navigate(['login'])
-  //  }
 
-  //  console.log(firebase.auth().onAuthStateChanged)
-  // }
-
-  getsalons() {
+  getsalons() 
+  {
     return this.salons;
   }
 
@@ -94,28 +80,35 @@ export class BackendService {
     if (x == 0) {
 
       return this.menstyles;
-    }
-    else {
 
-      return this.womenstyles;
+    }
+    else 
+    {
+
+  return this.womenstyles;
+
     }
   }
+
   salonuid;
-  setuserdata(username, surname, cell) {
+  setuserdata(username, surname, cell)
+   {
     this.username = username;
     this.surname = surname;
     this.cell = cell;
-    
-  }
+    }
 
-  setsalondata(name, streetname) {
+  setsalondata(name, streetname) 
+  {
     this.salonname = name;
     this.salonlocation = streetname;
 
     console.log(name, streetname);
   }
+
 hairstyleimage;
-  sethairstyledata(name, duration, price,hairstyle) {
+  sethairstyledata(name, duration, price,hairstyle)
+   {
     this.hairstyletype = name;
     this.hairstyleprice = price;
     this.estimatedtime = duration;
@@ -161,7 +154,7 @@ this.hairstyleimage =hairstyle;
       if (snap.empty !== true) {
 
         snap.forEach(doc => {
-          //console.log('Profile Document: ', doc.data())
+  
           this.displayProfile = doc.data();
           this.name = doc.data().salonName;
           this.salonsDisply.push(doc.data())
@@ -187,12 +180,14 @@ this.hairstyleimage =hairstyle;
 
 
 
-  gethairdresser() {
+  gethairdresser() 
+  {
     return this.db.collection('SalonNode').doc(this.salonname).collection('staff');
   }
   userbooking = [];
 
-  getuserbookings() {
+  getuserbookings()
+   {
     this.userbooking = [];
     return this.db.collection('Bookings').doc(this.uid).collection('userbookings');
   }
@@ -203,8 +198,16 @@ this.hairstyleimage =hairstyle;
   {
     this.bookingdetails=[];
 this.bookingdetails.push(bd);
+}
 
-
+  async welcomeToast() 
+  {
+    console.log(this.name)
+    const toast = await this.toastController.create({
+      message: 'Welcome back '+this.name+' '+this.surname,
+      duration: 7000
+    });
+    toast.present();
   }
 
 }

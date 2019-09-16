@@ -4,6 +4,7 @@ import { Profile } from '../profile';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ControlsService } from '../controls.service';
 import * as firebase from 'firebase';
+import { ToastController, LoadingController } from '@ionic/angular';
 @Component({
   selector: 'app-updateprofile',
   templateUrl: './updateprofile.page.html',
@@ -17,11 +18,12 @@ export class UpdateprofilePage implements OnInit {
   about;
   cell;
   uid;
+  sub = false;
   styleImage;
   storage = firebase.storage().ref();
   uploadprogress;
   isuploading: false;
-  constructor(private camera: Camera, public control: ControlsService, public backend: BackendService) {
+  constructor(public toastController:ToastController,private camera: Camera, public control: ControlsService, public backend: BackendService,public loadingController:LoadingController) {
     this.backend.getprofile2().then(res => {
       //  res.data()
       this.profiles.push(res.data());
@@ -64,6 +66,7 @@ export class UpdateprofilePage implements OnInit {
       upload.on('state_changed', snapshot => {
         let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         this.uploadprogress = progress;
+        this.imageLoading();
         if (progress == 100) {
           this.isuploading = false;
         }
@@ -72,19 +75,117 @@ export class UpdateprofilePage implements OnInit {
         upload.snapshot.ref.getDownloadURL().then(downUrl => {
           this.profile.image = downUrl;
           console.log('Image downUrl', downUrl);
+            
+          
+        
         });
       });
     }, err => {
       console.log("Something went wrong: ", err);
     });
   }
-  updateprofile(profile) {
-    let uid = firebase.auth().currentUser.uid;
-    this.backend.profiles = [];
-    firebase.firestore().collection('userprofile').doc(uid).update(profile).then(val => {
-      console.log(val);
-    });
-    this.control.ProfileupdateToast();
-    this.control.router.navigate(['navigation']);
+  updateprofile(profile) 
+  {
+
+    if(profile.name =="" ||profile.name ==undefined)
+    {
+     console.log("entername") 
+     this.nameToast();
+    }
+    else if(profile.surname=="" ||profile.surname ==undefined){
+      console.log("entersurname")
+      this.surnameToast(); 
+    }
+    else if(profile.about=="" ||profile.about ==undefined){
+      console.log("enterabout")
+      this.bioToast(); 
+    }
+    else if(profile.cell=="" ||profile.cell ==undefined){
+      console.log("entercell")
+      this.cellToast(); 
+    }
+    else if(profile.image=="" ||profile.image ==undefined)
+    {
+this.imageToast();
+    }
+    else
+    {
+
+
+
+      firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).update(profile).then(val => {
+        console.log(val);
+      });
+      this.control.ProfileupdateToast();
+  
+      this.control.navCtrl.setDirection('root');
+      this.control.navCtrl.navigateRoot('/navigation'); 
+    
+    }
+
+
+
+
+
+    
   }
+
+
+
+  async nameToast() {
+    const toast = await this.toastController.create({
+      message: 'Enter your name.',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+
+  async surnameToast() {
+    const toast = await this.toastController.create({
+      message: 'Enter your surname.',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+  async cellToast() {
+    const toast = await this.toastController.create({
+      message: 'Enter your cell phone number.',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+  async imageToast() {
+    const toast = await this.toastController.create({
+      message: 'Select an image from your gallery.',
+      duration: 5000
+    });
+    toast.present();
+  }
+  async bioToast() {
+    const toast = await this.toastController.create({
+      message: 'Tell us about yourself.',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+
+
+
+  async imageLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+      translucent: true,
+      duration: 20000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+
+    console.log('Loading dismissed!');
+  }
+
 }

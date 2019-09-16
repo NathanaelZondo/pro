@@ -5,7 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { config } from './cred';
 import { Router } from '@angular/router';
-
+import {AngularFireModule} from '@angular/fire';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { BackendService } from './backend.service';
+import { ControlsService } from './controls.service';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +17,59 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   constructor(
+    private afAuth: AngularFireAuth,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private router: Router
+    private router: Router,
+    private backend:BackendService,
+    private control:ControlsService
   ) {
-    firebase.initializeApp(config);
-   this.listenToAuth();
+    //firebase.initializeApp(config);
+    AngularFireModule.initializeApp(config)
+  
+
+   this.afAuth.authState.subscribe(data => {
+    console.log(data)
+    this.backend.uid =data.uid;
+    if(data)
+    {
+
+     
+      firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).onSnapshot(val=>{
+   
+       console.log(val.data())
+  
+        if(val.data()==undefined)
+        {
+          this.control.profileToast()
+          this.control.navCtrl.setDirection('root');
+          this.control.navCtrl.navigateRoot('/createprofile');
+        }
+        else{
+          this.backend.name = val.data().name;
+          this.backend.surname = val.data().surname;
+          this.backend.welcomeToast();
+          this.control.navCtrl.setDirection('root');
+          this.control.navCtrl.navigateRoot('/navigation');
+        }  
+      
+      })
+  
+
+
+ 
+    
+    }
+
+    else{
+      
+      this.control.navCtrl.setDirection('root');
+      this.control.navCtrl.navigateRoot('/login');
+    }
+    });
+
+
   }
 
   initializeApp() {
@@ -30,14 +79,5 @@ export class AppComponent {
     });
   }
 
-  listenToAuth() {
-    if(firebase.auth().onAuthStateChanged)
-    {
-      this.router.navigateByUrl('/login');
-    }
-    else
-    {
-      this.router.navigateByUrl('/login');
-    }
-  }
+  
 }

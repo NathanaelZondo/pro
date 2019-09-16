@@ -1,4 +1,4 @@
-<ion-content>
+<!-- <ion-content>
 
   <div class="container" *ngFor="let profile of profiles">
 
@@ -18,9 +18,9 @@
     <div class="info">
       <p id="name">{{profile.name}} {{profile.surname}}</p>
 
-      <p id="cell"><strong>{{profile.cell}}</strong></p>
+      <p id="cell"><strong>{{profile.cell}}</strong></p> -->
       <!-- <p id="about">{{profile.about}}</p> -->
-    </div>
+    <!-- </div>
 
     <div class="goUp">
       <div class="sumt">
@@ -35,7 +35,7 @@
       <ion-fab-button (click)="update()" style="background: rgba(255, 166, 0, 0.678); border-radius: 50%">
         <ion-icon name="create"></ion-icon>
       </ion-fab-button>
-      <!-- <ion-icon name="create" style="font-size:30px;" (click)="update()"></ion-icon> -->
+       <ion-icon name="create" style="font-size:30px;" (click)="update()"></ion-icon> 
     </div>
 
 
@@ -44,10 +44,68 @@
 
 
 
+</ion-content> -->
+
+
+<ion-content>
+    <div class="icons">
+        <div class="back" (click)="back()">
+          <ion-icon name="arrow-round-back" style="font-size:30px; color: white"></ion-icon>
+        </div>
+        <div class="exit" (click)="signout()">
+          <ion-icon name="exit" style="font-size:30px; color: white;"></ion-icon>
+        </div>
+        </div>
+   
+<body style ="background:url(https://images.pexels.com/photos/2873486/pexels-photo-2873486.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260) no-repeat center center fixed;" *ngFor="let profile of profiles">
+
+  <img src ="{{profile.image}}" height ="100%">
+    <div class="flex-container">
+        <div style="width:100vw;padding-left:0px" >
+          <pre>
+
+
+
+          </pre>
+          <div class="info">
+              <p id="name">{{profile.name}} {{profile.surname}}</p>
+        
+              <p id="cell"><strong>{{profile.cell}}</strong></p> 
+
+
+            
+              <!-- <p id="about">{{profile.about}}</p> -->
+             </div>
+
+
+             <div class="edit">
+                <ion-fab-button (click)="update()" style="background: rgba(252, 166, 6, 0); border-radius: 50%">
+                  <ion-icon name="create"></ion-icon>
+                </ion-fab-button>
+
+              </div>
+            <!-- <table width ="auto" style ="margin-left:15px; ">
+                 <tr >
+                  
+                  <label style="font-size:25px;font-family:sans-serif;color:white" >{{profile.name}} {{profile.surname}}     </label><br>
+                  <br>
+                  <br>
+                <label style="font-size:22px;font-family:sans-serif;color:white">{{profile.cell}}    </label><br>
+                
+               
+               <br>
+               <br>
+                   <label style="font-size:20px;font-family:sans-serif;color:white">{{profile.about}}</label><br>
+                     <br>
+               
+                   
+                 
+                   
+                  </table> -->
+        </div> 
+       </div>
+      </body>
 </ion-content>
-
-
-
 
 
 

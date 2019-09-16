@@ -1,5 +1,85 @@
 <ion-content>
-  <div class="container">
+    <div class="container">
+        <!-- 
+            <div class="back" (click)="goback()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </div> -->
+            <!-- <div class="logo">
+                <img src="../../assets/imgs/Untitled-1.svg">
+            </div> -->
+            <br>
+              <div class="signin">
+                <h3>Create <br>Account</h3>
+                <h2>Step <br> 1/2</h2>
+                </div>
+         
+          <div class="form">
+              <form [formGroup]="signupForm">
+                  <ion-item color="primary">
+                    <!-- <ion-label position="stacked">Email</ion-label> -->
+                    <ion-input formControlName="email" type="email" placeholder="Your email address"
+                      [class.invalid]="!signupForm.controls['email'].valid && signupForm.controls['email'].touched">
+                    </ion-input>
+                  </ion-item>
+                  <ion-item color="primary" style="background: transparent; border: none; box-shadow: none"  class="error-message" *ngIf="!signupForm.controls['email'].valid
+                    && signupForm.controls['email'].touched">
+                    <ion-label style="color:red; font-size: 18px">Please enter a valid email.</ion-label>
+                  </ion-item>
+              <br>
+                  <ion-item color="primary">
+                    <!-- <ion-label position="stacked">Password</ion-label> -->
+                    <ion-input formControlName="password" type="password" placeholder="Your password"
+                      [class.invalid]="!signupForm.controls['password'].valid && signupForm.controls['password'].touched">
+                    </ion-input>
+                  </ion-item>
+                  <ion-item color="primary" style="background: transparent; border: none;box-shadow: none"  class="error-message" *ngIf="!signupForm.controls['password'].valid  &&
+                    signupForm.controls['password'].touched">
+                    <ion-label style="color:red; font-size: 18px">Your password needs more than 6 characters.</ion-label>
+                    <br>
+                  </ion-item>
+              <br>
+              <br>
+                  <button ion-button round expand="block" color="dark" (click)="signupUser(signupForm)" [disabled]="!signupForm.valid"
+                  style="height: 6vh; border-radius: 20px;" >
+                     Continue
+                  </button>
+                </form>
+          </div>
+        
+          <div class="btns">
+        
+              <p>Already have an account? <span (click)=" signin()">Sign-In</span></p>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <div class="container">
 ​
       <div class="left">
           <div class="img">
@@ -49,16 +129,11 @@
         style="background: purple; border-radius: 50%">
           <ion-icon name="arrow-forward"></ion-icon>
         </ion-fab-button>
-        <!-- <ion-button clear (click)="signupUser(signupForm)" [disabled]="!signupForm.valid"
-        style="background: purple; border-radius: 50%">
-            <ion-icon name="arrow-forward"></ion-icon>
-        </ion-button> -->
+    
       </form>
     </div>
 ​
-    <!-- <div class="signin">
-      <p>Already Have an Account? <span (click)=" signin()">Sign-In</span></p>
-    </div> -->
+   
   </div>
 ​
   <div class="right">
@@ -79,6 +154,6 @@
 ​
     </div>
 ​
-</div>
+</div> -->
 ​
 </ion-content>

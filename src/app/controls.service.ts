@@ -30,6 +30,19 @@ export class ControlsService {
   
     console.log('Loading dismissed!');
   }
+
+
+  async Loading2() {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+  
+    const { role, data } = await loading.onDidDismiss();
+  
+    console.log('Loading dismissed!');
+  }
   
   async LoginToast() {
     const toast = await this.toastController.create({
@@ -94,7 +107,7 @@ export class ControlsService {
   async PastDateToast() {
     const toast = await this.toastController.create({
       message: 'You cannot select a past date',
-      duration: 5000
+      duration: 15000
     });
     toast.present();
   }
@@ -109,7 +122,7 @@ export class ControlsService {
 
   async SlotToast() {
     const toast = await this.toastController.create({
-      message: 'This booking has already been taken.',
+      message: 'Your selected time has already been booked.',
       duration: 5000
     });
     toast.present();
@@ -118,7 +131,7 @@ export class ControlsService {
   async SlotToast1()
   {
     const toast = await this.toastController.create({
-      message: 'Booking slot is currently empty.',
+      message: 'Time slot is currently empty.',
       duration: 5000
     });
     toast.present();
@@ -210,5 +223,22 @@ async picLoading() {
   console.log('Loading dismissed!');
 }
 
+
+
+async newprofileToast() {
+  const toast = await this.toastController.create({
+    message: 'You have successfully registered.',
+    duration: 15000
+  });
+  toast.present();
+}
+
+async BlockToast() {
+  const toast = await this.toastController.create({
+    message: 'You can only input an hour or 30 mins after an hour.',
+    duration: 5000
+  });
+  toast.present();
+}
 }
 

@@ -1,80 +1,64 @@
-@import url('https://fonts.googleapis.com/css?family=Lato|Teko|Abel|Anton|Dosis|Oxygen|Jura|Pacifico|Righteous|Roboto+Condensed|Ubuntu|Open+Sans+Condensed');
-
+@import url('https://fonts.googleapis.com/css?family=Lato%7CTeko%7CAbel%7CAnton%7CDosis%7COxygen%7CJura%7CPacifico%7CRighteous%7CRoboto+Condensed%7CUbuntu%7COpen+Sans+Condensed');
 * {
-    transition: 0.7s;
+   transition: 0.7s;
 }
-
 .back {
-    position: absolute;
-    z-index: 5;
+   position: absolute;
+   z-index: 5;
 }
-
 .container {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    
+   display: flex;
+   flex-flow: column;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 100vh;
+   position: fixed;
 }
-
 .detail {
-    position: absolute;
-    bottom: 8%;
-    background: rgba(255, 255, 255, 0.774);
-    width: 15vh;
-    height: 8vh;
-
-    p {
-        position: relative;
-        bottom: 10px;
-    }
+   position: absolute;
+   bottom: 8%;
+   background: rgba(255, 255, 255, 0.774);
+   width: 15vh;
+   height: 8vh;
+   p {
+       position: relative;
+       bottom: 10px;
+   }
 }
-
 .salonimage {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 65vh;
-
-    .topbar {
-        display: flex;
-        flex-flow: row;
-        justify-content: space-between;
-        position: absolute;
-        top: 10%;
-        z-index: 5;
-
-        .back {
-            font-size: 20vw;
-            position: relative;
-            left: 0.5vh;
-            bottom: 11vh;
-            width: 2vw;
-        }
-
-        .likes {
-            position: relative;
-            left: 48vh;
-            bottom: 5vh;
-            width: 2vw;
-        }
-    }
-
-    img {
-        width: 100%;
-        height: 100%;
-        border: none;
-        object-fit: cover;
-    }
-
-
+   position: absolute;
+   top: 0;
+   width: 100%;
+   height: 65vh;
+   .topbar {
+       display: flex;
+       flex-flow: row;
+       justify-content: space-between;
+       position: absolute;
+       top: 10%;
+       z-index: 5;
+       .back {
+           font-size: 20vw;
+           position: relative;
+           left: 0.5vh;
+           bottom: 11vh;
+           width: 2vw;
+       }
+       .likes {
+           position: relative;
+           left: 48vh;
+           bottom: 5vh;
+           width: 2vw;
+       }
+   }
+   img {
+       width: 100%;
+       height: 100%;
+       border: none;
+       object-fit: cover;
+   }
 }
-
-
-
 .details {
     position: absolute;
     top: 55%;
@@ -91,92 +75,79 @@
     background: rgba(255, 255, 255, 0.945);
     box-shadow: 3px 3px 4px rgb(156, 156, 156);
 }
-
 .rating {
-    // width: 50vh;
-    .icon {
-        font-size: 2vw;
-    }
-}
+   // width: 50vh;
+   .icon {
+       font-size: 2vw;
 
+   }
+}
 .card {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 14%;
-    left: 2%;
-    z-index: 3;
-    font-family: 'Abel';
-    display: flex;
-    flex-flow: column;
-    float: left;
-
-
-    .subtitle {
-        font-size: 6vw;
-        color: black;
-    }
-
-    .title {
-        font-size: 6vw;
-        color: black;
-    }
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   position: absolute;
+   top: 14%;
+   left: 2%;
+   z-index: 3;
+   font-family: 'Abel';
+   display: flex;
+   flex-flow: column;
+   float: left;
+   .subtitle {
+       font-size: 6vw;
+       color: black;
+   }
+   .title {
+       font-size: 6vw;
+       color: black;
+   }
 }
-
 .hair-inactive {
-    position: absolute;
-    left: 5%;
-    bottom: 0;
-    right: 5%;
-    top: 100%;
-    z-index: 5;
-
+   position: absolute;
+   left: 5%;
+   bottom: 0;
+   right: 5%;
+   top: 100%;
+   z-index: 5;
 }
-
 .hair-active {
-    position: absolute;
-    left: 0;
-    bottom: 0%;
-    right: 0;
-    top: 15%;
-    z-index: 5;
-    background: rgb(34, 34, 34);
-    overflow: hidden;
-    overflow-x: auto;
-    padding: 10px;
-    // border-top-left-radius: 20px;
-    // border-top-right-radius: 20px;
-
-    .gallery {
-        height: 100%;
-        width: 100%;
-
-    }
+   position: absolute;
+   left: 0;
+   bottom: 0%;
+   right: 0;
+   top: 15%;
+   z-index: 5;
+   background: rgb(34, 34, 34);
+   overflow: hidden;
+   overflow-x: auto;
+   padding: 10px;
+   // border-top-left-radius: 20px;
+   // border-top-right-radius: 20px;
+   .gallery {
+       height: 100%;
+       width: 100%;
+   }
 }
-
 .buttonz {
-    position: absolute;
-    left: 12%;
-    bottom: 1%;
-
-    .button {
-        width: 20vh;
-    }
+   position: absolute;
+   left: 12%;
+   bottom: 1%;
+   .button {
+       width: 20vh;
+   }
 }
-
 .desc {
-    position: absolute;
-    top: 77%;
-    left: 1%;
-    text-align: center;
-    color: black;
-    font-size:4vw;
-    display: flex;
-    flex-flow: column;
-    width: 55vh;
+   position: absolute;
+   top: 77%;
+   left: 1%;
+   text-align: center;
+   color: black;
+   font-size:4vw;
+   display: flex;
+   flex-flow: column;
+   width: 55vh;
 }
-
 .reviews {
     position: relative;
     top:25%;
@@ -192,6 +163,15 @@
         align-items: baseline;
     }
 }
+// .info{
+//     position: absolute;
+//     top: 50%;
+// }
+
+
+
+
+
 
 // .info{
 //     position: absolute;
