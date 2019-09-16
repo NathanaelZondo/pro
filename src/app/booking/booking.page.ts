@@ -3,7 +3,7 @@ import { BackendService } from '../backend.service';
 import { ControlsService } from '../controls.service';
 import * as firebase from 'firebase';
 import { ModalPage } from '../modal/modal.page';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
@@ -23,7 +23,7 @@ export class BookingPage implements OnInit {
   newdata =[];
   ob ={};
    buttonactive ;
-  constructor(public backend:BackendService,public control:ControlsService,public modalController:ModalController,public controls:ControlsService) {
+  constructor(private alertController: AlertController,public backend:BackendService,public control:ControlsService,public modalController:ModalController,public controls:ControlsService) {
    this.newdata =[];
    let v =0;    
    this.control.Loading2();
@@ -61,13 +61,14 @@ export class BookingPage implements OnInit {
       this.userbooking.push(doc.data())
      // console.log(doc.data());
      //console.log(doc.data().surname,doc.data().hairdresser,doc.data().userdate,doc.data().salonname)
-     this.values(doc.data().salonname,doc.data().hairdresser,doc.data().userdate,currentdate,doc.data().surname) 
+     //this.values(doc.data().salonname,doc.data().hairdresser,doc.data().userdate,currentdate,doc.data().surname) 
     
-// if(doc.data().userdate == currentdate && v ==1)
-// {
-//   console.log("surname is",v ) 
-//      this.values(doc.data().salonname,doc.data().hairdresser,doc.data().userdate,currentdate,doc.data().surname)
-// }   
+
+     console.log("userbooking length = ",this.userbooking.length)
+
+   console.log("surname is",v ) 
+      this.values(doc.data().salonname,doc.data().hairdresser,doc.data().userdate,currentdate,doc.data().surname)
+ 
  v = v+1;     
   
  
@@ -83,14 +84,26 @@ export class BookingPage implements OnInit {
   ngOnInit() {
     
   }
+  alldata;
+forthealert(x)
+{
+this.alldata =x;
+this.haidressername =x.hairdresser;
+this.hairsalon =x.salonname;
+this.cancelbookingConfirm();
+console.log(this.alldata)
 
+}
 
-
-  cancel(x)
+haidressername;
+hairsalon;
+  cancel(v)
   {
+    let x = v;
 console.log("USER Clicked",x);
 
-
+this.haidressername =x.hairdresser;
+this.hairsalon =x.salonname;
 x.status ="cancelled";
 firebase.firestore().collection('SalonNode').doc(x.salonname).collection('staff').doc(x.hairdresser).collection(x.userdate).doc(x.id).update({
   status: 'cancelled'
@@ -195,6 +208,33 @@ back()
 {
   this.control.navCtrl.setDirection('root');
   this.control.navCtrl.navigateRoot('/navigation'); 
+}
+
+
+async cancelbookingConfirm() {
+  const alert = await this.alertController.create({
+    header: 'Confirm!',
+    message: 'Do you want to cancel booking with '+this.haidressername+ " at "+this.hairsalon+" hairsalon?",
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Okay',
+        handler: () => {
+          this.cancel(this.alldata);
+          this.control.cancelbookingToast();
+          console.log('Confirm Okay');
+        }
+      }
+    ]
+  });
+
+  await alert.present();
 }
 }
   

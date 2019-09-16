@@ -90,7 +90,7 @@ export class ControlsService {
 
   async ProfileupdateToast() {
     const toast = await this.toastController.create({
-      message: 'Profile successfully updated. Changes will be visible after refreshing the page.',
+      message: 'Profile successfully updated.',
       duration: 5000
     });
     toast.present();
@@ -143,7 +143,7 @@ export class ControlsService {
 async name()
   {
     const toast = await this.toastController.create({
-      message: 'Enter the name of the bookie.',
+      message: 'Select the name of the hairdresser.',
       duration: 5000
     });
     toast.present();
@@ -240,5 +240,14 @@ async BlockToast() {
   });
   toast.present();
 }
+
+async cancelbookingToast() {
+  const toast = await this.toastController.create({
+    message: 'Booking successfully cancelled.',
+    duration: 5000
+  });
+  toast.present();
+}
+
 }
 
