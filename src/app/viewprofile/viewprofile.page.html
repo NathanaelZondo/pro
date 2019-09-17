@@ -80,7 +80,7 @@
 
 
              <div class="edit">
-                <ion-fab-button (click)="update()" style="background: rgba(252, 166, 6, 0); border-radius: 50%">
+                <ion-fab-button [disabled] ="isvalidated" (click)="update()" style="background: rgba(252, 166, 6, 0); border-radius: 50%">
                   <ion-icon name="create"></ion-icon>
                 </ion-fab-button>
 

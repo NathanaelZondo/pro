@@ -95,7 +95,7 @@ userdate;
 //we need the mmaximum operating hours for the salon
 salonoperatinghours =8;
 
-
+isv:boolean =false
 blocker:boolean=false;
 setbooking(booking:bookings)
 {
@@ -107,6 +107,13 @@ this.testarray =[];
   //this.backend.userbookings(booking);
 // prevents incorrect dates from being selected
 
+if(parseFloat(booking.sessiontime[0]+booking.sessiontime[1])<8 || parseFloat(booking.sessiontime[0]+booking.sessiontime[1])>18)
+{
+  this.TimeAlert();
+  this.isvalidated =true;
+ return 0;
+}
+else
 if(parseFloat(booking.sessiontime[3]+booking.sessiontime[4])>0 && parseFloat(booking.sessiontime[3]+booking.sessiontime[4])<30 )
 {
 
@@ -362,6 +369,7 @@ db =firebase.firestore();
 testarray=[];
 testbooking(booking)
 {
+ 
   this.events =[];
   this.testarray =[];
  let hourRange = parseFloat(booking.sessiontime[0]+booking.sessiontime[1]);
@@ -742,6 +750,23 @@ return this.todate;
 back()
 {
   this.control.router.navigateByUrl('/viewsalon');
+}
+
+
+
+
+
+
+
+async TimeAlert() {
+  const alert = await this.alertController.create({
+    header: 'Alert',
+    subHeader: 'Time constraints',
+    message: 'You can only book from 08:00 until 18:00.',
+    buttons: ['OK']
+  });
+
+  await alert.present();
 }
 }
 

@@ -56,7 +56,7 @@ else if(profile.about=="" ||profile.about ==undefined){
   console.log("enterabout")
    this.bioToast();
 }
-else if(profile.cell=="" ||profile.cell ==undefined){
+else if((profile.cell.length)!=10 ||profile.cell ==undefined){
   console.log("entercell")
   this.cellToast(); 
 }
@@ -72,7 +72,7 @@ this.control.newprofileToast();
 }
 }
 
-
+message:String ="No image uploaded.";
   async takePhoto()
   {
 const options:CameraOptions ={
@@ -92,11 +92,12 @@ await this.camera.getPicture(options).then(res => {
   const filename = Math.floor(Date.now() / 1000);
   let file = 'Userprofiles/' + firebase.auth().currentUser + '.jpg';
   const UserImage = this.storage.child(file);
-  this.imageLoading();
+  
   const upload = UserImage.putString(image, 'data_url');
   upload.on('state_changed', snapshot => {
     let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     this.uploadprogress = progress;
+    this.imageLoading();
     if (progress == 100) {
       this.isuploading = false;
     }
@@ -105,8 +106,14 @@ await this.camera.getPicture(options).then(res => {
     upload.snapshot.ref.getDownloadURL().then(downUrl => {
       this.profile.image = downUrl;
       console.log('Image downUrl', downUrl);
-this.imageLoading();
 
+if(downUrl=="" || downUrl ==undefined)
+{
+ this.message ="No image uploaded" 
+}
+else{
+  this.message ="Profile image uploaded successfully" 
+}
     })
   })
 }, err => {
@@ -136,7 +143,7 @@ this.imageLoading();
 
   async cellToast() {
     const toast = await this.toastController.create({
-      message: 'Enter your cell phone number.',
+      message: 'Enter a 10 digit phone number.',
       duration: 5000
     });
     toast.present();
@@ -162,7 +169,7 @@ this.imageLoading();
 
   async imageLoading() {
     const loading = await this.loadingController.create({
-      message: 'Please wait...',
+      message: 'Please wait image uploading...',
       translucent: true,
       duration: 20000
     });
