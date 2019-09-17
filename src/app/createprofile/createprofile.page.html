@@ -1,54 +1,51 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>createprofile</ion-title>
-  </ion-toolbar>
-</ion-header> -->
+
 
 <ion-content>
   <div class="container">
+    <div class="title">
+      <h1> Create Profile </h1>
+    </div>
     <div class="userimage">
-      <div class="img">
-        <img src="{{styleImage}}" width="100px" height="100px">
+      <div class="img"  (click)="takePhoto()">
+        <img src="{{styleImage}}" placeholder="Choose Image" width ="100px" height ="100px">
       </div>
-      <div class="chooseimg" (click)="takePhoto()">
-        <ion-fab-button style="background: black; border-radius: 50%">
-          <ion-icon name="camera"></ion-icon>
-        </ion-fab-button>
-        <!-- <ion-icon name="camera"></ion-icon> -->
-      </div>
+      <!-- <div class="chooseimg" (click)="takePhoto()">
+        <ion-icon name ="camera" style="font-size: 30px;"></ion-icon>
+      </div>   -->
     </div>
-
+<br>
+<br>
     <div class="inputs">
-      <ion-item color="dark">
-        <ion-input type="text" [(ngModel)]="profile.name" placeholder="Enter your name" ></ion-input>
-      </ion-item>
-
-      <ion-item color="dark">
-        <ion-input type="text" [(ngModel)]="profile.surname" placeholder="Enter your surname"></ion-input>
-      </ion-item>
-
-      <ion-item color="dark">
-        <ion-input type="text" [(ngModel)]="profile.cell" placeholder="Enter your cell number"></ion-input>
-      </ion-item>
-
-      <ion-item color="dark">
-        <ion-input type="text" [(ngModel)]="profile.about" placeholder="Tell us about yourself"></ion-input>
-      </ion-item>
       <ion-item>
-        <ion-input [(ngModel)] ="profile.image"  style="color: rgba(128, 255, 138, 0.788);" readonly></ion-input> 
+        <ion-label><p>Name</p></ion-label>
+          <ion-input type = "text" [(ngModel)] ="profile.name" placeholder ="Enter your name" style="color: rgba(19, 19, 19, 0.788);"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label><p>Surname</p></ion-label>
+        <ion-input type = "text" [(ngModel)] ="profile.surname" placeholder ="Enter your surnamename" style="color: rgba(19, 19, 19, 0.788);"></ion-input>
+      </ion-item>
+        
+       <ion-item>
+          <ion-label><p>Phone</p></ion-label>
+          <ion-input type = "text" [(ngModel)] ="profile.cell" placeholder ="Enter your cell number" style="color: rgba(19, 19, 19, 0.788);"></ion-input>
        </ion-item>
-     
+    
+       <ion-item>
+          <ion-label ><p>Bio</p></ion-label>
+         <ion-input [(ngModel)] ="profile.about" placeholder="Tell us about yourself" style="color: rgba(19, 19, 19, 0.788);"></ion-input> 
+        </ion-item>
+
+        <ion-item>
+         <ion-input [(ngModel)] ="profile.image"  style="color: rgba(194, 255, 217, 0.788);" readonly></ion-input> 
+        </ion-item>
 
     </div>
-
+<br>
     <div class="btn">
-      <ion-button color="dark" (click)="saveprofile(profile)">SUBMIT</ion-button>
+        <ion-button color="dark" [disabled] ="sub" (click) ="updateprofile(profile)">SUBMIT</ion-button>
     </div>
+
   </div>
 
 </ion-content>
-
-<!-- <ion-input type = "text" [(ngModel)] ="profile.name" placeholder ="Enter your name"></ion-input>
-        <ion-input type = "text" [(ngModel)] ="profile.surname" placeholder ="Enter your surnamename"></ion-input>
-        <ion-input type = "text" [(ngModel)] ="profile.cell" placeholder ="Enter your cell number"></ion-input>
-        <ion-input type = "text" [(ngModel)] ="profile.about" placeholder ="Tell us about yourself"></ion-input> -->

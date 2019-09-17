@@ -7,6 +7,10 @@ import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
 import * as firebase from 'firebase';
 import { ToastController, LoadingController } from '@ionic/angular';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { async } from 'q';
+
+
 
 
 @Component({
@@ -20,8 +24,9 @@ export class CreateprofilePage  {
   uploadprogress
   profiles =[];
   isuploading: false
-  constructor(public loadingController:LoadingController,public toastController:ToastController,private camera:Camera,public control:ControlsService,public backend:BackendService) {
 
+  constructor(public loadingController:LoadingController,public toastController:ToastController,private camera:Camera,public control:ControlsService,public backend:BackendService) {
+  
 
   }
 
@@ -173,6 +178,58 @@ this.imageLoading();
     console.log('Loading dismissed!');
   }
 
+//   async createprofile(profileForm: FormGroup): Promise<void> {
+//     if (!profileForm.valid) {
+//       console.log(
+//         'Need to complete the form, current value: ',
+//         profileForm.value
+//       );
+//     } else {
+//            // load the profile creation process
+//          const load =    await this.loadingController.create({
+//             message: 'Creating Profile..'
+//           });
+//      load.present();
+      
+//       //const user = this.db.collection('SalonOwnerProfile').doc(this.authUser.getUser()).update(this.SalonOwnerProfile);
+
+//         firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).set(this.Profile);
+// this.control.newprofileToast();
+//   this.control.navCtrl.navigateRoot('/navigation');
+//        const toast = await this.toastController.create({
+//           message: 'Welcome' ,
+//           duration: 2000,
+       
+//         });
+//         toast.present();
+//         // ...get the profile that just got created...
+//         load.dismiss();
+      
+//         // catch any errors.
+//       }
+//     }
+    
+  // validation_messages = {
+  //   'ownername': [
+  //     { type: 'required', message: 'Name is required.' },
+  //     { type: 'minlength', message: 'Name must be at least 4 characters long.' },
+  //     { type: 'maxlength', message: 'Name cannot be more than 25 characters long.' },
+  //     { type: 'pattern', message: 'Your Name must not contain numbers and special characters.' },
+  //     { type: 'validUsername', message: 'Your username has already been taken.' }
+  //   ],
+  //   'ownerSurname': [
+  //     { type: 'required', message: 'Surname is required.' },
+  //     { type: 'minlength', message: 'Surname must be at least 4 characters long.' },
+  //     { type: 'maxlength', message: 'Surname cannot be more than 25 characters long.' },
+  //     { type: 'pattern', message: 'Your Surname must not contain numbers and special characters.' },
+  //     { type: 'validUsername', message: 'Your username has already been taken.' }
+  //   ],
+  //   'phone': [
+  //     { type: 'required', message: 'Cellnumber is required.' }
+  //   ],
+    
+  // };
+  }
 
 
 
@@ -182,8 +239,6 @@ this.imageLoading();
 
 
 
-
-}
 
 
 

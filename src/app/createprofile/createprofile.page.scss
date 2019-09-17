@@ -1,62 +1,38 @@
 .container {
     display: flex;
     flex-flow: column;
-    // justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
+}
 
+.title {
+    h1 {
+        color: rgba(133, 88, 4, 0.74);
+        font-size: 30px;
+    }
 }
 
 .userimage {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    padding: 10px;
     position: relative;
 
     .img {
         width: 200px;
         height: 200px;
-        border: 5px solid grey;
-        overflow: hidden;
         border-radius: 50%;
+        background: rgba(14, 13, 13, 0.74);
+        overflow: hidden;
 
         img {
-
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 50%;
         }
     }
 
-    .chooseimg {
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        // background: red;
-        position: absolute;
-        top: 90%;
-        left: 80%;
-
-        .icon {
-            font-size: 50px;
-        }
-    }
-}
-
-.inputs {
-    position: relative;
-    top: 120px;
-
-    .item {
-        text-align: center;
-        width: 300px;
-        margin: 5px;
-    }
-}
-
-.btn {
-    position: relative;
-    top: 150px;
-
-    .button {
-        width: 300px;
-    }
 }
