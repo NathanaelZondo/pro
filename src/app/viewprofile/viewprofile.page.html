@@ -68,7 +68,12 @@
     <div class="flex-container">
         <div style="width:100vw;padding-left:0px" >
           <pre>
-            
+            <div class="edit">
+              <ion-fab-button [disabled] ="isvalidated" (click)="update()" style="background: rgba(252, 166, 6, 0); border-radius: 50%">
+                <ion-icon name="create"></ion-icon>
+              </ion-fab-button>
+
+            </div>
           </pre>
           <div class="info">
               <p id="name">{{profile.name}} {{profile.surname}}</p>
@@ -79,12 +84,7 @@
              </div>
 
 
-             <div class="edit">
-                <ion-fab-button [disabled] ="isvalidated" (click)="update()" style="background: rgba(252, 166, 6, 0); border-radius: 50%">
-                  <ion-icon name="create"></ion-icon>
-                </ion-fab-button>
-
-              </div>
+   
             <!-- <table width ="auto" style ="margin-left:15px; ">
                  <tr >
                   
