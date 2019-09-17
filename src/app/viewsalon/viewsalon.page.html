@@ -12,11 +12,11 @@
         <div class="likes">
         <ion-icon name="heart"(click)="like(x)" id="heart"
         style="font-size: 30px; color: rgb(240, 10, 10)"></ion-icon>
-        <!-- <p>{{likes}}</p> -->
+        <p style="color: white">{{likes}}</p>
       </div>
 
       <div class="back" routerLink="/navigation">
-        <ion-icon name="arrow-back" style="color: grey; font-size: 25px;"></ion-icon>
+        <ion-icon name="arrow-back" style="color: white; font-size: 25px;"></ion-icon>
       </div>
       </div>
 
@@ -28,7 +28,7 @@
     <div class="details">
       <div class="blur"></div>
       <div class="card" *ngFor="let x of salond">
-<!-- <ion-button (click) = "like(x)">Likes = {{likes}}<ion-icon name = "like"></ion-icon></ion-button> -->
+
         <div class="subtitle">
           {{x.salonName}}
         </div>
@@ -58,8 +58,11 @@
     defaultColor = "#A9A9A9"
     readonly="true"
     rating= {{aveg}}
-    fontSize = "25px"
+    fontSize = "8vw"
     halfStar = "true"
+    style="position: relative;
+    top: 26vh;
+    z-index: 5;"
     >
 </ionic4-star-rating>
      <div class="reviews" routerLink="/reviews">
