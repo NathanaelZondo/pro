@@ -707,6 +707,114 @@ this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-"+(n
 
   submit(booking:bookings)
   {
+
+    if(booking.sessiontime)
+    {
+  
+  //time estimated by the salon
+  let estimatedhours = parseInt((booking.estimatedtime/60).toString());
+  let estimatedmins =booking.estimatedtime%60;
+  
+  
+  
+  
+  let overlap =0;
+  //initial time variables
+  let hrs = parseFloat(this.booking.sessiontime[0]+this.booking.sessiontime[1]);
+  let mins =parseFloat(this.booking.sessiontime[3]+this.booking.sessiontime[4]);
+  
+  
+  //new time variables
+  let newhrs;
+  let newmins;
+  
+  
+  
+  newhrs = hrs +estimatedhours;
+  newmins = mins;
+  
+  console.log("newmins = ",newmins)
+  console.log("newhrs = ",newhrs)
+  
+  if(newmins == 0 && newhrs>=10 && booking.estimatedtime ==30)
+    {
+      newhrs ;
+      booking.sessionendtime=newhrs+":30";
+      console.log("Time 00 =", booking.sessionendtime)
+    }
+    else
+    
+    if(newmins == 30 && newhrs>=10 && booking.estimatedtime ==30)
+    {
+      newhrs =newhrs+1;
+      booking.sessionendtime=newhrs+":00";
+      console.log("Time 00 =", booking.sessionendtime)
+    }
+    else
+  
+  
+  
+  if(newmins == 0 && newhrs<10 && booking.estimatedtime ==30)
+    {
+      newhrs ;
+      booking.sessionendtime="0"+newhrs+":30";
+      console.log("Time 00 =", booking.sessionendtime)
+    }
+    else
+    
+    if(newmins == 30 && newhrs<10 && booking.estimatedtime ==30)
+    {
+      newhrs =newhrs+1;
+      booking.sessionendtime="0"+newhrs+":00";
+      console.log("Time 00 =", booking.sessionendtime)
+    }
+    else
+  
+    if(newmins == 30 && newhrs>=10 && booking.estimatedtime ==30)
+    {
+      newhrs =newhrs+1;
+      booking.sessionendtime=newhrs+":"+newmins;
+      console.log("Time 000 =", booking.sessionendtime)
+    }
+    else
+  
+  if(newhrs<10 && newmins == 0)
+  {
+    booking.sessionendtime="0"+newhrs+":00";
+    console.log("Time 1 =", booking.sessionendtime)
+  
+  }
+  else
+  if(newhrs<10 && newmins == 30)
+  {
+    booking.sessionendtime="0"+newhrs+":"+newmins;
+    console.log("Time 2 =", booking.sessionendtime)
+  
+  }
+  if(newhrs>=10 && newmins == 0 && booking.estimatedtime !=30)
+  {
+    booking.sessionendtime=newhrs+":00";
+    console.log("Time 11 =", booking.sessionendtime)
+  
+  }
+  else
+  if(newhrs>=10 && newmins == 30 && booking.estimatedtime !=30)
+  {
+    booking.sessionendtime=newhrs+":"+newmins;
+    console.log("Time 22 =", booking.sessionendtime)
+  
+  }
+  
+  
+  
+  
+  
+  
+  }
+  
+  
+
+
    this.presentAlertConfirm()
     
    
