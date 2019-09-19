@@ -183,11 +183,11 @@ salond = this.backend.salonsDisply;
   }
 
 getSalonmarkrs(){
-  this.db.collection('SalonNode').onSnapshot(snapshot => {
+  this.db.collection('Salons').onSnapshot(snapshot => {
     snapshot.forEach(doc => {
 
      
-        let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().location
+        let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().Address.fullAddress
         //  this.addMarkersOnTheCustomersCurrentLocation(doc.data().lat, doc.data().lng, content);
 
 
@@ -202,7 +202,7 @@ getSalonmarkrs(){
         let marker = new google.maps.Marker({
           map: this.map,
           animation: google.maps.Animation.DROP,
-          position: new google.maps.LatLng(doc.data().coords.lat, doc.data().coords.lng),
+          position: new google.maps.LatLng(doc.data().Address.lat, doc.data().Address.lng),
           icon: icon
         });
         // this.addInfoWindow(marker, content);
@@ -230,7 +230,7 @@ getSalonmarkrs(){
     var grayStyles = [
       {
         featureType: "all",
-        stylers: [
+        styles: [
           { saturation: -10 },
           { lightness: 0 }
         ]
