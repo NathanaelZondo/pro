@@ -9,10 +9,14 @@
       <img src="{{x.salonImage}}">
 
       <div class="topbar">
+        	
+              <ion-icon name="heart"></ion-icon>
+           
         <div class="likes">
-        <ion-icon name="heart"(click)="like(x)" id="heart"
-        style="font-size: 30px; color: rgb(240, 10, 10); margin: 10px"></ion-icon>
-        <p style="color: white">{{likes}}</p>
+            <ion-button (click)="toogleHaert()">
+              <ion-icon  slot="icon-only" name="heart" [class]="heart"></ion-icon>
+              </ion-button>
+              
       </div>
 
       <div class="back" routerLink="/navigation">
@@ -26,6 +30,7 @@
     </div> -->
 
     <div class="details">
+ 
       <div class="blur"></div>
       <div class="card" *ngFor="let x of salond">
 
@@ -71,9 +76,11 @@
     </div> 
     <div class="desc" *ngFor="let x of salond">
 
-      <p>{{x.SalonDesc}} </p>
+      <p>{{x.SalonDesc}}       </p>
     </div>
-
+    <ion-fab-button (click)="toogleHaert()">
+        <ion-icon  slot="icon-only" name="heart" [class]="heart"></ion-icon>
+    </ion-fab-button>
     <div class=" buttonz">
       <ion-button (click)="selecthairstyle('female')" color="dark" id="btn" (click)="viewHair()"clear round>Ladies</ion-button>
       <ion-button (click)="selecthairstyle('male')" color="dark" id="btn" (click)="viewHair()" round>Gents</ion-button>
