@@ -10,7 +10,12 @@ ion-toolbar {
 * {
     transition: 0.7s;
 }
-
+.like{
+    color: red
+}
+.unlike{
+    color: blue
+}
 .back {
     position: absolute;
     z-index: 5;

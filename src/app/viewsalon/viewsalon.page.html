@@ -38,6 +38,7 @@
     </div> -->
 
     <div class="details">
+ 
       <div class="blur"></div>
       <div class="card" *ngFor="let x of salond">
 
@@ -79,9 +80,11 @@
     </div>
     <div class="desc" *ngFor="let x of salond">
 
-      <p>{{x.SalonDesc}} </p>
+      <p>{{x.SalonDesc}}       </p>
     </div>
-
+    <ion-fab-button (click)="toogleHaert()">
+        <ion-icon  slot="icon-only" name="heart" [class]="heart"></ion-icon>
+    </ion-fab-button>
     <div class=" buttonz">
       <ion-button (click)="selecthairstyle('female')"  id="btn" (click)="viewHair()"
       style="background: rgb(133, 37, 2)">Ladies
