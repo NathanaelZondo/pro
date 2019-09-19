@@ -95,31 +95,31 @@
   
 
     .sc-ion-card-ios-h {
-        min-width: 80%;
+        min-width: 82%;
         border-radius: 20px;
         background-color: rgb(233, 159, 0);
        .images{
-             height: 23vh;
+             height: 20vh;
              width: 50vh;  
-             object-fit: cover;
-             background-repeat: no-repeat;
-             background-size: cover;
-
+               
+      
+     
 
              img{
                  width: 100%;
                  height: 100%;
                  object-fit: cover;
+                 margin:0;
                  background-size: cover;
 
              }
-         }
+         } 
          .icon1{
              
         
          }
          .btn1{
-            background-color: rgb(233, 159, 0);
+            background: rgba(241, 160, 9, 0.829);
              border-radius: 50px;
            
          }
