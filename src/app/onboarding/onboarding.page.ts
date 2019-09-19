@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlsService } from '../controls.service';
 
+
 @Component({
   selector: 'app-onboarding',
   templateUrl: './onboarding.page.html',

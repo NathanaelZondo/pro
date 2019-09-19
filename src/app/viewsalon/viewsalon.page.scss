@@ -31,6 +31,7 @@
    top: 0;
    width: 100%;
    height: 65vh;
+   background: black;
    .topbar {
        display: flex;
        flex-flow: row;
@@ -41,7 +42,7 @@
        .back {
            font-size: 20vw;
            position: relative;
-           left: 0.5vh;
+           left: -10vh;
            bottom: 11vh;
            width: 2vw;
        }
@@ -49,7 +50,10 @@
            position: relative;
            left: 48vh;
            bottom: 5vh;
-           width: 2vw;
+           width: 15vw;
+           display: flex;
+           flex-flow: row;
+           margin: 5px;
        }
    }
    img {
@@ -57,12 +61,13 @@
        height: 100%;
        border: none;
        object-fit: cover;
+       opacity: 0.5;
    }
 }
 .details {
     position: absolute;
     top: 55%;
-    left: 13%;
+    left: 14%;
     right: 15%;
     z-index: 5;
     bottom: 15%;
@@ -72,23 +77,18 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     background: rgba(255, 255, 255, 0.945);
     box-shadow: 3px 3px 4px rgb(156, 156, 156);
 }
-.rating {
-   // width: 50vh;
-   .icon {
-       font-size: 2vw;
 
-   }
-}
 .card {
    width: 100%;
    height: 100%;
    object-fit: cover;
    position: absolute;
    top: 14%;
-   left: 2%;
+//    left: 2%;
    z-index: 3;
    font-family: 'Abel';
    display: flex;
@@ -140,17 +140,17 @@
 .desc {
    position: absolute;
    top: 77%;
-   left: 1%;
+   left: 8%;
    text-align: center;
    color: black;
    font-size:4vw;
    display: flex;
    flex-flow: column;
-   width: 55vh;
+   width: 45vh;
 }
 .reviews {
     position: relative;
-    top:25%;
+    top:22%;
     left: 20%;
     margin: 13px;
 

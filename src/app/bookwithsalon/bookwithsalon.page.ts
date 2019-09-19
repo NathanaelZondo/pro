@@ -95,24 +95,32 @@ userdate;
 //we need the mmaximum operating hours for the salon
 salonoperatinghours =8;
 
-
+isv:boolean =false
 blocker:boolean=false;
 setbooking(booking:bookings)
 {
 
-console.log("This is the ==",booking)
+//console.log("This is the ==",booking)
 
 this.testarray =[];
   this.blocker =false;
   //this.backend.userbookings(booking);
 // prevents incorrect dates from being selected
 
+if(parseFloat(booking.sessiontime[0]+booking.sessiontime[1])<8 || parseFloat(booking.sessiontime[0]+booking.sessiontime[1])>18)
+{
+  this.TimeAlert();
+  this.isvalidated =true;
+ return 0;
+}
+else
 if(parseFloat(booking.sessiontime[3]+booking.sessiontime[4])>0 && parseFloat(booking.sessiontime[3]+booking.sessiontime[4])<30 )
 {
 
 console.log("block =",parseFloat(booking.sessiontime[3]+booking.sessiontime[4]) )
 this.control.BlockToast();
 this.isvalidated =true;
+return 0;
 
 }
 else if(parseFloat(booking.sessiontime[3]+booking.sessiontime[4])>30 && parseFloat(booking.sessiontime[3]+booking.sessiontime[4])<=59)
@@ -121,6 +129,7 @@ else if(parseFloat(booking.sessiontime[3]+booking.sessiontime[4])>30 && parseFlo
   console.log("block2 =",parseFloat(booking.sessiontime[3]+booking.sessiontime[4]) )
   this.control.BlockToast();
   this.isvalidated =true;
+  return 0;
 
 }
 else
@@ -362,11 +371,12 @@ db =firebase.firestore();
 testarray=[];
 testbooking(booking)
 {
+ 
   this.events =[];
   this.testarray =[];
  let hourRange = parseFloat(booking.sessiontime[0]+booking.sessiontime[1]);
 let minuteRange =parseFloat(booking.sessiontime[3]+booking.sessiontime[4])
-console.log("Test booking here",booking);
+
 this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).get().then(val=>{
 if(val.size==0)
 {
@@ -443,11 +453,11 @@ let y =this.d3;
 
 
 
-this.timeList.push({a,x,b,y});
+
  
 this.formodal =false;
 
-  console.log("Timelist =",this.timeList)
+
 if(this.d2<=this.d1 && this.d1<this.d3)
 {
 
@@ -461,8 +471,10 @@ console.log("Booking Error slot occupied ")
 else
 {
 
-  console.log(" d1 =",this.d1," d2 =",this.d2," d3= ",this.d3);
-  console.log(this.d2>=this.d1 && this.d1<=this.d3)
+  // console.log(" d1 =",this.d1," d2 =",this.d2," d3= ",this.d3);
+  // console.log(this.d2>=this.d1 && this.d1<=this.d3)
+
+
   this.isvalidated =false;
   //this.control.SlotToast1();
 
@@ -474,12 +486,12 @@ val.forEach(value=>{
   if(value.data().sessiontime!="")
   {
     this.isvalidated =true;
-    this.backend.timeList =this.timeList;
+  
     this.control.SlotToast();
   }
   else{
     this.isvalidated =true;
-    this.backend.timeList =this.timeList;
+    
     this.control.SlotToast();
   }
 })
@@ -493,12 +505,12 @@ this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(b
     if(value.data().sessiontime!="")
     {
       this.isvalidated =true;
-      this.backend.timeList =this.timeList;
+     
       this.control.SlotToast();
     }
     else{
       this.isvalidated =true;
-      this.backend.timeList =this.timeList;
+   
       this.control.SlotToast();
     }
   })
@@ -514,21 +526,8 @@ this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(b
 
 
 
-//  this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).onSnapshot(val=>{
-
-//   val.forEach(doc=>{
-  
-//    this.testarray.push(doc.data());
-//   });
-
-  
-//    this.testarray2 =this.testarray;
-  
-  
-  
-//     })
   this.testarray2 =this.testarray;
-    console.log("TestArray2 = ",this.testarray2)
+  //  console.log("TestArray2 = ",this.testarray2)
 
    
   
@@ -561,11 +560,11 @@ this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(b
    
   
   
-   this.timeList.push({a,x,b,y});
+
    
    
   
-     console.log("Timelist =",this.timeList)
+  
   
   
      this.events.push({
@@ -574,7 +573,7 @@ this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(b
        endTime: new Date(y),
        allDay: false
      })
-     console.log("Events = ",this.events);
+     //this function loads the events into the events function
      this.setevents(this.events);
    }
 
@@ -583,13 +582,6 @@ this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(b
 
 
    
-
-   async presentModal() {
-    const modal = await this.modalController.create({
-      component: ModalPage
-    });
-    return await modal.present();
-  }
 
 
   eventSource;
@@ -600,8 +592,10 @@ this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(b
       currentDate: new Date()
   }; // these are the variable used by the calendar.
   loadEvents() {
+
+    //receives data from array "this.events"
     this.eventSource = this.getevents();
-    console.log(this.eventSource)
+    
   }
   onViewTitleChanged(title) {
       this.viewTitle = title;
@@ -699,6 +693,114 @@ this.booking.userdate =new Date(ev.selectedTime).getFullYear().toString()+"-"+(n
 
   submit(booking:bookings)
   {
+
+    if(booking.sessiontime)
+    {
+  
+  //time estimated by the salon
+  let estimatedhours = parseInt((booking.estimatedtime/60).toString());
+  let estimatedmins =booking.estimatedtime%60;
+  
+  
+  
+  
+  let overlap =0;
+  //initial time variables
+  let hrs = parseFloat(this.booking.sessiontime[0]+this.booking.sessiontime[1]);
+  let mins =parseFloat(this.booking.sessiontime[3]+this.booking.sessiontime[4]);
+  
+  
+  //new time variables
+  let newhrs;
+  let newmins;
+  
+  
+  
+  newhrs = hrs +estimatedhours;
+  newmins = mins;
+  
+  console.log("newmins = ",newmins)
+  console.log("newhrs = ",newhrs)
+  
+  if(newmins == 0 && newhrs>=10 && booking.estimatedtime ==30)
+    {
+      newhrs ;
+      booking.sessionendtime=newhrs+":30";
+      console.log("Time 00 =", booking.sessionendtime)
+    }
+    else
+    
+    if(newmins == 30 && newhrs>=10 && booking.estimatedtime ==30)
+    {
+      newhrs =newhrs+1;
+      booking.sessionendtime=newhrs+":00";
+      console.log("Time 00 =", booking.sessionendtime)
+    }
+    else
+  
+  
+  
+  if(newmins == 0 && newhrs<10 && booking.estimatedtime ==30)
+    {
+      newhrs ;
+      booking.sessionendtime="0"+newhrs+":30";
+      console.log("Time 00 =", booking.sessionendtime)
+    }
+    else
+    
+    if(newmins == 30 && newhrs<10 && booking.estimatedtime ==30)
+    {
+      newhrs =newhrs+1;
+      booking.sessionendtime="0"+newhrs+":00";
+      console.log("Time 00 =", booking.sessionendtime)
+    }
+    else
+  
+    if(newmins == 30 && newhrs>=10 && booking.estimatedtime ==30)
+    {
+      newhrs =newhrs+1;
+      booking.sessionendtime=newhrs+":"+newmins;
+      console.log("Time 000 =", booking.sessionendtime)
+    }
+    else
+  
+  if(newhrs<10 && newmins == 0)
+  {
+    booking.sessionendtime="0"+newhrs+":00";
+    console.log("Time 1 =", booking.sessionendtime)
+  
+  }
+  else
+  if(newhrs<10 && newmins == 30)
+  {
+    booking.sessionendtime="0"+newhrs+":"+newmins;
+    console.log("Time 2 =", booking.sessionendtime)
+  
+  }
+  if(newhrs>=10 && newmins == 0 && booking.estimatedtime !=30)
+  {
+    booking.sessionendtime=newhrs+":00";
+    console.log("Time 11 =", booking.sessionendtime)
+  
+  }
+  else
+  if(newhrs>=10 && newmins == 30 && booking.estimatedtime !=30)
+  {
+    booking.sessionendtime=newhrs+":"+newmins;
+    console.log("Time 22 =", booking.sessionendtime)
+  
+  }
+  
+  
+  
+  
+  
+  
+  }
+  
+  
+
+
    this.presentAlertConfirm()
     
    
@@ -715,7 +817,7 @@ return this.events;
 this.events=setve;
 
 this.loadEvents();
-console.log(this.events)
+//console.log(this.events)
 }
 ////////////////////////////////////////////////////////////////
 
@@ -742,6 +844,23 @@ return this.todate;
 back()
 {
   this.control.router.navigateByUrl('/viewsalon');
+}
+
+
+
+
+
+
+
+async TimeAlert() {
+  const alert = await this.alertController.create({
+    header: 'Alert',
+    subHeader: 'Time constraints',
+    message: 'You can only book from 08:00 until 18:00.',
+    buttons: ['OK']
+  });
+
+  await alert.present();
 }
 }
 

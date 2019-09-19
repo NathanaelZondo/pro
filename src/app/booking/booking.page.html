@@ -1,13 +1,12 @@
-
 <ion-header>
   <ion-toolbar color="dark">
-      <ion-icon name="arrow-round-back" style="font-size: 30px" (click)="back()"></ion-icon>
+    <ion-icon name="arrow-round-back" style="font-size: 30px" (click)="back()"></ion-icon>
     <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content >
-<!-- <h1 align = "center">Current Bookings</h1> -->
-<!-- <ion-item *ngFor = "let x of newdata">
+<ion-content>
+  <!-- <h1 align = "center">Current Bookings</h1> -->
+  <!-- <ion-item *ngFor = "let x of newdata">
 
     <pre>
         <h3>Client Info</h3>
@@ -32,7 +31,7 @@
 
 </ion-item> -->
 
-<!-- <div class="container" *ngFor = "let x of newdata" >
+  <!-- <div class="container" *ngFor = "let x of newdata" >
   <div class="date">
       Date:      {{x.userdate}} 
       Status:    {{x.status2}}
@@ -54,10 +53,10 @@
       Location  {{x.salonlocation}}
   </div>
   
-</div> --> 
+</div> -->
 
 
-<!-- <h1 align = "center">Booking History</h1>
+  <!-- <h1 align = "center">Booking History</h1>
 
 <div class="container2" *ngFor = "let x of userbooking" >
   <div class="date">
@@ -72,7 +71,7 @@
       Time:{{x.sessiontime}} for {{x.estimatedtime}} minutes<br>
       Date:      {{x.userdate}} 
       Status:    {{x.status2}} -->
-      <!-- Duration:  {{x.estimatedtime}} minutes -->
+  <!-- Duration:  {{x.estimatedtime}} minutes -->
   <!-- </div>
 
   <div class="stylist">
@@ -83,68 +82,73 @@
 </div> -->
 
 
-<div class ="backg">
+  <div class="container">
 
-
-
-<div class="card front">
-    <div class="blue"></div>
-    <div class="yellow"></div>
-    <div class="pink"></div>
-    <div class="dots"></div>
-    <div class="personal-intro">
-      <p>Current Bookings</p>
-      <p> Today's user bookings</p>
+    <div class="card front">
+      <div class="personal-intro">
+        <p style=" text-align: center;">Current Bookings</p>
+        <p style=" text-align: center;"> Today's user bookings</p>
+      </div>
     </div>
-  </div>
-  <div class="card back" *ngFor = "let x of newdata">
-    <div class="yellow" (click) ="viewdetails(x)"><p style ="color:white;font-family:sans-serif;font-size: 14px">View Details</p></div>
-    <div class="top dots"></div>
-    <div class="personal-info">
-        <div style ="color:white;font-family:sans-serif;font-size: 14px;">
-            Salon:    {{x.salonname}}<br>
-            Stylist:  {{x.hairdresser}}<br>
-            Location  {{x.salonlocation}}<br>
-            Date:     {{x.userdate}}&nbsp; {{x.sessiontime}} <br>
-            Stylist:   {{x.status2}}
-           
+    <div class="card back" *ngFor="let x of newdata">
+      <!-- <div class="yellow" (click)="viewdetails(x)">
+        <p style="color:black;font-family:sans-serif;font-size: 14px">View Details</p>
+      </div> -->
+
+      <div class="personal" (click)="viewdetails(x)">
+        <div class="date" style="color:white; font-family: 'Manjari';">
+          <p> {{x.userdate}}</p>
+        </div>
+        <div llass="stuff" style="color:black; margin: 10px;font-family: 'Manjari';font-size: 14px;
+        position: absolute;
+        left: 20%;">
+          Salon: {{x.salonname}}<br>
+          Stylist: {{x.hairdresser}}<br>
+          Location: {{x.salonlocation}}<br>
+          Time: {{x.sessiontime}} <br>
+          Stylist: {{x.status2}}
+
+        </div>
+        
+      </div>
+      <div class="pink" align="right" style="position: absolute;
+        right: 15px; margin: 8px;">
+          <ion-button color="danger" *ngIf="x.status2!='cancelled' && x.status!='cancelled'" (click)="forthealert(x)">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
         </div>
     </div>
-    <div class="bottom dots"> </div>
-    <div class="pink"  align="right"><ion-button color ="danger" *ngIf= "x.status2!='cancelled' && x.status!='cancelled' "   (click) ="cancel(x)"><ion-icon name ="close"></ion-icon></ion-button></div>
-  </div>
 
+    <div class="card front">
 
-
-<div class="card front">
-    <div class="blue"></div>
-    <div class="yellow"></div>
-    <div class="pink"></div>
-    <div class="dots"></div>
-    <div class="personal-intro">
-      <p>All Bookings</p>
-      <p>History of user bookings</p>
+      <div class="personal-intro" style=" text-align: center;">
+        <p style=" text-align: center">All Bookings</p>
+        <p style=" text-align: center">History of user bookings</p>
+      </div>
     </div>
-  </div>
-  <div class="card back" *ngFor = "let x of userbooking">
-    <div class="yellow"  (click) ="viewdetails(x)"><p style ="color:white;font-family:sans-serif;font-size: 14px">View Details</p></div>
-    <div class="top dots"></div>
-    <div class="personal-info">
-        <div style ="color:white;font-family:sans-serif;font-size: 14px">
-            Salon:    {{x.salonname}}<br>
-            Location  {{x.salonlocation}}<br>
-            Date:     {{x.userdate}}&nbsp; {{x.sessiontime}}<br>
-            You:{{x.status}}<br>
-            Stylist:   {{x.status2}}
+    <div class="card back" *ngFor="let x of userbooking">
+      <!-- <div class="yellow" (click)="viewdetails(x)">
+        <p style="color:black;font-family:sans-serif;font-size: 14px">View Details</p>
+      </div> -->
+
+      <div class="personal" (click)="viewdetails(x)">
+        <div class="date" style="color:white;  font-family:'Manjari';">
+          <p> {{x.userdate}}</p>
         </div>
+        <div class="stuff" style="color:black; font-family:'Manjari';font-size: 14px">
+          Salon: {{x.salonname}}<br>
+          Location: {{x.salonlocation}}<br>
+          Time: {{x.sessiontime}}<br>
+          You:{{x.status}}<br>
+          Stylist: {{x.status2}}
+        </div>
+      </div>
+
     </div>
-    <div class="bottom dots"></div>
-    <div class="pink"></div>
   </div>
-</div>
- <!-- <h1>All User Bookings</h1> -->
-  
-<!-- <ion-item *ngFor ="let x of userbooking">
+  <!-- <h1>All User Bookings</h1> -->
+
+  <!-- <ion-item *ngFor ="let x of userbooking">
 
     
 <pre>
@@ -166,7 +170,7 @@ Location   {{x.salonlocation}}
 </pre>
 
 </ion-item>  -->
-   
+
 
 
 </ion-content>

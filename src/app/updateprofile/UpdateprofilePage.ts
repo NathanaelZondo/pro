@@ -20,6 +20,7 @@ export class UpdateprofilePage implements OnInit {
   uid;
   sub = false;
   styleImage;
+  message:string ="No image uploaded";
   storage = firebase.storage().ref();
   uploadprogress;
   isuploading: false;
@@ -75,7 +76,13 @@ export class UpdateprofilePage implements OnInit {
         upload.snapshot.ref.getDownloadURL().then(downUrl => {
           this.profile.image = downUrl;
           console.log('Image downUrl', downUrl);
-            
+          if(downUrl=="" || downUrl ==undefined)
+{
+ this.message ="No image uploaded" 
+}
+else{
+  this.message ="Profile image uploaded successfully" 
+}  
           
         
         });
@@ -151,7 +158,7 @@ this.imageToast();
 
   async cellToast() {
     const toast = await this.toastController.create({
-      message: 'Enter your cell phone number.',
+      message: 'Enter a 10 digit cell phone number.',
       duration: 5000
     });
     toast.present();
@@ -177,9 +184,9 @@ this.imageToast();
 
   async imageLoading() {
     const loading = await this.loadingController.create({
-      message: 'Please wait...',
+      message: 'Please wait image uploading...',
       translucent: true,
-      duration: 20000
+      duration: 5000
     });
     await loading.present();
 

@@ -7,6 +7,10 @@ import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
 import * as firebase from 'firebase';
 import { ToastController, LoadingController } from '@ionic/angular';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { async } from 'q';
+
+
 
 
 @Component({
@@ -20,8 +24,9 @@ export class CreateprofilePage  {
   uploadprogress
   profiles =[];
   isuploading: false
-  constructor(public loadingController:LoadingController,public toastController:ToastController,private camera:Camera,public control:ControlsService,public backend:BackendService) {
 
+  constructor(public loadingController:LoadingController,public toastController:ToastController,private camera:Camera,public control:ControlsService,public backend:BackendService) {
+  
 
   }
 
@@ -56,7 +61,7 @@ else if(profile.about=="" ||profile.about ==undefined){
   console.log("enterabout")
    this.bioToast();
 }
-else if(profile.cell=="" ||profile.cell ==undefined){
+else if((profile.cell.length)!=10 ||profile.cell ==undefined){
   console.log("entercell")
   this.cellToast(); 
 }
@@ -72,7 +77,7 @@ this.control.newprofileToast();
 }
 }
 
-
+message:String ="No image uploaded.";
   async takePhoto()
   {
 const options:CameraOptions ={
@@ -92,11 +97,12 @@ await this.camera.getPicture(options).then(res => {
   const filename = Math.floor(Date.now() / 1000);
   let file = 'Userprofiles/' + firebase.auth().currentUser + '.jpg';
   const UserImage = this.storage.child(file);
-  this.imageLoading();
+  
   const upload = UserImage.putString(image, 'data_url');
   upload.on('state_changed', snapshot => {
     let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     this.uploadprogress = progress;
+    this.imageLoading();
     if (progress == 100) {
       this.isuploading = false;
     }
@@ -105,8 +111,14 @@ await this.camera.getPicture(options).then(res => {
     upload.snapshot.ref.getDownloadURL().then(downUrl => {
       this.profile.image = downUrl;
       console.log('Image downUrl', downUrl);
-this.imageLoading();
 
+if(downUrl=="" || downUrl ==undefined)
+{
+ this.message ="No image uploaded" 
+}
+else{
+  this.message ="Profile image uploaded successfully" 
+}
     })
   })
 }, err => {
@@ -136,7 +148,7 @@ this.imageLoading();
 
   async cellToast() {
     const toast = await this.toastController.create({
-      message: 'Enter your cell phone number.',
+      message: 'Enter a 10 digit phone number.',
       duration: 5000
     });
     toast.present();
@@ -162,7 +174,7 @@ this.imageLoading();
 
   async imageLoading() {
     const loading = await this.loadingController.create({
-      message: 'Please wait...',
+      message: 'Please wait image uploading...',
       translucent: true,
       duration: 20000
     });
@@ -173,6 +185,58 @@ this.imageLoading();
     console.log('Loading dismissed!');
   }
 
+//   async createprofile(profileForm: FormGroup): Promise<void> {
+//     if (!profileForm.valid) {
+//       console.log(
+//         'Need to complete the form, current value: ',
+//         profileForm.value
+//       );
+//     } else {
+//            // load the profile creation process
+//          const load =    await this.loadingController.create({
+//             message: 'Creating Profile..'
+//           });
+//      load.present();
+      
+//       //const user = this.db.collection('SalonOwnerProfile').doc(this.authUser.getUser()).update(this.SalonOwnerProfile);
+
+//         firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).set(this.Profile);
+// this.control.newprofileToast();
+//   this.control.navCtrl.navigateRoot('/navigation');
+//        const toast = await this.toastController.create({
+//           message: 'Welcome' ,
+//           duration: 2000,
+       
+//         });
+//         toast.present();
+//         // ...get the profile that just got created...
+//         load.dismiss();
+      
+//         // catch any errors.
+//       }
+//     }
+    
+  // validation_messages = {
+  //   'ownername': [
+  //     { type: 'required', message: 'Name is required.' },
+  //     { type: 'minlength', message: 'Name must be at least 4 characters long.' },
+  //     { type: 'maxlength', message: 'Name cannot be more than 25 characters long.' },
+  //     { type: 'pattern', message: 'Your Name must not contain numbers and special characters.' },
+  //     { type: 'validUsername', message: 'Your username has already been taken.' }
+  //   ],
+  //   'ownerSurname': [
+  //     { type: 'required', message: 'Surname is required.' },
+  //     { type: 'minlength', message: 'Surname must be at least 4 characters long.' },
+  //     { type: 'maxlength', message: 'Surname cannot be more than 25 characters long.' },
+  //     { type: 'pattern', message: 'Your Surname must not contain numbers and special characters.' },
+  //     { type: 'validUsername', message: 'Your username has already been taken.' }
+  //   ],
+  //   'phone': [
+  //     { type: 'required', message: 'Cellnumber is required.' }
+  //   ],
+    
+  // };
+  }
 
 
 
@@ -182,8 +246,6 @@ this.imageLoading();
 
 
 
-
-}
 
 
 
