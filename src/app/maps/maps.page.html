@@ -1,8 +1,10 @@
 <ion-content>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Location">
-  <div #map id="map"></div>
+  <div #map id="map">
+      <input id="pac-input" class="controls" type="text" placeholder="Search Location">
+
+  </div>
   <div class="salonlist">
-    <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
+    <!-- <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
       <div class="image">
         <img src="{{x.salonImage}}">
       </div>
@@ -14,8 +16,58 @@
         </div>
 
       </div>
+
+          <ion-icon class="icon1" name="pin">Directions</ion-icon>
+    
+
+        <ion-fab-button class="color2">
+            <ion-icon class="icon2" name="call">Directions</ion-icon>
+          </ion-fab-button>
+     
+    </div> -->
+    <div class="container">
+        <ion-card *ngFor="let x of salond" (click)="selectsalon(x)">
+
+            <ion-card-content class="images">
+                <img src="{{x.salonImage}}">
+            </ion-card-content>
+            <ion-item>
+                <ion-fab-button class="btn1">
+                    <ion-icon class="icon1" name="pin"></ion-icon>
+                  </ion-fab-button>
+              <ion-label><strong>{{x.salonName}} </strong></ion-label>
+              <ion-button fill="outline" slot="end">View</ion-button>
+            </ion-item>
+          
+         
+          </ion-card>
+
+            
+      
     </div>
 
   </div>
+
+<!-- 
+  <ion-card class="Card"  *ngFor="let x of salond" (click)="selectsalon(x)">
+      <ion-card-header>
+          <div class="image">
+              <img src="{{x.salonImage}}">
+            </div>
+      </ion-card-header>
+    
+      <ion-card-content class="CCad">
+          <div class="details">
+              <div class="subtitle">
+                <p>{{x.salonName}} <br> 
+                  {{x.streetName}}
+                </p>
+              </div>
+      
+            </div>
+      </ion-card-content>
+    </ion-card>  -->
+
+
   </ion-content>
   
