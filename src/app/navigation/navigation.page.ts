@@ -28,13 +28,19 @@ profiles =[];
       }
       else{
        this.profiles.push(val.data());
+
+
        this.backend.profiles =this.profiles;
        console.log("Profile data =",this.profiles)
-      this.backend.setuserdata(this.profiles[0].name, this.profiles[0].surname, this.profiles[0].cell)
+      this.backend.setuserdata(this.profiles[0].name, this.profiles[0].surname, this.profiles[0].personalNumber)
       }  
     
     })
 
+
+
+
+    
 
   }
 

@@ -21,15 +21,7 @@ export class ViewhairstylePage implements OnInit {
 
   ionViewDidEnter()
 {
-  this.backend.getstyles(this.backend.gend).subscribe(val=>{
-  //  this.fg =val;
-this.gender.push(this.fg);
-
-
-
-
-console.log(this.gender[0].duration)
-  })
+ 
 }
 
   ngOnInit() {

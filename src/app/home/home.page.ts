@@ -66,23 +66,7 @@ export class HomePage {
   constructor(private nativeGeocoder: NativeGeocoder, private camera: Camera, public control: ControlsService, public backend: BackendService, public alertCtrl: AlertController, private geolocation: Geolocation, public loadingController: LoadingController) {
     // initializeApp(config);  
 
-    console.log('check', this.salond)
-    this.backend.getsalons().subscribe(val => {
-      this.salon = val;
-      console.log(this.salon)
-
-
-      //view profile on the viewprofilepage 
     
-    
-
-
-      this.hairstyledata = this.backend.hairstyledata.splice(0, this.backend.hairstyledata.length);
-
-      this.backend.setsalondata(this.salonname, this.location)
-      this.backend.getHairSalon()
-
-    })
 
     ///maps
     this.db.collection('SalonNode').onSnapshot(snapshot => {

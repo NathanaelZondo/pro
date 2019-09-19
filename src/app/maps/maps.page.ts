@@ -61,35 +61,26 @@ salond = this.backend.salonsDisply;
    ////////get salons
    
 
-   this.backend.getsalons().subscribe(val => {
-    this.salon = val;
-    console.log(this.salon)
+  //  this.backend.getsalons().subscribe(val => {
+  //   this.salon = val;
+  //   console.log(this.salon)
 
 
   
 
-    this.hairstyledata = this.backend.hairstyledata.splice(0, this.backend.hairstyledata.length);
+  //   this.hairstyledata = this.backend.hairstyledata.splice(0, this.backend.hairstyledata.length);
 
-    this.backend.setsalondata(this.salonname, this.location)
-    this.backend.getHairSalon()
+  //   this.backend.setsalondata(this.salonname, this.location)
+  //   this.backend.getHairSalon()
 
-  })
+  // })
 
-  this.backend.getProfile().subscribe(val => {
-
-
-    this.profiles = this.backend.profiles;
+ 
 
 
 
 
 
-    this.backend.setuserdata(this.profiles[0].name, this.profiles[0].surname, this.profiles[0].cell)
-
-
-    console.log("this is the value for profile")
-
-  })
 
    //////////////////////////
 
@@ -109,7 +100,7 @@ salond = this.backend.salonsDisply;
   
 
   selectsalon(x) {
-
+console.log( "Address = ",x.Address.streetName)
     this.backend.selectedsalon.splice(0, 1);
     console.log(x.userUID)
     this.cover = x.salonImage;
@@ -118,7 +109,7 @@ salond = this.backend.salonsDisply;
     this.backend.salonname = x.salonName;
     this.backend.selectedsalon.push(x);
     this.backend.selectedsalon.splice(1, 1);
-    this.backend.setsalondata(x.salonName, x.streetName);
+    this.backend.setsalondata(x.salonName, x.Address.streetName);
 
     let click = 1;
     let v1;

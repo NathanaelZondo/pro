@@ -32,9 +32,9 @@ export class BackendService {
   salonplaceholder = [];
   constructor(public toastController:ToastController,public navCtrl:NavController,public afs: AngularFirestore, public control: ControlsService, public loadingController: LoadingController, ) {
   
-    this.items = this.afs.collection('Users').valueChanges();
-
-    this.salons = this.afs.collection('Salons').valueChanges();
+ 
+    this.getsalons(); 
+  
 
 
   }
@@ -47,10 +47,7 @@ export class BackendService {
   type = 'chiskop;'
   profiles = [];
 
-  getProfile() 
-  {
-    return this.items;
-  }
+  
 
   
 
@@ -72,23 +69,17 @@ export class BackendService {
 
   getsalons() 
   {
-    return this.salons;
+    this.salondisp = [];
+    this.db.collection('Salons').onSnapshot(snapshot => {
+      snapshot.forEach(doc => {doc.data()
+      console.log(doc.data())
+      this.salondisp.push(doc.data())
+      })
+    })
+
   }
 
-  getstyles(x) {
-    this.gend = x;
-    if (x == 0) {
 
-      return this.menstyles;
-
-    }
-    else 
-    {
-
-  return this.womenstyles;
-
-    }
-  }
 
   salonuid;
   setuserdata(username, surname, cell)
@@ -100,6 +91,8 @@ export class BackendService {
 
   setsalondata(name, streetname) 
   {
+
+    
     this.salonname = name;
     this.salonlocation = streetname;
 
@@ -134,62 +127,35 @@ this.hairstyleimage =hairstyle;
     console.log(booking)
 
 
-    this.afs.collection('Bookings').doc(this.uid).collection('userbookings').add(booking).then(result => {
+    this.afs.collection('Bookings').add(booking).then(result => {
       console.log(result)
     });
 
     console.log("query info =", booking.salonname, booking.hairdresser, booking.userdate, booking.hairdresser)
-    this.db.collection('Salons').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).add(booking);
+   
 
   }
 
-  salondisp;
+  salondisp = [];
   hairstyledata: Array<any> = [];
 
-  getHairSalon() {
 
-    this.hairstyledata = [];
-  
-    this.db.collection('Salons').onSnapshot(snap => {
-      if (snap.empty !== true) {
 
-        snap.forEach(doc => {
-  
-          this.displayProfile = doc.data();
-          this.name = doc.data().salonName;
-          this.salonsDisply.push(doc.data())
-
-          this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles').onSnapshot(qu => {
-            qu.forEach(doc => {
-              this.hairstyledata.push(doc.data());
-
-              this.hairstyledata.splice(1, 1);
-              console.log(this.hairstyledata.length)
-            })
-          })
-
-        })
-
-      } else {
-        console.log('No data');
-
-      }
-
-    })
-  }
 
 
 
   gethairdresser() 
   {
-    return this.db.collection('SalonNode').doc(this.salonname).collection('staff').where("status", "==",true)
+
+    console.log("Salon uid =",this.salonuid)
+    return this.db.collection('Salons').doc(this.salonuid).collection('staff').where("isAvialiabe", "==",true);
   }
   userbooking = [];
 
   getuserbookings()
    {
     this.userbooking = [];
-    return this.db.collection('Bookings').doc(this.uid).collection('userbookings');
+    return this.db.collection('Bookings').where("useruid","==",this.uid).where("salonuid","==",this.salonuid);
   }
   
 
@@ -210,6 +176,41 @@ this.bookingdetails.push(bd);
     toast.present();
   }
 
+
+
+  getHairSalon() {
+
+  
+    this.db.collection('Salons').get().then(snap => {
+      if (snap.empty !== true) {
+
+        snap.forEach(doc => {
+          //console.log('Profile Document: ', doc.data())
+          this.displayProfile = doc.data();
+          this.name = doc.data().salonName;
+          this.salonsDisply.push(doc.data())
+console.log("Salon Display",this.salonsDisply)
+          this.db.collection('Salons').doc(doc.data().salonName).collection('Styles').get().then(qu => {
+            qu.forEach(doc => {
+              this.hairstyledata.push(doc.data());
+
+              this.hairstyledata.splice(1, 1);
+              console.log(this.hairstyledata.length)
+            })
+          })
+
+        })
+
+      } else {
+        console.log('No data');
+
+      }
+
+    }).catch(err => {
+      console.log("Query Results: ", err);
+
+    })
+  }
 }
 
 
