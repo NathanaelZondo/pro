@@ -82,7 +82,7 @@ console.log('toatl for ratings',this.total)
 
     console.log(this.backend.salonname)
 this.hair =[];
-    let user = this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles')
+    let user = this.db.collection('Salons').doc(this.salond[0].userUID).collection('Styles')
 
 
     let query = user.where("genderOptions", "==", x).get().then(val => {

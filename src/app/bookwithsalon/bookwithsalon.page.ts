@@ -66,7 +66,9 @@ export class BookwithsalonPage implements OnInit {
     status: "Active",
     status2: "Active",
     salonuid: this.backend.salonuid,
-    hairstyleimage: this.backend.hairstyleimage
+    hairstyleimage: this.backend.hairstyleimage,
+    useruid:this.backend.uid,
+    bookingid:Math.floor(Math.random() * 2000000).toString()
   }
   //this is the date inputed by the user
   userdate;
@@ -451,7 +453,7 @@ export class BookwithsalonPage implements OnInit {
     let hourRange = parseFloat(booking.sessiontime[0] + booking.sessiontime[1]);
     let minuteRange = parseFloat(booking.sessiontime[3] + booking.sessiontime[4])
 
-    this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).get().then(val => {
+    this.db.collection('Bookings').where("useruid", "==",booking.useruid).where("salonuid","==",booking.salonuid).where("userdate","==",booking.userdate).get().then(val => {
       if (val.size == 0) {
         this.isvalidated = false;
         this.control.SlotToast2();
@@ -459,14 +461,14 @@ export class BookwithsalonPage implements OnInit {
       val.forEach(doc => {
         this.testarray.push(doc.data());
 
-      return this.findtime(booking);
-  
+      
+        this.findtime(booking);
 
       });
 
     });
 
-
+   
     console.log("here = ",this.testarray)
   
 
@@ -494,6 +496,8 @@ export class BookwithsalonPage implements OnInit {
     this.d1 = new Date((booking.userdate + 'T') + (booking.sessiontime));
     this.d2 = new Date((booking.userdate + 'T0') + (booking.sessionendtime));
     this.d3;
+
+    
 
     //this.formodal=false;
 
@@ -533,10 +537,11 @@ export class BookwithsalonPage implements OnInit {
 
         this.formodal = true;
         this.isvalidated = true;
-        this.control.SlotToast();
+        
+        
        // this.eventspopulation(this.booking);
-        return this.isvalidated;
-       
+         this.eventsconfirm();
+       return 0;
         console.log("Booking Error slot occupied ")
 
       }
@@ -549,12 +554,12 @@ export class BookwithsalonPage implements OnInit {
 
         this.isvalidated = false;
        
-        //this.control.SlotToast1();
+        this.control.SlotToast1();
 
       }
    
 
-      this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).where("sessiontime", "==", booking.sessiontime).get().then(val => {
+      this.db.collection('Booking').where("userdate","==",booking.userdate).where("sessiontime", "==", booking.sessiontime).where("useruid", "==",booking.useruid).where("salonuid","==",booking.salonuid).get().then(val => {
         val.forEach(value => {
           //console.log(value.data())
           if (value.data().sessiontime != "") {
@@ -572,7 +577,7 @@ export class BookwithsalonPage implements OnInit {
 
 
 
-      this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).where("sessionendtime", "==", booking.sessionendtime).get().then(val => {
+      this.db.collection('Booking').where("userdate","==",booking.userdate).where("sessionendtime", "==", booking.sessionendtime).where("useruid", "==",booking.useruid).where("salonuid","==",booking.salonuid).get().then(val => {
         val.forEach(value => {
           console.log(value.data())
           if (value.data().sessiontime != "") {
@@ -649,7 +654,7 @@ console.log("Testarray length =",this.testarray2.length)
     this.setevents(this.events);
     console.log("events = ",this.events);
   }
-
+  this.testarray =[];
   return 0;
 }
 
@@ -890,6 +895,38 @@ console.log("Testarray length =",this.testarray2.length)
 
     await alert.present();
   }
+
+
+
+
+
+  async eventsconfirm() {
+    const alert = await this.alertController.create({
+      header: 'Booking currently taken.',
+      message: 'Would you like to view today\'s schedule?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            
+           this.eventspopulation(this.booking)
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+
+
 }
 
 
