@@ -1,14 +1,26 @@
-<!-- <ion-header>
-    <ion-toolbar>
-      <ion-title>viewhairstyle</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
-<ion-content>
+
+<ion-content fullscreen>
+    <ion-header>
+        <ion-toolbar>
+            <div class="likes" style=" float: right">
+                <ion-icon name="heart" (click)="like(x)" id="heart"
+                  style="float: left; font-size: 30px; color: rgb(240, 10, 10); margin: 10px"></ion-icon>
+                
+              </div>
+      
+              <div class="back" routerLink="/navigation">
+                <ion-icon name="arrow-back" style="float: right; margin: 10px; color: white; font-size: 25px;"></ion-icon>
+              </div>
+        </ion-toolbar>
+      </ion-header>
+
   <div class="container">
+
+     
     <div class="salonimage" *ngFor="let x of salond">
       <img src="{{x.salonImage}}">
 
-      <div class="topbar">
+      <!-- <div class="topbar">
         <div class="likes" style=" float: right">
           <ion-icon name="heart" (click)="like(x)" id="heart"
             style="font-size: 30px; color: rgb(240, 10, 10); margin: 10px"></ion-icon>
@@ -18,7 +30,7 @@
         <div class="back" routerLink="/navigation">
           <ion-icon name="arrow-back" style=" margin: 10px; color: white; font-size: 25px;"></ion-icon>
         </div>
-      </div>
+      </div> -->
 
     </div>
     <!-- <div class="img1" *ngFor="let x of salond">
@@ -58,7 +70,7 @@
     </ionic4-star-rating>
 
     <div class="analyze">
-        <p style="color: rgb(100, 100, 100); text-align: center; font-size:  5vw">{{likes}}<br> Likes</p>
+        <p style="color: white; text-align: center; font-size:  5vw">{{likes}}<br> Likes</p>
       </div>
 
     <div class="reviews" routerLink="/reviews">
@@ -71,9 +83,11 @@
     </div>
 
     <div class=" buttonz">
-      <ion-button (click)="selecthairstyle('female')" color="dark" id="btn" (click)="viewHair()">Ladies
+      <ion-button (click)="selecthairstyle('female')"  id="btn" (click)="viewHair()"
+      style="background: rgb(133, 37, 2)">Ladies
       </ion-button>
-      <ion-button (click)="selecthairstyle('male')" color="dark" id="btn" (click)="viewHair()">Gents</ion-button>
+      <ion-button (click)="selecthairstyle('male')"  id="btn" (click)="viewHair()"
+      style="background: rgb(49, 49, 49)">Gents</ion-button>
     </div>
   </div>
 
