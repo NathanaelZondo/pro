@@ -1,72 +1,83 @@
 @import url('https://fonts.googleapis.com/css?family=Lato%7CTeko%7CAbel%7CAnton%7CDosis%7COxygen%7CJura%7CPacifico%7CRighteous%7CRoboto+Condensed%7CUbuntu%7COpen+Sans+Condensed');
+
 * {
-   transition: 0.7s;
+    transition: 0.7s;
 }
+
 .back {
-   position: absolute;
-   z-index: 5;
+    position: absolute;
+    z-index: 5;
 }
+
 .container {
-   display: flex;
-   flex-flow: column;
-   justify-content: center;
-   align-items: center;
-   width: 100%;
-   height: 100vh;
-   position: fixed;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
 }
+
 .detail {
-   position: absolute;
-   bottom: 8%;
-   background: rgba(255, 255, 255, 0.774);
-   width: 15vh;
-   height: 8vh;
-   p {
-       position: relative;
-       bottom: 10px;
-   }
+    position: absolute;
+    bottom: 8%;
+    background: rgba(255, 255, 255, 0.774);
+    width: 15vh;
+    height: 8vh;
+
+    p {
+        position: relative;
+        bottom: 10px;
+    }
 }
+
 .salonimage {
-   position: absolute;
-   top: 0;
-   width: 100%;
-   height: 65vh;
-   background: black;
-   .topbar {
-       display: flex;
-       flex-flow: row;
-       justify-content: space-between;
-       position: absolute;
-       top: 10%;
-       z-index: 5;
-       .back {
-           font-size: 20vw;
-           position: relative;
-           left: -10vh;
-           bottom: 11vh;
-           width: 2vw;
-       }
-       .likes {
-           position: relative;
-           left: 48vh;
-           bottom: 5vh;
-           width: 15vw;
-           display: flex;
-           flex-flow: row;
-           margin: 5px;
-       }
-   }
-   img {
-       width: 100%;
-       height: 100%;
-       border: none;
-       object-fit: cover;
-       opacity: 0.5;
-   }
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 75vh;
+    background: black;
+
+    .topbar {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+        position: absolute;
+        top: 10%;
+        z-index: 5;
+
+        .back {
+            font-size: 20vw;
+            position: relative;
+            left: -10vh;
+            bottom: 11vh;
+            width: 2vw;
+        }
+
+        .likes {
+            position: relative;
+            left: 45vh;
+            bottom: 5vh;
+            width: 15vw;
+            display: flex;
+            flex-flow: row;
+            margin: 5px;
+        }
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        border: none;
+        object-fit: cover;
+        opacity: 0.5;
+    }
 }
+
 .details {
     position: absolute;
-    top: 55%;
+    top: 25%;
     left: 14%;
     right: 15%;
     z-index: 5;
@@ -78,79 +89,96 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: rgba(255, 255, 255, 0.945);
-    box-shadow: 3px 3px 4px rgb(156, 156, 156);
+    // background: rgba(255, 255, 255, 0.945);
+}
+
+.analyze {
+    position: absolute;
+    z-index: 5;
+    top: 60%;
+    left: 10%;
 }
 
 .card {
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
-   position: absolute;
-   top: 14%;
-//    left: 2%;
-   z-index: 3;
-   font-family: 'Abel';
-   display: flex;
-   flex-flow: column;
-   float: left;
-   .subtitle {
-       font-size: 6vw;
-       color: black;
-   }
-   .title {
-       font-size: 6vw;
-       color: black;
-   }
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 14%;
+    //left: 2%;
+    z-index: 3;
+    font-family: 'Abel';
+    display: flex;
+    flex-flow: column;
+    float: left;
+
+    .subtitle {
+        font-size: 10vw;
+        color: whitesmoke;
+    }
+
+    .title {
+        font-size: 10vw;
+        color: whitesmoke;
+    }
 }
+
 .hair-inactive {
-   position: absolute;
-   left: 5%;
-   bottom: 0;
-   right: 5%;
-   top: 100%;
-   z-index: 5;
+    position: absolute;
+    left: 5%;
+    bottom: 0;
+    right: 5%;
+    top: 100%;
+    z-index: 5;
 }
+
 .hair-active {
-   position: absolute;
-   left: 0;
-   bottom: 0%;
-   right: 0;
-   top: 15%;
-   z-index: 5;
-   background: rgb(34, 34, 34);
-   overflow: hidden;
-   overflow-x: auto;
-   padding: 10px;
-   // border-top-left-radius: 20px;
-   // border-top-right-radius: 20px;
-   .gallery {
-       height: 100%;
-       width: 100%;
-   }
+    position: absolute;
+    left: 0;
+    bottom: 0%;
+    right: 0;
+    top: 15%;
+    z-index: 5;
+    background: rgb(34, 34, 34);
+    overflow: hidden;
+    overflow-x: auto;
+    padding: 10px;
+
+    // border-top-left-radius: 20px;
+    // border-top-right-radius: 20px;
+    .gallery {
+        height: 100%;
+        width: 100%;
+    }
 }
+
 .buttonz {
-   position: absolute;
-   left: 12%;
-   bottom: 1%;
-   .button {
-       width: 20vh;
-   }
+    position: absolute;
+    width: 100%;
+    bottom: 0%;
+    display: flex;
+    flex-flow: row;
+
+    .button {
+        width: 30vh;
+    }
 }
+
 .desc {
-   position: absolute;
-   top: 77%;
-   left: 8%;
-   text-align: center;
-   color: black;
-   font-size:4vw;
-   display: flex;
-   flex-flow: column;
-   width: 45vh;
+    position: absolute;
+    top: 77%;
+    left: 8%;
+    text-align: center;
+    color: black;
+    font-size: 4vw;
+    display: flex;
+    flex-flow: column;
+    width: 45vh;
 }
+
 .reviews {
     position: relative;
-    top:22%;
+    top: 22%;
     left: 20%;
     margin: 13px;
 
@@ -164,18 +192,18 @@
         align-items: baseline;
     }
 }
-// .info{
-//     position: absolute;
-//     top: 50%;
-// }
-
-
-
-
-
 
 // .info{
 //     position: absolute;
 //     top: 50%;
 // }
 
+
+
+
+
+
+// .info{
+//     position: absolute;
+//     top: 50%;
+// }

@@ -9,15 +9,15 @@
       <img src="{{x.salonImage}}">
 
       <div class="topbar">
-        <div class="likes">
-        <ion-icon name="heart"(click)="like(x)" id="heart"
-        style="font-size: 30px; color: rgb(240, 10, 10); margin: 10px"></ion-icon>
-        <p style="color: white">{{likes}}</p>
-      </div>
+        <div class="likes" style=" float: right">
+          <ion-icon name="heart" (click)="like(x)" id="heart"
+            style="font-size: 30px; color: rgb(240, 10, 10); margin: 10px"></ion-icon>
+          <p style="color: white">{{likes}}</p>
+        </div>
 
-      <div class="back" routerLink="/navigation">
-        <ion-icon name="arrow-back" style=" margin: 10px; color: white; font-size: 25px;"></ion-icon>
-      </div>
+        <div class="back" routerLink="/navigation">
+          <ion-icon name="arrow-back" style=" margin: 10px; color: white; font-size: 25px;"></ion-icon>
+        </div>
       </div>
 
     </div>
@@ -47,36 +47,33 @@
           halfStar = "true"
           >
         </ionic4-star-rating> -->
-
+       
         </div>
       </div>
     </div>
-    <ionic4-star-rating #rating
-    activeIcon = "ios-star"
-    defaultIcon = "ios-star-outline"
-    activeColor = "#db981a" 
-    defaultColor = "#A9A9A9"
-    readonly="true"
-    rating= {{aveg}}
-    fontSize = "8vw"
-    halfStar = "true"
-    style="position: relative;
-    top: 26vh;
-    z-index: 5;"
-    >
-</ionic4-star-rating>
-     <div class="reviews" routerLink="/reviews">
+    <ionic4-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#db981a"
+      defaultColor="#A9A9A9" readonly="true" rating={{aveg}} fontSize="8vw" halfStar="true" style="position: relative;
+ top: 5%;
+    z-index: 5;">
+    </ionic4-star-rating>
+
+    <div class="analyze">
+        <p style="color: rgb(100, 100, 100); text-align: center; font-size:  5vw">{{likes}}<br> Likes</p>
+      </div>
+
+    <div class="reviews" routerLink="/reviews">
       <p>Reviews <ion-icon name="arrow-dropright" style="color: white"></ion-icon>
       </p>
-    </div> 
+    </div>
     <div class="desc" *ngFor="let x of salond">
 
       <p>{{x.SalonDesc}} </p>
     </div>
 
     <div class=" buttonz">
-      <ion-button (click)="selecthairstyle('female')" color="dark" id="btn" (click)="viewHair()"clear round>Ladies</ion-button>
-      <ion-button (click)="selecthairstyle('male')" color="dark" id="btn" (click)="viewHair()" round>Gents</ion-button>
+      <ion-button (click)="selecthairstyle('female')" color="dark" id="btn" (click)="viewHair()">Ladies
+      </ion-button>
+      <ion-button (click)="selecthairstyle('male')" color="dark" id="btn" (click)="viewHair()">Gents</ion-button>
     </div>
   </div>
 
@@ -99,7 +96,7 @@
           <ion-slide *ngFor="let x of hair" (click)="choosehair(x)" style="display: flex; flex-flow: column">
             <ion-card>
               <ion-card-header id="head">
-                <img src='{{x.hairStyleImage}}' style="width: 40vh; height: 50vh;"> 
+                <img src='{{x.hairStyleImage}}' style="width: 40vh; height: 50vh;">
 
                 <br>
                 <ion-card-subtitle>{{x.hairstyleName}}</ion-card-subtitle>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { ControlsService } from '../controls.service';
 import * as firebase from 'firebase';
@@ -23,7 +23,7 @@ export class BookingPage implements OnInit {
   newdata =[];
   ob ={};
    buttonactive ;
-  constructor(private alertController: AlertController,public backend:BackendService,public control:ControlsService,public modalController:ModalController,public controls:ControlsService) {
+  constructor(private alertController: AlertController,public backend:BackendService,public control:ControlsService,public modalController:ModalController,public controls:ControlsService, private elemntref:ElementRef, private renderer: Renderer2) {
    this.newdata =[];
    let v =0;    
    this.control.Loading2();
@@ -33,16 +33,6 @@ export class BookingPage implements OnInit {
        this.userbooking.push(doc.data())
      })
    })
-
-
-
-
-
-
-
-
-
-
 
 
    let currentdate = (new Date().getFullYear().toString())+'-'+(new Date().getMonth())+'-'+(new Date().getDate());
@@ -82,7 +72,24 @@ export class BookingPage implements OnInit {
    }
 
   ngOnInit() {
-    
+    let color = ['whitesmoke','white']
+    let cards = this.elemntref.nativeElement.children[1].children[0].children
+    setTimeout(()=> {
+      console.log('native els: ', cards);
+      for (let i = 0; i < cards.length; i++) {
+        const change = i %2;
+        const random = Math.floor(Math.random() * color.length);
+
+        if (change) {
+          this.renderer.setStyle(cards[i].children[0], 'background', color[0])
+        console.log('card', i , 'styling');
+        } else {
+          this.renderer.setStyle(cards[i].children[0], 'background', color[1])
+        console.log('card', i , 'styling');
+        }
+        
+      }
+    }, 1000)
   }
   alldata;
 forthealert(x)

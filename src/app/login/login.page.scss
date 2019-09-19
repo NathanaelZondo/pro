@@ -1,35 +1,57 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Teko|Abel|Anton|Dosis|Oxygen|Jura|Pacifico|Righteous|Roboto+Condensed|Ubuntu|Manjari');
-
+.overscroll {
+  padding-bottom:  0 !important;
+}
 ion-grid{
   background: url('../../assets/background.svg');
      background-size: cover;
      background-position: center;
      background-repeat: no-repeat;
      width: 100%;
-     height: 100vh;
+     min-height: 100vh;
      text-align: center;
-    //  font-family: 'Manjari';
+     padding-bottom: 0 !important;
+     position: fixed;
     }
 
 .logo{
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   align-items: center;
   position: relative;
 }
 
 .signin{
   color: white;
+  h3{
+    font-size: 5vw;
+  }
+}
+
+.content{
+  .scroll-content {
+    padding-bottom: 0 !important;
+ }
 }
 
 form{
-  // width: 50vh;
+  width: 300px;
   // align-items: center;
   .item{
-    color: white;
+    .item {
+      position: relative;
+      top: 30px;
+      // left: 4%;
+      // width: 200px;
+      text-align: center;
+      // box-shadow: 1px 3px 3px grey;
+      // border-radius: 50px;
+      background: transparent;
+      color: white;
+  }
   }
   button{
-    width: 45vh;
+    width: 300px;
   }
 }
 
@@ -39,7 +61,7 @@ form{
 
 .btns{
   position: absolute;
-  bottom: 10px;
+  bottom: 0;
   left: 16%;
   p{
     color: white;
@@ -47,6 +69,17 @@ form{
       color: black;
     }
   }
+
+  .grid{
+    
+  .scroll-content {
+    padding-bottom: 0 !important;
+ }
+  }
+
+//   .scroll-content {
+//     padding-bottom: 0 !important;
+//  }
 }
 
 
