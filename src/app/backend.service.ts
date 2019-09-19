@@ -32,7 +32,7 @@ export class BackendService {
   salonplaceholder = [];
   constructor(public toastController:ToastController,public navCtrl:NavController,public afs: AngularFirestore, public control: ControlsService, public loadingController: LoadingController, ) {
   
-    this.items = this.afs.collection('userprofile').valueChanges();
+    this.items = this.afs.collection('Users').valueChanges();
 
     this.salons = this.afs.collection('Salons').valueChanges();
 
@@ -56,7 +56,7 @@ export class BackendService {
 
   getprofile2() 
   {
-    return this.db.collection('userprofile').doc(this.uid).get();
+    return this.db.collection('Users').doc(this.uid).get();
   }
 
  
@@ -139,7 +139,7 @@ this.hairstyleimage =hairstyle;
     });
 
     console.log("query info =", booking.salonname, booking.hairdresser, booking.userdate, booking.hairdresser)
-    this.db.collection('SalonNode').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).add(booking);
+    this.db.collection('Salons').doc(booking.salonname).collection('staff').doc(booking.hairdresser).collection(booking.userdate).add(booking);
 
   }
 
@@ -150,7 +150,7 @@ this.hairstyleimage =hairstyle;
 
     this.hairstyledata = [];
   
-    this.db.collection('SalonNode').onSnapshot(snap => {
+    this.db.collection('Salons').onSnapshot(snap => {
       if (snap.empty !== true) {
 
         snap.forEach(doc => {
@@ -159,7 +159,7 @@ this.hairstyleimage =hairstyle;
           this.name = doc.data().salonName;
           this.salonsDisply.push(doc.data())
 
-          this.db.collection('SalonNode').doc(doc.data().salonName).collection('Styles').onSnapshot(qu => {
+          this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles').onSnapshot(qu => {
             qu.forEach(doc => {
               this.hairstyledata.push(doc.data());
 
@@ -182,7 +182,7 @@ this.hairstyleimage =hairstyle;
 
   gethairdresser() 
   {
-    return this.db.collection('SalonNode').doc(this.salonname).collection('staff');
+    return this.db.collection('SalonNode').doc(this.salonname).collection('staff').where("status", "==",true)
   }
   userbooking = [];
 
