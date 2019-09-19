@@ -214,9 +214,9 @@ getSalonmarkrs(){
         google.maps.event.addListener(marker, 'click', () => {
           infoWindow.open(this.map, marker);
         });
-        // google.maps.event.addListener(marker, 'click', () => {
-        // this.selectsalon(doc.data());
-        // });
+        google.maps.event.addListener(marker, 'click', () => {
+        this.selectsalon(doc.data());
+        });
 
         console.log('cords',doc.data().lat,doc.data().lng);
         
