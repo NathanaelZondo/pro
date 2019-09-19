@@ -55,35 +55,26 @@ salond = this.backend.salonsDisply;
    ////////get salons
    
 
-   this.backend.getsalons().subscribe(val => {
-    this.salon = val;
-    console.log(this.salon)
+  //  this.backend.getsalons().subscribe(val => {
+  //   this.salon = val;
+  //   console.log(this.salon)
 
 
   
 
-    this.hairstyledata = this.backend.hairstyledata.splice(0, this.backend.hairstyledata.length);
+  //   this.hairstyledata = this.backend.hairstyledata.splice(0, this.backend.hairstyledata.length);
 
-    this.backend.setsalondata(this.salonname, this.location)
-    this.backend.getHairSalon()
+  //   this.backend.setsalondata(this.salonname, this.location)
+  //   this.backend.getHairSalon()
 
-  })
+  // })
 
-  this.backend.getProfile().subscribe(val => {
-
-
-    this.profiles = this.backend.profiles;
+ 
 
 
 
 
 
-    this.backend.setuserdata(this.profiles[0].name, this.profiles[0].surname, this.profiles[0].cell)
-
-
-    console.log("this is the value for profile")
-
-  })
 
    //////////////////////////
 
@@ -103,7 +94,7 @@ salond = this.backend.salonsDisply;
   
 
   selectsalon(x) {
-
+console.log( "Address = ",x.Address.streetName)
     this.backend.selectedsalon.splice(0, 1);
     console.log(x.userUID)
     this.cover = x.salonImage;
@@ -112,7 +103,7 @@ salond = this.backend.salonsDisply;
     this.backend.salonname = x.salonName;
     this.backend.selectedsalon.push(x);
     this.backend.selectedsalon.splice(1, 1);
-    this.backend.setsalondata(x.salonName, x.streetName);
+    this.backend.setsalondata(x.salonName, x.Address.streetName);
 
     let click = 1;
     let v1;
@@ -183,11 +174,11 @@ salond = this.backend.salonsDisply;
   }
 
 getSalonmarkrs(){
-  this.db.collection('SalonNode').onSnapshot(snapshot => {
+  this.db.collection('Salons').onSnapshot(snapshot => {
     snapshot.forEach(doc => {
 
      
-        let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().location
+        let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().Address.fullAddress
         //  this.addMarkersOnTheCustomersCurrentLocation(doc.data().lat, doc.data().lng, content);
 
 
@@ -202,7 +193,7 @@ getSalonmarkrs(){
         let marker = new google.maps.Marker({
           map: this.map,
           animation: google.maps.Animation.DROP,
-          position: new google.maps.LatLng(doc.data().coords.lat, doc.data().coords.lng),
+          position: new google.maps.LatLng(doc.data().Address.lat, doc.data().Address.lng),
           icon: icon
         });
         // this.addInfoWindow(marker, content);
@@ -230,7 +221,7 @@ getSalonmarkrs(){
     var grayStyles = [
       {
         featureType: "all",
-        stylers: [
+        styles: [
           { saturation: -10 },
           { lightness: 0 }
         ]

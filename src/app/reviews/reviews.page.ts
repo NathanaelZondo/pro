@@ -65,11 +65,15 @@ ngOnInit(){}
           text: 'Ok',
           handler: async data => {
             console.log('Confirm Ok');
-            this.db.collection('SalonNode').doc(this.SalonNode.salonName).collection('ratings').doc(firebase.auth().currentUser.uid).set({
-              rating: rating,
-              review : data.comment,
-              name: this.Profile.name,
-              image : this.Profile.image
+            this.db.collection('Salons').where("salonName", "==",this.backend.salonname).get().then(res =>{
+              res.forEach(doc =>{
+                this.db.collection('Salons').doc(doc.id).collection('ratings').doc(firebase.auth().currentUser.uid).set({
+                  rating: rating,
+                  review : data.comment,
+                  name: this.Profile.name,
+                  image : this.Profile.image
+                })
+              })
             })
           this.getSalon();
             const loading = await this.loadingController.create({
@@ -86,25 +90,37 @@ ngOnInit(){}
   }
 
 getSalon(){
-  this.db.collection('SalonNode').where("salonName" , "==",this.backend.salonname).onSnapshot(res =>{
-    if (res.empty !== true){
-      console.log('Got data', res);
-      res.forEach(doc => {
-        console.log('data for salon ', doc.data())
-       
-        this.SalonNode.salonName = doc.data().salonName;
-        let query =  this.db.collection('SalonNode').doc(this.SalonNode.salonName).collection('ratings');
-        query.get().then( res =>{
-          res.forEach(DOC =>{
-            this.reviews = []
-            this.reviews.push(DOC.data());
 
-          })
-        })
-      
+  this.db.collection('Salons').where("salonName", "==",this.backend.salonname).onSnapshot(res =>{
+    res.forEach(doc =>{
+      this.db.collection('Salons').doc(doc.id).collection('ratings').onSnapshot(doc =>{
+       doc.forEach(doc =>{
+          
+        this.reviews = []
+        this.reviews.push(doc.data())
+       })
       })
-    }
+    })
   })
+  // this.db.collection('Salons').where("salonName" , "==",this.backend.salonname).onSnapshot(res =>{
+  //   if (res.empty !== true){
+  //     console.log('Got data', res);
+  //     res.forEach(doc => {
+  //       console.log('data for salon ', doc.data())
+       
+  //       this.SalonNode.salonName = doc.data().salonName;
+  //       let query =  this.db.collection('Salons').doc().collection('ratings');
+  //       query.get().then( res =>{
+  //         res.forEach(DOC =>{
+  //           this.reviews = []
+  //           this.reviews.push(DOC.data());
+
+  //         })
+  //       })
+      
+  //     })
+  //   }
+  // })
 }
 async getProfile(){
   const loading = await this.loadingController.create({
@@ -112,15 +128,15 @@ async getProfile(){
     duration: 2000
   });
   await loading.present();
-  this.db.collection('userprofile').where("uid","==", firebase.auth().currentUser.uid).get().then(res =>{
-    if(res.empty !== true){
-      console.log('Got user data', res);
-      res.forEach(doc =>{
-        console.log(' user Document: ', doc.data())
-        this.Profile.name = doc.data().name,
-        this.Profile.image = doc.data().image;
-      })
-    }
+  this.db.collection('Users').where("uid","==", firebase.auth().currentUser.uid).get().then(res =>{
+   res.forEach(doc =>{
+    console.log('user profile',doc.data());
+    
+     this.db.collection('Users').doc(doc.id).onSnapshot(doc =>{
+       this.Profile.image = doc.data().image;
+       this.Profile.name = doc.data().name
+     })
+   })
   })
 }
 }

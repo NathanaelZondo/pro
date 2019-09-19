@@ -11,7 +11,7 @@ export class SuccessPage implements OnInit {
   constructor(public control:ControlsService) { }
 
   ngOnInit() {
-    this.control.Loading();
+ 
   }
 
 

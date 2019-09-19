@@ -18,6 +18,7 @@ userdate:string,
 status:string,
 status2:string,
 salonuid:string,
-hairstyleimage:string
-
+useruid:string,
+hairstyleimage:string,
+bookingid:string
 }

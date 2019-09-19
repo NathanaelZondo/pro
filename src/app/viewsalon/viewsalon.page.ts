@@ -42,15 +42,14 @@ userRating = []
    
     console.log(this.likes)
 
-this.db.collection('SalonNode').doc(this.backend.salonname).collection('ratings').onSnapshot(snap =>{
+this.db.collection('Sa')
+
+
+this.db.collection('Salons').doc(this.backend.salonname).collection('ratings').onSnapshot(snap =>{
 snap.forEach( doc =>{
   this.userRating.push(doc.data().rating)
   console.log('users', doc.data().rating);
-  /* this.userRating.forEach(cus =>{
-    console.log('boring', cus);
-    this.total+cus;
-  //  this.total = rate + rate
-  }) */
+
 this.total += doc.data().rating;
 console.log(this.total);
 this.dummy.push(doc.data().rating)
@@ -83,7 +82,7 @@ console.log('toatl for ratings',this.total)
 
     console.log(this.backend.salonname)
 this.hair =[];
-    let user = this.db.collection('SalonNode').doc(this.backend.salonname).collection('Styles')
+    let user = this.db.collection('Salons').doc(this.salond[0].userUID).collection('Styles')
 
 
     let query = user.where("genderOptions", "==", x).get().then(val => {
