@@ -18,6 +18,7 @@ export class BookingPage implements OnInit {
    userdate;
    hairdresser;
    salonname;
+   currentdate;
    useruid;
   newdata =[];
   ob ={};
@@ -37,10 +38,13 @@ export class BookingPage implements OnInit {
     if((new Date().getDate())<10)
     {
       currentdate = (new Date().getFullYear().toString())+'-0'+(new Date().getMonth()+1)+'-0'+(new Date().getDate());
+    
+    
     }
     }
 
-    
+    this.currentdate =currentdate;
+    console.log(this.currentdate )
 
    
 

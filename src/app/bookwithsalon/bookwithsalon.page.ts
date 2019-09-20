@@ -42,13 +42,16 @@ export class BookwithsalonPage implements OnInit {
     cdate.getDay();
     this.currentdate = (cdate.getFullYear() + "-" + (cd1.getMonth() + 1) + "-" + cdate.getDate());
 
+
+
+
   }
 
   currentdate;
   futuredate;
   formodal: boolean = false;
   ngOnInit() {
-
+this.bookingconfirm();
   }
   booking: bookings = {
     name: this.backend.username,
@@ -917,6 +920,45 @@ console.log("Testarray length =",this.testarray2.length)
           handler: () => {
             
            this.eventspopulation(this.booking)
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+
+
+  async bookingconfirm() {
+    const alert = await this.alertController.create({
+      header: 'If you are booking for someone else, enter their name.',
+      inputs: [
+        {
+          name: 'othername',
+          type: 'text',
+          placeholder: 'Enter the name...'
+        },
+        {
+          name: 'othersurname',
+          type: 'text',
+          placeholder: 'Enter the surname...'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Save',
+          handler: (name) => {
+            console.log(name.othername,name.othersurname);
+            this.booking.name =name.othername;
+            this.booking.surname = name.othersurname;
           }
         }
       ]
