@@ -25,9 +25,11 @@ declare var google;
 })
 export class MapsPage implements OnInit {
   sliderConfig ={
-    spaceBetween : 33,
-    centeredSlides : true,
-    slidesPersView : 1.6
+    initialSlide: 0,
+    spaceBetween : 10,
+    centeredSlides: true,
+    slidesPerView: 1.2,
+    watchOverflow: true
   }
   // toggles the div, goes up if true, goes down if false
   display = false;
