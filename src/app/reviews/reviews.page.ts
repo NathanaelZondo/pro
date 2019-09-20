@@ -45,7 +45,7 @@ ngOnInit(){}
   async logRatingChange(rating){
     console.log("changed rating: ",rating);
       const alert = await this.alertController.create({
-      header: 'Prompt!',
+      header: 'What is your comment about '+this.backend.salonname+'?',
       inputs: [
         {
           name: 'comment',
