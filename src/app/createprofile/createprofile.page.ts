@@ -6,7 +6,7 @@ import { Profile } from '../profile';
 import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
 import * as firebase from 'firebase';
-import { ToastController, LoadingController } from '@ionic/angular';
+import { ToastController, LoadingController, NavController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { async } from 'q';
 
@@ -25,7 +25,7 @@ export class CreateprofilePage  {
   profiles =[];
   isuploading: false
 
-  constructor(public loadingController:LoadingController,public toastController:ToastController,private camera:Camera,public control:ControlsService,public backend:BackendService) {
+  constructor(private navCtrl:NavController,public loadingController:LoadingController,public toastController:ToastController,private camera:Camera,public control:ControlsService,public backend:BackendService) {
   
 
   }
@@ -183,6 +183,16 @@ else{
     const { role, data } = await loading.onDidDismiss();
 
     console.log('Loading dismissed!');
+  }
+
+  signout() {
+    this.backend.signout();
+    
+
+  
+    
+    this.navCtrl.setDirection('root');
+    this.navCtrl.navigateRoot('/login');
   }
 
 //   async createprofile(profileForm: FormGroup): Promise<void> {

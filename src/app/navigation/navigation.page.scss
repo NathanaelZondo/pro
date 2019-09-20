@@ -1,54 +1,57 @@
-.container{
-    background: rgba(241, 160, 9, 0.829);
+.container {
+    background: rgb(36, 36, 36);
     width: 100%;
     height: 100%;
 }
 
-.content{
-   /*  width: 100%;
-    height: 100%; */
+.content {
+    width: 100%;
+    height: 100%;
 }
 
-.text{
+.text {
     position: absolute;
-   right: -30%;
-    top: -10%;
+    left: -30vh;
+    top: -5%;
     transform: rotate(-90deg);
-    .title2{
+
+    .title2 {
         position: relative;
-        top: -120px;
+        top: -17vh;
         color: rgb(184, 51, 3);
     }
+}
 
- }
-
-.slideno{
+.slideno {
     position: absolute;
     top: 40%;
-    h1{
+
+    h1 {
         color: white;
         font-size: 13vw;
     }
 }
 
-.desc{
+.desc {
     color: white;
     width: 45vh;
     position: absolute;
     top: 65%;
-    p{
+
+    p {
         font-size: 4vw;
-        
+        text-align: center;
     }
 }
 
-.buttz{
+.buttz {
     position: absolute;
     top: 85%;
-    .button{
+
+    .button {
         width: 30vh;
         background: white;
-        color: black;  
+        color: black;
         border-radius: 30px;
     }
 }
@@ -61,6 +64,8 @@
     position: relative;
     top: 50%;
     left: 13%;
+    width: 55vh;
+    height: 40vh;
 
     .map {
         width: 20vh;
@@ -96,15 +101,16 @@
 }
 
 .iconz {
-    margin: 10px;
+    margin: 5px;
     color: white;
 }
 
 .name {
     color: white;
+    // margin: 5px;
 }
 
-.desc{
+.desc {
     position: absolute;
     top: 25%;
     left: 15%;

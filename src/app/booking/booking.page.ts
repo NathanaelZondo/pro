@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { ControlsService } from '../controls.service';
 import * as firebase from 'firebase';
@@ -28,16 +28,6 @@ export class BookingPage implements OnInit {
    let v =0;    
    this.control.Loading2();
   
-
-
-
-
-
-
-
-
-
-
 
    let currentdate = (new Date().getFullYear().toString())+'-'+(new Date().getMonth())+'-'+(new Date().getDate());
     if((new Date().getMonth()+1)<10)

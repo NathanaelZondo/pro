@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import * as firebase from 'firebase';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+// import { StatusBar } from '@ionic-native/status-bar';
 import { config } from './cred';
 import { Router } from '@angular/router';
 import {AngularFireModule} from '@angular/fire';
@@ -20,7 +20,7 @@ export class AppComponent {
     private afAuth: AngularFireAuth,
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
+    // private statusBar: StatusBar,
     private router: Router,
     private backend:BackendService,
     private control:ControlsService
@@ -55,10 +55,6 @@ export class AppComponent {
         }  
       
       })
-  
-
-
- 
     
     }
 
@@ -68,13 +64,11 @@ export class AppComponent {
       this.control.navCtrl.navigateRoot('/login');
     }
     });
-
-
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      // this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }

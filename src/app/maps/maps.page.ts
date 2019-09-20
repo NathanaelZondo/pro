@@ -14,7 +14,7 @@ import { BackendService } from '../backend.service';
 import { Profile } from '../profile';
 import { ControlsService } from '../controls.service';
 
-
+import { IonSlides } from '@ionic/angular';
 
 
 declare var google;
@@ -24,15 +24,20 @@ declare var google;
   styleUrls: ['./maps.page.scss'],
 })
 export class MapsPage implements OnInit {
-
+  sliderConfig ={
+    spaceBetween : 33,
+    centeredSlides : true,
+    slidesPersView : 1.6
+  }
   // toggles the div, goes up if true, goes down if false
   display = false;
   swipeUp() {
     this.display = !this.display;
   }
   options: GeolocationOptions;
-  currentPos: Geoposition;
+  currentPos: Geoposition;  
   @ViewChild('map', { static: false }) mapElement: ElementRef;
+  @ViewChild('Slides',{static: false}) slides: IonSlides;
   db = firebase.firestore();
   users = [];
   map: any;
@@ -50,6 +55,7 @@ cover;
 desc;
 location;
 salonname;
+salons =[]
 salond = this.backend.salonsDisply;
   constructor(private ngZone: NgZone,private geolocation: Geolocation, public alertController: AlertController, public router: Router, private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, public backend: BackendService, public control: ControlsService,private platform: Platform) {
    ////////get salons
@@ -144,7 +150,37 @@ console.log( "Address = ",x.Address.streetName)
     });
    
   }
+  getHairSalon() {
 
+    this.hairstyledata = [];
+  
+    this.db.collection('Salons').onSnapshot(snap => {
+      if (snap.empty !== true) {
+
+        snap.forEach(doc => {
+  
+        
+          // this.name = doc.data().salonName;
+          this.salons.push(doc.data())
+
+          this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles').onSnapshot(qu => {
+            qu.forEach(doc => {
+              this.hairstyledata.push(doc.data());
+
+              this.hairstyledata.splice(1, 1);
+              console.log(this.hairstyledata.length)
+            })
+          })
+
+        })
+
+      } else {
+        console.log('No data');
+
+      }
+
+    })
+  }
   addInfoWindows(marker, content) {
 
     let infoWindow = new google.maps.InfoWindow({
@@ -215,7 +251,10 @@ getSalonmarkrs(){
     })
   }); 
 }
-
+function(){
+  console.log('Dont pull');
+  
+}
   addMap(lat: number, long: number) {
     let latLng = new google.maps.LatLng(lat, long);
     var grayStyles = [
@@ -365,5 +404,10 @@ this.getSalonmarkrs();
   }
   goToProfile() {
     this.router.navigate(['profile']);
+  }
+  onSlideChanged(){
+    let currentIndex = this.slides.getActiveIndex();
+ //let currentEvent  =this.backend.salonsDisply[currentIndex];
+ //this.map.setCenter({lat:currentEvent.lat,lng:currentEvent.lng});
   }
 }
