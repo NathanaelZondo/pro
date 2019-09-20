@@ -34,6 +34,7 @@ export class MapsPage implements OnInit {
   swipeUp() {
     this.display = !this.display;
   }
+  indexSlides: number;
   options: GeolocationOptions;
   currentPos: Geoposition;  
   @ViewChild('map', { static: false }) mapElement: ElementRef;
@@ -57,10 +58,12 @@ location;
 salonname;
 salons =[]
 salond = this.backend.salonsDisply;
-  constructor(private ngZone: NgZone,private geolocation: Geolocation, public alertController: AlertController, public router: Router, private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, public backend: BackendService, public control: ControlsService,private platform: Platform) {
+  constructor(private ngZone: NgZone,private geolocation: Geolocation, public alertController: AlertController, public elementref: ElementRef, public router: Router, private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, public backend: BackendService, public control: ControlsService,private platform: Platform) {
    ////////get salons
    
-
+    console.log('element Slideers: ',this.elementref);
+    console.log('salond: ', this.salond);
+    
   //  this.backend.getsalons().subscribe(val => {
   //   this.salon = val;
   //   console.log(this.salon)
@@ -114,7 +117,7 @@ console.log( "Address = ",x.Address.streetName)
     let click = 1;
     let v1;
     let docid;
-
+     
     this.backend.salonuid = x.userUID;
     firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').get().then(val => {
       console.log("These are the numbers", val)
@@ -134,6 +137,7 @@ console.log( "Address = ",x.Address.streetName)
   }
 
   ngOnInit() {
+    this.getHairSalon()
     this.platform.ready().then(() =>{
       this.getUserPosition();
   
@@ -405,9 +409,15 @@ this.getSalonmarkrs();
   goToProfile() {
     this.router.navigate(['profile']);
   }
-  onSlideChanged(){
-    let currentIndex = this.slides.getActiveIndex();
- //let currentEvent  =this.backend.salonsDisply[currentIndex];
- //this.map.setCenter({lat:currentEvent.lat,lng:currentEvent.lng});
+  moveMapEvent(event){
+    
+   /* console.log('event:', event.currentIndex); */
+   
+   let index = this.slides.getActiveIndex();
+   console.log(index);
+   
   }
+
+  
+  
 }
