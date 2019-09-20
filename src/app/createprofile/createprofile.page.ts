@@ -71,7 +71,7 @@ else if(profile.image=="" || profile.image ==undefined)
 }
 else{
  
-  firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).set(profile);
+  firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).set(profile);
 this.control.newprofileToast();
   this.control.navCtrl.navigateRoot('/navigation');
 }
