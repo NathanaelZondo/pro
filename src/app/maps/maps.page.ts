@@ -411,14 +411,14 @@ this.getSalonmarkrs();
   goToProfile() {
     this.router.navigate(['profile']);
   }
-  moveMapEvent(event){
+  // moveMapEvent(event){
     
-   /* console.log('event:', event.currentIndex); */
+  //  /* console.log('event:', event.currentIndex); */
    
-   let index = this.slides.getActiveIndex();
-   console.log(index);
+  //  let index = this.slides.getActiveIndex();
+  //  console.log(index);
    
-  }
+  // }
 
   
   

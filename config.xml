@@ -3,7 +3,7 @@
     <name>Air-Skedge</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.86:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -101,4 +101,5 @@
     <allow-navigation href="http://localhost:8100" sessionid="3e57d319" />
     <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyAT55USDnQ-tZLHJlzryDJbxseD8sLSdZE" />
     <allow-navigation href="http://192.168.1.19:8102" sessionid="17309acc" />
+    <allow-navigation href="http://192.168.1.86:8100" sessionid="cd12ce69" />
 </widget>
