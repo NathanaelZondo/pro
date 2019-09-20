@@ -73,19 +73,19 @@
     <div class="salonlist"> 
       
     <ion-slides [options]="sliderConfig"  (ionSlideDidChange)="moveMapEvent($event)">
-        <ion-slide class="magic" *ngFor="let b of salond"  (click)="selectsalon(b)">
+        <ion-slide class="magic" *ngFor="let b of salons"  (click)="selectsalon(b)">
           <div class="card" >
 
              
        <div class="thumbnail">
          <div class="top">
            <div class="image">
-              <ion-fab-button class="btn1">
+              <!-- <ion-fab-button class="btn1">
                   <ion-icon class="pin1" name="car"></ion-icon>
                 </ion-fab-button>
                 <ion-fab-button class="btn2" clear>
                     <ion-icon name="return-right"></ion-icon>
-                  </ion-fab-button>
+                  </ion-fab-button> -->
              <img  src="{{b.salonImage}}" alt="tough">
            </div>
            <div class="title">

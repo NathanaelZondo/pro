@@ -25,9 +25,9 @@ declare var google;
 })
 export class MapsPage implements OnInit {
   sliderConfig ={
-    spaceBetween : 33,
+    spaceBetween : 5,
     centeredSlides : true,
-    slidesPersView : 1.6
+    slidesPersView : 1
   }
   // toggles the div, goes up if true, goes down if false
   display = false;
@@ -134,6 +134,7 @@ console.log( "Address = ",x.Address.streetName)
   }
 
   ngOnInit() {
+    this.getHairSalon()
     this.platform.ready().then(() =>{
       this.getUserPosition();
   
