@@ -1,9 +1,9 @@
 <ion-content>
-  <div #map id="map">
+  <!-- <div #map id="map">
       <input id="pac-input" class="controls" type="text" placeholder="Search Location">
 
   </div>
-  <div class="salonlist">
+  <div class="salonlist"> -->
     <!-- <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
       <div class="image">
         <img src="{{x.salonImage}}">
@@ -25,20 +25,18 @@
           </ion-fab-button>
      
     </div> -->
-    <div class="container">
+    <!-- <div class="container">
         <ion-card *ngFor="let x of salond" (click)="selectsalon(x)">
 
             <ion-card-content class="images">
                 <img src="{{x.salonImage}}">
             </ion-card-content>
             <ion-item>
-              
                 <ion-fab-button class="btn1">
-               
                     <ion-icon class="icon1" name="pin"></ion-icon>
                   </ion-fab-button>
               <ion-label><strong>{{x.salonName}} </strong></ion-label>
-              2.5km 
+              <ion-button fill="outline" slot="end">View</ion-button>
             </ion-item>
           
          
@@ -48,7 +46,7 @@
       
     </div>
 
-  </div>
+  </div> -->
 
 <!-- 
   <ion-card class="Card"  *ngFor="let x of salond" (click)="selectsalon(x)">
@@ -70,6 +68,60 @@
       </ion-card-content>
     </ion-card>  -->
 
+    <input id="pac-input" class="controls" type="text" placeholder="Search Location">
+    <div #map id="map"></div>
+    <div class="salonlist"> 
+      
+    <ion-slides [options]="sliderConfig"  (ionSlideDidChange)="moveMapEvent($event)">
+        <ion-slide class="magic" *ngFor="let b of salond"  (click)="selectsalon(b)">
+          <div class="card" >
 
+             
+       <div class="thumbnail">
+         <div class="top">
+           <div class="image">
+              <ion-fab-button class="btn1">
+                  <ion-icon class="pin1" name="car"></ion-icon>
+                </ion-fab-button>
+                <ion-fab-button class="btn2" clear>
+                    <ion-icon name="return-right"></ion-icon>
+                  </ion-fab-button>
+             <img  src="{{b.salonImage}}" alt="tough">
+           </div>
+           <div class="title">
+             <p><strong>{{b.salonName}}</strong>  &nbsp;&nbsp; &nbsp;&nbsp; 3.5km<ion-icon name="walk"></ion-icon></p>
+         
+             <p class="stars">{{b.streetName}} </p>
+           </div>
+         </div>
+        <hr style="border-color: rgb(255, 3, 3)">
+         <div class="bottom">
+           <div class="view">
+            <p>View more</p>
+            <p><ion-icon style="color:black; font-size:3.5vh" name="arrow-forward"></ion-icon></p>
+           </div>
+         </div>
+       </div>
+    
+     </div>
+     </ion-slide>
+     </ion-slides>
+    </div>
+    <!-- <div class="salonlist"> 
+       <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
+        <div class="image">
+          <img src="{{x.salonImage}}">
+        </div>
+        <div class="details">
+          <div class="subtitle">
+            <p>{{x.salonName}} <br> 
+              {{x.streetName}}
+            </p>
+          </div>
+  
+        </div>
+      </div>
+      <ion-icon (click)="function()" class="icon1" name="pin">Directions</ion-icon>
+      </div> -->
   </ion-content>
   

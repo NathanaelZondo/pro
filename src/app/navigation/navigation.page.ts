@@ -16,7 +16,7 @@ profiles =[];
 
     this.control.Loading2()
     this.profiles =[];
-    firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).onSnapshot(val=>{
+    firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot(val=>{
  
      console.log(val.data())
 

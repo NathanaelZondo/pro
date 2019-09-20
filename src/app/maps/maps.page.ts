@@ -14,7 +14,7 @@ import { BackendService } from '../backend.service';
 import { Profile } from '../profile';
 import { ControlsService } from '../controls.service';
 
-
+// import { Slides } from '@ionic/angular';
 
 
 declare var google;
@@ -24,7 +24,11 @@ declare var google;
   styleUrls: ['./maps.page.scss'],
 })
 export class MapsPage implements OnInit {
-
+  sliderConfig ={
+    spaceBetween : 7,
+    centeredSlides : true,
+    slidesPersView : 1.6
+  }
   // toggles the div, goes up if true, goes down if false
   display = false;
   swipeUp() {
@@ -33,6 +37,7 @@ export class MapsPage implements OnInit {
   options: GeolocationOptions;
   currentPos: Geoposition;
   @ViewChild('map', { static: false }) mapElement: ElementRef;
+  // @ViewChild('Slides',{static: false}) slides: Slides;
   db = firebase.firestore();
   users = [];
   map: any;
@@ -183,11 +188,11 @@ salond = this.backend.salonsDisply;
   }
 
 getSalonmarkrs(){
-  this.db.collection('SalonNode').onSnapshot(snapshot => {
+  this.db.collection('Salons').onSnapshot(snapshot => {
     snapshot.forEach(doc => {
 
      
-        let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().location
+        let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().Address.fullAddress
         //  this.addMarkersOnTheCustomersCurrentLocation(doc.data().lat, doc.data().lng, content);
 
 
@@ -202,7 +207,7 @@ getSalonmarkrs(){
         let marker = new google.maps.Marker({
           map: this.map,
           animation: google.maps.Animation.DROP,
-          position: new google.maps.LatLng(doc.data().coords.lat, doc.data().coords.lng),
+          position: new google.maps.LatLng(doc.data().Address.lat, doc.data().Address.lng),
           icon: icon
         });
         // this.addInfoWindow(marker, content);
@@ -224,13 +229,16 @@ getSalonmarkrs(){
     })
   }); 
 }
-
+function(){
+  console.log('Dont pull');
+  
+}
   addMap(lat: number, long: number) {
     let latLng = new google.maps.LatLng(lat, long);
     var grayStyles = [
       {
         featureType: "all",
-        stylers: [
+        styles: [
           { saturation: -10 },
           { lightness: 0 }
         ]
@@ -375,4 +383,9 @@ this.getSalonmarkrs();
   goToProfile() {
     this.router.navigate(['profile']);
   }
+//   moveMapEvent(){
+//     let currentIndex = this.slides.getActiveIndex();
+//  let currentEvent  =this.salond[currentIndex];
+//  this.map.setCenter({lat:currentEvent.lat,lng:currentEvent.lng});
+//   }
 }
