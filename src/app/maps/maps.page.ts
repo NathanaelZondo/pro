@@ -57,10 +57,12 @@ location;
 salonname;
 salons =[]
 salond = this.backend.salonsDisply;
-  constructor(private ngZone: NgZone,private geolocation: Geolocation, public alertController: AlertController, public router: Router, private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, public backend: BackendService, public control: ControlsService,private platform: Platform) {
+  constructor(private ngZone: NgZone,private geolocation: Geolocation, public alertController: AlertController, public elementref: ElementRef, public router: Router, private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, public backend: BackendService, public control: ControlsService,private platform: Platform) {
    ////////get salons
    
-
+    console.log('element Slideers: ',this.elementref);
+    console.log('salond: ', this.salond);
+    
   //  this.backend.getsalons().subscribe(val => {
   //   this.salon = val;
   //   console.log(this.salon)
@@ -134,6 +136,7 @@ console.log( "Address = ",x.Address.streetName)
   }
 
   ngOnInit() {
+    this.getHairSalon()
     this.platform.ready().then(() =>{
       this.getUserPosition();
   
@@ -405,8 +408,10 @@ this.getSalonmarkrs();
   goToProfile() {
     this.router.navigate(['profile']);
   }
-  onSlideChanged(){
-    let currentIndex = this.slides.getActiveIndex();
+  moveMapEvent(event){
+    
+   console.log('event:', event.currentIndex);
+   
  //let currentEvent  =this.backend.salonsDisply[currentIndex];
  //this.map.setCenter({lat:currentEvent.lat,lng:currentEvent.lng});
   }
