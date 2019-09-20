@@ -34,37 +34,37 @@
     margin: 5px;
     .card {
         width: 85vw;
-        height: 150px;
+        height: 160px;
         display: flex;
         flex-flow: row;
         // justify-content: space-between;
-        background: rgba(207, 202, 192, 0.801);
+        background: rgb(241, 100, 5);
         margin: 3px;
         border-radius: 20px;
         .image {
             width: 82vw;
             height: 85px;
-            margin: 5px;
+            // margin: 3px;
             border-radius: 20px;
 
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                border-radius: 20px;
+                // border-radius: 20px;
             }
 
            
         }
         .details {
             width: 300px;
-            padding: 10px;
+            // padding: 5px;
             justify-content: left;
             text-align: left;
             p {
                 color: rgb(196, 195, 195);
                 font-family: 'Manjari';
-                font-size: 4vw;
+                // font-size: 4vw;
                 justify-content: left;
                 text-align: left;
             }
@@ -75,7 +75,7 @@
     width: 95vw;
     height: 35px;
     margin: 10px;
-    background: rgba(241, 160, 9, 0.829);
+    background: rgb(241, 100, 5);
     box-shadow: 5px 5px 10px grey;
     font-size: 5vw;
     border: none;
@@ -85,7 +85,9 @@
 }
 
 p{
-    color: white;
+    color: rgb(255, 255, 255);
+    font-size: 5vw;
+    margin: 0;
 }
 // .title{
 //     font-size: 5vw;
@@ -110,9 +112,15 @@ p{
 
 .btn2{
     background: rgba(49, 45, 36, 0.829);
-    border-radius: 50px;
+    border-radius: 30px;
+    font-size: 30px;
     // float: left;
 }
+// .location{
+//     font-size: 10vw;
+//     color: rgba(241, 160, 9, 0.829);
+//     margin: 0;
+// }
 
 
 
