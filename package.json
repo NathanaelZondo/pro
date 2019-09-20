@@ -103,7 +103,8 @@
       "cordova-plugin-geolocation": {},
       "cordova-plugin-nativegeocoder": {},
       "cordova-plugin-googlemaps": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-local-notification": {}
     },
     "platforms": [
       "browser",

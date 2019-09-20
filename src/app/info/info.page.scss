@@ -3,6 +3,7 @@
     border: 1px solid black;
     margin: 10px;
     background: black;
+    
     justify-content: center;
 
     h2 {
@@ -24,4 +25,9 @@
     p {
       text-align: center;
     }
+  }
+
+  .list{
+    height: 60vh;
+    overflow-y: auto;
   }
