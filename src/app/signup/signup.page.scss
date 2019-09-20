@@ -45,6 +45,8 @@
         left: 4vh;
         top: 3vh;
         font-size: 15vw;
+        margin: 0;
+        padding: 0;
 
         span {
             font-size: 1.5vw;
@@ -95,6 +97,10 @@
         span {
             color: black;
         }
+    }
+
+    .scroll-content {
+        padding-bottom: 0 !important;
     }
 }
 

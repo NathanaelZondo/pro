@@ -3,6 +3,7 @@ import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
 import { ModalController, } from '@ionic/angular';
 import * as firebase from 'firebase';
+import { ThrowStmt } from '@angular/compiler';
 // import Swiper from 'swiper';
 
 @Component({
@@ -26,6 +27,7 @@ userRating = []
   viewhair = true;
   placeholder =this.backend.salonsDisply;
   aveg: number;
+  heart : string ="unlike"
     constructor(public control:ControlsService,public backend:BackendService,public modalController: ModalController) {
     this.backend.getHairSalon();
 
@@ -42,24 +44,39 @@ userRating = []
    
     console.log(this.likes)
 
-this.db.collection('Sa')
-
-
-this.db.collection('Salons').doc(this.backend.salonname).collection('ratings').onSnapshot(snap =>{
-snap.forEach( doc =>{
-  this.userRating.push(doc.data().rating)
-  console.log('users', doc.data().rating);
-
-this.total += doc.data().rating;
+this.db.collection('Salons').where("salonName","==",this.backend.salonname).onSnapshot(doc =>{
+  doc.forEach(res =>{
+    this.db.collection('Salons').doc(res.id).collection('ratings').onSnapshot(snap =>{
+      snap.forEach(doc =>{
+        this.userRating.push(doc.data().rating)
+        console.log('users', doc.data().rating);
+        this.total += doc.data().rating;
 console.log(this.total);
 this.dummy.push(doc.data().rating)
 
-
-})
-this.aveg = this.total / this.dummy.length;
+      })
+      this.aveg = this.total / this.dummy.length;
 console.log('averge', this.aveg);
-
+    })
+  })
 })
+
+
+// this.db.collection('Salons').doc(this.backend.salonname).collection('ratings').onSnapshot(snap =>{
+// snap.forEach( doc =>{
+//   this.userRating.push(doc.data().rating)
+//   console.log('users', doc.data().rating);
+
+// this.total += doc.data().rating;
+// console.log(this.total);
+// this.dummy.push(doc.data().rating)
+
+
+// })
+// this.aveg = this.total / this.dummy.length;
+// console.log('averge', this.aveg);
+
+// })
 console.log('toatl for ratings',this.total)
   }
   salond = this.backend.selectedsalon;
@@ -82,7 +99,7 @@ console.log('toatl for ratings',this.total)
 
     console.log(this.backend.salonname)
 this.hair =[];
-    let user = this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles')
+    let user = this.db.collection('Salons').doc(this.salond[0].userUID).collection('Styles')
 
 
     let query = user.where("genderOptions", "==", x).get().then(val => {
@@ -104,7 +121,13 @@ this.hair =[];
   viewHair() {
     this.more = !this.more
   }
-
+  toogleHaert(){
+    if(this.heart == 'unlike'){
+      this.heart = 'like';
+    }else {
+      this.heart = 'unlike';
+    }
+  }
   like(x)
   {
     console.log(x)

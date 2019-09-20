@@ -4,7 +4,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+// import { StatusBar } from '@ionic-native/status-bar';
 import  {Camera} from '@ionic-native/camera/ngx'
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -34,7 +34,7 @@ import { ViewsalonPageModule } from './viewsalon/viewsalon.module';
   AngularFireAuthModule,
  AngularFirestoreModule],
   providers: [
-    StatusBar,
+    // StatusBar,
     SplashScreen,
     Camera,
    

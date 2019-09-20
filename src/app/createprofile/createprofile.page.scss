@@ -1,15 +1,35 @@
+*{
+    padding: 0;
+    margin: 0;
+}
 .container {
     display: flex;
     flex-flow: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
-    height: 100%;
+margin-top: 40px;
 }
 
 .title {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    position: relative;
+   
     h1 {
-        color: rgba(133, 88, 4, 0.74);
-        font-size: 30px;
+        color: orangered;
+        font-size: 10vw;
+        float: left;
+   
+    }
+
+    p {
+        color: orangered;
+        font-size: 5vw;
+        position: absolute;
+        top: 40%;
+        right: -50px;
     }
 }
 
@@ -35,4 +55,12 @@
         }
     }
 
+}
+
+.item {
+    background: transparent;
+    color: white;
+    .input{
+        border-bottom: 2px solid white;
+    }
 }

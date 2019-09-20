@@ -1,24 +1,36 @@
-<!-- <ion-header>
-    <ion-toolbar>
-      <ion-title>viewhairstyle</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
-<ion-content>
+
+<ion-content fullscreen>
+    <ion-header>
+        <ion-toolbar>
+            <div class="likes" style=" float: right">
+                <ion-icon name="heart" (click)="like(x)" id="heart"
+                  style="float: left; font-size: 30px; color: rgb(240, 10, 10); margin: 10px"></ion-icon>
+                
+              </div>
+      
+              <div class="back" routerLink="/navigation">
+                <ion-icon name="arrow-back" style="float: right; margin: 10px; color: white; font-size: 25px;"></ion-icon>
+              </div>
+        </ion-toolbar>
+      </ion-header>
+
   <div class="container">
+
+     
     <div class="salonimage" *ngFor="let x of salond">
       <img src="{{x.salonImage}}">
 
-      <div class="topbar">
-        <div class="likes">
-        <ion-icon name="heart"(click)="like(x)" id="heart"
-        style="font-size: 30px; color: rgb(240, 10, 10); margin: 10px"></ion-icon>
-        <p style="color: white">{{likes}}</p>
-      </div>
+      <!-- <div class="topbar">
+        <div class="likes" style=" float: right">
+          <ion-icon name="heart" (click)="like(x)" id="heart"
+            style="font-size: 30px; color: rgb(240, 10, 10); margin: 10px"></ion-icon>
+          <p style="color: white">{{likes}}</p>
+        </div>
 
-      <div class="back" routerLink="/navigation">
-        <ion-icon name="arrow-back" style=" margin: 10px; color: white; font-size: 25px;"></ion-icon>
-      </div>
-      </div>
+        <div class="back" routerLink="/navigation">
+          <ion-icon name="arrow-back" style=" margin: 10px; color: white; font-size: 25px;"></ion-icon>
+        </div>
+      </div> -->
 
     </div>
     <!-- <div class="img1" *ngFor="let x of salond">
@@ -26,6 +38,7 @@
     </div> -->
 
     <div class="details">
+ 
       <div class="blur"></div>
       <div class="card" *ngFor="let x of salond">
 
@@ -47,36 +60,37 @@
           halfStar = "true"
           >
         </ionic4-star-rating> -->
-
+       
         </div>
       </div>
     </div>
-    <ionic4-star-rating #rating
-    activeIcon = "ios-star"
-    defaultIcon = "ios-star-outline"
-    activeColor = "#db981a" 
-    defaultColor = "#A9A9A9"
-    readonly="true"
-    rating= {{aveg}}
-    fontSize = "8vw"
-    halfStar = "true"
-    style="position: relative;
-    top: 26vh;
-    z-index: 5;"
-    >
-</ionic4-star-rating>
-     <div class="reviews" routerLink="/reviews">
+    <ionic4-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#db981a"
+      defaultColor="#A9A9A9" readonly="true" rating={{aveg}} fontSize="8vw" halfStar="true" style="position: relative;
+ top: 5%;
+    z-index: 5;">
+    </ionic4-star-rating>
+
+    <div class="analyze">
+        <p style="color: white; text-align: center; font-size:  5vw">{{likes}}<br> Likes</p>
+      </div>
+
+    <div class="reviews" routerLink="/reviews">
       <p>Reviews <ion-icon name="arrow-dropright" style="color: white"></ion-icon>
       </p>
-    </div> 
+    </div>
     <div class="desc" *ngFor="let x of salond">
 
-      <p>{{x.SalonDesc}} </p>
+      <p>{{x.SalonDesc}}       </p>
     </div>
-
+    <ion-fab-button (click)="toogleHaert()">
+        <ion-icon  slot="icon-only" name="heart" [class]="heart"></ion-icon>
+    </ion-fab-button>
     <div class=" buttonz">
-      <ion-button (click)="selecthairstyle('female')" color="dark" id="btn" (click)="viewHair()"clear round>Ladies</ion-button>
-      <ion-button (click)="selecthairstyle('male')" color="dark" id="btn" (click)="viewHair()" round>Gents</ion-button>
+      <ion-button (click)="selecthairstyle('female')"  id="btn" (click)="viewHair()"
+      style="background: rgb(133, 37, 2)">Ladies
+      </ion-button>
+      <ion-button (click)="selecthairstyle('male')"  id="btn" (click)="viewHair()"
+      style="background: rgb(49, 49, 49)">Gents</ion-button>
     </div>
   </div>
 
@@ -99,7 +113,7 @@
           <ion-slide *ngFor="let x of hair" (click)="choosehair(x)" style="display: flex; flex-flow: column">
             <ion-card>
               <ion-card-header id="head">
-                <img src='{{x.hairStyleImage}}' style="width: 40vh; height: 50vh;"> 
+                <img src='{{x.hairStyleImage}}' style="width: 40vh; height: 50vh;">
 
                 <br>
                 <ion-card-subtitle>{{x.hairstyleName}}</ion-card-subtitle>

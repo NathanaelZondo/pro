@@ -14,7 +14,7 @@ import { BackendService } from '../backend.service';
 import { Profile } from '../profile';
 import { ControlsService } from '../controls.service';
 
-// import { Slides } from '@ionic/angular';
+import { IonSlides } from '@ionic/angular';
 
 
 declare var google;
@@ -25,7 +25,7 @@ declare var google;
 })
 export class MapsPage implements OnInit {
   sliderConfig ={
-    spaceBetween : 7,
+    spaceBetween : 33,
     centeredSlides : true,
     slidesPersView : 1.6
   }
@@ -35,9 +35,9 @@ export class MapsPage implements OnInit {
     this.display = !this.display;
   }
   options: GeolocationOptions;
-  currentPos: Geoposition;
+  currentPos: Geoposition;  
   @ViewChild('map', { static: false }) mapElement: ElementRef;
-  // @ViewChild('Slides',{static: false}) slides: Slides;
+  @ViewChild('Slides',{static: false}) slides: IonSlides;
   db = firebase.firestore();
   users = [];
   map: any;
@@ -55,40 +55,32 @@ cover;
 desc;
 location;
 salonname;
+salons =[]
 salond = this.backend.salonsDisply;
   constructor(private ngZone: NgZone,private geolocation: Geolocation, public alertController: AlertController, public router: Router, private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, public backend: BackendService, public control: ControlsService,private platform: Platform) {
    ////////get salons
    
 
-   this.backend.getsalons().subscribe(val => {
-    this.salon = val;
-    console.log(this.salon)
+  //  this.backend.getsalons().subscribe(val => {
+  //   this.salon = val;
+  //   console.log(this.salon)
 
 
   
 
-    this.hairstyledata = this.backend.hairstyledata.splice(0, this.backend.hairstyledata.length);
+  //   this.hairstyledata = this.backend.hairstyledata.splice(0, this.backend.hairstyledata.length);
 
-    this.backend.setsalondata(this.salonname, this.location)
-    this.backend.getHairSalon()
+  //   this.backend.setsalondata(this.salonname, this.location)
+  //   this.backend.getHairSalon()
 
-  })
+  // })
 
-  this.backend.getProfile().subscribe(val => {
-
-
-    this.profiles = this.backend.profiles;
+ 
 
 
 
 
 
-    this.backend.setuserdata(this.profiles[0].name, this.profiles[0].surname, this.profiles[0].cell)
-
-
-    console.log("this is the value for profile")
-
-  })
 
    //////////////////////////
 
@@ -108,7 +100,7 @@ salond = this.backend.salonsDisply;
   
 
   selectsalon(x) {
-
+console.log( "Address = ",x.Address.streetName)
     this.backend.selectedsalon.splice(0, 1);
     console.log(x.userUID)
     this.cover = x.salonImage;
@@ -117,7 +109,7 @@ salond = this.backend.salonsDisply;
     this.backend.salonname = x.salonName;
     this.backend.selectedsalon.push(x);
     this.backend.selectedsalon.splice(1, 1);
-    this.backend.setsalondata(x.salonName, x.streetName);
+    this.backend.setsalondata(x.salonName, x.Address.streetName);
 
     let click = 1;
     let v1;
@@ -158,7 +150,37 @@ salond = this.backend.salonsDisply;
     });
    
   }
+  getHairSalon() {
 
+    this.hairstyledata = [];
+  
+    this.db.collection('Salons').onSnapshot(snap => {
+      if (snap.empty !== true) {
+
+        snap.forEach(doc => {
+  
+        
+          // this.name = doc.data().salonName;
+          this.salons.push(doc.data())
+
+          this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles').onSnapshot(qu => {
+            qu.forEach(doc => {
+              this.hairstyledata.push(doc.data());
+
+              this.hairstyledata.splice(1, 1);
+              console.log(this.hairstyledata.length)
+            })
+          })
+
+        })
+
+      } else {
+        console.log('No data');
+
+      }
+
+    })
+  }
   addInfoWindows(marker, content) {
 
     let infoWindow = new google.maps.InfoWindow({
@@ -383,9 +405,9 @@ this.getSalonmarkrs();
   goToProfile() {
     this.router.navigate(['profile']);
   }
-//   moveMapEvent(){
-//     let currentIndex = this.slides.getActiveIndex();
-//  let currentEvent  =this.salond[currentIndex];
-//  this.map.setCenter({lat:currentEvent.lat,lng:currentEvent.lng});
-//   }
+  onSlideChanged(){
+    let currentIndex = this.slides.getActiveIndex();
+ //let currentEvent  =this.backend.salonsDisply[currentIndex];
+ //this.map.setCenter({lat:currentEvent.lat,lng:currentEvent.lng});
+  }
 }
