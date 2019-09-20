@@ -453,7 +453,7 @@ export class BookwithsalonPage implements OnInit {
     let hourRange = parseFloat(booking.sessiontime[0] + booking.sessiontime[1]);
     let minuteRange = parseFloat(booking.sessiontime[3] + booking.sessiontime[4])
 
-    this.db.collection('Bookings').where("useruid", "==",booking.useruid).where("salonuid","==",booking.salonuid).where("userdate","==",booking.userdate).get().then(val => {
+    this.db.collection('Bookings').where("useruid", "==",booking.useruid).where("salonuid","==",booking.salonuid).where("userdate","==",booking.userdate).where("hairdresser","==",booking.hairdresser).get().then(val => {
       if (val.size == 0) {
         this.isvalidated = false;
         this.control.SlotToast2();
@@ -559,7 +559,7 @@ export class BookwithsalonPage implements OnInit {
       }
    
 
-      this.db.collection('Booking').where("userdate","==",booking.userdate).where("sessiontime", "==", booking.sessiontime).where("useruid", "==",booking.useruid).where("salonuid","==",booking.salonuid).get().then(val => {
+      this.db.collection('Bookings').where("userdate","==",booking.userdate).where("sessiontime", "==", booking.sessiontime).where("useruid", "==",booking.useruid).where("salonuid","==",booking.salonuid).where("hairdresser","==",booking.hairdresser).get().then(val => {
         val.forEach(value => {
           //console.log(value.data())
           if (value.data().sessiontime != "") {
@@ -577,7 +577,7 @@ export class BookwithsalonPage implements OnInit {
 
 
 
-      this.db.collection('Booking').where("userdate","==",booking.userdate).where("sessionendtime", "==", booking.sessionendtime).where("useruid", "==",booking.useruid).where("salonuid","==",booking.salonuid).get().then(val => {
+      this.db.collection('Bookings').where("userdate","==",booking.userdate).where("sessionendtime", "==", booking.sessionendtime).where("useruid", "==",booking.useruid).where("salonuid","==",booking.salonuid).where("hairdresser","==",booking.hairdresser).get().then(val => {
         val.forEach(value => {
           console.log(value.data())
           if (value.data().sessiontime != "") {
