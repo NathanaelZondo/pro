@@ -34,6 +34,7 @@ export class MapsPage implements OnInit {
   swipeUp() {
     this.display = !this.display;
   }
+  indexSlides: number;
   options: GeolocationOptions;
   currentPos: Geoposition;  
   @ViewChild('map', { static: false }) mapElement: ElementRef;
@@ -116,7 +117,7 @@ console.log( "Address = ",x.Address.streetName)
     let click = 1;
     let v1;
     let docid;
-
+     
     this.backend.salonuid = x.userUID;
     firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').get().then(val => {
       console.log("These are the numbers", val)
@@ -410,9 +411,13 @@ this.getSalonmarkrs();
   }
   moveMapEvent(event){
     
-   console.log('event:', event.currentIndex);
+   /* console.log('event:', event.currentIndex); */
    
- //let currentEvent  =this.backend.salonsDisply[currentIndex];
- //this.map.setCenter({lat:currentEvent.lat,lng:currentEvent.lng});
+   let index = this.slides.getActiveIndex();
+   console.log(index);
+   
   }
+
+  
+  
 }
