@@ -77,9 +77,9 @@
     margin: 10px;
     background: rgba(241, 160, 9, 0.829);
     box-shadow: 5px 5px 10px grey;
-    font-size: 3vw;
+    font-size: 5vw;
     border: none;
-    color: whitesmoke;
+    color: rgb(255, 255, 255);
     border-radius: 20px;
     padding: 7px;
 }
@@ -87,6 +87,12 @@
 p{
     color: white;
 }
+// .title{
+//     font-size: 5vw;
+//     text-align: center;
+//     justify-content: center;
+//     color: black;
+// }
 .btn1{
     background: rgba(241, 160, 9, 0.829);
     border-radius: 50px;
