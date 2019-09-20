@@ -49,7 +49,7 @@
     display: flex;
     flex-flow: column; 
     position: absolute;
-    bottom: 150px;
+    bottom: 180px;
     left: 10px;
     z-index: 5;
     color: rgb(255, 255, 255);
@@ -77,7 +77,7 @@
 
 .edit{
     position: absolute;
-    bottom: 50px;
+    bottom: 100px;
     right: 20px;
     z-index: 5;
     width: 60px;
@@ -101,6 +101,6 @@
     width:auto;
     text-align: left;
     background :linear-gradient(rgba(236, 240, 241, 0),rgb(0, 0, 0),rgb(0, 0, 0));
-    height: 270px;
+    height: 300px;
   }
 
