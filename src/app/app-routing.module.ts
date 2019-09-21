@@ -22,7 +22,9 @@ const routes: Routes = [
    { path: 'maps', loadChildren: './maps/maps.module#MapsPageModule' },
   { path: 'success', loadChildren: './success/success.module#SuccessPageModule' },
   { path: 'info', loadChildren: './info/info.module#InfoPageModule' },
-  { path: 'reviews', loadChildren: './reviews/reviews.module#ReviewsPageModule' },
+  { path: 'reviews', loadChildren: './reviews/reviews.module#ReviewsPageModule' },  { path: 'customer', loadChildren: './customer/customer.module#CustomerPageModule' },
+  { path: 'dates', loadChildren: './dates/dates.module#DatesPageModule' },
+
   // { path: 'zero', loadChildren: './zero/zero.module#ZeroPageModule' },
 
 ]
