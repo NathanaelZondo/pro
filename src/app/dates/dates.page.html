@@ -1,47 +1,56 @@
 <ion-header>
   <ion-toolbar color="dark">
-    <ion-title>dates</ion-title>
+    <ion-title>Details Cont...</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 <div class="container">
-    <div class="hairstyle">
-
-        <div class="prc">
-          <label>Price: </label>
-        </div>
-
-        <div class="info">
-          <label>Hairstyle:</label>
-          <label>Duration: </label>
-        </div>
-
-      </div>
-
-      
-      <div class="appmnts">
-          <ion-item>
-            <ion-label position="stacked">Time</ion-label>
-            <ion-input placeholder="session time" type="time"></ion-input>
-          </ion-item>
+<div class="h2">
+    <h2 style="color: orangered; text-align: center">Appointment Details</h2>
+    <br><br><br>
+</div>
   
-  
-          <ion-item id="dresser">
-            <ion-label position="stacked">Hairdresser</ion-label>
-            <ion-select value="brown" okText="Okay" >
-              <ion-select-option></ion-select-option>
-  
-            </ion-select>
-          </ion-item>
-  
-        </div>
 
-        <div class="btn">
-            <ion-button color="dark" large routerLink="/bookwithsalon" style="width: 300px">
-              Next
-            </ion-button>
+  <div class="time">
+      <div class="hairstyle">
+
+          <div class="prc">
+            <label>Price: </label>
           </div>
   
+          <div class="info">
+            <label>Hairstyle:</label><br>
+            <label>Duration: </label>
+          </div>
+  
+        </div>
+  
+        
+        <div class="appmnts">
+            <ion-item>
+              <ion-label position="stacked">Time</ion-label>
+              <ion-input placeholder="session time" type="time"></ion-input>
+            </ion-item>
+    
+    
+            <ion-item id="dresser">
+              <ion-label position="stacked">Hairdresser</ion-label>
+              <ion-select value="brown" okText="Okay" >
+                <ion-select-option></ion-select-option>
+    
+              </ion-select>
+            </ion-item>
+    
+          </div>
+  <br><br>
+          <div class="btn">
+              <ion-button color="dark" large routerLink="/bookwithsalon" style="width: 300px">
+                Next
+              </ion-button>
+            </div>
+    
+  </div>
+ 
 </div>
 </ion-content>
