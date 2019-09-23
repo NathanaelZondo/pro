@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild} from '@angular/core';
 import { ControlsService } from '../controls.service';
-
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-onboarding',
@@ -9,19 +9,16 @@ import { ControlsService } from '../controls.service';
 })
 export class OnboardingPage implements OnInit {
 
-  constructor(public control:ControlsService) { }
+  constructor(public control:ControlsService,private storage: Storage) { }
 
   ngOnInit() {
   }
-
-  register()
-  {
-
-this.control.router.navigate(['signup']);
+  async  signin() {
+    await this.storage.set('tutorialComplete', true);
+    this.control.router.navigate(['./']);
   }
+ 
 
-  signin(){
-    this.control.router.navigate(['login']);
-  }
+ 
 
 }

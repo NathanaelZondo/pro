@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController,  AlertController, ToastController, LoadingController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { FirebaseAuth } from 'angularfire2';
-import { Router } from '@angular/router';
+import { Router,CanActivate } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'

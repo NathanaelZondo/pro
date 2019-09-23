@@ -20,7 +20,7 @@ export class BookwithsalonPage implements OnInit {
   unit1: string;
   staff = [];
 
-
+  markDisabled;
 
   isvalidated = true;
   constructor(public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
@@ -42,7 +42,10 @@ export class BookwithsalonPage implements OnInit {
     cdate.getDay();
     this.currentdate = (cdate.getFullYear() + "-" + (cd1.getMonth() + 1) + "-" + cdate.getDate());
 
-
+    this.markDisabled = (date: Date) => {
+      var current = new Date();
+      return date < current;
+  };
 
 
   }
@@ -190,12 +193,12 @@ this.bookingconfirm();
 
 
 
-
+ 
 
   //click event from the calendar
   onTimeSelected(ev, booking) {
 
-
+    
 
 
 
@@ -544,8 +547,8 @@ this.bookingconfirm();
         
         
        // this.eventspopulation(this.booking);
-         this.eventsconfirm();
-       return 0;
+        
+       return  this.eventsconfirm();
         console.log("Booking Error slot occupied ")
 
       }
@@ -614,7 +617,7 @@ this.bookingconfirm();
 
 eventspopulation(booking)
 {
-  this.testarray2  =this.testarray;
+ 
    console.log("TestArray booking = ",booking)
 
 console.log("events population")
@@ -671,12 +674,7 @@ console.log("Testarray length =",this.testarray2.length)
     mode: 'month',
     currentDate: new Date()
   }; // these are the variable used by the calendar.
-  loadEvents() {
 
-    //receives data from array "this.events"
-    this.eventSource = this.getevents();
-
-  }
   onViewTitleChanged(title) {
     this.viewTitle = title;
   }
@@ -696,50 +694,11 @@ console.log("Testarray length =",this.testarray2.length)
     event.setHours(0, 0, 0, 0);
     this.isToday = today.getTime() === event.getTime();
   }
-  createRandomEvents() {
-    var events = [];
-    for (var i = 0; i < 50; i += 1) {
-      var date = new Date();
-      var eventType = Math.floor(Math.random() * 2);
-      var startDay = Math.floor(Math.random() * 90) - 45;
-      var endDay = Math.floor(Math.random() * 2) + startDay;
-      var startTime;
-      var endTime;
-      if (eventType === 0) {
-        startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
-        if (endDay === startDay) {
-          endDay += 1;
-        }
-        endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + endDay));
-        events.push({
-          title: 'All Day - ' + i,
-          startTime: startTime,
-          endTime: endTime,
-          allDay: true
-        });
-      } else {
-        var startMinute = Math.floor(Math.random() * 24 * 60);
-        var endMinute = Math.floor(Math.random() * 180) + startMinute;
-        startTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + startDay, 0, date.getMinutes() + startMinute);
-        endTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + endDay, 0, date.getMinutes() + endMinute);
-        events.push({
-          title: 'Event - ' + i,
-          startTime: startTime,
-          endTime: endTime,
-          allDay: false
-        });
-      }
-    }
-    return events;
-  }
+
   onRangeChanged(ev) {
     console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
-  markDisabled = (date: Date) => {
-    var current = new Date();
-    current.setHours(0, 0, 0);
-    return date < current;
-  };
+ 
 
   events = [];
 
@@ -919,7 +878,7 @@ console.log("Testarray length =",this.testarray2.length)
         }, {
           text: 'Okay',
           handler: () => {
-            
+            this.testarray2  =this.testarray;
            this.eventspopulation(this.booking)
           }
         }
@@ -968,8 +927,22 @@ console.log("Testarray length =",this.testarray2.length)
     await alert.present();
   }
 
+  createRandomEvents() {
+    var events = [];
+  events =this.events;
+  console.log("These are the Events = ",this.events)
+    return events;
+}
 
 
+
+loadEvents() {
+
+  //receives data from array "this.events"
+  this.eventSource = this.getevents();
+  this.eventSource = this.createRandomEvents()
+
+}
 }
 
 

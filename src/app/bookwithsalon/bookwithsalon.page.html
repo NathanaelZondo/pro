@@ -3,11 +3,27 @@
     <ion-icon name="arrow-round-back" style="font-size: 30px" (click)="back()"></ion-icon>
 
   </ion-toolbar>
+  <ion-title>{{viewTitle}}</ion-title>
+  <ion-buttons end>
+      <button ion-button [disabled]="isToday" (click)="today()">Today</button>
+      <button ion-button (click)="changeMode('month')">M</button>
+      <button ion-button (click)="changeMode('week')">W</button>
+      <button ion-button (click)="changeMode('day')">D</button>
+    
+  </ion-buttons>
 </ion-header>
 
-<ion-content>
+<ion-content class="has-header">
 
-  <div class="container">
+        <calendar   [eventSource]="eventSource" [calendarMode]="calendar.mode"
+          [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
+          (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
+          (onTimeSelected)="onTimeSelected($event,booking)" step="30" startHour="8" endHour="19" [markDisabled]="markDisabled">
+       
+        </calendar>
+  
+        
+   <div class="container">
     <div class="inputs">
       <div class="hairstyle">
 
@@ -23,33 +39,10 @@
       </div>
 
 
-      <div class="cal" class="has-subheader">
-        <h3>{{viewTitle}}</h3>
-        <ion-buttons>
-          <button ion-button [disabled]="isToday" (click)="today()">Today</button>
-          <button ion-button (click)="changeMode('month')">M</button>
-        </ion-buttons>
-        <calendar (click)="setbooking(booking)" [eventSource]="eventSource" [calendarMode]="calendar.mode"
-          [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
-          (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
-          (onTimeSelected)="onTimeSelected($event)" step="30">
-        </calendar>
-      </div>
+
 
     
-<div class="cal" class="has-subheader">
-  <h3>{{viewTitle}}</h3>
-  <ion-buttons>
-        <button ion-button [disabled]="isToday" (click)="today()">Today</button>
-        <button ion-button (click)="changeMode('month')">M</button>
-      </ion-buttons>
-      <calendar   [eventSource]="eventSource" [calendarMode]="calendar.mode"
-        [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
-        (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
-        (onTimeSelected)="onTimeSelected($event,booking)" step="30">
-      </calendar>
-</div>
-      
+
 
       <div class="appmnts">
         <ion-item>
@@ -84,6 +77,6 @@
     </div>
 
 
-  </div>
+  </div> 
 
 </ion-content>
