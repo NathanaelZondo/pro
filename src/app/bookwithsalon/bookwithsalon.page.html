@@ -25,7 +25,7 @@
         
    <div class="container">
     <div class="inputs">
-      <div class="hairstyle">
+      <!-- <div class="hairstyle">
 
         <div class="prc">
           <label>Price: {{booking.hairstyleprice | currency:'&#82;'}} </label>
@@ -36,14 +36,22 @@
           <label>Duration: {{booking.estimatedtime}} mins</label>
         </div>
 
-      </div>
+      </div> -->
 
-
-
-
-    
-
-
+<!-- <div class="cal" class="has-subheader">
+  <h3>{{viewTitle}}</h3>
+  <ion-buttons>
+        <button ion-button [disabled]="isToday" (click)="today()">Today</button>
+        <button ion-button (click)="changeMode('month')">M</button>
+      </ion-buttons>
+      <calendar   [eventSource]="eventSource" [calendarMode]="calendar.mode"
+        [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
+        (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
+        (onTimeSelected)="onTimeSelected($event,booking)" step="30">
+      </calendar>
+</div> -->
+      
+<!-- 
       <div class="appmnts">
         <ion-item>
           <ion-label position="stacked">Time</ion-label>
@@ -57,7 +65,7 @@
             <ion-select-option *ngFor="let x of staff">{{x.name}}</ion-select-option>
 
           </ion-select>
-        </ion-item>
+        </ion-item> -->
 
       </div>
 
@@ -71,12 +79,7 @@
     </div>
     <br>
     <div class="btnz">
-
       <ion-button color="dark" [disabled]="isvalidated" (click)="submit(booking)" round>Submit</ion-button>
-
     </div>
-
-
-  </div> 
 
 </ion-content>
