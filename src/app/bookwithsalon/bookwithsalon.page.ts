@@ -2,7 +2,7 @@ import { Component, OnInit, ɵConsole } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { ControlsService } from '../controls.service';
 import { bookings } from '../booking';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, ModalController, LoadingController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { ModalPage } from '../modal/modal.page';
 
@@ -23,7 +23,7 @@ export class BookwithsalonPage implements OnInit {
   markDisabled;
 
   isvalidated = true;
-  constructor(public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
+  constructor(public loadingController:LoadingController,public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
    {
     let cdate = new Date();
     cdate.getFullYear();
@@ -44,7 +44,7 @@ export class BookwithsalonPage implements OnInit {
 
     this.markDisabled = (date: Date) => {
       var current = new Date();
-      return date < current;
+      return date < new Date(this.cdate());
   };
 
 
@@ -86,6 +86,23 @@ this.bookingconfirm();
   blocker: boolean = false;
 
 
+
+  todate;
+  //Get current date
+  cdate() {
+   
+    this.todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth()) + '-' + (new Date().getDate());
+    if ((new Date().getMonth() + 1) < 10) {
+
+      this.todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-' + (new Date().getDate());
+      if ((new Date().getDate()) < 10) {
+        this.todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-0' + (new Date().getDate());
+      }
+
+    }
+    console.log("Currentdate =", this.todate)
+    return this.todate;
+  }
 
 
 
@@ -141,7 +158,7 @@ this.bookingconfirm();
       console.log("futureDate =", this.futuredate)
       this.control.FutureDateToast();
       this.isvalidated = true;
-      return 0;
+    
     }
     else
     if (this.cdate() > booking.userdate) {
@@ -151,11 +168,12 @@ this.bookingconfirm();
       this.control.PastDateToast();
       this.isvalidated = true;
       console.log("pastdate")
-      return 0;
+    
 
 
 
     }
+    else
     if (booking.hairdresser == "") {
 
       this.control.name();
@@ -171,7 +189,7 @@ this.bookingconfirm();
       this.control.time();
 
     }
-    
+    else
     {
      return this.setbooking(booking);
     }
@@ -248,7 +266,7 @@ this.bookingconfirm();
   setbooking(booking: bookings) {
 
 
-
+    this.Loading();
 
 
 
@@ -380,7 +398,7 @@ this.bookingconfirm();
     }
   
     this.testbooking(this.booking)
-    this.control.Loading();
+    
   }
 
   async presentAlertConfirm() {
@@ -452,6 +470,7 @@ this.bookingconfirm();
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
   db = firebase.firestore();
   testarray = [];
+  preventinputs:boolean;
   testbooking(booking) {
 
     this.events = [];
@@ -459,7 +478,7 @@ this.bookingconfirm();
     let hourRange = parseFloat(booking.sessiontime[0] + booking.sessiontime[1]);
     let minuteRange = parseFloat(booking.sessiontime[3] + booking.sessiontime[4])
 
-    this.db.collection('Bookings').where("salonuid","==",booking.salonuid).where("userdate","==",booking.userdate).where("hairdresser","==",booking.hairdresser).get().then(val => {
+    this.db.collection('Bookings').where("salonuid","==",booking.salonuid).where("hairdresser","==",booking.hairdresser).orderBy("userdate", "desc").limit(50).get().then(val => {
       if (val.size == 0) {
         this.isvalidated = false;
         this.control.SlotToast2();
@@ -547,8 +566,13 @@ this.bookingconfirm();
         
         
        // this.eventspopulation(this.booking);
-        
-       return  this.eventsconfirm();
+
+       this.preventinputs =false;
+
+       
+    
+       return  0;
+
         console.log("Booking Error slot occupied ")
 
       }
@@ -560,8 +584,9 @@ this.bookingconfirm();
 
 
         this.isvalidated = false;
-       
+        this.preventinputs =true;
         this.control.SlotToast1();
+     
 
       }
    
@@ -615,10 +640,12 @@ this.bookingconfirm();
   }
 
 
-eventspopulation(booking)
+eventspopulation()
 {
- 
-   console.log("TestArray booking = ",booking)
+
+  this.testarray2 =this.testarray;
+ let booking = this.booking;
+   console.log("Events booking = ",booking)
 
 console.log("events population")
 console.log("Testarray length =",this.testarray2.length)
@@ -629,8 +656,8 @@ console.log("Testarray length =",this.testarray2.length)
 
     this.d2 = new Date((this.testarray2[i].userdate + 'T') + (this.testarray2[i].sessiontime));
 
-
-    console.log("Second condition for end time =", (this.testarray2[i].sessionendtime[0]))
+console.log("Error here = ",this.d2)
+    //console.log("Second condition for end time =", (this.testarray2[i].sessionendtime[0]))
 
 
     this.d3 = new Date((this.testarray2[i].userdate + 'T') + (this.testarray2[i].sessionendtime));
@@ -661,7 +688,7 @@ console.log("Testarray length =",this.testarray2.length)
     this.setevents(this.events);
     console.log("events = ",this.events);
   }
-  this.testarray =[];
+ // this.testarray =[];
   return 0;
 }
 
@@ -681,9 +708,13 @@ console.log("Testarray length =",this.testarray2.length)
   onEventSelected(event) {
     console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
   }
+
+
   changeMode(mode) {
     this.calendar.mode = mode;
   }
+
+
   today() {
     this.calendar.currentDate = new Date();
   }
@@ -821,23 +852,6 @@ console.log("Testarray length =",this.testarray2.length)
   }
   ////////////////////////////////////////////////////////////////
 
-  todate;
-  //Get current date
-  cdate() {
-   
-    this.todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth()) + '-' + (new Date().getDate());
-    if ((new Date().getMonth() + 1) < 10) {
-
-      this.todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-' + (new Date().getDate());
-      if ((new Date().getDate()) < 10) {
-        this.todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-0' + (new Date().getDate());
-      }
-
-    }
-    console.log("Currentdate =", this.todate)
-    return this.todate;
-  }
-
   back() {
     this.control.router.navigateByUrl('/viewsalon');
   }
@@ -871,15 +885,17 @@ console.log("Testarray length =",this.testarray2.length)
         {
           text: 'Cancel',
           role: 'cancel',
-          cssClass: 'secondary',
+          cssClass: 'dark',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Okay',
           handler: () => {
-            this.testarray2  =this.testarray;
-           this.eventspopulation(this.booking)
+
+
+
+
           }
         }
       ]
@@ -940,9 +956,28 @@ loadEvents() {
 
   //receives data from array "this.events"
   this.eventSource = this.getevents();
-  this.eventSource = this.createRandomEvents()
+ 
 
 }
+
+
+
+
+
+
+
+
+async Loading() {
+  const loading = await this.loadingController.create({
+    message: 'Please wait...',
+    duration: 5000
+  });
+  await loading.present();
+
+  const { role, data } = await loading.onDidDismiss();
+  
+}
+
 }
 
 

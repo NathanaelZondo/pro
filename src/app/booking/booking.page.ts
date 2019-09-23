@@ -52,7 +52,7 @@ export class BookingPage implements OnInit {
    }
 
   ngOnInit() {
-    firebase.firestore().collection('Bookings').where("useruid","==",firebase.auth().currentUser.uid).get().then(val =>{
+    firebase.firestore().collection('Bookings').where("useruid","==",firebase.auth().currentUser.uid).orderBy("userdate", "desc").limit(15).get().then(val =>{
       val.forEach(doc =>
         
         {

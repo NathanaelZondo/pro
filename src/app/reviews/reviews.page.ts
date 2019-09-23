@@ -55,9 +55,9 @@ ngOnInit(){}
       ],
       buttons: [
         {
-          text: '',
+          text: 'Cancel',
           role: 'cancel',
-          cssClass: 'secondary',
+          cssClass: 'dark',
           handler: async () => {
             console.log('Confirm Cancel');
           }
