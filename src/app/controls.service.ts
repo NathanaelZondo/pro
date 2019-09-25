@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController,  AlertController, ToastController, LoadingController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { FirebaseAuth } from 'angularfire2';
-import { Router } from '@angular/router';
+import { Router,CanActivate } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -120,13 +120,6 @@ export class ControlsService {
     toast.present();
   }
 
-  async SlotToast() {
-    const toast = await this.toastController.create({
-      message: 'Your selected time has already been booked.',
-      duration: 5000
-    });
-    toast.present();
-  }
 
   async SlotToast1()
   {

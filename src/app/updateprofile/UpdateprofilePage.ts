@@ -107,20 +107,16 @@ else{
       console.log("enterabout")
       this.bioToast(); 
     }
-    else if(profile.cell=="" ||profile.cell ==undefined){
+    else if((profile.cell.length) <10 ||profile.cell ==undefined){
       console.log("entercell")
       this.cellToast(); 
-    }
-    else if(profile.image=="" ||profile.image ==undefined)
-    {
-this.imageToast();
     }
     else
     {
 
 
 
-      firebase.firestore().collection('userprofile').doc(firebase.auth().currentUser.uid).update(profile).then(val => {
+      firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).update(profile).then(val => {
         console.log(val);
       });
       this.control.ProfileupdateToast();

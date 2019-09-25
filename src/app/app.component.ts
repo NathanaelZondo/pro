@@ -35,6 +35,7 @@ export class AppComponent {
 
    this.afAuth.authState.subscribe(data => {
     console.log(data)
+    
     this.backend.uid =data.uid;
     if(data)
     {
@@ -46,9 +47,8 @@ export class AppComponent {
   
         if(val.data()==undefined)
         {
-          this.control.profileToast()
           this.control.navCtrl.setDirection('root');
-          this.control.navCtrl.navigateRoot('/createprofile');
+          this.control.navCtrl.navigateRoot('/navigation');
         }
         else{
           this.backend.name = val.data().name;

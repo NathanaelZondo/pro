@@ -16,20 +16,20 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { ViewhairstylePipe } from './viewhairstyle.pipe'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx'
-import {HttpClientModule} from '@angular/common/http';
 import { ModalPage } from './modal/modal.page';
 import {CommonModule} from '@angular/common';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { ReviewsPageModule } from './reviews/reviews.module';
 import { ViewsalonPageModule } from './viewsalon/viewsalon.module';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { IonicStorageModule,Storage } from '@ionic/storage';
+
 @NgModule({
   declarations: [AppComponent, ViewhairstylePipe,ModalPage],
   entryComponents: [ModalPage],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+  imports: [IonicStorageModule.forRoot() ,BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     CommonModule,
   AngularFireModule.initializeApp(config),
-  
   AngularFireDatabaseModule,
   AngularFireAuthModule,
  AngularFirestoreModule],
