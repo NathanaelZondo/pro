@@ -70,7 +70,7 @@ this.bookingconfirm();
     status2: "Active",
     salonuid: this.backend.salonuid,
     hairstyleimage: this.backend.hairstyleimage,
-    useruid:this.backend.uid,
+    useruid:firebase.auth().currentUser.uid,
     bookingid:Math.floor(Math.random() * 2000000).toString()
   }
   //this is the date inputed by the user
@@ -456,7 +456,7 @@ this.bookingconfirm();
     let hourRange = parseFloat(booking.sessiontime[0] + booking.sessiontime[1]);
     let minuteRange = parseFloat(booking.sessiontime[3] + booking.sessiontime[4])
 
-    this.db.collection('Bookings').where("useruid", "==",booking.useruid).where("salonuid","==",booking.salonuid).where("userdate","==",booking.userdate).where("hairdresser","==",booking.hairdresser).get().then(val => {
+    this.db.collection('Bookings').where("useruid", "==",firebase.auth().currentUser.uid).where("salonuid","==",booking.salonuid).where("userdate","==",booking.userdate).where("hairdresser","==",booking.hairdresser).get().then(val => {
       if (val.size == 0) {
         this.isvalidated = false;
         this.control.SlotToast2();
@@ -562,7 +562,7 @@ this.bookingconfirm();
       }
    
 
-      this.db.collection('Bookings').where("userdate","==",booking.userdate).where("sessiontime", "==", booking.sessiontime).where("useruid", "==",booking.useruid).where("salonuid","==",booking.salonuid).where("hairdresser","==",booking.hairdresser).get().then(val => {
+      this.db.collection('Bookings').where("userdate","==",booking.userdate).where("sessiontime", "==", booking.sessiontime).where("useruid", "==",firebase.auth().currentUser.uid).where("salonuid","==",booking.salonuid).where("hairdresser","==",booking.hairdresser).get().then(val => {
         val.forEach(value => {
           //console.log(value.data())
           if (value.data().sessiontime != "") {
@@ -580,7 +580,7 @@ this.bookingconfirm();
 
 
 
-      this.db.collection('Bookings').where("userdate","==",booking.userdate).where("sessionendtime", "==", booking.sessionendtime).where("useruid", "==",booking.useruid).where("salonuid","==",booking.salonuid).where("hairdresser","==",booking.hairdresser).get().then(val => {
+      this.db.collection('Bookings').where("userdate","==",booking.userdate).where("sessionendtime", "==", booking.sessionendtime).where("useruid", "==",firebase.auth().currentUser.uid).where("salonuid","==",booking.salonuid).where("hairdresser","==",booking.hairdresser).get().then(val => {
         val.forEach(value => {
           console.log(value.data())
           if (value.data().sessiontime != "") {

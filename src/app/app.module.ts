@@ -22,7 +22,7 @@ import {CommonModule} from '@angular/common';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { ReviewsPageModule } from './reviews/reviews.module';
 import { ViewsalonPageModule } from './viewsalon/viewsalon.module';
-
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 @NgModule({
   declarations: [AppComponent, ViewhairstylePipe,ModalPage],
   entryComponents: [ModalPage],
@@ -37,7 +37,7 @@ import { ViewsalonPageModule } from './viewsalon/viewsalon.module';
     // StatusBar,
     SplashScreen,
     Camera,
-   
+    OneSignal,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
    ,
    Geolocation,

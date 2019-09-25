@@ -34,11 +34,11 @@
     margin: 5px;
     .card {
         width: 85vw;
-        height: 150px;
+        height: 170px;
         display: flex;
         flex-flow: row;
         // justify-content: space-between;
-          background: rgb(240, 168, 34);
+          background: rgba(15, 12, 5, 0.781);
         margin: 3px;
         border-radius: 20px;
         .image {
@@ -111,14 +111,14 @@ p{
 }
 
 .btn2{
-    background: rgba(49, 45, 36, 0.829);
+    background: rgba(223, 108, 0, 0.829);
     border-radius: 30px;
     font-size: 30px;
     // float: left;
 }
 .location{
     font-size: 7vw;
-    color: rgba(0, 0, 0, 0.945);
+    color: rgba(223, 108, 0, 0.829);
     margin: 0;
 }
 
