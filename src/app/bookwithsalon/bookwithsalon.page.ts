@@ -54,7 +54,7 @@ export class BookwithsalonPage implements OnInit {
   futuredate;
   formodal: boolean = false;
   ngOnInit() {
-this.bookingconfirm();
+//this.bookingconfirm();
   }
   booking: bookings = {
     name: this.backend.username,
@@ -191,6 +191,7 @@ this.bookingconfirm();
     }
     else
     {
+    
      return this.setbooking(booking);
     }
 
@@ -516,6 +517,17 @@ this.bookingconfirm();
   d2: Date;
   d3: Date;
   testarray2 = [];
+
+
+
+  
+  async SlotToast() {
+    const toast = await this.control.toastController.create({
+      message: 'Your selected time at '+this.booking.sessiontime+' with '+this.booking.hairdresser+' has already been booked.',
+      duration: 5000
+    });
+    toast.present();
+  }
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   findtime(booking) {
     this.events = [];
@@ -585,7 +597,7 @@ this.bookingconfirm();
 
         this.isvalidated = false;
         this.preventinputs =true;
-        this.control.SlotToast1();
+       // this.control.SlotToast1();
      
 
       }
@@ -597,12 +609,12 @@ this.bookingconfirm();
           if (value.data().sessiontime != "") {
             this.isvalidated = true;
 
-            this.control.SlotToast();
+            this.SlotToast();
           }
           else {
             this.isvalidated = true;
 
-            this.control.SlotToast();
+            this.SlotToast();
           }
         })
       })
@@ -615,12 +627,12 @@ this.bookingconfirm();
           if (value.data().sessiontime != "") {
             this.isvalidated = true;
 
-            this.control.SlotToast();
+            this.SlotToast();
           }
           else {
             this.isvalidated = true;
 
-            this.control.SlotToast();
+            this.SlotToast();
           }
         })
       })
@@ -688,7 +700,10 @@ console.log("Error here = ",this.d2)
     this.setevents(this.events);
     console.log("events = ",this.events);
   }
- // this.testarray =[];
+ if(this.preventinputs==false)
+ {
+ this.control.SlotToast1();  
+ }
   return 0;
 }
 
@@ -879,21 +894,41 @@ console.log("Error here = ",this.d2)
 
   async eventsconfirm() {
     const alert = await this.alertController.create({
-      header: 'Booking currently taken.',
-      message: 'Would you like to view today\'s schedule?',
+      header: 'Booking assisstant.',
+      message: 'Would you like to view schedule for '+this.booking.hairdresser+'?',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'No',
           role: 'cancel',
           cssClass: 'dark',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
           }
         }, {
-          text: 'Okay',
+          text: 'Yes',
           handler: () => {
 
+            if (this.booking.hairdresser == "") {
 
+              this.control.name();
+        
+            }
+            else if (this.booking.userdate == "") {
+        
+              this.control.date();
+        
+            }
+            else if (this.booking.sessiontime == "" ||this.booking.sessiontime==undefined) {
+        
+              this.control.time();
+        
+            }
+            else
+            {
+              this.eventspopulation();
+            
+            }
+          
 
 
           }
