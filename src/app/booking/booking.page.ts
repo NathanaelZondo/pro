@@ -39,16 +39,12 @@ export class BookingPage implements OnInit {
     {
       currentdate = (new Date().getFullYear().toString())+'-0'+(new Date().getMonth()+1)+'-0'+(new Date().getDate());
     
-    
     }
     }
 
     this.currentdate =currentdate;
     console.log(this.currentdate )
 
-   
-
-  
    }
 
   ngOnInit() {
