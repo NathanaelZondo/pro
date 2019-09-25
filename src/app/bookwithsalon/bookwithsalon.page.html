@@ -3,25 +3,51 @@
     <ion-icon name="arrow-round-back" style="font-size: 30px" (click)="back()"></ion-icon>
 
   </ion-toolbar>
+  <ion-title>{{viewTitle}}</ion-title>
+
 </ion-header>
 
-<ion-content>
+<ion-content class="has-header">
+  <div class="appmnts">
+    <ion-item>
+      <ion-label position="stacked">Time</ion-label>
+      <ion-input [disabled] ="preventinputs" placeholder="session time" type="time" [(ngModel)]="booking.sessiontime"></ion-input>
+    </ion-item>
 
-  <div class="container"  class="has-subheader">
 
-      <div class="cal">
-          <h3>{{viewTitle}}</h3>
-          <ion-buttons>
-            <button ion-button [disabled]="isToday" (click)="today()">Today</button>
-            <button ion-button (click)="changeMode('month')">M</button>
-          </ion-buttons>
-          <calendar (click)="setbooking(booking)" [eventSource]="eventSource" [calendarMode]="calendar.mode"
-            [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
-            (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
-            (onTimeSelected)="onTimeSelected($event)" step="30">
-          </calendar>
-        </div>
-    <div class="inputs">
+    <ion-item id="dresser">
+      <ion-label position="stacked">Hairdresser</ion-label>
+      <ion-select [disabled] ="preventinputs" value="brown" okText="Okay" [(ngModel)]="booking.hairdresser">
+        <ion-select-option *ngFor="let x of staff">{{x.name}}</ion-select-option>
+
+      </ion-select>
+    </ion-item> 
+
+  </div>
+<div>
+  <ion-item *ngIf="!item">
+    <ion-label position="stacked">Selected Date</ion-label>
+    <ion-input (click)="cdate()" clear placeholder="session time" type="date" displayFormat="DD/MM/YYYY"
+      min='2019-01-01' readonly [(ngModel)]="booking.userdate"></ion-input>
+  </ion-item>
+
+
+</div>
+
+&nbsp;&nbsp;<button  [disabled]="isToday" (click)="today()" >TODAY</button>&nbsp;&nbsp;
+<button  (click)="changeMode('month')">MONTH</button>&nbsp;&nbsp;
+<button (click)="changeMode('week')">WEEK</button>&nbsp;&nbsp;
+<button (click)="changeMode('day')">DAY</button>
+
+        <calendar style ="color:rgb(0, 0, 0);background-color:black;border-color:firebrick"   [eventSource]="eventSource" [calendarMode]="calendar.mode"
+          [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
+          (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
+          (onTimeSelected)="onTimeSelected($event,booking)" step="30" startHour="8" endHour="19" [markDisabled]="markDisabled">
+       
+        </calendar>
+  
+        
+ 
       <!-- <div class="hairstyle">
 
         <div class="prc">
@@ -48,35 +74,14 @@
       </calendar>
 </div> -->
       
-<!-- 
-      <div class="appmnts">
-        <ion-item>
-          <ion-label position="stacked">Time</ion-label>
-          <ion-input placeholder="session time" type="time" [(ngModel)]="booking.sessiontime"></ion-input>
-        </ion-item>
 
 
-        <ion-item id="dresser">
-          <ion-label position="stacked">Hairdresser</ion-label>
-          <ion-select value="brown" okText="Okay" [(ngModel)]="booking.hairdresser">
-            <ion-select-option *ngFor="let x of staff">{{x.name}}</ion-select-option>
-
-          </ion-select>
-        </ion-item> -->
-
-      </div>
-
-      <ion-item *ngIf="!item">
-        <ion-label position="stacked">Selected Date</ion-label>
-        <ion-input (click)="cdate()" clear placeholder="session time" type="date" displayFormat="DD/MM/YYYY"
-          min='2019-01-01' readonly [(ngModel)]="booking.userdate"></ion-input>
-      </ion-item>
-
-
-    </div>
     <br>
+    <button color="dark" (click)="eventspopulation()" round>Populate</button>
     <div class="btnz">
       <ion-button color="dark" [disabled]="isvalidated" (click)="submit(booking)" round>Submit</ion-button>
+     
+      
     </div>
 
 </ion-content>

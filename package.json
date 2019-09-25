@@ -29,6 +29,7 @@
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^4.20.0",
     "@ionic/angular": "^4.7.1",
+    "@ionic/storage": "^2.2.0",
     "angularfire2": "^5.2.1",
     "cordova-android": "8.0.0",
     "cordova-browser": "6.0.0",
@@ -39,6 +40,7 @@
     "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-plugin-nativegeocoder": "3.2.2",
     "cordova-plugin-statusbar": "2.4.3",
+    "cordova-sqlite-storage": "^3.3.0",
     "core-js": "^2.5.4",
     "firebase": "^6.5.0",
     "firebase-admin": "^8.3.0",
@@ -104,7 +106,8 @@
       "cordova-plugin-nativegeocoder": {},
       "cordova-plugin-googlemaps": {},
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-local-notification": {}
+      "cordova-plugin-local-notification": {},
+      "cordova-sqlite-storage": {}
     },
     "platforms": [
       "browser",

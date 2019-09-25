@@ -2,7 +2,7 @@ import { Component, OnInit, ɵConsole } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { ControlsService } from '../controls.service';
 import { bookings } from '../booking';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, ModalController, LoadingController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { ModalPage } from '../modal/modal.page';
 
@@ -20,10 +20,10 @@ export class BookwithsalonPage implements OnInit {
   unit1: string;
   staff = [];
 
-
+  markDisabled;
 
   isvalidated = true;
-  constructor(public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
+  constructor(public loadingController:LoadingController,public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
    {
     let cdate = new Date();
     cdate.getFullYear();
@@ -42,7 +42,10 @@ export class BookwithsalonPage implements OnInit {
     cdate.getDay();
     this.currentdate = (cdate.getFullYear() + "-" + (cd1.getMonth() + 1) + "-" + cdate.getDate());
 
-
+    this.markDisabled = (date: Date) => {
+      var current = new Date();
+      return date < new Date(this.cdate());
+  };
 
 
   }
@@ -83,6 +86,23 @@ this.bookingconfirm();
   blocker: boolean = false;
 
 
+
+  todate;
+  //Get current date
+  cdate() {
+   
+    this.todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth()) + '-' + (new Date().getDate());
+    if ((new Date().getMonth() + 1) < 10) {
+
+      this.todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-' + (new Date().getDate());
+      if ((new Date().getDate()) < 10) {
+        this.todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-0' + (new Date().getDate());
+      }
+
+    }
+    console.log("Currentdate =", this.todate)
+    return this.todate;
+  }
 
 
 
@@ -138,7 +158,7 @@ this.bookingconfirm();
       console.log("futureDate =", this.futuredate)
       this.control.FutureDateToast();
       this.isvalidated = true;
-      return 0;
+    
     }
     else
     if (this.cdate() > booking.userdate) {
@@ -148,11 +168,12 @@ this.bookingconfirm();
       this.control.PastDateToast();
       this.isvalidated = true;
       console.log("pastdate")
-      return 0;
+    
 
 
 
     }
+    else
     if (booking.hairdresser == "") {
 
       this.control.name();
@@ -168,7 +189,7 @@ this.bookingconfirm();
       this.control.time();
 
     }
-    
+    else
     {
      return this.setbooking(booking);
     }
@@ -190,12 +211,12 @@ this.bookingconfirm();
 
 
 
-
+ 
 
   //click event from the calendar
   onTimeSelected(ev, booking) {
 
-
+    
 
 
 
@@ -245,7 +266,7 @@ this.bookingconfirm();
   setbooking(booking: bookings) {
 
 
-
+    this.Loading();
 
 
 
@@ -377,7 +398,7 @@ this.bookingconfirm();
     }
   
     this.testbooking(this.booking)
-    this.control.Loading();
+    
   }
 
   async presentAlertConfirm() {
@@ -449,6 +470,7 @@ this.bookingconfirm();
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
   db = firebase.firestore();
   testarray = [];
+  preventinputs:boolean;
   testbooking(booking) {
 
     this.events = [];
@@ -456,7 +478,7 @@ this.bookingconfirm();
     let hourRange = parseFloat(booking.sessiontime[0] + booking.sessiontime[1]);
     let minuteRange = parseFloat(booking.sessiontime[3] + booking.sessiontime[4])
 
-    this.db.collection('Bookings').where("salonuid","==",booking.salonuid).where("userdate","==",booking.userdate).where("hairdresser","==",booking.hairdresser).get().then(val => {
+    this.db.collection('Bookings').where("salonuid","==",booking.salonuid).where("hairdresser","==",booking.hairdresser).orderBy("userdate", "desc").limit(50).get().then(val => {
       if (val.size == 0) {
         this.isvalidated = false;
         this.control.SlotToast2();
@@ -544,8 +566,13 @@ this.bookingconfirm();
         
         
        // this.eventspopulation(this.booking);
-         this.eventsconfirm();
-       return 0;
+
+       this.preventinputs =false;
+
+       
+    
+       return  0;
+
         console.log("Booking Error slot occupied ")
 
       }
@@ -557,8 +584,9 @@ this.bookingconfirm();
 
 
         this.isvalidated = false;
-       
+        this.preventinputs =true;
         this.control.SlotToast1();
+     
 
       }
    
@@ -612,10 +640,12 @@ this.bookingconfirm();
   }
 
 
-eventspopulation(booking)
+eventspopulation()
 {
-  this.testarray2  =this.testarray;
-   console.log("TestArray booking = ",booking)
+
+  this.testarray2 =this.testarray;
+ let booking = this.booking;
+   console.log("Events booking = ",booking)
 
 console.log("events population")
 console.log("Testarray length =",this.testarray2.length)
@@ -626,8 +656,8 @@ console.log("Testarray length =",this.testarray2.length)
 
     this.d2 = new Date((this.testarray2[i].userdate + 'T') + (this.testarray2[i].sessiontime));
 
-
-    console.log("Second condition for end time =", (this.testarray2[i].sessionendtime[0]))
+console.log("Error here = ",this.d2)
+    //console.log("Second condition for end time =", (this.testarray2[i].sessionendtime[0]))
 
 
     this.d3 = new Date((this.testarray2[i].userdate + 'T') + (this.testarray2[i].sessionendtime));
@@ -658,7 +688,7 @@ console.log("Testarray length =",this.testarray2.length)
     this.setevents(this.events);
     console.log("events = ",this.events);
   }
-  this.testarray =[];
+ // this.testarray =[];
   return 0;
 }
 
@@ -671,21 +701,20 @@ console.log("Testarray length =",this.testarray2.length)
     mode: 'month',
     currentDate: new Date()
   }; // these are the variable used by the calendar.
-  loadEvents() {
 
-    //receives data from array "this.events"
-    this.eventSource = this.getevents();
-
-  }
   onViewTitleChanged(title) {
     this.viewTitle = title;
   }
   onEventSelected(event) {
     console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
   }
+
+
   changeMode(mode) {
     this.calendar.mode = mode;
   }
+
+
   today() {
     this.calendar.currentDate = new Date();
   }
@@ -696,50 +725,11 @@ console.log("Testarray length =",this.testarray2.length)
     event.setHours(0, 0, 0, 0);
     this.isToday = today.getTime() === event.getTime();
   }
-  createRandomEvents() {
-    var events = [];
-    for (var i = 0; i < 50; i += 1) {
-      var date = new Date();
-      var eventType = Math.floor(Math.random() * 2);
-      var startDay = Math.floor(Math.random() * 90) - 45;
-      var endDay = Math.floor(Math.random() * 2) + startDay;
-      var startTime;
-      var endTime;
-      if (eventType === 0) {
-        startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
-        if (endDay === startDay) {
-          endDay += 1;
-        }
-        endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + endDay));
-        events.push({
-          title: 'All Day - ' + i,
-          startTime: startTime,
-          endTime: endTime,
-          allDay: true
-        });
-      } else {
-        var startMinute = Math.floor(Math.random() * 24 * 60);
-        var endMinute = Math.floor(Math.random() * 180) + startMinute;
-        startTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + startDay, 0, date.getMinutes() + startMinute);
-        endTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + endDay, 0, date.getMinutes() + endMinute);
-        events.push({
-          title: 'Event - ' + i,
-          startTime: startTime,
-          endTime: endTime,
-          allDay: false
-        });
-      }
-    }
-    return events;
-  }
+
   onRangeChanged(ev) {
     console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
-  markDisabled = (date: Date) => {
-    var current = new Date();
-    current.setHours(0, 0, 0);
-    return date < current;
-  };
+ 
 
   events = [];
 
@@ -862,23 +852,6 @@ console.log("Testarray length =",this.testarray2.length)
   }
   ////////////////////////////////////////////////////////////////
 
-  todate;
-  //Get current date
-  cdate() {
-   
-    this.todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth()) + '-' + (new Date().getDate());
-    if ((new Date().getMonth() + 1) < 10) {
-
-      this.todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-' + (new Date().getDate());
-      if ((new Date().getDate()) < 10) {
-        this.todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-0' + (new Date().getDate());
-      }
-
-    }
-    console.log("Currentdate =", this.todate)
-    return this.todate;
-  }
-
   back() {
     this.control.router.navigateByUrl('/viewsalon');
   }
@@ -912,15 +885,17 @@ console.log("Testarray length =",this.testarray2.length)
         {
           text: 'Cancel',
           role: 'cancel',
-          cssClass: 'secondary',
+          cssClass: 'dark',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Okay',
           handler: () => {
-            
-           this.eventspopulation(this.booking)
+
+
+
+
           }
         }
       ]
@@ -968,7 +943,40 @@ console.log("Testarray length =",this.testarray2.length)
     await alert.present();
   }
 
+  createRandomEvents() {
+    var events = [];
+  events =this.events;
+  console.log("These are the Events = ",this.events)
+    return events;
+}
 
+
+
+loadEvents() {
+
+  //receives data from array "this.events"
+  this.eventSource = this.getevents();
+ 
+
+}
+
+
+
+
+
+
+
+
+async Loading() {
+  const loading = await this.loadingController.create({
+    message: 'Please wait...',
+    duration: 5000
+  });
+  await loading.present();
+
+  const { role, data } = await loading.onDidDismiss();
+  
+}
 
 }
 
