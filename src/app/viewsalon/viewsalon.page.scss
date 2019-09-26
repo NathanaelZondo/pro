@@ -5,17 +5,20 @@ ion-toolbar {
     --background: white;
     --opacity: 0;
     position: absolute;
-} 
+}
 
 * {
     transition: 0.7s;
 }
-.like{
+
+.like {
     color: red
 }
-.unlike{
+
+.unlike {
     color: blue
 }
+
 .back {
     position: absolute;
     z-index: 5;
@@ -190,7 +193,7 @@ ion-toolbar {
 
 .reviews {
     position: relative;
-    top: 25%;
+    top: 22%;
     left: 30%;
     margin: 13px;
 

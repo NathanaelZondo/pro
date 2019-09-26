@@ -45,12 +45,12 @@
 
 
 </ion-content> -->
-<ion-header>
-  <ion-toolbar color="dark">
+<!-- <ion-header>
+  <ion-toolbar>
     <ion-icon name="arrow-round-back" style="font-size: 20px; margin: 5px" (click)="back()"></ion-icon>
     <ion-icon name="exit" style="font-size: 20px; float: right; margin: 5px" (click)="signout()"></ion-icon>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
   <!-- <div class="icons">
@@ -71,9 +71,13 @@
       <div style="width:100vw;padding-left:0px">
         <pre>
             <div class="edit">
-              <ion-fab-button [disabled] ="isvalidated" (click)="update()" style="background: rgba(252, 166, 6, 0); border-radius: 50%">
-                <ion-icon name="create"></ion-icon>
+              <ion-fab-button [disabled] ="isvalidated" (click)="update()" style="background: rgba(252, 166, 6, 0); border-radius: 50%; width: 30px; height: 30px;">
+                <ion-icon name="create" style="font-size: 20px"></ion-icon>
               </ion-fab-button>
+
+              <ion-fab-button [disabled] ="isvalidated" (click)="signout()"style="background: rgba(252, 166, 6, 0); border-radius: 50%; width: 30px; height: 30px;">
+                  <ion-icon name="exit" style="font-size: 20px"></ion-icon>
+                </ion-fab-button>
 
             </div>
           </pre>
@@ -84,8 +88,6 @@
 
           <!-- <p id="about">{{profile.about}}</p> -->
         </div>
-
-
 
         <!-- <table width ="auto" style ="margin-left:15px; ">
                  <tr >
