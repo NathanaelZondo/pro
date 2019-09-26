@@ -8,31 +8,10 @@
 </ion-header>
 
 <ion-content class="has-header">
-  <div class="appmnts">
-    <ion-item>
-      <ion-label position="stacked">Time</ion-label>
-      <ion-input [disabled] ="preventinputs" placeholder="session time" type="time" [(ngModel)]="booking.sessiontime"></ion-input>
-    </ion-item>
 
+<pre>
 
-    <ion-item id="dresser">
-      <ion-label position="stacked">Hairdresser</ion-label>
-      <ion-select [disabled] ="preventinputs" value="brown" okText="Okay" [(ngModel)]="booking.hairdresser">
-        <ion-select-option *ngFor="let x of staff">{{x.name}}</ion-select-option>
-
-      </ion-select>
-    </ion-item> 
-
-  </div>
-<div>
-  <ion-item *ngIf="!item">
-    <ion-label position="stacked">Selected Date</ion-label>
-    <ion-input (click)="cdate()" clear placeholder="session time" type="date" displayFormat="DD/MM/YYYY"
-      min='2019-01-01' readonly [(ngModel)]="booking.userdate"></ion-input>
-  </ion-item>
-
-
-</div>
+</pre>
 
 &nbsp;&nbsp;<button  [disabled]="isToday" (click)="today()" >TODAY</button>&nbsp;&nbsp;
 <button  (click)="changeMode('month')">MONTH</button>&nbsp;&nbsp;
@@ -77,10 +56,6 @@
 
 
    
-    <div class="btnz">
-      <ion-button color="dark" [disabled]="isvalidated" (click)="submit(booking)" round>Submit</ion-button>
-     
-      
-    </div>
+   
 
 </ion-content>

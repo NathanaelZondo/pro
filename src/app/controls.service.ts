@@ -188,7 +188,7 @@ async SlotToast2()
 async tip()
 {
   const toast = await this.toastController.create({
-    message: 'Fill all the inputs then click the calender to change dates.',
+    message: 'Click the buttons to change the calender view.',
     duration: 7000
   });
   toast.present();

@@ -16,40 +16,57 @@
       <div class="hairstyle">
 
           <div class="prc">
-            <label>Price: </label>
+            <label>Price:R{{booking.hairstyleprice}}.00 </label>
           </div>
   
           <div class="info">
-            <label>Hairstyle:</label><br>
-            <label>Duration: </label>
+            <label>Hairstyle:{{booking.hairstyletype}}</label><br>
+            <label>Duration:{{booking.estimatedtime}}_minutes </label>
           </div>
   
         </div>
   
         
         <div class="appmnts">
+          
+
+            <ion-item id="dresser">
+               
+                    <ion-label position="stacked">Hairdresser</ion-label>
+                    <ion-select [disabled] ="preventinputs" value="brown" okText="Okay" [(ngModel)]="booking.hairdresser" (change)="getfuturedate(booking)">
+                      <ion-select-option *ngFor="let x of staff">{{x.name}}</ion-select-option>
+              
+                    </ion-select>
+                
+              </ion-item>
+  
+              <ion-item>
+                  <ion-label position="floating">Date</ion-label>
+                  <ion-datetime  [disabled] ="preventinputs" displayFormat="YYYY/MM/DD" (change)="getfuturedate(booking)" [(ngModel)]="booking.userdate" ></ion-datetime>
+                </ion-item>
+
+
             <ion-item>
               <ion-label position="stacked">Time</ion-label>
-              <ion-input placeholder="session time" type="time"></ion-input>
+              <ion-input placeholder="session time" type="time" (change)="getfuturedate(booking)" [(ngModel)]="booking.sessiontime"></ion-input>
             </ion-item>
     
     
-            <ion-item id="dresser">
-              <ion-label position="stacked">Hairdresser</ion-label>
-              <ion-select value="brown" okText="Okay" >
-                <ion-select-option></ion-select-option>
-    
-              </ion-select>
-            </ion-item>
+            
+            
     
           </div>
   <br><br>
           <div class="btn">
-              <ion-button color="dark" large routerLink="/bookwithsalon" style="width: 300px">
+              <ion-button color="dark" large routerLink="/bookwithsalon" style="width: 300px" (change) ="onTimeSelected(booking)" >
                 Next
               </ion-button>
             </div>
-    
+            <div class="btnz">
+                <ion-button color="dark" [disabled]="isvalidated" (click)="submit(booking)" round>Submit</ion-button>
+               
+                
+              </div>
   </div>
  
 </div>
