@@ -22,6 +22,8 @@ const routes: Routes = [
   { path: 'reviews', loadChildren: './reviews/reviews.module#ReviewsPageModule' },
   { path: 'onboarding', loadChildren: './onboarding/onboarding.module#OnboardingPageModule' },
   { path: 'navigation', loadChildren: './navigation/navigation.module#NavigationPageModule' },
+  { path: 'customer', loadChildren: './customer/customer.module#CustomerPageModule'},
+  { path: 'dates', loadChildren: './dates/dates.module#DatesPageModule'},
   { path: '', loadChildren: './login/login.module#LoginPageModule',canActivate:[GuardsGuard]}
 ]
 

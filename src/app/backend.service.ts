@@ -47,8 +47,12 @@ export class BackendService {
   type = 'chiskop;'
   profiles = [];
 
-  
-
+  bookingdata:bookings;
+getbookingdata(booking:bookings)
+{
+  this.bookingdata =booking;
+return booking;
+}
   
 
   getprofile2() 
