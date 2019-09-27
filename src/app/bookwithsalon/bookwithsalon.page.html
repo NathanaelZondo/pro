@@ -8,25 +8,21 @@
 </ion-header>
 
 <ion-content class="has-header">
-
-<pre>
-
-</pre>
-
-&nbsp;&nbsp;<button  [disabled]="isToday" (click)="today()" >TODAY</button>&nbsp;&nbsp;
 <button  (click)="changeMode('month')">MONTH</button>&nbsp;&nbsp;
 <button (click)="changeMode('week')">WEEK</button>&nbsp;&nbsp;
 <button (click)="changeMode('day')">DAY</button>
 
         <calendar style ="color:rgb(0, 0, 0);background-color:black;border-color:firebrick"   [eventSource]="eventSource" [calendarMode]="calendar.mode"
           [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
-          (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
-          (onTimeSelected)="onTimeSelected($event,booking)" step="30" startHour="8" endHour="19" [markDisabled]="markDisabled" (click) ="eventsconfirm()">
+    (onTitleChanged)="onViewTitleChanged($event)"
+         step="30" startHour="8" endHour="19" [markDisabled]="markDisabled" >
        
         </calendar>
   
         
- 
+        <ion-fab  vertical="bottom" horizontal="end">
+          <ion-fab-button routerLink ="/dates">Continue</ion-fab-button>
+        </ion-fab>
       <!-- <div class="hairstyle">
 
         <div class="prc">

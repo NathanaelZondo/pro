@@ -381,7 +381,7 @@ console.log(booking)
     const alert = await this.alertController.create({
       header: 'Please note!',
       message: 'Your booking is at ' + this.booking.salonname + ' hair salon in ' + this.booking.salonlocation + '\n' +
-        ' from ' + this.booking.sessiontime + ' until ' + this.booking.sessionendtime + '.',
+        ' from ' + this.booking.sessiontime + ' until ' + this.booking.sessionendtime + ' with '+this.booking.hairdresser+'.',
       buttons: [
         {
           text: 'Cancel',
@@ -463,7 +463,7 @@ console.log(booking)
       val.forEach(doc => {
         this.testarray.push(doc.data());
 
-        console.log(doc.data())
+       // console.log(doc.data())
         this.findtime(booking);
 
       });
@@ -471,7 +471,7 @@ console.log(booking)
     });
 
    
-    console.log("here = ",this.testarray)
+  //  console.log("here = ",this.testarray)
   
 
   }
@@ -496,13 +496,43 @@ console.log(booking)
 
   
   
-  async SlotToast() {
-    const toast = await this.control.toastController.create({
-      message: 'Your selected time at '+this.booking.sessiontime+' with '+this.booking.hairdresser+' has already been booked.',
-      duration: 5000
+ 
+
+
+  async slotAlert() {
+    const alert = await this.alertController.create({
+      header: 'The date and time you have selected have already been booked.',
+      message: 'Would you like to view the schedule for '+this.booking.hairdresser+'?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.control.router.navigate(['bookwithsalon']);
+          }
+        }
+      ]
     });
-    toast.present();
+
+    await alert.present();
   }
+
+
+
+
+
+
+
+
+
+
+
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   findtime(booking) {
     this.events = [];
@@ -514,7 +544,7 @@ console.log(booking)
 
     //this.formodal=false;
 
-    console.log("TestArray = ", this.testarray)
+   // console.log("TestArray = ", this.testarray)
 
     for (let i = 0; i < this.testarray.length; i++) {
 
@@ -523,7 +553,7 @@ console.log(booking)
       this.d2 = new Date((this.testarray[i].userdate + 'T') + (this.testarray[i].sessiontime));
 
 
-      console.log("Second condition for end time =", (this.testarray[i].sessionendtime[0]))
+     //console.log("Second condition for end time =", (this.testarray[i].sessionendtime[0]))
 
       this.d3 = new Date((this.testarray[i].userdate + 'T') + (this.testarray[i].sessionendtime));
 
@@ -531,7 +561,7 @@ console.log(booking)
       let d4 = new Date((booking.userdate + 'T') + (booking.sessionendtime));
 
 
-      console.log("session end time = ", d4)
+      //console.log("session end time = ", d4)
 
       let a = "From ";
       let b = " until";
@@ -546,7 +576,7 @@ console.log(booking)
       this.formodal = false;
 
 
-      if (this.d2 <= this.d1 && this.d1 < this.d3) {
+      if (this.d2 <= this.d1 && this.d1 < this.d3 ) {
 
         this.formodal = true;
         this.isvalidated = true;
@@ -555,12 +585,12 @@ console.log(booking)
        // this.eventspopulation(this.booking);
 
        this.preventinputs =false;
-
-       
+       console.log("Booking Error slot occupied ")
+       this.control.router.navigate(['bookwithsalon']);
     
        return  0;
 
-        console.log("Booking Error slot occupied ")
+        
 
       }
 
@@ -584,12 +614,12 @@ console.log(booking)
           if (value.data().sessiontime != "") {
             this.isvalidated = true;
 
-            this.SlotToast();
+           // this.slotAlert();
           }
           else {
             this.isvalidated = true;
 
-            this.SlotToast();
+            //this.slotAlert();
           }
         })
       })
@@ -598,16 +628,16 @@ console.log(booking)
 
       this.db.collection('Bookings').where("userdate","==",booking.userdate).where("sessionendtime", "==", booking.sessionendtime).where("salonuid","==",booking.salonuid).where("hairdresser","==",booking.hairdresser).get().then(val => {
         val.forEach(value => {
-          console.log(value.data())
+         // console.log(value.data())
           if (value.data().sessiontime != "") {
             this.isvalidated = true;
 
-            this.SlotToast();
+            //this.slotAlert();
           }
           else {
             this.isvalidated = true;
 
-            this.SlotToast();
+           // this.slotAlert();
           }
         })
       })
@@ -813,91 +843,11 @@ console.log(booking)
 
 
 
-  async eventsconfirm() {
-    const alert = await this.alertController.create({
-      header: 'Booking assisstant.',
-      message: 'Would you like to view schedule for '+this.booking.hairdresser+'?',
-      buttons: [
-        {
-          text: 'No',
-          role: 'cancel',
-          cssClass: 'dark',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Yes',
-          handler: () => {
-
-            if (this.booking.hairdresser == "") {
-
-              this.control.name();
-        
-            }
-            else if (this.booking.userdate == "") {
-        
-              this.control.date();
-        
-            }
-            else if (this.booking.sessiontime == "" ||this.booking.sessiontime==undefined) {
-        
-              this.control.time();
-        
-            }
-            else
-            {
-           
-            
-            }
-          
-
-
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
+  
 
 
 
-  async bookingconfirm() {
-    const alert = await this.alertController.create({
-      header: 'If you are booking for someone else, enter their name.',
-      inputs: [
-        {
-          name: 'othername',
-          type: 'text',
-          placeholder: 'Enter the name...'
-        },
-        {
-          name: 'othersurname',
-          type: 'text',
-          placeholder: 'Enter the surname...'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }, {
-          text: 'Save',
-          handler: (name) => {
-            console.log(name.othername,name.othersurname);
-            this.booking.name =name.othername;
-            this.booking.surname = name.othersurname;
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
+  
 
   createRandomEvents() {
     var events = [];

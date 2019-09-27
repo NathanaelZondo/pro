@@ -42,13 +42,13 @@
   
               <ion-item>
                   <ion-label position="floating">Date</ion-label>
-                  <ion-datetime  [disabled] ="preventinputs" displayFormat="YYYY/MM/DD" (change)="getfuturedate(booking)" [(ngModel)]="booking.userdate" ></ion-datetime>
+                  <ion-datetime  [disabled] ="preventinputs" displayFormat="YYYY/MM/DD" [(ngModel)]="booking.userdate" ></ion-datetime>
                 </ion-item>
 
 
             <ion-item>
               <ion-label position="stacked">Time</ion-label>
-              <ion-input placeholder="session time" type="time" (change)="getfuturedate(booking)" [(ngModel)]="booking.sessiontime"></ion-input>
+              <ion-input placeholder="session time" type="time" [disabled] ="preventinputs"  [(ngModel)]="booking.sessiontime"></ion-input>
             </ion-item>
     
     
@@ -58,12 +58,12 @@
           </div>
   <br><br>
           <div class="btn">
-              <ion-button color="dark" large routerLink="/bookwithsalon" style="width: 300px" (change) ="onTimeSelected(booking)" >
+              <ion-button color="dark" [hidden] ="preventinputs" large  style="width: 300px" (click) ="onTimeSelected(booking)" >
                 Next
               </ion-button>
             </div>
             <div class="btnz">
-                <ion-button color="dark" [disabled]="isvalidated" (click)="submit(booking)" round>Submit</ion-button>
+                <ion-button color="dark" [hidden]="isvalidated" (click)="submit(booking)" round>Submit</ion-button>
                
                 
               </div>
