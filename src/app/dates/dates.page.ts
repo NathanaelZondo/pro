@@ -34,7 +34,7 @@ export class DatesPage implements OnInit {
         this.staff.push(stav.data());
       })
     })
-    this.control.tip();
+
     this.cdate();
 
     cdate.getDay();
@@ -514,7 +514,8 @@ console.log(booking)
         }, {
           text: 'Yes',
           handler: () => {
-            this.control.router.navigate(['bookwithsalon']);
+            this.control.navCtrl.setDirection('root');
+            this.control.navCtrl.navigateRoot('/navigation'); 
           }
         }
       ]
