@@ -1,22 +1,21 @@
-
 <ion-content fullscreen>
-    <ion-header>
-        <ion-toolbar>
-            <div class="likes" style=" float: right">
-                <ion-icon name="heart" (click)="like(x)" id="heart"
-                  style="float: left; font-size: 30px; color: rgb(240, 10, 10); margin: 10px"></ion-icon>
-                
-              </div>
-      
-              <div class="back" routerLink="/maps">
-                <ion-icon name="arrow-back" style="float: right; margin: 10px; color: white; font-size: 25px;"></ion-icon>
-              </div>
-        </ion-toolbar>
-      </ion-header>
+  <ion-header>
+    <ion-toolbar>
+      <div class="likes" style=" float: right">
+        <ion-icon name="heart" (click)="like(x)" id="heart"
+          style="float: left; font-size: 30px; color: rgb(240, 10, 10); margin: 10px"></ion-icon>
+
+      </div>
+
+      <div class="back" routerLink="/maps">
+        <ion-icon name="arrow-back" style="float: right; margin: 10px; color: white; font-size: 25px;"></ion-icon>
+      </div>
+    </ion-toolbar>
+  </ion-header>
 
   <div class="container">
 
-     
+
     <div class="salonimage" *ngFor="let x of salond">
       <img src="{{x.salonImage}}">
 
@@ -38,7 +37,7 @@
     </div> -->
 
     <div class="details">
- 
+
       <div class="blur"></div>
       <div class="card" *ngFor="let x of salond">
 
@@ -60,7 +59,7 @@
           halfStar = "true"
           >
         </ionic4-star-rating> -->
-       
+
         </div>
       </div>
     </div>
@@ -79,18 +78,16 @@
       </p>
     </div>
     <div class="desc" *ngFor="let x of salond">
-
-      <p>{{x.SalonDesc}}       </p>
+      <p>{{x.SalonDesc}}</p>
     </div>
-    <ion-fab-button (click)="toogleHaert()">
-        <ion-icon  slot="icon-only" name="heart" [class]="heart"></ion-icon>
-    </ion-fab-button>
+    <!-- <ion-fab-button (click)="toogleHaert()">
+      <ion-icon slot="icon-only" name="heart" [class]="heart"></ion-icon>
+    </ion-fab-button> -->
     <div class=" buttonz">
-      <ion-button (click)="selecthairstyle('female')"  id="btn" (click)="viewHair()"
-      style="background: rgb(252, 101, 0);">Ladies
+      <ion-button (click)="selecthairstyle('female')" id="btn" (click)="viewHair()">Ladies
       </ion-button>
-      <ion-button (click)="selecthairstyle('male')"  id="btn" (click)="viewHair()"
-      style="background: rgb(49, 49, 49)">Gents</ion-button>
+      <ion-button (click)="selecthairstyle('male')" id="btn" (click)="viewHair()" style="background: rgb(49, 49, 49)">
+        Gents</ion-button>
     </div>
   </div>
 

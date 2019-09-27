@@ -26,7 +26,7 @@ declare var google;
 export class MapsPage implements OnInit {
   sliderConfig ={
     initialSlide: 0,
-    spaceBetween : 10,
+    spaceBetween : 6,
     centeredSlides: true,
     slidesPerView: 1.2,
     watchOverflow: true
@@ -219,7 +219,7 @@ getSalonmarkrs(){
   this.db.collection('Salons').onSnapshot(snapshot => {
     snapshot.forEach(doc => {
 
-     
+      // content = `<h1>${doc.data().salonName}</h1> <br> <p>`
         let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().Address.fullAddress
         //  this.addMarkersOnTheCustomersCurrentLocation(doc.data().lat, doc.data().lng, content);
 
