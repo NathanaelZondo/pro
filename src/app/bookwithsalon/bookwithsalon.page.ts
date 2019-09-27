@@ -31,7 +31,7 @@ export class BookwithsalonPage implements OnInit {
 
     this.testarray = [];
 
-    this.control.tip();
+    //this.control.tip();
     this.cdate();
 
     cdate.getDay();
@@ -502,7 +502,7 @@ export class BookwithsalonPage implements OnInit {
   
   async SlotToast() {
     const toast = await this.control.toastController.create({
-      message: 'Your selected time at '+this.booking.sessiontime+' with '+this.booking.hairdresser+' has already been booked.',
+      message: 'Your selected time at '+this.booking.sessiontime+" on "+this.booking.userdate+' with '+this.booking.hairdresser+' has already been booked.',
       duration: 5000
     });
     toast.present();
@@ -874,7 +874,7 @@ console.log("Error here = ",this.d2)
   async eventsconfirm() {
     const alert = await this.alertController.create({
       header: 'You can view '+this.booking.hairdresser+'\'s '+'bookings.',
-      message: 'Click the top buttons to change the calendar view',
+      message: 'Click the top buttons to change the calendar view.',
       buttons: [
         {
           text: 'Cancel',
@@ -884,7 +884,7 @@ console.log("Error here = ",this.d2)
            this.control.router.navigateByUrl('dates')
           }
         }, {
-          text: 'Ok',
+          text: 'Confirm',
           handler: () => {
 
             if (this.booking.hairdresser == "") {

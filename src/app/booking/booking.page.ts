@@ -24,7 +24,22 @@ export class BookingPage implements OnInit {
   ob = {};
   buttonactive;
   isvalidated = true;
+  
+  color2 ='#'+(Math.random()*0xFFFFFF<<0).toString(16);
+  random1 =Math.random() * (255 - 65) + 65;
+  random2 =Math.random() * (68 - 24) + 24;
+  random3 =Math.random() * (30 - 5) + 5;
+
+
+  random11 =Math.random() * (50) ;
+  random22 =Math.random() * (50-10) + 10;
+  random33 =Math.random() * (50 - 5) + 5;
+
+color ="rgba("+this.random1+","+this.random2+","+this.random3+","+ "0.714)";
+  color3 ="rgba("+this.random11+","+this.random22+","+this.random33+","+ "1)";
   constructor(private alertController: AlertController, public backend: BackendService, public control: ControlsService, public modalController: ModalController, public controls: ControlsService, public elementRef: ElementRef, public renderer: Renderer2) {
+    
+    console.log("Colors =",this.color);
     this.newdata = [];
     let v = 0;
     this.control.Loading2();
@@ -44,11 +59,12 @@ export class BookingPage implements OnInit {
     console.log(this.currentdate)
   }
 
+
   ngOnInit() {
 setTimeout(()=>{
   let cards = this.elementRef.nativeElement.children[1].children[0].children
   console.log(cards);
-  let colors = ['rgba(255, 68, 0, 0.329)', '']
+  let colors = ["none", "rgb(66, 66, 66,0.5)"]
   for (let i = 1; i < cards.length; i++) {
     console.log(cards[i].children[0]);
     let random = i % 2;

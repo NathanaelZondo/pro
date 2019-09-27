@@ -38,7 +38,7 @@
   font-family: 'Manjari';
   .date {
     transform: rotate(-90deg);
-    background: black;
+    //background: black;
     color: white;
     height: 50px;
     width: 110px;
@@ -59,10 +59,11 @@
 }
 
 #cancel{
-  position: absolute;
+  
+  float:right;
   z-index: 5;
-  right: 15px;
-  top: 14%;
+  position: relative;
+ // top: 14%;
 }
 
 // .pink{
