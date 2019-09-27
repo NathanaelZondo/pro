@@ -5,69 +5,67 @@
 </ion-header>
 
 <ion-content>
-<div class="container">
-<div class="h2">
-    <h2 style="color: orangered; text-align: center">Appointment Details</h2>
-    <br><br><br>
-</div>
-  
+  <div class="container">
+    <div class="h2">
+      <h2 style="color: orangered; text-align: center; font-size: 6vw">Appointment Details</h2>
+      <br>
+    </div>
 
-  <div class="time">
+
+    <div class="time">
       <div class="hairstyle">
 
-          <div class="prc">
-            <label>Price:R{{booking.hairstyleprice}}.00 </label>
-          </div>
-  
-          <div class="info">
-            <label>Hairstyle:{{booking.hairstyletype}}</label><br>
-            <label>Duration:{{booking.estimatedtime}}_minutes </label>
-          </div>
-  
+        <div class="prc" style="width: 50vh">
+          <label>Price:R{{booking.hairstyleprice}}.00 </label>
         </div>
-  
-        
-        <div class="appmnts">
-          
 
-            <ion-item id="dresser">
-               
-                    <ion-label position="stacked">Hairdresser</ion-label>
-                    <ion-select [disabled] ="preventinputs" value="brown" okText="Okay" [(ngModel)]="booking.hairdresser" (change)="getfuturedate(booking)">
-                      <ion-select-option *ngFor="let x of staff">{{x.name}}</ion-select-option>
-              
-                    </ion-select>
-                
-              </ion-item>
-  
-              <ion-item>
-                  <ion-label position="floating">Date</ion-label>
-                  <ion-datetime  [disabled] ="preventinputs" displayFormat="YYYY/MM/DD" [(ngModel)]="booking.userdate" ></ion-datetime>
-                </ion-item>
+        <div class="info" style="width: 50vh">
+          <label>Hairstyle:{{booking.hairstyletype}}</label><br>
+          <label>Duration:{{booking.estimatedtime}}_minutes </label>
+        </div>
+
+      </div>
 
 
-            <ion-item>
-              <ion-label position="stacked">Time</ion-label>
-              <ion-input placeholder="session time" type="time" [disabled] ="preventinputs"  [(ngModel)]="booking.sessiontime"></ion-input>
-            </ion-item>
-    
-    
-            
-            
-    
-          </div>
-  <br><br>
-          <div class="btn">
-              <ion-button color="dark" [hidden] ="preventinputs" large  style="width: 300px" (click) ="onTimeSelected(booking)" >
-                Next
-              </ion-button>
-            </div>
-            <div class="btnz">
-                <ion-button color="dark" [hidden]="isvalidated" (click)="submit(booking)" round>Submit</ion-button>
-               
-                
-              </div>
+      <div class="appmnts">
+
+
+        <ion-item id="dresser" style="width: 50vh">
+
+          <ion-label position="stacked">Hairdresser</ion-label>
+          <ion-select [disabled]="preventinputs" value="brown" okText="Okay" [(ngModel)]="booking.hairdresser"
+            (change)="getfuturedate(booking)">
+            <ion-select-option *ngFor="let x of staff">{{x.name}}</ion-select-option>
+
+          </ion-select>
+
+        </ion-item>
+
+        <ion-item style="width: 50vh">
+          <ion-label position="floating">Date</ion-label>
+          <ion-datetime [disabled]="preventinputs" displayFormat="YYYY/MM/DD" [(ngModel)]="booking.userdate">
+          </ion-datetime>
+        </ion-item>
+
+
+        <ion-item style="width: 50vh">
+          <ion-label position="stacked">Time</ion-label>
+          <ion-input placeholder="session time" type="time" [disabled]="preventinputs"
+            [(ngModel)]="booking.sessiontime"></ion-input>
+        </ion-item>
+
+
+      </div>
+      <br><br>
+      <div class="btn">
+        <ion-button color="dark" [hidden]="preventinputs" large style="width: 40vh;  margin-left: 30px" (click)="onTimeSelected(booking)">
+          Next
+        </ion-button>
+      </div>
+      <div class="btnz">
+        <ion-button color="dark" [hidden]="isvalidated" large style="width: 40vh;  margin-left: 30px" (click)="submit(booking)" round>Submit</ion-button>
+      </div>
+    </div>
+
   </div>
- 
-</div>
 </ion-content>
