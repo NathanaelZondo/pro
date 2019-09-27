@@ -16,38 +16,41 @@
     <div class="npts">
       <form [formGroup]="loginForm">
 
-        <ion-item style="background: none; margin: 5px">
+        <ion-item style=" margin: 5px; color: white" color="transparent">
 
           <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!loginForm.controls['email'].valid &&
                          loginForm.controls['email'].touched"  >
           </ion-input>
         </ion-item>
-        <ion-item  style=" border: none; " class="error-message" *ngIf="!loginForm.controls['email'].valid &&
-                                     loginForm.controls['email'].touched">
-          <ion-label style="color:red; font-size: 15px">Please enter a valid email address.</ion-label>
-        </ion-item>
+          <ion-label 
+          class="error-message" *ngIf="!loginForm.controls['email'].valid &&
+                                     loginForm.controls['email'].touched"
+          style="color:red; font-size: 15px">Please enter a valid email address.</ion-label>
+      
 
-        <ion-item style="opacity: 0.1; margin: 5px; background: none;">
+        <ion-item style=" margin: 5px; color: white"color="transparent">
 
           <ion-input id="pass" formControlName="password" type="password" placeholder="Your password"
             [class.invalid]="!loginForm.controls['password'].valid&& loginForm.controls['password'].touched">
           </ion-input>
         </ion-item>
-        <ion-item style=" border: none; box-shadow: none" class="error-message" *ngIf="!loginForm.controls['password'].valid
-                                      && loginForm.controls['password'].touched">
-          <ion-label style="color:red; font-size: 15px; opacity: 1;">Your password needs more than 6 characters.</ion-label>
-        </ion-item>
+          <ion-label 
+          class="error-message" *ngIf="!loginForm.controls['password'].valid
+                                      && loginForm.controls['password'].touched"
+          style="color:red; font-size: 15px;">Your password needs more than 6 characters.</ion-label>
         <br>
-        <button ion-button routerLink="/reset-password" id="reset" style="color: rgb(204, 203, 203); background: none;"> Forgot
+        <button ion-button routerLink="/reset-password" id="reset" style="color: rgb(204, 203, 203); background: none;
+        position: relative;
+        right: -10px"> Forgot
           Password? </button>
 
         <div class="btn">
           <button ion-button (click)="loginUser(loginForm)" color="dark" [disabled]="!loginForm.valid"
-            style="height: 6vh; border-radius: 20px; font-size: 5vw">
+            style="height: 6vh; font-size: 4vw">
             Sign-In
           </button>
 
-          <button ion-button routerLink="/signup" clear [disabled]="!loginForm.valid" style="height: 6vh; border-radius: 20px; font-size: 5vw; background: transparent; 
+          <button ion-button routerLink="/signup" clear [disabled]="!loginForm.valid" style="height: 6vh; font-size: 4vw; background: transparent; 
             color: white;">
             Sign-Up
           </button>

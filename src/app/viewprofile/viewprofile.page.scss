@@ -10,6 +10,11 @@
     }
 }
 
+.content {
+    width: 100%;
+    height: 100%;
+}
+
 // .container {
 //     display: flex;
 //     flex-flow: column;
@@ -18,18 +23,19 @@
 //     // align-items: center;
 // }
 
-// .icons {
-//     display: flex;
-//     flex-flow: row;
-//     justify-content: space-between;
-//     position: absolute;
-//     top: 10px;
-//     z-index: 3;
+.icons {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    position: absolute;
+    top: 10px;
+    z-index: 3;
 
-//     .exit {
-//         position: absolute;
-//         left: 370px;
-//     }
+    .exit {
+        position: absolute;
+        left: 290px;
+    }
+}
 
 // }
 
@@ -44,12 +50,9 @@
 // }
 
 img {
-    width: 30vh;
-    height: 30vh;
-    border-radius: 50%;
-    position: absolute;
-    top: 10%;
-    left: 30%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover
 }
 
 
@@ -57,47 +60,56 @@ img {
     display: flex;
     flex-flow: column;
     position: absolute;
-    bottom: 290px;
-    left: 20%;
+    bottom: 0;
+    // left: 20%;
     z-index: 5;
-    // color: rgb(255, 255, 255);
+    background: linear-gradient(rgba(255, 255, 255, 0.301), white);
+
+    width: 50vh;
+    height: 30vh;
 
     #name {
         font-size: 8vw;
         position: relative;
-        top: 120px;
+        top: -5px;
         font-family: sans-serif;
+        text-align: left;
+        padding: 10px;
     }
 
     #about {
         position: relative;
-        bottom: 150px;
-        text-align: center;
+        top: 10px;
+        text-align: left;
         padding: 10px;
     }
 
     #cell {
         position: relative;
-        top: 100px;
+        bottom: 50px;
         font-family: sans-serif;
         font-size: 20px;
+        text-align: left;
+        padding: 10px;
     }
 }
 
 .edit {
     position: absolute;
     bottom: 10px;
-   left: 40%;
-    z-index: 5;
-    width: 100px;
-    height: 60px;
-    border-radius: 50%;
-    align-items: center;
-    display: flex;
-    flex-flow: row;
-ion-fab-button{
-    margin: 2px;
+    left: 8%;
+    z-index: 8;
+    width: 200px;
+    height: 80px;
+
+    ion-fab-button {
+        margin: 2px;
+    }
 }
+
+body {
+    position: absolute;
+    top: 0;
 }
 
 .flex-container {

@@ -53,40 +53,37 @@
 </ion-header> -->
 
 <ion-content>
-  <!-- <div class="icons">
+  <div class="icons">
         <div class="back" (click)="back()">
           <ion-icon name="arrow-round-back" style="font-size:30px; color: white"></ion-icon>
         </div>
         <div class="exit" (click)="signout()">
-          <ion-icon name="exit" style="font-size:30px; color: white;"></ion-icon>
+          <ion-icon name="exit" style="font-size:30px; color: white; float: right"></ion-icon>
         </div>
-        </div> -->
+        </div>
 
-  <body
-    style="background:url(https://images.pexels.com/photos/2873486/pexels-photo-2873486.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260) no-repeat center center fixed;"
-    *ngFor="let profile of profiles">
+  <body *ngFor="let profile of profiles">
 
-    <img src="{{profile.image}}" height="100%">
+    <img src="{{profile.image}}">
     <div class="flex-container">
       <div style="width:100vw;padding-left:0px">
         <pre>
             <div class="edit">
-              <ion-fab-button [disabled] ="isvalidated" (click)="update()" style="background: rgba(252, 166, 6, 0); border-radius: 50%; width: 30px; height: 30px;">
+              <!-- <ion-fab-button [disabled] ="isvalidated" (click)="update()" style="background: rgba(252, 166, 6, 0); border-radius: 50%; width: 30px; height: 30px;">
                 <ion-icon name="create" style="font-size: 20px"></ion-icon>
-              </ion-fab-button>
-
-              <ion-fab-button [disabled] ="isvalidated" (click)="signout()"style="background: rgba(252, 166, 6, 0); border-radius: 50%; width: 30px; height: 30px;">
-                  <ion-icon name="exit" style="font-size: 20px"></ion-icon>
-                </ion-fab-button>
+              </ion-fab-button> -->
+              <button ion-button (click)="update()" style=" width: 150px; height: 50px; text-align: center; background: linear-gradient( orangered, rgba(36, 36, 36, 0.541))">
+              Edit
+            </button>
 
             </div>
           </pre>
         <div class="info">
-          <p id="name">{{profile.name}} {{profile.surname}}</p>
+          <p id="name" style="color: black;">{{profile.name}} {{profile.surname}}</p>
 
-          <p id="cell"><strong>{{profile.cell}}</strong></p>
+          <p id="cell" style="color: black">{{profile.cell}}</p>
 
-          <!-- <p id="about">{{profile.about}}</p> -->
+          <p id="about" style="color: black">{{profile.about}}</p>
         </div>
 
         <!-- <table width ="auto" style ="margin-left:15px; ">
