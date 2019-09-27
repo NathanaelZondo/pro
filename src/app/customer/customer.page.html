@@ -19,20 +19,27 @@
 
           <ion-item style="width: 300px">
             <ion-label>Me</ion-label>
-            <ion-radio slot="start" value="me" checked></ion-radio>
+            <ion-radio slot="start" value="me" checked (click) ="change()"></ion-radio>
           </ion-item>
 
           <ion-item style="width: 300px">
             <ion-label>Someone Else</ion-label>
-            <ion-radio slot="start" value="someone else"></ion-radio>
+            <ion-radio (click) ="otherdata()" slot="start" value="someone else"></ion-radio>
           </ion-item>
 
         </ion-radio-group>
       </ion-list>
     </div>
-
+    <ion-item [hidden] ="val">
+    <ion-label position="floating">Enter their name</ion-label>
+    <ion-input type = "text" [(ngModel)]="name"></ion-input>
+  </ion-item>
+  <ion-item  [hidden] ="val">
+  <ion-label position="floating">Enter their surname</ion-label>
+  <ion-input type = "text" [(ngModel)]="surname"></ion-input>
+</ion-item>
     <div class="btn">
-      <ion-button color="dark" large routerLink="/dates" style="width: 300px">
+      <ion-button color="dark" large  style="width: 300px" (click) ="pickdates()">
         Next
       </ion-button>
     </div>

@@ -22,7 +22,7 @@ export class ControlsService {
   async Loading() {
     const loading = await this.loadingController.create({
       message: 'Please wait...',
-      duration: 5000
+      duration: 6000
     });
     await loading.present();
   
@@ -131,6 +131,16 @@ export class ControlsService {
 
 }
 
+async difftimeToast()
+  {
+    const toast = await this.toastController.create({
+      message: 'Choose a different time or date or a different hairdresser.',
+      duration: 5000
+    });
+    toast.present();
+
+}
+
 
 
 async name()
@@ -188,8 +198,8 @@ async SlotToast2()
 async tip()
 {
   const toast = await this.toastController.create({
-    message: 'Click the buttons to change the calender view.',
-    duration: 7000
+    message: 'The time and date you entered are already booked.',
+    duration: 5000
   });
   toast.present();
 

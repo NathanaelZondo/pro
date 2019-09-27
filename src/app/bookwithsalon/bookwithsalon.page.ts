@@ -873,18 +873,18 @@ console.log("Error here = ",this.d2)
 
   async eventsconfirm() {
     const alert = await this.alertController.create({
-      header: 'Booking assisstant.',
-      message: 'Would you like to view schedule for '+this.booking.hairdresser+'?',
+      header: 'You can view '+this.booking.hairdresser+'\'s '+'bookings.',
+      message: 'Click the top buttons to change the calendar view',
       buttons: [
         {
-          text: 'No',
+          text: 'Cancel',
           role: 'cancel',
           cssClass: 'dark',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+           this.control.router.navigateByUrl('dates')
           }
         }, {
-          text: 'Yes',
+          text: 'Ok',
           handler: () => {
 
             if (this.booking.hairdresser == "") {
@@ -992,6 +992,13 @@ async Loading() {
   this.eventsconfirm();
 }
 
+
+datespage()
+{
+  this.control.difftimeToast();
+  this.control.navCtrl.setDirection('root');
+  this.control.navCtrl.navigateRoot('/dates');  
+}
 }
 
 
