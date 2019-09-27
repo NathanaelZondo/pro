@@ -3,8 +3,8 @@
     border: 1px solid black;
     margin: 10px;
     background: black;
-    
     justify-content: center;
+    height: 10vh;
 
     h2 {
       padding: 8px;
@@ -19,7 +19,7 @@
     width: 100%;
     position: absolute;
     left: -10px;
-    bottom: 10px;
+    bottom: 0;
     font-size: 12px;
 
     p {
@@ -31,3 +31,5 @@
     height: 60vh;
     overflow-y: auto;
   }
+
+ 
