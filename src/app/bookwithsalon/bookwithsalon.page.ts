@@ -4,7 +4,7 @@ import { ControlsService } from '../controls.service';
 import { bookings } from '../booking';
 import { AlertController, ModalController, LoadingController } from '@ionic/angular';
 import * as firebase from 'firebase';
-import { ModalPage } from '../modal/modal.page';
+
 
 
 @Component({
@@ -30,13 +30,8 @@ export class BookwithsalonPage implements OnInit {
     let cd1 = new Date();
 
     this.testarray = [];
-    this.backend.gethairdresser().get().then(val => {
-      val.forEach(stav => {
-        console.log(stav.data())
-        this.staff.push(stav.data());
-      })
-    })
-    this.control.tip();
+
+    //this.control.tip();
     this.cdate();
 
     cdate.getDay();
@@ -49,33 +44,17 @@ export class BookwithsalonPage implements OnInit {
 
 
   }
-
+  booking: bookings = this.backend.bookingdata;
   currentdate;
   futuredate;
   formodal: boolean = false;
   ngOnInit() {
-//this.bookingconfirm();
+    console.log(this.booking)
+    this.onTimeSelected(this.booking)
+    
+    this.SlotToast();
   }
-  booking: bookings = {
-    name: this.backend.username,
-    surname: this.backend.surname,
-    cell: this.backend.cell,
-    salonname: this.backend.salonname,
-    salonlocation: this.backend.salonlocation,
-    hairstyletype: this.backend.hairstyletype,
-    hairstyleprice: this.backend.hairstyleprice,
-    estimatedtime: this.backend.estimatedtime,
-    sessiontime: this.backend.sessiontime,
-    sessionendtime: "",
-    hairdresser: "",
-    userdate: this.cdate(),
-    status: "Active",
-    status2: "Active",
-    salonuid: this.backend.salonuid,
-    hairstyleimage: this.backend.hairstyleimage,
-    useruid:firebase.auth().currentUser.uid,
-    bookingid:Math.floor(Math.random() * 2000000).toString()
-  }
+ 
   //this is the date inputed by the user
   userdate;
 
@@ -215,33 +194,33 @@ export class BookwithsalonPage implements OnInit {
  
 
   //click event from the calendar
-  onTimeSelected(ev, booking) {
+  onTimeSelected( booking) {
 
     
 
 
 
-    console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
-      (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
+    // console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
+    //   (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
 
-    if (parseFloat((new Date(ev.selectedTime).getMonth() + 1).toString()) < 10) {
-      booking.userdate = new Date(ev.selectedTime).getFullYear().toString() + "-0" + (new Date(ev.selectedTime).getMonth() + 1).toString() + "-" + new Date(ev.selectedTime).getDate().toString();
+    // if (parseFloat((new Date(ev.selectedTime).getMonth() + 1).toString()) < 10) {
+    //   booking.userdate = new Date(ev.selectedTime).getFullYear().toString() + "-0" + (new Date(ev.selectedTime).getMonth() + 1).toString() + "-" + new Date(ev.selectedTime).getDate().toString();
 
-      if (parseFloat(new Date(ev.selectedTime).getDate().toString()) < 10) {
-        booking.userdate = new Date(ev.selectedTime).getFullYear().toString() + "-0" + (new Date(ev.selectedTime).getMonth() + 1).toString() + "-0" + new Date(ev.selectedTime).getDate().toString();
-        console.log("vv", booking.userdate)
-      }
-    }
+    //   if (parseFloat(new Date(ev.selectedTime).getDate().toString()) < 10) {
+    //     booking.userdate = new Date(ev.selectedTime).getFullYear().toString() + "-0" + (new Date(ev.selectedTime).getMonth() + 1).toString() + "-0" + new Date(ev.selectedTime).getDate().toString();
+    //     console.log("vv", booking.userdate)
+    //   }
+    // }
 
-    else {
-      booking.userdate = new Date(ev.selectedTime).getFullYear().toString() + "-" + (new Date(ev.selectedTime).getMonth() + 1).toString() + "-" + new Date(ev.selectedTime).getDate();
+    // else {
+    //   booking.userdate = new Date(ev.selectedTime).getFullYear().toString() + "-" + (new Date(ev.selectedTime).getMonth() + 1).toString() + "-" + new Date(ev.selectedTime).getDate();
 
-      if (parseFloat(new Date(ev.selectedTime).getDate().toString()) < 10) {
-        booking.userdate = new Date(ev.selectedTime).getFullYear().toString() + "-" + (new Date(ev.selectedTime).getMonth() + 1).toString() + "-0" + new Date(ev.selectedTime).getDate().toString();
-        console.log("ww", booking.userdate)
-      }
+    //   if (parseFloat(new Date(ev.selectedTime).getDate().toString()) < 10) {
+    //     booking.userdate = new Date(ev.selectedTime).getFullYear().toString() + "-" + (new Date(ev.selectedTime).getMonth() + 1).toString() + "-0" + new Date(ev.selectedTime).getDate().toString();
+    //     console.log("ww", booking.userdate)
+    //   }
 
-    }
+    // }
 
     console.log(booking)
 
@@ -519,11 +498,11 @@ export class BookwithsalonPage implements OnInit {
   testarray2 = [];
 
 
-
+  
   
   async SlotToast() {
     const toast = await this.control.toastController.create({
-      message: 'Your selected time at '+this.booking.sessiontime+' with '+this.booking.hairdresser+' has already been booked.',
+      message: 'Your selected time at '+this.booking.sessiontime+" on "+this.booking.userdate+' with '+this.booking.hairdresser+' has already been booked.',
       duration: 5000
     });
     toast.present();
@@ -868,7 +847,7 @@ console.log("Error here = ",this.d2)
   ////////////////////////////////////////////////////////////////
 
   back() {
-    this.control.router.navigateByUrl('/viewsalon');
+    this.control.router.navigateByUrl('/dates');
   }
 
 
@@ -894,18 +873,18 @@ console.log("Error here = ",this.d2)
 
   async eventsconfirm() {
     const alert = await this.alertController.create({
-      header: 'Booking assisstant.',
-      message: 'Would you like to view schedule for '+this.booking.hairdresser+'?',
+      header: 'You can view '+this.booking.hairdresser+'\'s '+'bookings.',
+      message: 'Click the top buttons to change the calendar view.',
       buttons: [
         {
-          text: 'No',
+          text: 'Cancel',
           role: 'cancel',
           cssClass: 'dark',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+           this.control.router.navigateByUrl('dates')
           }
         }, {
-          text: 'Yes',
+          text: 'Confirm',
           handler: () => {
 
             if (this.booking.hairdresser == "") {
@@ -1010,9 +989,16 @@ async Loading() {
   await loading.present();
 
   const { role, data } = await loading.onDidDismiss();
-  
+  this.eventsconfirm();
 }
 
+
+datespage()
+{
+  this.control.difftimeToast();
+  this.control.navCtrl.setDirection('root');
+  this.control.navCtrl.navigateRoot('/dates');  
+}
 }
 
 

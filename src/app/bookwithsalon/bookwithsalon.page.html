@@ -8,46 +8,21 @@
 </ion-header>
 
 <ion-content class="has-header">
-  <div class="appmnts">
-    <ion-item>
-      <ion-label position="stacked">Time</ion-label>
-      <ion-input [disabled] ="preventinputs" placeholder="session time" type="time" [(ngModel)]="booking.sessiontime"></ion-input>
-    </ion-item>
-
-
-    <ion-item id="dresser">
-      <ion-label position="stacked">Hairdresser</ion-label>
-      <ion-select [disabled] ="preventinputs" value="brown" okText="Okay" [(ngModel)]="booking.hairdresser">
-        <ion-select-option *ngFor="let x of staff">{{x.name}}</ion-select-option>
-
-      </ion-select>
-    </ion-item> 
-
-  </div>
-<div>
-  <ion-item *ngIf="!item">
-    <ion-label position="stacked">Selected Date</ion-label>
-    <ion-input (click)="cdate()" clear placeholder="session time" type="date" displayFormat="DD/MM/YYYY"
-      min='2019-01-01' readonly [(ngModel)]="booking.userdate"></ion-input>
-  </ion-item>
-
-
-</div>
-
-&nbsp;&nbsp;<button  [disabled]="isToday" (click)="today()" >TODAY</button>&nbsp;&nbsp;
 <button  (click)="changeMode('month')">MONTH</button>&nbsp;&nbsp;
 <button (click)="changeMode('week')">WEEK</button>&nbsp;&nbsp;
 <button (click)="changeMode('day')">DAY</button>
 
         <calendar style ="color:rgb(0, 0, 0);background-color:black;border-color:firebrick"   [eventSource]="eventSource" [calendarMode]="calendar.mode"
           [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
-          (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
-          (onTimeSelected)="onTimeSelected($event,booking)" step="30" startHour="8" endHour="19" [markDisabled]="markDisabled" (click) ="eventsconfirm()">
+    (onTitleChanged)="onViewTitleChanged($event)"
+         step="30" startHour="8" endHour="19" [markDisabled]="markDisabled" >
        
         </calendar>
   
         
- 
+        <ion-fab  vertical="bottom" horizontal="end">
+          <ion-fab-button  (click) ="datespage()">Continue</ion-fab-button>
+        </ion-fab>
       <!-- <div class="hairstyle">
 
         <div class="prc">
@@ -77,10 +52,6 @@
 
 
    
-    <div class="btnz">
-      <ion-button color="dark" [disabled]="isvalidated" (click)="submit(booking)" round>Submit</ion-button>
-     
-      
-    </div>
+   
 
 </ion-content>

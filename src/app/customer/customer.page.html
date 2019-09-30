@@ -7,32 +7,39 @@
 <ion-content>
   <div class="container">
     <div class="title">
-      <h2 style="color: orangered; text-align: center">Who are you Booking for?</h2>
+      <h2 style="color: orangered; text-align: center; font-size: 6vw">Who are you Booking for?</h2>
     </div>
 
     <div class="who">
-      <ion-list>
+      <ion-list >
         <ion-radio-group>
-          <ion-list-header>
+          <ion-list-header >
             <ion-label>Pick Customer</ion-label>
           </ion-list-header>
 
-          <ion-item style="width: 300px">
+          <ion-item style="width: 50vh">
             <ion-label>Me</ion-label>
-            <ion-radio slot="start" value="me" checked></ion-radio>
+            <ion-radio slot="start" value="me" checked (click) ="change()"></ion-radio>
           </ion-item>
 
-          <ion-item style="width: 300px">
-            <ion-label>A Friend</ion-label>
-            <ion-radio slot="start" value="someone else"></ion-radio>
+          <ion-item style="width: 50vh">
+            <ion-label>Someone Else</ion-label>
+            <ion-radio (click) ="otherdata()" slot="start" value="someone else"></ion-radio>
           </ion-item>
 
         </ion-radio-group>
       </ion-list>
     </div>
-
+    <ion-item [hidden] ="val" color="transparent" style="color: white">
+    <ion-label position="floating">Enter their name</ion-label>
+    <ion-input type = "text" [(ngModel)]="name"></ion-input>
+  </ion-item>
+  <ion-item  [hidden] ="val" color="transparent" style="color: white">
+  <ion-label position="floating">Enter their surname</ion-label>
+  <ion-input type = "text" [(ngModel)]="surname"></ion-input>
+</ion-item>
     <div class="btn">
-      <ion-button color="dark" large routerLink="/dates" style="width: 300px">
+      <ion-button color="dark" large  style="width: 300px" (click) ="pickdates()">
         Next
       </ion-button>
     </div>

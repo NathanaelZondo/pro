@@ -1,7 +1,6 @@
 <ion-header>
-  <ion-toolbar color="dark">
-    <ion-icon name="arrow-round-back" style="font-size: 30px" (click)="back()"></ion-icon>
-    <ion-title></ion-title>
+  <ion-toolbar color="dark" style="color: orangered">
+    <ion-title>Booking History</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -11,28 +10,29 @@
   <div class="container">
 
     <div class="card front">
-      <div class="personal-intro">
+      <!-- <div class="personal-intro">
         <p style="text-align: center; font-size: 6vw; color:orangered">Bookings</p>
-      </div>
+      </div> -->
     </div>
-    <div class="card back" *ngFor="let x of userbooking">
+    <div class="cardback" *ngFor="let x of userbooking">
     
-   
-        <ion-button color="danger" *ngIf="x.status2!='cancelled' && x.status!='cancelled' && x.userdate >= currentdate" (click)="forthealert(x)">
-          <ion-icon name="close"></ion-icon>
+     
+        <ion-button color ="clear"  *ngIf="x.status2!='cancelled' && x.status!='cancelled' && x.userdate >= currentdate" (click)="forthealert(x)" id="cancel">
+          <ion-icon color="danger" name="close"></ion-icon>
         </ion-button>
       
       <div class="personal" (click)="viewdetails(x)">
-        <div class="date" style="color:white; font-family: 'Manjari';">
+        <div class="date" [style.background]="color" style="color:white; font-family: 'Manjari';">
           <p> {{x.userdate}}</p>
         </div>
-        <div llass="stuff" style="color:black; margin: 10px;font-family: 'Manjari';font-size: 14px;
+        <div llass="stuff"  style="color:rgb(253, 253, 253); margin: 10px;font-family: 'Manjari';font-size: 14px;
         position: absolute;
         left: 20%;">
           Salon: {{x.salonname}}<br>
           Stylist: {{x.hairdresser}}<br>
           Location: {{x.salonlocation}}<br>
           Time: {{x.sessiontime}} <br>
+          You: {{x.status}}<br>
           Stylist: {{x.status2}}
         </div>
       </div>

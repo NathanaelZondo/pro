@@ -15,7 +15,7 @@ export class ViewsalonPage implements OnInit {
 db = firebase.firestore();
   sliderConfig = {
     spaceBetween: 5,
-    slidesPerView: 1.3
+    slidesPerView: 1.2
   }
 likes;
 total = 0;
@@ -115,7 +115,7 @@ this.hair =[];
   choosehair(x) {
     console.log(x);
     this.backend.sethairstyledata(x.hairstyleName, x.duration, x.hairstylePrice,x.hairStyleImage);
-    this.control.router.navigate(['bookwithsalon']);
+    this.control.router.navigate(['customer']);
   }
 
   viewHair() {

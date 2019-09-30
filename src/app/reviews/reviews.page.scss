@@ -24,14 +24,19 @@
     justify-content: space-between;
     margin: 15px;
     width: 50vh;
-    box-shadow: 5px 10px 15px #888888b6;
-    background: linear-gradient(rgba(128, 128, 128, 0.589), rgba(0, 0, 0, 0.486));
+    position: relative;
+    top: 50px;
+    // box-shadow: 5px 10px 15px #888888b6;
+    // background: linear-gradient(rgba(128, 128, 128, 0.589), rgba(0, 0, 0, 0.486));
 
     .pic {
         width: 60px;
         height: 70px;
         // border-radius: 50%;
         flex-basis: 25%;
+        position: absolute;
+        top: 20px;
+        left: 10px;
 
         img {
             width: 100%;
@@ -39,6 +44,20 @@
             object-fit: cover;
             // border-radius: 50%;
         }
+    }
+
+    #q1{
+        transform: rotate(180deg);
+    }
+
+    #q2{
+        margin-top: 10px;
+    }
+
+    .text{
+        position: absolute;
+        // bottom: 5px;
+        right: 50px;
     }
 }
 

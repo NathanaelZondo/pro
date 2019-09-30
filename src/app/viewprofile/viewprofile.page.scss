@@ -1,90 +1,115 @@
 .header {
     border: none;
     // box-shadow: none;
+    // position: absolute;
+    // top: 5%;
 
     .toolbar-background {
-      background: transparent;
-      border: none;
+        background: transparent;
+        border: none;
     }
-  }
-
-.container{
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    height: 100%;
-    // align-items: center;
 }
 
-.icons{
+.content {
+    width: 100%;
+    height: 100%;
+}
+
+// .container {
+//     display: flex;
+//     flex-flow: column;
+//     justify-content: center;
+//     height: 100%;
+//     // align-items: center;
+// }
+
+.icons {
     display: flex;
     flex-flow: row;
     justify-content: space-between;
     position: absolute;
     top: 10px;
     z-index: 3;
-    .exit{
-       position: absolute;
-      left: 370px; 
+
+    .exit {
+        position: absolute;
+        left: 290px;
     }
- 
-}
-.searchbar{
-    width: 70vh;
-    height: 20vh;
 }
 
-.img{
+// }
+
+// // .searchbar {
+// //     width: 70vh;
+// //     height: 20vh;
+// // }
+
+// .img {
+//     width:20vh;
+//     height: 20vh;
+// }
+
+img {
     width: 100%;
-    height:100vh;
-   
-    img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+    height: 100%;
+    object-fit: cover
 }
 
-.info{
+
+.info {
     display: flex;
-    flex-flow: column; 
+    flex-flow: column;
     position: absolute;
-    bottom: 180px;
-    left: 10px;
+    bottom: 0;
+    // left: 20%;
     z-index: 5;
-    color: rgb(255, 255, 255);
-    
-    #name{
-        font-size: 30px;
+    background: linear-gradient(rgba(255, 255, 255, 0.301), white);
+
+    width: 50vh;
+    height: 30vh;
+
+    #name {
+        font-size: 8vw;
         position: relative;
-        top: 120px;
+        top: -5px;
         font-family: sans-serif;
-    }
-    #about{
-        position: relative;
-        bottom: 150px;
-        text-align: center;
+        text-align: left;
         padding: 10px;
     }
 
-    #cell{
+    #about {
         position: relative;
-        top: 100px;
+        top: 10px;
+        text-align: left;
+        padding: 10px;
+    }
+
+    #cell {
+        position: relative;
+        bottom: 50px;
         font-family: sans-serif;
         font-size: 20px;
+        text-align: left;
+        padding: 10px;
     }
 }
 
-.edit{
+.edit {
     position: absolute;
-    bottom: 100px;
-    right: 20px;
-    z-index: 5;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    text-align: center;
-    
+    bottom: 10px;
+    left: 25%;
+    z-index: 8;
+    width: 200px;
+    height: 80px;
+
+    ion-fab-button {
+        margin: 2px;
+    }
+}
+
+body {
+    position: absolute;
+    top: 0;
 }
 
 .flex-container {
@@ -94,13 +119,13 @@
     position: absolute;
     bottom: 0;
     justify-content: center;
-    font-family:sans-serif;
-  }
-  .flex-container > div {
-   font-family:sans-serif;
-    width:auto;
-    text-align: left;
-    background :linear-gradient(rgba(236, 240, 241, 0),rgb(0, 0, 0),rgb(0, 0, 0));
-    height: 300px;
-  }
+    font-family: sans-serif;
+}
 
+.flex-container>div {
+    font-family: sans-serif;
+    width: auto;
+    text-align: center;
+    // background: linear-gradient(rgba(236, 240, 241, 0), rgb(0, 0, 0), rgb(0, 0, 0));
+    height: 300px;
+}

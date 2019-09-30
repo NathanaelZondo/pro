@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="375" height="667" viewBox="0 0 375 667">
+  <defs>
+    <clipPath id="clip-iPhone_6_7_8_11">
+      <rect width="375" height="667"/>
+    </clipPath>
+  </defs>
+  <g id="iPhone_6_7_8_11" data-name="iPhone 6/7/8 – 11" clip-path="url(#clip-iPhone_6_7_8_11)">
+    <rect width="375" height="667" fill="#fff"/>
+    <rect id="Rectangle_21" data-name="Rectangle 21" width="122" height="126" transform="matrix(0.469, 0.883, -0.883, 0.469, 46.242, 549.441)" fill="#f46320"/>
+    <rect id="Rectangle_22" data-name="Rectangle 22" width="122" height="126" transform="matrix(0.469, 0.883, -0.883, 0.469, 343.242, 549.441)" fill="#f46320"/>
+    <rect id="Rectangle_23" data-name="Rectangle 23" width="71" height="68" transform="matrix(0.829, 0.559, -0.559, 0.829, 257.479, 524.622)" fill="#ee9b75"/>
+    <rect id="Rectangle_24" data-name="Rectangle 24" width="122" height="126" transform="translate(192.021 594.331) rotate(108)" fill="#e1703c"/>
+    <rect id="Rectangle_25" data-name="Rectangle 25" width="122" height="126" transform="matrix(-0.766, 0.643, -0.643, -0.766, 300.478, 637.928)" fill="#d14c0e"/>
+    <rect id="Rectangle_26" data-name="Rectangle 26" width="122" height="126" transform="translate(34.313 527.031) rotate(123)" fill="#d14c0e"/>
+    <rect id="Rectangle_27" data-name="Rectangle 27" width="122" height="126" transform="matrix(-0.743, 0.669, -0.669, -0.743, 447.741, 518.879)" fill="#d14c0e"/>
+    <rect id="Rectangle_28" data-name="Rectangle 28" width="122" height="126" transform="translate(478.313 527.031) rotate(123)" fill="#d14c0e"/>
+    <rect id="Rectangle_35" data-name="Rectangle 35" width="122" height="126" transform="matrix(-0.743, 0.669, -0.669, -0.743, 33.741, 518.879)" fill="#d14c0e"/>
+    <rect id="Rectangle_36" data-name="Rectangle 36" width="122" height="126" transform="translate(64.313 527.031) rotate(123)" fill="#d14c0e"/>
+  </g>
+</svg>
