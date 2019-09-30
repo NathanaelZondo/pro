@@ -33,6 +33,7 @@
   align-items: center;
   position: relative;
   left: 15%;
+  bottom: 10px;
 
   .item {
     background: transparent;
@@ -59,11 +60,12 @@
 
   button {
 
-    background: black;
-    color: white;
+    background: whitesmoke;
+    color: black;
     width: 80%;
     align-items: center;
     margin: 2px;
+    border-radius: 20px;
 
     #login {
       color: white;
@@ -77,16 +79,7 @@
   }
 }
 
-.close {
-  position: absolute;
-  top: -40%;
-  left: -10%;
 
-  .button {
-    font-size: 20px;
-    color: white;
-  }
-}
 
 #reset {
   position: relative;
