@@ -9,6 +9,7 @@ import * as firebase from 'firebase';
 import { ToastController, LoadingController, NavController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { async } from 'q';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 
 
@@ -25,8 +26,7 @@ export class CreateprofilePage  {
   profiles =[];
   isuploading: false
 
-  constructor(private navCtrl:NavController,public loadingController:LoadingController,public toastController:ToastController,private camera:Camera,public control:ControlsService,public backend:BackendService) {
-  
+  constructor(private navCtrl:NavController,public loadingController:LoadingController,public toastController:ToastController,private camera:Camera,public control:ControlsService,public backend:BackendService, private oneSignal: OneSignal,) {
 
   }
 
@@ -40,7 +40,8 @@ profile:Profile = {
   surname:"",
   cell:"",
   about:"",
-  image:""
+  image:"",
+  TokenID: ""
 }
 
 saveprofile(profile)
@@ -70,7 +71,11 @@ else if(profile.image=="" || profile.image ==undefined)
  this.imageToast() 
 }
 else{
- 
+  this.oneSignal.getIds().then((res) => {
+  
+    profile.TokenID = res.userId;
+    })
+
   firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).set(profile);
 this.control.newprofileToast();
   this.control.navCtrl.navigateRoot('/navigation');
