@@ -118,21 +118,8 @@ export class HomePage {
     let docid;
 
     this.backend.salonuid = x.userUID;
-    firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').get().then(val => {
-      console.log("These are the numbers", val)
-      val.forEach(qu => {
-        docid = qu.id;
-        console.log(docid)
-        console.log(qu.data().numberofclicks)
-        v1 = qu.data().numberofclicks;
-
-        firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').doc(qu.id).update({ "numberofclicks": v1 + click }).then(zet => {
-          console.log(zet)
-        })
-      }
-
-
-      )
+    firebase.firestore().collection('Analytics').doc(x.userUID).get().then(val => {
+      console.log("These are the numbers", val)  
     })
 
 
