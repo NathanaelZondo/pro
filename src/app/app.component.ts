@@ -10,28 +10,43 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { BackendService } from './backend.service';
 import { ControlsService } from './controls.service';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+
+import * as fire from 'onesignal-node'
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  signal_app_id: string = '5381c453-7474-4542-9a79-488e96dd363c'
-  firebase_sender_id: string ='282915271246'
   constructor(
     private afAuth: AngularFireAuth,
     private platform: Platform,
     private splashScreen: SplashScreen,
     // private statusBar: StatusBar,
     private router: Router,
-    private oneSignal: OneSignal,
     private backend:BackendService,
     private control:ControlsService,
+    private oneSignal: OneSignal,
     private alertCtrl: AlertController
   ) {
     //firebase.initializeApp(config);
-    AngularFireModule.initializeApp(config)
-  this.init();
+    oneSignal.startInit('bf488b2e-b5d1-4e42-9aa5-8ce29e6320c8', '282915271246');
+    oneSignal.getIds().then((userID) => {
+      console.log("user ID ", userID);
+    })
+    oneSignal.inFocusDisplaying(oneSignal.OSInFocusDisplayOption.InAppAlert);
+    oneSignal.handleNotificationReceived().subscribe((res) => {
+      // do something when notification is received
+      console.log(res);
+    });
+    oneSignal.handleNotificationOpened().subscribe((res) => {
+      // do something when a notification is opened
+      console.log(res);
+    });
+    oneSignal.endInit();
+this.initializeApp();
+//this.control.router.resetConfig([{path: '', loadChildren: './navigation/navigation.module#NavigationPageModule'}]);
 
    this.afAuth.authState.subscribe(data => {
     console.log(data)
@@ -70,22 +85,26 @@ export class AppComponent {
     });
   }
 
-  init() {
+  initializeApp() {
     this.platform.ready().then(() => {
       // this.statusBar.styleDefault();
       this.splashScreen.hide();
-  
-      if (this.platform.is('cordova')) {
-        this.setupPush();
-      }
-   
+      // if (this.platform.is('cordova')) {
+      //   this.setupPush();
+      // }
     });
+    AngularFireModule.initializeApp(config)
   }
-  
+
   setupPush() {
     // I recommend to put these into your environment.ts
-    this.oneSignal.startInit('5381c453-7474-4542-9a79-488e96dd363c','282915271246');
+    this.oneSignal.startInit('bf488b2e-b5d1-4e42-9aa5-8ce29e6320c8', '282915271246');
  
+    this.oneSignal.getIds().then(function(userId) {
+      console.log("OneSignal User ID:", userId);
+      // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316    
+    });
+
     this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.None);
  
     // Notifcation was received in general

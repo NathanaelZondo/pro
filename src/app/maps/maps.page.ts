@@ -60,11 +60,6 @@ location;
 salonname;
 salons =[]
 salond = this.backend.salonsDisply;
-currentIndex:Number = 0;
-currentLocation: any = {
-  lat: 0,
-  lng: 0
-};
   constructor(private ngZone: NgZone,private geolocation: Geolocation, public alertController: AlertController, public elementref: ElementRef, public router: Router, private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, public backend: BackendService, public control: ControlsService,private platform: Platform) {
    ////////get salons
    
@@ -208,8 +203,7 @@ console.log( "Address = ",x.Address.streetName)
     };
 
     this.geolocation.getCurrentPosition(this.options).then((pos: Geoposition) => {
-      this.currentLocation.lat = pos.coords.latitude;
-      this.currentLocation.lng = pos.coords.longitude;
+
       this.currentPos = pos;
       console.log(pos);
       this.addMap(pos.coords.latitude, pos.coords.longitude);
@@ -374,7 +368,14 @@ this.getSalonmarkrs();
 }
 
 
-
+  //getGeolocation method gets the surrent location of the device
+  getGeolocation() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+    
+    }).catch((error) => {
+      alert('Error getting location' + JSON.stringify(error));
+    });
+  }
 
   addInfoWindow(marker, content) {
 
@@ -410,14 +411,14 @@ this.getSalonmarkrs();
   goToProfile() {
     this.router.navigate(['profile']);
   }
-  // moveMapEvent(){
+  // moveMapEvent(event){
     
-  //   this.slides.getActiveIndex().then(
-  //     (event)=>{
-  //       this.currentIndex = event;
-  //    });
-  
-  //  }
+  //  /* console.log('event:', event.currentIndex); */
+   
+  //  let index = this.slides.getActiveIndex();
+  //  console.log(index);
+   
+  // }
 
   
   
