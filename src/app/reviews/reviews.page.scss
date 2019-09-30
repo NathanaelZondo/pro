@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Teko|Abel|Anton|Dosis|Oxygen|Jura|Pacifico|Righteous|Roboto+Condensed|Ubuntu|Manjari');
+
 .container {
     display: flex;
     flex-flow: column;
@@ -8,6 +9,7 @@
     height: 100%;
     position: fixed;
     font-family: 'Manjari';
+    background: rgb(43, 43, 43);
 }
 
 .peeps {
@@ -24,15 +26,16 @@
     justify-content: space-between;
     margin: 15px;
     width: 50vh;
+    height: 15vh;
     position: relative;
     top: 50px;
-    // box-shadow: 5px 10px 15px #888888b6;
+    box-shadow: 5px 5px 20px #fafafab6;
     // background: linear-gradient(rgba(128, 128, 128, 0.589), rgba(0, 0, 0, 0.486));
 
     .pic {
-        width: 60px;
-        height: 70px;
-        // border-radius: 50%;
+        width: 10vh;
+        height: 10vh;
+        border-radius: 50%;
         flex-basis: 25%;
         position: absolute;
         top: 20px;
@@ -42,22 +45,22 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            // border-radius: 50%;
+            border-radius: 50%;
         }
     }
 
-    #q1{
+    #q1 {
         transform: rotate(180deg);
     }
 
-    #q2{
+    #q2 {
         margin-top: 10px;
     }
 
-    .text{
+    .text {
         position: absolute;
-        // bottom: 5px;
-        right: 50px;
+        // bottom: 2px;
+        right: 30px;
     }
 }
 

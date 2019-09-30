@@ -12,7 +12,7 @@
         <ion-icon name="arrow-back" style="color: black; font-size: 20px;"></ion-icon>
     
       </div> -->
-      <h1 style="text-align: center;">Rate Salon</h1>
+      <h1 style="text-align: center; font-family: Pacifico; color: orangered">Rate Salon</h1>
       <ionic4-star-rating #rating
       activeIcon = "ios-star"
       defaultIcon = "ios-star-outline"
@@ -28,8 +28,6 @@
     </div> -->
     <div class="reviews">
 
-      
-
       <div class="review" *ngFor="let n of reviews">
 
           <div class="pic">
@@ -37,8 +35,8 @@
             </div>
 
         <div class="text">
-          <p><ion-icon name="quote" id="q1"></ion-icon>&nbsp;&nbsp;{{n.review}} &nbsp;&nbsp;
-            <ion-icon name="quote" id="q2"></ion-icon></p>
+          <p style="color: white; font-family: Manjari"><ion-icon name="quote" id="q1" style="color: orangered;"></ion-icon>&nbsp;&nbsp;{{n.review}} &nbsp;&nbsp;
+            <ion-icon name="quote" id="q2" style="color: orangered;"></ion-icon></p>
           
       <ionic4-star-rating #rating
       activeIcon = "ios-star"

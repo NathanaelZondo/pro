@@ -41,7 +41,7 @@
       <div class="blur"></div>
       <div class="card" *ngFor="let x of salond">
 
-        <div class="subtitle">
+        <div class="subtitle" style="font-family: Pacifico">
           {{x.salonName}}
         </div>
         <div class="title">
@@ -74,19 +74,19 @@
       </div> -->
 
     <div class="reviews" routerLink="/reviews">
-      <p>Reviews <ion-icon name="arrow-dropright" style="color: white"></ion-icon>
+      <p style="font-family: Mansalva">Reviews <ion-icon name="arrow-dropright" style="color: white;"></ion-icon>
       </p>
     </div>
     <div class="desc" *ngFor="let x of salond">
-      <p>{{x.SalonDesc}}</p>
+      <p style="font-family: Manjari">{{x.SalonDesc}}</p>
     </div>
     <!-- <ion-fab-button (click)="toogleHaert()">
       <ion-icon slot="icon-only" name="heart" [class]="heart"></ion-icon>
     </ion-fab-button> -->
     <div class=" buttonz">
-      <ion-button (click)="selecthairstyle('female')" id="btn" (click)="viewHair()" style="background: rgb(49, 49, 49)">Ladies
+      <ion-button (click)="selecthairstyle('female')" id="btn" (click)="viewHair()" style="background: rgb(49, 49, 49); font-family: Mansalva">Ladies
       </ion-button>
-      <ion-button (click)="selecthairstyle('male')" id="btn" (click)="viewHair()" style="background: rgb(49, 49, 49)">
+      <ion-button (click)="selecthairstyle('male')" id="btn" (click)="viewHair()" style="background: rgb(49, 49, 49); font-family: Mansalva">
         Gents</ion-button>
     </div>
   </div>
