@@ -25,24 +25,33 @@ export class CreateprofilePage  {
   uploadprogress
   profiles =[];
   isuploading: false
-
+tokenRe
+profile = {
+  name: '',
+  surname: '',
+  cell:'',
+  about: '',
+  image: '',
+  TokenID:undefined
+}
+myid =[];
   constructor(private navCtrl:NavController,public loadingController:LoadingController,public toastController:ToastController,private camera:Camera,public control:ControlsService,public backend:BackendService, private oneSignal: OneSignal,) {
-
+    this.oneSignal.getIds().then((res) => {
+      this.profile.TokenID = res.userId
+      console.log('check', this.profile.TokenID);
+           // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316    
+         });
+    console.log(this.myid)
+      
   }
 
   ngOnInit() {
+  
   }
 
 picurl;
 styleImage 
-profile:Profile = {
-  name:"",
-  surname:"",
-  cell:"",
-  about:"",
-  image:"",
-  TokenID: ""
-}
+
 
 saveprofile(profile)
 {
@@ -71,12 +80,8 @@ else if(profile.image=="" || profile.image ==undefined)
  this.imageToast() 
 }
 else{
-  this.oneSignal.getIds().then((res) => {
-  
-    profile.TokenID = res.userId;
-    })
 
-  firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).set(profile);
+  firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).set(this.profile);
 this.control.newprofileToast();
   this.control.navCtrl.navigateRoot('/navigation');
 }
@@ -115,6 +120,7 @@ await this.camera.getPicture(options).then(res => {
   }, () => {
     upload.snapshot.ref.getDownloadURL().then(downUrl => {
       this.profile.image = downUrl;
+      
       console.log('Image downUrl', downUrl);
 
 if(downUrl=="" || downUrl ==undefined)

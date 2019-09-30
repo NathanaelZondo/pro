@@ -3,6 +3,7 @@ import { ControlsService } from '../controls.service';
 import { Router } from '@angular/router';
 import { BackendService } from '../backend.service';
 import * as firebase from 'firebase';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.page.html',
@@ -10,10 +11,18 @@ import * as firebase from 'firebase';
 })
 export class NavigationPage implements OnInit {
 
-  constructor(public control:ControlsService,public router:Router,public backend:BackendService) { }
+  constructor(public control:ControlsService,public router:Router,public backend:BackendService,    private oneSignal: OneSignal) {  }
 profiles =[];
   ngOnInit() {
+    console.log("id of the id",this.backend.userId);
+    
 
+    this.oneSignal.getIds().then((res)=>{
+      console.log('Token ID', res.userId)
+    
+      
+    });
+    console.log("heloo bangani");
     this.control.Loading2()
     this.profiles =[];
     firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot(val=>{

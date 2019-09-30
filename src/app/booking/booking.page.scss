@@ -35,7 +35,7 @@
   border-radius: 10px;
   margin: 5px 10px;
   position: relative;
-  left: 2px;
+  left: 1px;
   
   font-family: 'Manjari';
   .date {
@@ -44,12 +44,13 @@
     color: white;
     height: 50px;
     width: 110px;
+
     text-align: center;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     position: absolute;
     top: 27%;
-    left: -11%;
+    left: -6%;
   }
 
   .stuff{
