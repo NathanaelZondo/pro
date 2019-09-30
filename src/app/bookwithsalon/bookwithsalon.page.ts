@@ -52,7 +52,7 @@ export class BookwithsalonPage implements OnInit {
     console.log(this.booking)
     this.onTimeSelected(this.booking)
     
-    
+    this.SlotToast();
   }
  
   //this is the date inputed by the user
