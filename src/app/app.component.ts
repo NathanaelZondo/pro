@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import * as firebase from 'firebase';
-import { Platform } from '@ionic/angular';
+import { Platform, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 // import { StatusBar } from '@ionic-native/status-bar';
 import { config } from './cred';
@@ -9,6 +9,9 @@ import {AngularFireModule} from '@angular/fire';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { BackendService } from './backend.service';
 import { ControlsService } from './controls.service';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
+
+import * as fire from 'onesignal-node'
 
 @Component({
   selector: 'app-root',
@@ -23,11 +26,26 @@ export class AppComponent {
     // private statusBar: StatusBar,
     private router: Router,
     private backend:BackendService,
-    private control:ControlsService
+    private control:ControlsService,
+    private oneSignal: OneSignal,
+    private alertCtrl: AlertController
   ) {
     //firebase.initializeApp(config);
-    AngularFireModule.initializeApp(config)
-
+    oneSignal.startInit('bf488b2e-b5d1-4e42-9aa5-8ce29e6320c8', '282915271246');
+    oneSignal.getIds().then((userID) => {
+      console.log("user ID ", userID);
+    })
+    oneSignal.inFocusDisplaying(oneSignal.OSInFocusDisplayOption.InAppAlert);
+    oneSignal.handleNotificationReceived().subscribe((res) => {
+      // do something when notification is received
+      console.log(res);
+    });
+    oneSignal.handleNotificationOpened().subscribe((res) => {
+      // do something when a notification is opened
+      console.log(res);
+    });
+    oneSignal.endInit();
+this.initializeApp();
 //this.control.router.resetConfig([{path: '', loadChildren: './navigation/navigation.module#NavigationPageModule'}]);
 
    this.afAuth.authState.subscribe(data => {
@@ -71,8 +89,57 @@ export class AppComponent {
     this.platform.ready().then(() => {
       // this.statusBar.styleDefault();
       this.splashScreen.hide();
+      // if (this.platform.is('cordova')) {
+      //   this.setupPush();
+      // }
     });
+    AngularFireModule.initializeApp(config)
   }
 
+  setupPush() {
+    // I recommend to put these into your environment.ts
+    this.oneSignal.startInit('bf488b2e-b5d1-4e42-9aa5-8ce29e6320c8', '282915271246');
+ 
+    this.oneSignal.getIds().then(function(userId) {
+      console.log("OneSignal User ID:", userId);
+      // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316    
+    });
+
+    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.None);
+ 
+    // Notifcation was received in general
+    this.oneSignal.handleNotificationReceived().subscribe(data => {
+      let msg = data.payload.body;
+      let title = data.payload.title;
+      let additionalData = data.payload.additionalData;
+      this.showAlert(title, msg, additionalData.task);
+    });
+ 
+    // Notification was really clicked/opened
+    this.oneSignal.handleNotificationOpened().subscribe(data => {
+      // Just a note that the data is a different place here!
+      let additionalData = data.notification.payload.additionalData;
+ 
+      this.showAlert('Notification opened', 'You already read this before', additionalData.task);
+    });
+ 
+    this.oneSignal.endInit();
+  }
+ 
+  async showAlert(title, msg, task) {
+    const alert = await this.alertCtrl.create({
+      header: title,
+      subHeader: msg,
+      buttons: [
+        {
+          text: `Action: ${task}`,
+          handler: () => {
+            // E.g: Navigate to a specific screen
+          }
+        }
+      ]
+    })
+    alert.present();
+  }
   
 }
