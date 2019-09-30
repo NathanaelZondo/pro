@@ -30,7 +30,7 @@
       <div class="appmnts">
 
 
-        <ion-item id="dresser" style="width: 50vh">
+        <ion-item id="dresser" style="width: 40vh" color="transparent">
 
           <ion-label position="stacked">Hairdresser</ion-label>
           <ion-select [disabled]="preventinputs" value="brown" okText="Okay" [(ngModel)]="booking.hairdresser"
@@ -41,14 +41,14 @@
 
         </ion-item>
 
-        <ion-item style="width: 50vh;" color="transparent">
-          <ion-label position="floating">Date</ion-label>
+        <ion-item style="width: 40vh;" color="transparent">
+          <ion-label position="stacked">Date</ion-label>
           <ion-datetime [disabled]="preventinputs" displayFormat="YYYY/MM/DD" [(ngModel)]="booking.userdate">
           </ion-datetime>
         </ion-item>
 
 
-        <ion-item style="width: 50vh;" color="transparent">
+        <ion-item style="width: 40vh;" color="transparent">
           <ion-label position="stacked">Time</ion-label>
           <ion-input placeholder="session time" type="time" [disabled]="preventinputs"
             [(ngModel)]="booking.sessiontime"></ion-input>

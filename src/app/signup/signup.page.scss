@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Teko|Abel|Anton|Dosis|Oxygen|Jura|Pacifico|Righteous|Roboto+Condensed|Ubuntu|Manjari');
-
+.content {
+     display: block !important;
+    flex-direction: row !important; 
+    
+ 
+}
 .container {
     background: url('../../assets/background.svg');
     background-position: center;
@@ -10,6 +15,7 @@
     justify-content: center;
     align-content: center;
     height: 100vh;
+  
 }
 
 .header {
@@ -75,7 +81,7 @@
     button {
 
         background: whitesmoke;
-        color: white;
+        color: black;
         width: 80%;
         align-items: center;
     }
@@ -97,6 +103,10 @@
         color: white;
     }
 }
+
+.scroll-content {
+    padding-bottom: 0 !important;
+ }
 
 
 

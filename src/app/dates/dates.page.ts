@@ -66,7 +66,7 @@ export class DatesPage implements OnInit {
     sessiontime: this.backend.sessiontime,
     sessionendtime: "",
     hairdresser: "",
-    userdate: this.cdate(),
+    userdate: undefined,
     status: "Active",
     status2: "Active",
     salonuid: this.backend.salonuid,
@@ -118,6 +118,11 @@ export class DatesPage implements OnInit {
     this.futuredate = (cdate.getFullYear() + "-" + (cd1.getMonth() + 1) + "-" + cdate.getDate());
 
     console.log("futuredate 1=", this.futuredate);
+
+this.booking.userdate =this.booking.userdate.slice(0,10);
+console.log(this.booking.userdate)
+    
+    
     // we need the future date to prevent unneccessary future bookings
     if (cdate.getDate() > 28) {
 

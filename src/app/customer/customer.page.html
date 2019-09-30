@@ -18,23 +18,23 @@
           </ion-list-header>
 
           <ion-item style="width: 50vh">
-            <ion-label>Me</ion-label>
+            <ion-label>Me</ion-label>&nbsp;&nbsp;
             <ion-radio slot="start" value="me" checked (click) ="change()"></ion-radio>
           </ion-item>
 
           <ion-item style="width: 50vh">
-            <ion-label>Someone Else</ion-label>
+            <ion-label>Someone Else</ion-label>&nbsp;&nbsp;
             <ion-radio (click) ="otherdata()" slot="start" value="someone else"></ion-radio>
           </ion-item>
 
         </ion-radio-group>
       </ion-list>
     </div>
-    <ion-item [hidden] ="val" color="transparent" style="color: white">
-    <ion-label position="floating">Enter their name</ion-label>
+    <ion-item [hidden] ="val" color="transparent" style="color: black">
+    <ion-label position="floating">Enter their name</ion-label> 
     <ion-input type = "text" [(ngModel)]="name"></ion-input>
   </ion-item>
-  <ion-item  [hidden] ="val" color="transparent" style="color: white">
+  <ion-item  [hidden] ="val" color="transparent" style="color: black">
   <ion-label position="floating">Enter their surname</ion-label>
   <ion-input type = "text" [(ngModel)]="surname"></ion-input>
 </ion-item>
