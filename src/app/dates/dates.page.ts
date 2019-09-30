@@ -66,7 +66,7 @@ export class DatesPage implements OnInit {
     sessiontime: this.backend.sessiontime,
     sessionendtime: "",
     hairdresser: "",
-    userdate: this.cdate(),
+    userdate: undefined,
     status: "Active",
     status2: "Active",
     salonuid: this.backend.salonuid,
