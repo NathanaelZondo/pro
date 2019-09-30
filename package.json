@@ -52,7 +52,6 @@
     "ionic4-rating": "^1.0.9",
     "ionic4-star-rating": "^1.1.0",
     "onesignal-cordova-plugin": "2.6.0",
-    "onesignal-node": "^2.1.1",
     "rxjs": "^6.5.2",
     "rxjs-compat": "^6.5.2",
     "swiper": "^4.5.0",

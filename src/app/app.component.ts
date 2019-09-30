@@ -11,7 +11,7 @@ import { BackendService } from './backend.service';
 import { ControlsService } from './controls.service';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 
-import * as fire from 'onesignal-node'
+//import * as fire from 'onesignal-node'
 
 @Component({
   selector: 'app-root',
