@@ -28,10 +28,17 @@
     </div> -->
     <div class="reviews">
 
+      
+
       <div class="review" *ngFor="let n of reviews">
+
+          <div class="pic">
+              <img src="{{n.image}}">
+            </div>
+
         <div class="text">
-          <p>{{n.review}}
-          </p>
+          <p><ion-icon name="quote" id="q1"></ion-icon>&nbsp;&nbsp;{{n.review}} &nbsp;&nbsp;
+            <ion-icon name="quote" id="q2"></ion-icon></p>
           
       <ionic4-star-rating #rating
       activeIcon = "ios-star"
@@ -45,9 +52,7 @@
   </ionic4-star-rating>
         </div>
 
-        <div class="pic">
-          <img src="{{n.image}}">
-        </div>
+       
       </div>
 
     </div>

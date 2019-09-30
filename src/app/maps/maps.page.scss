@@ -32,7 +32,18 @@
         flex-flow: column;
         margin: 5px;
         background: rgba(8, 8, 8, 0.61);
-
+        position: relative;
+        overflow: hidden;
+        .blur {
+            filter: blur(10px);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            // background: red;
+            z-index: -1;
+        }
         .top {
             display: flex;
             flex-flow: row;
@@ -62,13 +73,13 @@
 
 #pac-input {
     width: 95vw;
-    height: 30px;
+    height: 40px;
     margin: 10px;
     background: rgba(94, 94, 94, 0.582);
     box-shadow: 5px 5px 10px grey;
-    font-size: 3vw;
+    font-size: 3.5vw;
     border: none;
-    color: rgb(8, 5, 5);
+    color: rgb(255, 255, 255);
     border-radius: 20px;
     padding: 7px;
 
