@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    this.control.Loading();
+  
   }
 
   async loginUser(loginForm: FormGroup): Promise<void> {

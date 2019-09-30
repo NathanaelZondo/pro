@@ -15,7 +15,6 @@
 
   <div class="container">
 
-
     <div class="salonimage" *ngFor="let x of salond">
       <img src="{{x.salonImage}}">
 
@@ -37,16 +36,38 @@
     </div> -->
 
     <div class="details">
-
       <div class="blur"></div>
       <div class="card" *ngFor="let x of salond">
 
-        <div class="subtitle" style="font-family: Pacifico">
+        <div class="subtitle" style="font-family: Pacifico; color: black">
           {{x.salonName}}
         </div>
-        <div class="title">
-          {{x.streetName}}
+        <div class="title" style="color:black; font-family: Manjari">
+          {{x.Address.streetName}}
         </div>
+
+        <div class="desc" *ngFor="let x of salond">
+          <p style="font-family: Manjari">{{x.SalonDesc}}</p>
+        </div>
+
+        <div class="analyze">
+          <p style="font-size: 3.5vw">3 <br> Views</p>&nbsp;&nbsp;&nbsp;
+          <p style="font-size: 3.5vw">24 <br> Likes</p>
+        </div>
+
+        <ionic4-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#db981a"
+          defaultColor="#A9A9A9" readonly="true" rating={{aveg}} fontSize="6vw" halfStar="true" style="position: relative;
+          top: 45%;
+          left: -25%;
+          z-index: 5;">
+        </ionic4-star-rating>
+
+
+        <div class="reviews" routerLink="/reviews">
+          <p style="font-family: Manjari">Reviews &nbsp;> </p>
+        </div>
+        <br>
+
         <div class="rating">
           <!-- <ionic4-star-rating #rating
           activeIcon = "ios-star"
@@ -63,31 +84,14 @@
         </div>
       </div>
     </div>
-    <ionic4-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#db981a"
-      defaultColor="#A9A9A9" readonly="true" rating={{aveg}} fontSize="8vw" halfStar="true" style="position: relative;
- top: 5%;
-    z-index: 5;">
-    </ionic4-star-rating>
 
-    <!-- <div class="analyze">
-        <p style="color: white; text-align: center; font-size:  5vw">{{likes}}<br> Likes</p>
-      </div> -->
 
-    <div class="reviews" routerLink="/reviews">
-      <p style="font-family: Mansalva">Reviews <ion-icon name="arrow-dropright" style="color: white;"></ion-icon>
-      </p>
-    </div>
-    <br>
-    <div class="desc" *ngFor="let x of salond">
-      <p style="font-family: Manjari">{{x.SalonDesc}}</p>
-    </div>
-    <!-- <ion-fab-button (click)="toogleHaert()">
-      <ion-icon slot="icon-only" name="heart" [class]="heart"></ion-icon>
-    </ion-fab-button> -->
     <div class=" buttonz">
-      <ion-button (click)="selecthairstyle('female')" id="btn" (click)="viewHair()" style="background: rgb(49, 49, 49); font-family: Mansalva">Ladies
+      <ion-button (click)="selecthairstyle('female')" id="btn" (click)="viewHair()"
+        style="background: rgb(49, 49, 49); font-family: Manjari">Ladies
       </ion-button>
-      <ion-button (click)="selecthairstyle('male')" id="btn" (click)="viewHair()" style="background: rgb(49, 49, 49); font-family: Mansalva">
+      <ion-button (click)="selecthairstyle('male')" id="btn" (click)="viewHair()"
+        style="background: rgb(49, 49, 49); font-family: Manjari">
         Gents</ion-button>
     </div>
   </div>
@@ -122,10 +126,7 @@
               </ion-card-header>
 
             </ion-card>
-            <!-- <div class="detail" *ngFor="let x of hair">
 
-              <p>{{x.hairstyleName}} <br> {{x.hairstylePrice | currency:'&#82;'}}</p>
-            </div> -->
 
           </ion-slide>
         </ion-slides>
