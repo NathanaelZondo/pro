@@ -40,7 +40,7 @@ export class BackendService {
   }
   timeList: Array<{}>
 
-  
+  userId;
   
   uid;
   gend;
