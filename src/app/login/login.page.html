@@ -50,7 +50,7 @@
             Sign-In
           </button>
 
-          <button ion-button routerLink="/signup" clear [disabled]="!loginForm.valid" style="height: 6vh; font-size: 4vw; background: transparent; 
+          <button ion-button (click)="login()" clear [disabled]="!loginForm.valid" style="height: 6vh; font-size: 4vw; background: transparent; 
             color: white;">
             Sign-Up
           </button>

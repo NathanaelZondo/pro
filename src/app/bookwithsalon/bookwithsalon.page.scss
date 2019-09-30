@@ -1,13 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Teko|Abel|Anton|Dosis|Oxygen|Jura|Pacifico|Righteous|Roboto+Condensed|Ubuntu|Manjari');
 
-// .container {
-//     display: flex;
-//     flex-flow: column;
-//     align-items: center;
-//     width: 100%;
-//     height: 100%;
-//     position: fixed;
-// }
+.container {
+    background: linear-gradient(rgba(128, 128, 128, 0) 30%, rgba(31, 31, 31, 0.603) 70%); 
+    width: 100%;
+    height: 100%;
+ 
+}
 
 // .back {
 //     position: absolute;
