@@ -40,7 +40,8 @@ export class UpdateprofilePage implements OnInit {
     surname: this.surname,
     cell: this.cell,
     about: this.about,
-    image: this.image
+    image: this.image,
+    TokenID: ""
   };
   ngOnInit() {
     console.log();

@@ -5,6 +5,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ControlsService } from '../controls.service';
 import * as firebase from 'firebase';
 import { ToastController, LoadingController } from '@ionic/angular';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 @Component({
   selector: 'app-updateprofile',
   templateUrl: './updateprofile.page.html',
@@ -16,6 +17,7 @@ export class UpdateprofilePage implements OnInit {
   surname;
   image;
   about;
+  tokenID
   cell;
   uid;
   sub = false;
@@ -24,7 +26,12 @@ export class UpdateprofilePage implements OnInit {
   storage = firebase.storage().ref();
   uploadprogress;
   isuploading: false;
-  constructor(public toastController:ToastController,private camera: Camera, public control: ControlsService, public backend: BackendService,public loadingController:LoadingController) {
+  constructor(public toastController:ToastController,private camera: Camera, public control: ControlsService, public backend: BackendService,public loadingController:LoadingController,private oneSignal: OneSignal) {
+    this.oneSignal.getIds().then((res) => {
+  
+      this.profile.TokenID = res.userId;
+      })
+  
     this.backend.getprofile2().then(res => {
       //  res.data()
       this.profiles.push(res.data());
@@ -33,6 +40,7 @@ export class UpdateprofilePage implements OnInit {
       this.profile.cell = this.profiles[0].cell;
       this.profile.about = this.profiles[0].about;
       this.profile.image = this.profiles[0].image;
+      this.profile.TokenID = this.profile[0].tokenID;
       console.log("Dis d name", this.profile);
     });
   }
@@ -41,7 +49,8 @@ export class UpdateprofilePage implements OnInit {
     surname: this.surname,
     cell: this.cell,
     about: this.about,
-    image: this.image
+    image: this.image,
+    TokenID: ""
   };
   ngOnInit() {
     console.log();

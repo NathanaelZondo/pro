@@ -5,5 +5,5 @@ surname:string;
 cell:string;
 about:string;
 image:string;
-
+TokenID: string;
 }
