@@ -31,20 +31,7 @@ export class AppComponent {
     private alertCtrl: AlertController
   ) {
     //firebase.initializeApp(config);
-    oneSignal.startInit('bf488b2e-b5d1-4e42-9aa5-8ce29e6320c8', '282915271246');
-    oneSignal.getIds().then((userID) => {
-      console.log("user ID ", userID);
-    })
-    oneSignal.inFocusDisplaying(oneSignal.OSInFocusDisplayOption.InAppAlert);
-    oneSignal.handleNotificationReceived().subscribe((res) => {
-      // do something when notification is received
-      console.log(res);
-    });
-    oneSignal.handleNotificationOpened().subscribe((res) => {
-      // do something when a notification is opened
-      console.log(res);
-    });
-    oneSignal.endInit();
+
 this.initializeApp();
 //this.control.router.resetConfig([{path: '', loadChildren: './navigation/navigation.module#NavigationPageModule'}]);
 
@@ -89,9 +76,9 @@ this.initializeApp();
     this.platform.ready().then(() => {
       // this.statusBar.styleDefault();
       this.splashScreen.hide();
-      // if (this.platform.is('cordova')) {
-      //   this.setupPush();
-      // }
+      if (this.platform.is('cordova')) {
+        this.setupPush();
+      }
     });
     AngularFireModule.initializeApp(config)
   }
@@ -100,8 +87,9 @@ this.initializeApp();
     // I recommend to put these into your environment.ts
     this.oneSignal.startInit('bf488b2e-b5d1-4e42-9aa5-8ce29e6320c8', '282915271246');
  
-    this.oneSignal.getIds().then(function(userId) {
-      console.log("OneSignal User ID:", userId);
+    this.oneSignal.getIds().then(function(res) {
+
+      console.log("OneSignal User ID:", res.userId);
       // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316    
     });
 

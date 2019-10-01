@@ -121,20 +121,15 @@ console.log( "Address = ",x.Address.streetName)
     let docid;
      
     this.backend.salonuid = x.userUID;
-    firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').get().then(val => {
-      console.log("These are the numbers", val)
-      val.forEach(qu => {
-        docid = qu.id;
-        console.log(docid)
-        console.log(qu.data().numberofclicks)
-        v1 = qu.data().numberofclicks;
+    firebase.firestore().collection('Analytics').doc(x.userUID).get().then(val=>{
 
-        firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').doc(qu.id).update({ "numberofclicks": v1 + click }).then(zet => {
-          console.log(zet)
-        })
-      }
-      )
-    })
+      console.log("numbers = ",val.data())
+      v1 =val.data().numberofviews+click;
+      firebase.firestore().collection('Analytics').doc(x.userUID).set({"numberofviews":v1},{merge: true})
+    });
+
+
+
     this.control.router.navigate(['viewsalon']);
   }
 

@@ -130,28 +130,26 @@ this.hair =[];
   }
   like(x)
   {
-    console.log(x)
+
+console.log(x)
+
     let click = 1;
-let v1;
-let docid;
+    let v1;
+    let docid;
+     
+    x.userUID;
+    firebase.firestore().collection('Analytics').doc(x.userUID).get().then(val=>{
 
-this.backend.salonuid =x.userUID;
-firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').get().then(val=>{
-  console.log("These are the numbers",val)
-  val.forEach(qu=> 
+      console.log("numbers = ",val.data())
+      v1 =val.data().numberofviews+click;
+      firebase.firestore().collection('Analytics').doc(x.userUID).set({"numberofviews":v1},{merge: true})
+let smoray =val.data().users;
+console.log("smoray =",val.data().users)
+smoray.push({voteruid:firebase.auth().currentUser.uid});
+    //smoray.push({useruid:firebase.auth().currentUser.uid});
+      firebase.firestore().collection('Analytics').doc(x.userUID).set({numberofviews:val.data().numberofviews,numberoflikes:val.data().numberoflikes+1,usercancel:val.data().usercancel,saloncancel:val.data().saloncancel,allbookings:val.data().allbookings,users:smoray});
+    });
 
-    {
-    docid =qu.id;
-    console.log(docid)
-    console.log(qu.data().likes)
-    v1 =qu.data().likes;
-
-    firebase.firestore().collection('salonAnalytics').doc(x.userUID).collection('numbers').doc(qu.id).update({"likes":v1+click}).then(zet=>{
-      console.log(zet)
-    })
-  
-  })
-})
   }
 }
 

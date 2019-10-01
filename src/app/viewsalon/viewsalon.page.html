@@ -1,7 +1,7 @@
 <ion-content fullscreen>
   <ion-header>
     <ion-toolbar>
-      <div class="likes" style=" float: right">
+      <div class="likes" style=" float: right" *ngFor="let x of salond">
         <ion-icon name="heart" (click)="like(x)" id="heart"
           style="float: left; font-size: 30px; color: rgb(240, 10, 10); margin: 10px"></ion-icon>
 
