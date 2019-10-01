@@ -131,6 +131,20 @@ this.hairstyleimage =hairstyle;
     console.log(booking)
 
 
+    let click = 1;
+    let v1;
+    let docid;
+     
+  
+    firebase.firestore().collection('Analytics').doc(booking.salonuid).get().then(val=>{
+
+      console.log("numbers = ",val.data())
+   
+      firebase.firestore().collection('Analytics').doc(booking.salonuid).set({numberofviews:val.data().numberofviews,numberoflikes:val.data().numberoflikes,usercancel:val.data().usercancel,saloncancel:val.data().saloncancel,allbookings:val.data().allbookings+1,users:val.data().users});
+    });
+
+
+
     this.afs.collection('Bookings').add(booking).then(result => {
       console.log(result)
     });

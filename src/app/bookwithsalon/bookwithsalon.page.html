@@ -8,9 +8,10 @@
 </ion-header>
 
 <ion-content class="has-header">
-<button  (click)="changeMode('month')">MONTH</button>&nbsp;&nbsp;
-<button (click)="changeMode('week')">WEEK</button>&nbsp;&nbsp;
-<button (click)="changeMode('day')">DAY</button>
+
+<button  (click)="changeMode('month')" [style.background] ="monthcolor">MONTH</button>&nbsp;&nbsp;
+<button (click)="changeMode('week')" [style.background] ="weekcolor">WEEK</button>&nbsp;&nbsp;
+<button (click)="changeMode('day')" [style.background] ="daycolor">DAY</button>
 
         <calendar style ="color:rgb(0, 0, 0);background-color:black;border-color:firebrick"   [eventSource]="eventSource" [calendarMode]="calendar.mode"
           [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"

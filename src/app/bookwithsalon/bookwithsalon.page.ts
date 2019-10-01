@@ -25,6 +25,7 @@ export class BookwithsalonPage implements OnInit {
   isvalidated = true;
   constructor(public loadingController:LoadingController,public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
    {
+    // this.eventsconfirm();
     let cdate = new Date();
     cdate.getFullYear();
     let cd1 = new Date();
@@ -32,15 +33,15 @@ export class BookwithsalonPage implements OnInit {
     this.testarray = [];
 
     //this.control.tip();
-    this.cdate();
+  //   this.cdate();
 
-    cdate.getDay();
-    this.currentdate = (cdate.getFullYear() + "-" + (cd1.getMonth() + 1) + "-" + cdate.getDate());
+  //   cdate.getDay();
+  //   this.currentdate = (cdate.getFullYear() + "-" + (cd1.getMonth() + 1) + "-" + cdate.getDate());
 
-    this.markDisabled = (date: Date) => {
-      var current = new Date();
-      return date < new Date(this.cdate());
-  };
+  //   this.markDisabled = (date: Date) => {
+  //     var current = new Date();
+  //     return date < new Date(this.cdate());
+  // };
 
 
   }
@@ -68,20 +69,20 @@ export class BookwithsalonPage implements OnInit {
 
   todate;
   //Get current date
-  cdate() {
+  // cdate() {
    
-    this.todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth()) + '-' + (new Date().getDate());
-    if ((new Date().getMonth() + 1) < 10) {
+  //   this.todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth()) + '-' + (new Date().getDate());
+  //   if ((new Date().getMonth() + 1) < 10) {
 
-      this.todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-' + (new Date().getDate());
-      if ((new Date().getDate()) < 10) {
-        this.todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-0' + (new Date().getDate());
-      }
+  //     this.todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-' + (new Date().getDate());
+  //     if ((new Date().getDate()) < 10) {
+  //       this.todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-0' + (new Date().getDate());
+  //     }
 
-    }
-    console.log("Currentdate =", this.todate)
-    return this.todate;
-  }
+  //   }
+  //   console.log("Currentdate =", this.todate)
+  //   return this.todate;
+  // }
 
 
 
@@ -91,7 +92,7 @@ export class BookwithsalonPage implements OnInit {
     let cdate = new Date();
     let cd1 = new Date();
 
-    this.cdate();
+    // this.cdate();
 
     cdate.getDay();
     this.currentdate = (cdate.getFullYear() + "-" + (cd1.getMonth() + 1) + "-" + cdate.getDate());
@@ -140,19 +141,7 @@ export class BookwithsalonPage implements OnInit {
     
     }
     else
-    if (this.cdate() > booking.userdate) {
-
-
-
-      this.control.PastDateToast();
-      this.isvalidated = true;
-      console.log("pastdate")
-    
-
-
-
-    }
-    else
+  
     if (booking.hairdresser == "") {
 
       this.control.name();
@@ -550,7 +539,7 @@ export class BookwithsalonPage implements OnInit {
       this.formodal = false;
 
 
-      if (this.d2 <= this.d1 && this.d1 < this.d3) {
+      if (this.d2 <= this.d1 && this.d1 < this.d3 ) {
 
         this.formodal = true;
         this.isvalidated = true;
@@ -703,8 +692,29 @@ console.log("Error here = ",this.d2)
     console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
   }
 
-
+monthcolor ='orangered';
+daycolor ='black';
+weekcolor ='black';
   changeMode(mode) {
+    if(mode =='month')
+    {
+      this.monthcolor ='orangered'
+      this.daycolor ='black';
+this.weekcolor='black'
+    }
+    else
+    if(mode =='day')
+    {
+      this.monthcolor ='black'
+      this.daycolor ='orangered';
+this.weekcolor='black'
+    }
+    else  if(mode =='week')
+    {
+      this.monthcolor ='black'
+      this.daycolor ='black';
+this.weekcolor='orangered';
+    }
     this.calendar.mode = mode;
   }
 

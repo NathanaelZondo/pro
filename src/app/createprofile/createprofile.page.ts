@@ -112,7 +112,7 @@ await this.camera.getPicture(options).then(res => {
   upload.on('state_changed', snapshot => {
     let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     this.uploadprogress = progress;
-    this.imageLoading();
+ 
     if (progress == 100) {
       this.isuploading = false;
     }

@@ -98,6 +98,15 @@ export class DatesPage implements OnInit {
       }
 
     }
+else if ((new Date().getMonth() + 1) >= 10)
+{
+  this.todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth() + 1) + '-' + (new Date().getDate());
+
+  if ((new Date().getDate()) < 10) {
+    this.todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth() + 1) + '-0' + (new Date().getDate());
+  }
+}
+
     console.log("Currentdate =", this.todate)
     return this.todate;
   }
@@ -460,11 +469,12 @@ console.log(booking)
     let minuteRange = parseFloat(booking.sessiontime[3] + booking.sessiontime[4])
 
     this.db.collection('Bookings').where("salonuid","==",booking.salonuid).where("hairdresser","==",booking.hairdresser).orderBy("userdate", "desc").limit(50).get().then(val => {
-      if (val.size == 0) {
-        this.isvalidated = false;
-        this.control.SlotToast2();
-       
-      }
+    if(val.empty)
+    {
+      this.isvalidated =false;
+      this.preventinputs=true;
+      console.log("heya!!!")
+    }
       val.forEach(doc => {
         this.testarray.push(doc.data());
 

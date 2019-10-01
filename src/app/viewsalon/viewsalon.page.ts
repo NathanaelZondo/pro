@@ -3,7 +3,7 @@ import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
 import { ModalController, } from '@ionic/angular';
 import * as firebase from 'firebase';
-import { ThrowStmt } from '@angular/compiler';
+
 // import Swiper from 'swiper';
 
 @Component({
@@ -21,6 +21,7 @@ likes;
 total = 0;
 rate = 0
 dummy = []
+found:boolean;
 userRating = []
   more = false;
   hair = [];
@@ -28,6 +29,8 @@ userRating = []
   placeholder =this.backend.salonsDisply;
   aveg: number;
   heart : string ="unlike"
+  color ="#DCDCDC";
+  position:number;
     constructor(public control:ControlsService,public backend:BackendService,public modalController: ModalController) {
     this.backend.getHairSalon();
 
@@ -35,11 +38,41 @@ userRating = []
 
     console.log("selectedsalon data", this.salond)
 
-    firebase.firestore().collection('salonAnalytics').doc(this.salond[0].userUID).collection('numbers').get().then(val=>{
-      val.forEach(doc=>{
-        console.log("These are the likes =",doc.data().likes);
-        this.likes =doc.data().likes;
-})})
+
+
+
+firebase.firestore().collection('Analytics').doc(this.salond[0].userUID).onSnapshot(val=>{
+ let users = val.data().users;
+
+
+  console.log(" likes  = ",val.data().users.length);
+
+  for( var o =0 ; o <users.length;o++)
+  {
+
+    console.log(" loop = ",val.data().users[o].voteruid ==firebase.auth().currentUser.uid);
+if(val.data().users[o].voteruid==firebase.auth().currentUser.uid)
+{
+ console.log("found") 
+ this.found =true;
+ this.color ="rgb(240, 10, 10)";
+ this.position = o;
+ console.log(this.position)
+}
+else
+{
+  // this.found=false;
+  // this.color = "#DCDCDC"
+  console.log("Not found") 
+}
+  }
+})
+
+  
+ 
+  
+
+
 
    
     console.log(this.likes)
@@ -121,18 +154,19 @@ this.hair =[];
   viewHair() {
     this.more = !this.more
   }
-  toogleHaert(){
-    if(this.heart == 'unlike'){
-      this.heart = 'like';
-    }else {
-      this.heart = 'unlike';
-    }
-  }
+
+
+
   like(x)
   {
 
 console.log(x)
-
+if(this.found ==true)
+{
+this.dislikeConfirm();
+}
+else
+{
     let click = 1;
     let v1;
     let docid;
@@ -146,11 +180,74 @@ console.log(x)
 let smoray =val.data().users;
 console.log("smoray =",val.data().users)
 smoray.push({voteruid:firebase.auth().currentUser.uid});
+smoray.push({voteruid:"someting"});
     //smoray.push({useruid:firebase.auth().currentUser.uid});
       firebase.firestore().collection('Analytics').doc(x.userUID).set({numberofviews:val.data().numberofviews,numberoflikes:val.data().numberoflikes+1,usercancel:val.data().usercancel,saloncancel:val.data().saloncancel,allbookings:val.data().allbookings,users:smoray});
     });
 
   }
+}
+
+
+
+async dislikeConfirm() {
+  const alert = await this.control.alertCrtl.create({
+    header: 'Confirm!',
+    message: 'Do you want to dislike '+ this.backend.salonname+'?',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Okay',
+        handler: () => {
+          console.log('Confirm Okay');
+
+
+
+          firebase.firestore().collection('Analytics').doc(this.salond[0].userUID).onSnapshot(val=>{
+            let users = val.data().users;
+           
+           
+             console.log(" likes  = ",val.data().users.length);
+           
+            
+           
+              
+          
+           
+            console.log("found") 
+            this.found =true;
+            this.color ="rgb(240, 10, 10)";
+
+            let click = 1;
+            let v1;
+            let docid;
+            firebase.firestore().collection('Analytics').doc(this.salond[0].userUID).get().then(val=>{
+
+            
+         
+
+        let smoray =val.data().users;
+        console.log("smoray =",val.data().users)
+        smoray.splice(this.position,1);
+        console.log("aftersplice =",smoray)
+              firebase.firestore().collection('Analytics').doc(this.salond[0].userUID).set({numberofviews:val.data().numberofviews,numberoflikes:val.data().numberoflikes-1,usercancel:val.data().usercancel,saloncancel:val.data().saloncancel,allbookings:val.data().allbookings,users:smoray});
+
+            });
+          });
+        }
+          }
+        ]
+      });
+  
+      await alert.present();
+    }
+
 }
 
 

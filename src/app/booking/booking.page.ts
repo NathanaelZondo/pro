@@ -53,10 +53,27 @@ color ="rgba("+this.random1+","+this.random2+","+this.random3+","+ "0.714)";
         currentdate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-0' + (new Date().getDate());
 
       }
+
     }
 
+  else if ((new Date().getMonth() + 1) >= 10)
+  {
+    currentdate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth() + 1) + '-' + (new Date().getDate());
+  
+    if ((new Date().getDate()) < 10) {
+      currentdate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth() + 1) + '-0' + (new Date().getDate());
+    }
+  }
+  
+     
+
+
+
+
+
+
     this.currentdate = currentdate;
-    console.log(this.currentdate)
+    console.log("Currentdate",this.currentdate)
   }
 
 
@@ -202,6 +219,17 @@ setTimeout(()=>{
             this.cancel(this.alldata);
             this.control.cancelbookingToast();
             console.log('Confirm Okay');
+
+           
+             
+          
+            firebase.firestore().collection('Analytics').doc(this.alldata.salonuid).get().then(val=>{
+        
+              console.log("numbers = ",val.data())
+           
+              firebase.firestore().collection('Analytics').doc(this.alldata.salonuid).set({numberofviews:val.data().numberofviews,numberoflikes:val.data().numberoflikes,usercancel:val.data().usercancel+1,saloncancel:val.data().saloncancel,allbookings:val.data().allbookings,users:val.data().users});
+            });
+        
           }
         }
       ]
