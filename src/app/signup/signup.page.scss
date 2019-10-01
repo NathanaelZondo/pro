@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Teko|Abel|Anton|Dosis|Oxygen|Jura|Pacifico|Righteous|Roboto+Condensed|Ubuntu|Manjari');
 
+ .ion-page{
+z-index: -5 !important;
+ }
+
 .content{
-  padding-bottom: 0 !important;
+  background: url('../../assets/background.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 110vh;
 }
 
 .container {
@@ -13,7 +21,7 @@
     flex-flow: column;
     justify-content: center;
     align-content: center;
-    height: 100%;
+    height: 110vh;
   }
   
   .icon {
