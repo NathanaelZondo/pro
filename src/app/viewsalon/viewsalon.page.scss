@@ -97,7 +97,7 @@ ion-toolbar {
     bottom: 15%;
     width: 45vh;
     color: black;
-    height: 250px;
+    height: 310px;
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -128,12 +128,12 @@ ion-toolbar {
     float: left;
 
     .subtitle {
-        font-size: 5vw;
+        font-size: 7vw;
         color: whitesmoke;
     }
 
     .title {
-        font-size: 4vw;
+        font-size: 5vw;
         color: whitesmoke;
     }
 }
@@ -191,7 +191,9 @@ ion-toolbar {
 
 .desc {
     position: absolute;
-    top: 25%;
+    top: 30%;
+    left: 10px;
+    right: 10px;
     text-align: center;
     color: black;
     font-size: 4vw;
