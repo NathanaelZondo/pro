@@ -20,7 +20,7 @@ export class DatesPage implements OnInit {
   staff = [];
 
   markDisabled;
-
+  userToken
   isvalidated = true;
   constructor(public loadingController:LoadingController,public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController,  private oneSignal: OneSignal,)
    {
@@ -47,7 +47,9 @@ export class DatesPage implements OnInit {
       var current = new Date();
       return date < new Date(this.cdate());
   };
-
+  this.oneSignal.getIds().then((res)=>{ 
+        this.booking.UserTokenID =  res.userId
+  })
 
   }
 
@@ -75,7 +77,9 @@ export class DatesPage implements OnInit {
     salonuid: this.backend.salonuid,
     hairstyleimage: this.backend.hairstyleimage,
     useruid:firebase.auth().currentUser.uid,
-    bookingid:Math.floor(Math.random() * 2000000).toString()
+    bookingid:Math.floor(Math.random() * 2000000).toString(),
+    TokenID:this.backend.selectedsalon[0].TokenID,
+    UserTokenID: this.userToken
   }
   //this is the date inputed by the user
   userdate;
@@ -414,7 +418,7 @@ console.log(booking)
             this.backend.userbookings(this.booking);
             if( this.backend.selectedsalon[0].TokenID){
               var notificationObj = {
-                contents: { en: "Hey " + this.booking.salonname + " " +this.booking.name + " Has made a booking with you"},
+                contents: { en: "BOOKING ALERT! "  +this.booking.name + " Has made a booking with "+ this.booking.hairdresser +" on "+ this.booking.userdate + " from " + this.booking.sessiontime+ " to "+ this.booking.sessionendtime },
                 include_player_ids: [this.backend.selectedsalon[0].TokenID],
               }
               this.oneSignal.postNotification(notificationObj).then(res => {

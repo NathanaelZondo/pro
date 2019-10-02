@@ -112,15 +112,7 @@ setTimeout(()=>{
     this.alldata = x;
     this.haidressername = x.hairdresser;
     this.hairsalon = x.salonname;
-    if( this.alldata.TokenID){
-      var notificationObj = {
-        contents: { en: "Hey " + this.alldata.salonname + " " +this.alldata.name + " Has cancelled a booking with you"},
-        include_player_ids: [this.backend.selectedsalon[0].TokenID],
-      }
-      this.oneSignal.postNotification(notificationObj).then(res => {
-       // console.log('After push notifcation sent: ' +res);
-      })
-    }
+
     this.cancelbookingConfirm();
 
     console.log(this.alldata)
@@ -234,7 +226,15 @@ setTimeout(()=>{
             console.log('Confirm Okay');
 
            
-             
+            if( this.alldata.TokenID){
+              var notificationObj = {
+                contents: { en: "Cancellation Alert!!" +this.alldata.name + " Has cancelled their booking with " + this.alldata.hairdresser + " on "+ this.alldata.userdate + " at " + this.alldata.sessiontime},
+                include_player_ids: [this.alldata.TokenID],
+              }
+              this.oneSignal.postNotification(notificationObj).then(res => {
+               // console.log('After push notifcation sent: ' +res);
+              })
+            }
           
             firebase.firestore().collection('Analytics').doc(this.alldata.salonuid).get().then(val=>{
         
