@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Teko|Abel|Anton|Dosis|Oxygen|Jura|Pacifico|Righteous|Roboto+Condensed|Ubuntu|Manjari');
+app-signup {
+  .ion-page{
+    z-index: -5 !important;
+    display: block !important;
+     }
+}
 
- .ion-page{
-z-index: -5 !important;
- }
 
 .content{
   background: url('../../assets/background.svg');
