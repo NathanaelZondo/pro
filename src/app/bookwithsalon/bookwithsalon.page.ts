@@ -235,7 +235,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
   setbooking(booking: bookings) {
 
 
-    //this.Loading();
+    this.Loading();
 
 
 
@@ -994,7 +994,7 @@ loadEvents() {
 async Loading() {
   const loading = await this.loadingController.create({
     message: 'Please wait...',
-    duration: 2000
+    duration: 5000
   });
   await loading.present();
 
