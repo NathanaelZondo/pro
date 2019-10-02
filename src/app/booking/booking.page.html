@@ -20,7 +20,7 @@
         <ion-button color ="clear"  *ngIf="x.status2!='cancelled' && x.status!='cancelled' && x.userdate >= currentdate" (click)="forthealert(x)" id="cancel">
           <ion-icon color="danger" name="close"></ion-icon>
         </ion-button><br>
-        <ion-button color ="clear"   (click)="late(x)" id="cancel">
+        <ion-button color ="clear"   (click)="late(x)" id="cancel"  *ngIf="x.status2!='cancelled' && x.status!='cancelled' && x.userdate >= currentdate">
           <ion-icon color="secondary" name="md-clock"></ion-icon>
         </ion-button>
       
