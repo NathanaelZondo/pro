@@ -1,54 +1,5 @@
 <ion-content>
-  <!-- <div #map id="map">
-      <input id="pac-input" class="controls" type="text" placeholder="Search Location">
 
-  </div>
-  <div class="salonlist"> -->
-  <!-- <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
-      <div class="image">
-        <img src="{{x.salonImage}}">
-      </div>
-      <div class="details">
-        <div class="subtitle">
-          <p>{{x.salonName}} <br> 
-            {{x.streetName}}
-          </p>
-        </div>
-
-      </div>
-
-          <ion-icon class="icon1" name="pin">Directions</ion-icon>
-    
-
-        <ion-fab-button class="color2">
-            <ion-icon class="icon2" name="call">Directions</ion-icon>
-          </ion-fab-button>
-     
-    </div> -->
-  <!-- <div class="container">
-        <ion-card *ngFor="let x of salond" (click)="selectsalon(x)">
-
-            <ion-card-content class="images">
-                <img src="{{x.salonImage}}">
-            </ion-card-content>
-            <ion-item>
-                <ion-fab-button class="btn1">
-                    <ion-icon class="icon1" name="pin"></ion-icon>
-                  </ion-fab-button>
-              <ion-label><strong>{{x.salonName}} </strong></ion-label>
-              <ion-button fill="outline" slot="end">View</ion-button>
-            </ion-item>
-          
-         
-          </ion-card>
-
-            
-      
-    </div>
-
-  </div> -->
-
-  <!-- 
   <ion-card class="Card"  *ngFor="let x of salond" (click)="selectsalon(x)">
       <ion-card-header>
           <div class="image">
@@ -66,7 +17,7 @@
       
             </div>
       </ion-card-content>
-    </ion-card>  -->
+    </ion-card>
 
   <input id="pac-input" class="controls" type="text" placeholder="Search Location">
   <div #map id="map"></div>
@@ -78,14 +29,9 @@
         <div class="card">
           <div class="top">
             <div class="image">
-              <!-- <ion-fab-button class="btn1">
-                  <ion-icon class="pin1" name="car"></ion-icon>
-                </ion-fab-button> -->
-              <!-- <ion-fab-button class="btn2" clear>
-                <ion-icon name="return-right"></ion-icon>
-              </ion-fab-button> -->
+            
               <img src="{{b.salonImage}}" alt="tough">
-              <!-- <p style="color: rgb(255, 255, 255)"><strong><ion-icon class="location" name="pin"></ion-icon>{{b.salonName}} {{b.Address.streetName}}</strong>  </p> -->
+            
             </div>
             <div class="title">
               <p class="stars" style="color: rgb(185, 184, 184); font-size: 5vw; font-family: Manjari">{{b.Address.streetName}} </p>
@@ -94,10 +40,7 @@
           </div>
           <hr style="border-color: rgb(255, 3, 3)">
           <div class="bottom">
-            <!-- <div class="view">
-            <p>View more</p>
-            <p><ion-icon style="color:black; font-size:3.5vh" name="arrow-forward"></ion-icon></p>
-           </div> -->
+           
           </div>
           <div class="blur">
 
@@ -106,20 +49,5 @@
       </ion-slide>
     </ion-slides>
   </div>
-  <!-- <div class="salonlist"> 
-       <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
-        <div class="image">
-          <img src="{{x.salonImage}}">
-        </div>
-        <div class="details">
-          <div class="subtitle">
-            <p>{{x.salonName}} <br> 
-              {{x.streetName}}
-            </p>
-          </div>
-  
-        </div>
-      </div>
-      <ion-icon (click)="function()" class="icon1" name="pin">Directions</ion-icon>
-      </div> -->
+
 </ion-content>
