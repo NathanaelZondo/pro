@@ -421,43 +421,7 @@ console.log(booking)
                // console.log('After push notifcation sent: ' +res);
               })
             }
-            let v1;
-            let click = 1;
-            firebase.firestore().collection('salonAnalytics').doc(this.backend.salonuid).collection('numbers').get().then(val => {
-              console.log("These are the numbers", val)
-              val.forEach(qu => {
-                qu.id;
-                console.log(qu.id)
-                console.log(qu.data().numberofbookings)
-                v1 = qu.data().numberofbookings;
-
-                firebase.firestore().collection('salonAnalytics').doc(this.backend.salonuid).collection('numbers').doc(qu.id).update({ "numberofbookings": v1 + click }).then(zet => {
-                  console.log(zet)
-                })
-              }
-
-
-              )
-            })
-
-
-
-            firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser.uid).collection('numbers').get().then(val => {
-              console.log("These are the numbers", val)
-              val.forEach(qu => {
-                qu.id;
-                console.log(qu.id)
-                console.log(qu.data().numberofbookings)
-                v1 = qu.data().numberofbookings;
-
-                firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser.uid).collection('numbers').doc(qu.id).update({ "numberofbookings": v1 + click }).then(zet => {
-                  console.log(zet)
-                })
-              }
-
-
-              )
-            })
+      
 
             this.control.BookToast();
             this.control.navCtrl.navigateRoot('/success');
