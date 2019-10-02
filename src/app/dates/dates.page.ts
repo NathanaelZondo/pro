@@ -79,7 +79,7 @@ export class DatesPage implements OnInit {
     useruid:firebase.auth().currentUser.uid,
     bookingid:Math.floor(Math.random() * 2000000).toString(),
     TokenID:this.backend.selectedsalon[0].TokenID,
-    UserTokenID: this.userToken
+    UserTokenID: this.userToken,
     late:"",
     saloncell:this.backend.selectedsalon[0].SalonContactNo
   }
