@@ -250,6 +250,55 @@ setTimeout(()=>{
 
     await alert.present();
   }
+
+
+  late(x)
+  {
+    this.presentAlertPrompt(x)
+
+  }
+
+
+  async presentAlertPrompt(x) {
+    const alert = await this.alertController.create({
+      header: 'Are you going to be late?',
+      inputs: [
+        {
+          name: 'name1',
+          type: 'text',
+          placeholder: 'Give '+x.hairdresser+' your reason...'
+        }
+        // input date with min & max
+        
+      
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Send',
+          handler: (name1) => {
+            console.log(name1.name1);
+
+            firebase.firestore().collection('Bookings').doc(x.id).update({
+              late: name1.name1
+            }).then(res => {
+              console.log(res)
+            });
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+
 }
 
 
