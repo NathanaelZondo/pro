@@ -286,7 +286,7 @@ setTimeout(()=>{
             console.log(name1.name1);
 
             firebase.firestore().collection('Bookings').doc(x.id).update({
-              late: name1.name1
+              late:"Late:"+ name1.name1
             }).then(res => {
               console.log(res)
             });
