@@ -87,7 +87,7 @@ this.initializeApp();
     // I recommend to put these into your environment.ts
     this.oneSignal.startInit('bf488b2e-b5d1-4e42-9aa5-8ce29e6320c8', '282915271246');
  
-    this.oneSignal.getIds().then(function(res) {
+    this.oneSignal.getIds().then((res) => {
 
       console.log("OneSignal User ID:", res.userId);
       // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316    

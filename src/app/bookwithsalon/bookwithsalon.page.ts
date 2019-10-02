@@ -30,7 +30,7 @@ export class BookwithsalonPage implements OnInit {
     let cd1 = new Date();
 
     this.testarray = [];
-
+console.log(this.backend.salonsDisply[0].TokenID)
     //this.control.tip();
     this.cdate();
 

@@ -4,6 +4,7 @@ import { ControlsService } from '../controls.service';
 import * as firebase from 'firebase';
 import { ModalPage } from '../modal/modal.page';
 import { ModalController, AlertController } from '@ionic/angular';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 @Component({
   selector: 'app-booking',
@@ -37,7 +38,7 @@ export class BookingPage implements OnInit {
 
 color ="rgba("+this.random1+","+this.random2+","+this.random3+","+ "0.714)";
   color3 ="rgba("+this.random11+","+this.random22+","+this.random33+","+ "1)";
-  constructor(private alertController: AlertController, public backend: BackendService, public control: ControlsService, public modalController: ModalController, public controls: ControlsService, public elementRef: ElementRef, public renderer: Renderer2) {
+  constructor(private alertController: AlertController, public backend: BackendService, public control: ControlsService, public modalController: ModalController, public controls: ControlsService, public elementRef: ElementRef, public renderer: Renderer2,private oneSignal: OneSignal) {
     
     console.log("Colors =",this.color);
     this.newdata = [];
@@ -94,13 +95,24 @@ setTimeout(()=>{
     this.alldata = x;
     this.haidressername = x.hairdresser;
     this.hairsalon = x.salonname;
+    if( this.alldata.TokenID){
+      var notificationObj = {
+        contents: { en: "Hey " + this.alldata.salonname + " " +this.alldata.name + " Has cancelled a booking with you"},
+        include_player_ids: [this.backend.selectedsalon[0].TokenID],
+      }
+      this.oneSignal.postNotification(notificationObj).then(res => {
+       // console.log('After push notifcation sent: ' +res);
+      })
+    }
     this.cancelbookingConfirm();
+
     console.log(this.alldata)
 
   }
 
   haidressername;
   hairsalon;
+
   cancel(v) {
     let x = v;
     console.log("USER Clicked", x);
@@ -200,6 +212,7 @@ setTimeout(()=>{
           text: 'Okay',
           handler: () => {
             this.cancel(this.alldata);
+            
             this.control.cancelbookingToast();
             console.log('Confirm Okay');
           }
