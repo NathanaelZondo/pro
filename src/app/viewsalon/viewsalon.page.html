@@ -18,22 +18,10 @@
     <div class="salonimage" *ngFor="let x of salond">
       <img src="{{x.salonImage}}">
 
-      <!-- <div class="topbar">
-        <div class="likes" style=" float: right">
-          <ion-icon name="heart" (click)="like(x)" id="heart"
-            style="font-size: 30px; color: rgb(240, 10, 10); margin: 10px"></ion-icon>
-          <p style="color: white">{{likes}}</p>
-        </div>
 
-        <div class="back" routerLink="/navigation">
-          <ion-icon name="arrow-back" style=" margin: 10px; color: white; font-size: 25px;"></ion-icon>
-        </div>
-      </div> -->
 
     </div>
-    <!-- <div class="img1" *ngFor="let x of salond">
-            <img src="{{x.salonImage}}">
-    </div> -->
+ 
 
     <div class="details">
       <div class="blur"></div>
@@ -50,9 +38,9 @@
           <p style="font-family: Manjari; text-align: center;">{{x.SalonDesc}}</p>
         </div>
 
-        <div class="analyze">
-          <p style="font-size: 3.5vw">3 <br> Views</p>&nbsp;&nbsp;&nbsp;
-          <p style="font-size: 3.5vw">24 <br> Likes</p>
+        <div class="analyze" *ngFor ="let x of analyticos">
+          <p style="font-size: 3.5vw">{{x.numberofviews}} <br> Views</p>&nbsp;&nbsp;&nbsp;
+          <p style="font-size: 3.5vw">{{x.numberoflikes}} <br> Likes</p>
         </div>
 
         <ionic4-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#db981a"
@@ -69,17 +57,7 @@
         <br>
 
         <div class="rating">
-          <!-- <ionic4-star-rating #rating
-          activeIcon = "ios-star"
-          defaultIcon = "ios-star-outline"
-          activeColor = "#db981a" 
-          defaultColor = "white"
-          readonly="true"
-          rating= {{aveg}}
-          fontSize = "25px"
-          halfStar = "true"
-          >
-        </ionic4-star-rating> -->
+  
 
         </div>
       </div>

@@ -75,7 +75,9 @@ export class DatesPage implements OnInit {
     salonuid: this.backend.salonuid,
     hairstyleimage: this.backend.hairstyleimage,
     useruid:firebase.auth().currentUser.uid,
-    bookingid:Math.floor(Math.random() * 2000000).toString()
+    bookingid:Math.floor(Math.random() * 2000000).toString(),
+    late:"",
+    saloncell:this.backend.selectedsalon[0].SalonContactNo
   }
   //this is the date inputed by the user
   userdate;

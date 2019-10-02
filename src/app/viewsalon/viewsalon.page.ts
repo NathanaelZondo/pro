@@ -21,7 +21,8 @@ export class ViewsalonPage implements OnInit {
   }
 likes;
 total = 0;
-rate = 0
+rate = 0;
+analyticos =[];
 dummy = []
 found:boolean;
 userRating = []
@@ -45,9 +46,9 @@ userRating = []
 
 firebase.firestore().collection('Analytics').doc(this.salond[0].userUID).onSnapshot(val=>{
  let users = val.data().users;
+ this.analyticos.push(val.data())
 
-
-  console.log(" likes  = ",val.data().users.length);
+  console.log(" likes  = ",val.data());
 
   for( var o =0 ; o <users.length;o++)
   {
@@ -215,20 +216,11 @@ async dislikeConfirm() {
             let users = val.data().users;
            
            
-             console.log(" likes  = ",val.data().users.length);
-           
-            
-           
-              
-          
            
             console.log("found") 
             this.found =true;
             this.color ="rgb(240, 10, 10)";
 
-            let click = 1;
-            let v1;
-            let docid;
             firebase.firestore().collection('Analytics').doc(this.salond[0].userUID).get().then(val=>{
 
             
