@@ -1,10 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Teko|Abel|Anton|Dosis|Oxygen|Jura|Pacifico|Righteous|Roboto+Condensed|Ubuntu|Manjari');
-.content {
-     display: block !important;
-    flex-direction: row !important; 
-    
- 
+
+ .ion-page{
+z-index: -5 !important;
+ }
+
+.content{
+  background: url('../../assets/background.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 110vh;
 }
+
 .container {
     background: url('../../assets/background.svg');
     background-position: center;
@@ -14,103 +21,82 @@
     flex-flow: column;
     justify-content: center;
     align-content: center;
-    height: 100vh;
+    height: 100%;
+  }
   
-}
-
-.header {
+  .icon {
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
-
-    img {
-        width: 20vh;
-        height: 2\0vh;
+  
+    img{
+      width: 20vh;
+      height: 20vh;
     }
-
+  
     p {
-        text-align: center;
-        color: white;
+      text-align: center;
+      color: white;
     }
-}
-
-.image {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-
-    h1 {
-        font-size: 50px;
-    }
-
-    p {
-        text-align: center;
-    }
-}
-
-.npts {
+  }
+  
+  .npts {
     align-items: center;
     position: relative;
     left: 15%;
     bottom: 10px;
-
+  
     .item {
-        background: transparent;
+      background: transparent;
+      color: black;
+      width: 70%;
+  
+      .input {
+        border-bottom: 1px solid black;
         color: white;
-        width: 70%;
-
-        .input {
-            border-bottom: 1px solid black;
-            color: white;
-        }
+      }
     }
-
+  
     .label {
-        color: white;
+      color: white;
     }
-}
-
-.btn {
+  }
+  
+  .btn {
     opacity: 1;
     position: relative;
-    left: 10%;
-    top: 10px;
-
+    right: 5%;
+    top: 15px;
+  
+  
     button {
-
-        background: whitesmoke;
-        color: black;
-        width: 80%;
-        align-items: center;
-    }
-
-    p {
-        position: relative;
-        right: 10%;
-        text-align: center;
-    }
-}
-
-.close {
-    position: absolute;
-    top: -30%;
-    left: -10%;
-
-    .button {
-        font-size: 30px;
+  
+      background: whitesmoke;
+      color: black;
+      width: 80%;
+      align-items: center;
+      margin: 2px;
+      border-radius: 20px;
+  
+      #login {
         color: white;
+      }
     }
-}
-
-.scroll-content {
-    padding-bottom: 0 !important;
- }
-
-
-
-
+  
+    p {
+      position: relative;
+      right: 10%;
+      text-align: center;
+    }
+  }
+  
+  #reset {
+    position: relative;
+    left: 100px;
+  }
+  
+  
 
 
 

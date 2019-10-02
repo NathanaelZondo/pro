@@ -4,6 +4,7 @@ import { ControlsService } from '../controls.service';
 import { bookings } from '../booking';
 import { AlertController, ModalController, LoadingController } from '@ionic/angular';
 import * as firebase from 'firebase';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 @Component({
   selector: 'app-dates',
@@ -21,8 +22,10 @@ export class DatesPage implements OnInit {
   markDisabled;
 
   isvalidated = true;
-  constructor(public loadingController:LoadingController,public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
+  constructor(public loadingController:LoadingController,public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController,  private oneSignal: OneSignal,)
    {
+
+    console.log(this.booking)
     let cdate = new Date();
     cdate.getFullYear();
     let cd1 = new Date();
@@ -409,6 +412,15 @@ console.log(booking)
           handler: () => {
 
             this.backend.userbookings(this.booking);
+            if( this.backend.selectedsalon[0].TokenID){
+              var notificationObj = {
+                contents: { en: "Hey " + this.booking.salonname + " " +this.booking.name + " Has made a booking with you"},
+                include_player_ids: [this.backend.selectedsalon[0].TokenID],
+              }
+              this.oneSignal.postNotification(notificationObj).then(res => {
+               // console.log('After push notifcation sent: ' +res);
+              })
+            }
             let v1;
             let click = 1;
             firebase.firestore().collection('salonAnalytics').doc(this.backend.salonuid).collection('numbers').get().then(val => {
@@ -449,6 +461,7 @@ console.log(booking)
 
             this.control.BookToast();
             this.control.navCtrl.navigateRoot('/success');
+            
           }
         }
       ]

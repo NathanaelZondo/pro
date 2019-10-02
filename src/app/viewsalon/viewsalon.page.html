@@ -42,12 +42,12 @@
         <div class="subtitle" style="font-family: Pacifico; color: black">
           {{x.salonName}}
         </div>
-        <div class="title" style="color:black; font-family: Manjari">
+        <div class="title" style="color:black; font-family: Manjari; font-weight: bold">
           {{x.Address.streetName}}
         </div>
 
-        <div class="desc" *ngFor="let x of salond">
-          <p style="font-family: Manjari">{{x.SalonDesc}}</p>
+        <div class="desc" *ngFor="let x of salond" style="font-family: Manjari; text-align: center;">
+          <p style="font-family: Manjari; text-align: center;">{{x.SalonDesc}}</p>
         </div>
 
         <div class="analyze">
@@ -64,7 +64,7 @@
 
 
         <div class="reviews" routerLink="/reviews">
-          <p style="font-family: Manjari">Reviews &nbsp;> </p>
+          <p style="font-family: Manjari; font-size: 4vw">Reviews &nbsp;> </p>
         </div>
         <br>
 

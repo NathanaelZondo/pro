@@ -26,7 +26,7 @@ declare var google;
 export class MapsPage implements OnInit {
   sliderConfig ={
     initialSlide: 0,
-    spaceBetween : 6,
+    spaceBetween : 5,
     centeredSlides: true,
     slidesPerView: 1.2,
     watchOverflow: true

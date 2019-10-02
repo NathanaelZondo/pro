@@ -12,10 +12,12 @@ import * as firebase from 'firebase';
   styleUrls: ['./viewsalon.page.scss'],
 })
 export class ViewsalonPage implements OnInit {
-db = firebase.firestore();
+  db = firebase.firestore();
   sliderConfig = {
     spaceBetween: 5,
-    slidesPerView: 1.2
+    slidesPerView: 1.2,
+    centeredSlides: true,
+    watchOverflow: true
   }
 likes;
 total = 0;
@@ -26,7 +28,7 @@ userRating = []
   more = false;
   hair = [];
   viewhair = true;
-  placeholder =this.backend.salonsDisply;
+  placeholder = this.backend.salonsDisply;
   aveg: number;
   heart : string ="unlike"
   color ="#DCDCDC";
@@ -74,43 +76,43 @@ else
 
 
 
-   
+
     console.log(this.likes)
 
-this.db.collection('Salons').where("salonName","==",this.backend.salonname).onSnapshot(doc =>{
-  doc.forEach(res =>{
-    this.db.collection('Salons').doc(res.id).collection('ratings').onSnapshot(snap =>{
-      snap.forEach(doc =>{
-        this.userRating.push(doc.data().rating)
-        console.log('users', doc.data().rating);
-        this.total += doc.data().rating;
-console.log(this.total);
-this.dummy.push(doc.data().rating)
+    this.db.collection('Salons').where("salonName", "==", this.backend.salonname).onSnapshot(doc => {
+      doc.forEach(res => {
+        this.db.collection('Salons').doc(res.id).collection('ratings').onSnapshot(snap => {
+          snap.forEach(doc => {
+            this.userRating.push(doc.data().rating)
+            console.log('users', doc.data().rating);
+            this.total += doc.data().rating;
+            console.log(this.total);
+            this.dummy.push(doc.data().rating)
 
+          })
+          this.aveg = this.total / this.dummy.length;
+          console.log('averge', this.aveg);
+        })
       })
-      this.aveg = this.total / this.dummy.length;
-console.log('averge', this.aveg);
     })
-  })
-})
 
 
-// this.db.collection('Salons').doc(this.backend.salonname).collection('ratings').onSnapshot(snap =>{
-// snap.forEach( doc =>{
-//   this.userRating.push(doc.data().rating)
-//   console.log('users', doc.data().rating);
+    // this.db.collection('Salons').doc(this.backend.salonname).collection('ratings').onSnapshot(snap =>{
+    // snap.forEach( doc =>{
+    //   this.userRating.push(doc.data().rating)
+    //   console.log('users', doc.data().rating);
 
-// this.total += doc.data().rating;
-// console.log(this.total);
-// this.dummy.push(doc.data().rating)
+    // this.total += doc.data().rating;
+    // console.log(this.total);
+    // this.dummy.push(doc.data().rating)
 
 
-// })
-// this.aveg = this.total / this.dummy.length;
-// console.log('averge', this.aveg);
+    // })
+    // this.aveg = this.total / this.dummy.length;
+    // console.log('averge', this.aveg);
 
-// })
-console.log('toatl for ratings',this.total)
+    // })
+    console.log('toatl for ratings', this.total)
   }
   salond = this.backend.selectedsalon;
   ngOnInit() {
@@ -131,7 +133,7 @@ console.log('toatl for ratings',this.total)
   gethairstyles(x) {
 
     console.log(this.backend.salonname)
-this.hair =[];
+    this.hair = [];
     let user = this.db.collection('Salons').doc(this.salond[0].userUID).collection('Styles')
 
 
@@ -147,7 +149,7 @@ this.hair =[];
 
   choosehair(x) {
     console.log(x);
-    this.backend.sethairstyledata(x.hairstyleName, x.duration, x.hairstylePrice,x.hairStyleImage);
+    this.backend.sethairstyledata(x.hairstyleName, x.duration, x.hairstylePrice, x.hairStyleImage);
     this.control.router.navigate(['customer']);
   }
 
@@ -170,7 +172,7 @@ else
     let click = 1;
     let v1;
     let docid;
-     
+
     x.userUID;
     firebase.firestore().collection('Analytics').doc(x.userUID).get().then(val=>{
 
