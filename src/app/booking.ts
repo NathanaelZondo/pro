@@ -23,7 +23,7 @@ hairstyleimage:string,
 bookingid:string
 TokenID: string;
 UserTokenID : string
-bookingid:string,
+
 late:string,
 saloncell:string
 }

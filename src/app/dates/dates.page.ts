@@ -79,7 +79,7 @@ export class DatesPage implements OnInit {
     useruid:firebase.auth().currentUser.uid,
     bookingid:Math.floor(Math.random() * 2000000).toString(),
     TokenID:this.backend.selectedsalon[0].TokenID,
-    UserTokenID: this.userToken
+    UserTokenID: this.userToken,
     late:"",
     saloncell:this.backend.selectedsalon[0].SalonContactNo
   }
@@ -420,7 +420,9 @@ console.log(booking)
             this.backend.userbookings(this.booking);
             if( this.backend.selectedsalon[0].TokenID){
               var notificationObj = {
-                contents: { en: "BOOKING ALERT! "  +this.booking.name + " Has made a booking with "+ this.booking.hairdresser +" on "+ this.booking.userdate + " from " + this.booking.sessiontime+ " to "+ this.booking.sessionendtime },
+                headings: {en:" NEW BOOKING ALERT! "},
+                small_icon : '../src/assets/Untitled-1.jpg',
+                contents: { en:  this.booking.name + " Has made a booking with "+ this.booking.hairdresser +" on "+ this.booking.userdate + " from " + this.booking.sessiontime+ " to "+ this.booking.sessionendtime },
                 include_player_ids: [this.backend.selectedsalon[0].TokenID],
               }
               this.oneSignal.postNotification(notificationObj).then(res => {
