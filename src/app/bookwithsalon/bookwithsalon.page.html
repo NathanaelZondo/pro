@@ -9,6 +9,17 @@
 
 <ion-content class="has-header">
 
+  <ion-item id="dresser" style="width: 40vh; align-items: center" color="transparent">
+
+    <ion-label position="stacked">Hairdresser</ion-label>
+    <ion-select  value="brown" okText="Okay" [(ngModel)]="hairdresser" (ngModelChange)="getdresser(hairdresser)">
+      <ion-select-option *ngFor="let x of staff"   >{{x.name}}</ion-select-option>
+
+    </ion-select>
+
+  </ion-item>
+
+
 <button  (click)="changeMode('month')" [style.background] ="monthcolor">MONTH</button>&nbsp;&nbsp;
 <button (click)="changeMode('week')" [style.background] ="weekcolor">WEEK</button>&nbsp;&nbsp;
 <button (click)="changeMode('day')" [style.background] ="daycolor">DAY</button>
@@ -16,15 +27,48 @@
         <calendar style ="color:rgb(0, 0, 0);background-color:black;border-color:firebrick"   [eventSource]="eventSource" [calendarMode]="calendar.mode"
           [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
     (onTitleChanged)="onViewTitleChanged($event)"
-         step="30" startHour="8" endHour="19" [markDisabled]="markDisabled" >
+         step="30" startHour="8" endHour="19" [markDisabled]="markDisabled" 
+         (onTimeSelected)="onTimeSelected($event)"
+         >
        
         </calendar>
   
-        
-        <ion-fab  vertical="bottom" horizontal="end">
-          <ion-fab-button  (click) ="datespage()">Continue</ion-fab-button>
-        </ion-fab>
-   
- 
+    
+  
+        <div class="who">
+          <ion-list >
+            <ion-radio-group>
+              <ion-list-header >
+                <ion-label>Pick Customer</ion-label>
+              </ion-list-header>
+    
+              <ion-item style="width: 300px">
+                <ion-label>Me</ion-label>&nbsp;&nbsp;
+                <ion-radio slot="start" value="me" checked (click) ="change()"></ion-radio>
+              </ion-item>
+    
+              <ion-item style="width: 300px">
+                <ion-label>Someone Else</ion-label>&nbsp;&nbsp;
+                <ion-radio (click) ="otherdata()" slot="start" value="someone else"></ion-radio>
+              </ion-item>
+    
+            </ion-radio-group>
+          </ion-list>
+        </div>
+        <ion-item [hidden] ="val" color="transparent" style="color: black">
+        <ion-label position="floating">Enter their name</ion-label> 
+        <ion-input type = "text" [(ngModel)]="name"></ion-input>
+      </ion-item>
+      <ion-item  [hidden] ="val" color="transparent" style="color: black">
+      <ion-label position="floating">Enter their surname</ion-label>
+      <ion-input type = "text" [(ngModel)]="surname"></ion-input>
+    </ion-item>
+    <br>
+        <div class="btn">
+          <ion-button color="dark" large  style="width: 300px" (click) ="pickdates()">
+            Next
+          </ion-button>
+        </div>
+     
 
 </ion-content>

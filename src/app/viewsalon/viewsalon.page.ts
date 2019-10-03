@@ -151,7 +151,7 @@ else
   choosehair(x) {
     console.log(x);
     this.backend.sethairstyledata(x.hairstyleName, x.duration, x.hairstylePrice, x.hairStyleImage);
-    this.control.router.navigate(['customer']);
+    this.control.router.navigate(['bookwithsalon']);
   }
 
   viewHair() {

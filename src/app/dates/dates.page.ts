@@ -80,6 +80,7 @@ export class DatesPage implements OnInit {
     bookingid:Math.floor(Math.random() * 2000000).toString(),
     TokenID:this.backend.selectedsalon[0].TokenID,
     UserTokenID: this.userToken,
+    // UserTokenID: this.userToken,
     late:"",
     saloncell:this.backend.selectedsalon[0].SalonContactNo
   }
@@ -444,6 +445,8 @@ console.log(booking)
   db = firebase.firestore();
   testarray = [];
   preventinputs:boolean;
+
+
   testbooking(booking) {
 
     this.events = [];
@@ -575,7 +578,7 @@ console.log(booking)
       this.formodal = false;
 
 
-      if (this.d2 <= this.d1 && this.d1 < this.d3 ) {
+      if (this.d2 <= this.d1 && this.d1 < this.d3) {
 
         this.formodal = true;
         this.isvalidated = true;
