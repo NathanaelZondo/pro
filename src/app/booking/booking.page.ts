@@ -228,7 +228,8 @@ setTimeout(()=>{
            
             if( this.alldata.TokenID){
               var notificationObj = {
-                contents: { en: "Cancellation Alert!!" +this.alldata.name + " Has cancelled their booking with " + this.alldata.hairdresser + " on "+ this.alldata.userdate + " at " + this.alldata.sessiontime},
+                headings: {en: "APPOINTMENT CANCELLATION! "},
+                contents: { en: "Hey customer " +this.alldata.name + " Has cancelled their booking with " + this.alldata.hairdresser + " on "+ this.alldata.userdate + " at " + this.alldata.sessiontime},
                 include_player_ids: [this.alldata.TokenID],
               }
               this.oneSignal.postNotification(notificationObj).then(res => {
@@ -254,6 +255,9 @@ setTimeout(()=>{
 
   late(x)
   {
+    this.alldata = x;
+    this.haidressername = x.hairdresser;
+    this.hairsalon = x.salonname;
     this.presentAlertPrompt(x)
 
   }
@@ -284,7 +288,17 @@ setTimeout(()=>{
           text: 'Send',
           handler: (name1) => {
             console.log(name1.name1);
-
+            if( this.alldata.TokenID){
+              var notificationObj = {
+                headings: {en: " APPOINTMENT ALERT for:" + this.alldata.haidressername},
+                small_icon : '../src/assets/Untitled-1.jpg',
+                contents: { en: "Hey! " +this.alldata.name + " will be late  on "+ this.alldata.userdate + " at " + this.alldata.sessiontime + " their reason is: \""+ name1.name1 +"\""},
+                include_player_ids: [this.alldata.TokenID],
+              }
+              this.oneSignal.postNotification(notificationObj).then(res => {
+               // console.log('After push notifcation sent: ' +res);
+              })
+            }
             firebase.firestore().collection('Bookings').doc(x.id).update({
               late: name1.name1
             }).then(res => {
