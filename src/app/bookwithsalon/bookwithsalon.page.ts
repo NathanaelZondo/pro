@@ -1131,6 +1131,21 @@ else if ((new Date().getMonth() + 1) >= 10)
     await alert.present();
   }
 
+
+
+
+
+
+
+
+ 
+
+val2 =false;
+   
+
+
+
+
 }
 
 

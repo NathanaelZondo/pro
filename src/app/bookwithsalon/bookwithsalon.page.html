@@ -1,21 +1,29 @@
 <ion-header>
-  <ion-toolbar color="dark">
-    <ion-icon name="arrow-round-back" style="font-size: 30px" (click)="back()"></ion-icon>
+  <ion-toolbar >
+    <ion-icon color="dark" name="arrow-round-back" style="font-size: 30px" (click)="back()"></ion-icon>
 
   </ion-toolbar>
-  <ion-title>{{viewTitle}}</ion-title>
+  <ion-title></ion-title>
 
 </ion-header>
 
 <ion-content class="has-header">
 
-  
+
+<h1 align ="center" style ="font-family:cocomat;position: absolute;top:0">{{viewTitle}}</h1>
+<pre>
 
 
+
+</pre >
+<div align ="center">
 <button  (click)="changeMode('day')" [style.background] ="monthcolor">DAY</button>&nbsp;&nbsp;
 <button (click)="changeMode('week')" [style.background] ="weekcolor">WEEK</button>&nbsp;&nbsp;
 <button (click)="changeMode('month')" [style.background] ="daycolor">MONTH</button>
+</div>
+<pre>
 
+</pre>
         <calendar style ="color:rgb(0, 0, 0);background-color:black;border-color:firebrick"   [eventSource]="eventSource" [calendarMode]="calendar.mode"
           [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
     (onTitleChanged)="onViewTitleChanged($event)"
@@ -26,41 +34,52 @@
         </calendar>
   
     
-  
-        <div class="who">
-          <ion-list >
+        <div class="flex-container" >
+      <div>
+        <ion-grid>
             <ion-radio-group>
               <ion-list-header >
-                <ion-label>Pick Customer</ion-label>
+                <ion-label>I'm booking for:</ion-label>
               </ion-list-header>
     
-              <ion-item style="width: 300px">
+           <ion-row>
+             <ion-col>
                 <ion-label>Me</ion-label>&nbsp;&nbsp;
                 <ion-radio slot="start" value="me" checked (click) ="change()"></ion-radio>
-              </ion-item>
-    
-              <ion-item style="width: 300px">
+            
+              </ion-col>
+             <ion-col>
                 <ion-label>Someone Else</ion-label>&nbsp;&nbsp;
                 <ion-radio (click) ="otherdata()" slot="start" value="someone else"></ion-radio>
-              </ion-item>
+              
+              </ion-col>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item  color="transparent" style="color: black">
+                      <ion-label position="floating">Enter their name</ion-label> 
+                      <ion-input type = "text" [(ngModel)]="name"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item  color="transparent" style="color: black">
+                    <ion-label position="floating">Enter their surname</ion-label>
+                    <ion-input type = "text" [(ngModel)]="surname"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              </ion-row>
     
             </ion-radio-group>
-          </ion-list>
-        </div>
-        <ion-item [hidden] ="val" color="transparent" style="color: black">
-        <ion-label position="floating">Enter their name</ion-label> 
-        <ion-input type = "text" [(ngModel)]="name"></ion-input>
-      </ion-item>
-      <ion-item  [hidden] ="val" color="transparent" style="color: black">
-      <ion-label position="floating">Enter their surname</ion-label>
-      <ion-input type = "text" [(ngModel)]="surname"></ion-input>
-    </ion-item>
+          </ion-grid>
+        
+     
     <br>
-        <div class="btn">
+       
           <ion-button color="dark" large  style="width: 300px" (click) ="submit()">
            SUBMIT
           </ion-button>
         </div>
-     
+        </div>  
 
 </ion-content>
