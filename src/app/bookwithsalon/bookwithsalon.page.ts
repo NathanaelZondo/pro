@@ -5,7 +5,7 @@ import { bookings } from '../booking';
 import { AlertController, ModalController, LoadingController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
-
+import {CustomerPage} from '../../app/customer/customer.page';
 
 @Component({
   selector: 'app-bookwithsalon',
@@ -14,17 +14,20 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 })
 
 export class BookwithsalonPage implements OnInit {
-
+  input={data:[]}
   item = true;
   unit: string;
   unit1: string;
   staff = [];
   userToken
   markDisabled;
-
+staffnames =[];
   isvalidated = true;
   constructor(private oneSignal: OneSignal,public loadingController:LoadingController,public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
    {
+   
+    this.Loading()
+   
    this.cdate();
     let cdate = new Date();
     cdate.getFullYear();
@@ -37,14 +40,65 @@ console.log(this.backend.salonsDisply[0].TokenID)
   
      
 
-  this.backend.gethairdresser().get().then(val => {
-    val.forEach(stav => {
-      console.log(stav.data())
-      this.staff.push(stav.data());
-    })
-  })
 
   }
+
+
+  async Loading() {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+      duration: 500
+    });
+    await loading.present();
+  
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
+    this.presentAlertRadio();
+  }
+
+  async presentAlertRadio() {
+    let input=this.input;
+   
+    console.log(input);
+    const alert = await this.alertController.create({
+      header: 'Pick any hairdresser.',
+      inputs: input.data,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: (data) => {
+            console.log(data);
+            this.hairdresser =data;
+            this.dresserLoading();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   booking: bookings = {
     name: this.backend.username,
     surname: this.backend.surname,
@@ -64,8 +118,9 @@ console.log(this.backend.salonsDisply[0].TokenID)
     hairstyleimage: this.backend.hairstyleimage,
     useruid:firebase.auth().currentUser.uid,
     bookingid:Math.floor(Math.random() * 2000000).toString(),
-    TokenID:this.backend.selectedsalon[0].TokenID,
-    UserTokenID: this.userToken,
+   // TokenID:this.backend.selectedsalon[0].TokenID,
+   TokenID:"",
+    UserTokenID:"",
     // UserTokenID: this.userToken,
     late:"",
     saloncell:this.backend.selectedsalon[0].SalonContactNo
@@ -76,6 +131,16 @@ console.log(this.backend.salonsDisply[0].TokenID)
   ngOnInit() {
     console.log(this.booking)
     
+  this.backend.gethairdresser().get().then(val => {
+    val.forEach(stav => {
+      this.staffnames.push(stav.data().name)
+      
+      this.input.data.push({name:stav.data().name,type: 'radio',label:stav.data().name.toString(),value:stav.data().name.toString()}) 
+      console.log(this.input)
+      
+      this.staff.push(stav.data());
+    })
+  })
     
    
   }
@@ -196,7 +261,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
   setbooking(booking: bookings) {
 
 
-    this.Loading();
+    
 
 
 
@@ -210,30 +275,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
     //this.backend.userbookings(booking);
     // prevents incorrect dates from being selected
 
-
-
-    if (parseFloat(booking.sessiontime[0] + booking.sessiontime[1]) < 8 || parseFloat(booking.sessiontime[0] + booking.sessiontime[1]) > 18) {
-      this.TimeAlert();
-      this.isvalidated = true;
-      return 0;
-    }
-    else if (parseFloat(booking.sessiontime[3] + booking.sessiontime[4]) > 0 && parseFloat(booking.sessiontime[3] + booking.sessiontime[4]) < 30) {
-
-      console.log("block =", parseFloat(booking.sessiontime[3] + booking.sessiontime[4]))
-      this.control.BlockToast();
-      this.isvalidated = true;
-      return 0;
-
-    }
-    else if (parseFloat(booking.sessiontime[3] + booking.sessiontime[4]) > 30 && parseFloat(booking.sessiontime[3] + booking.sessiontime[4]) <= 59) {
-
-      console.log("block2 =", parseFloat(booking.sessiontime[3] + booking.sessiontime[4]))
-      this.control.BlockToast();
-      this.isvalidated = true;
-      return 0;
-
-    }
-    else if (booking.sessiontime) {
+ 
 
       //time estimated by the salon
       let estimatedhours = parseInt((booking.estimatedtime / 60).toString());
@@ -264,6 +306,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
         newhrs;
         booking.sessionendtime = newhrs + ":30";
         console.log("Time 00 =", booking.sessionendtime)
+        this.booking=booking;
       }
       else
 
@@ -271,6 +314,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
           newhrs = newhrs + 1;
           booking.sessionendtime = newhrs + ":00";
           console.log("Time 00 =", booking.sessionendtime)
+          this.booking=booking;
         }
         else
 
@@ -280,6 +324,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
             newhrs;
             booking.sessionendtime = "0" + newhrs + ":30";
             console.log("Time 00 =", booking.sessionendtime)
+            this.booking=booking;
           }
           else
 
@@ -287,6 +332,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
               newhrs = newhrs + 1;
               booking.sessionendtime = "0" + newhrs + ":00";
               console.log("Time 00 =", booking.sessionendtime)
+              this.booking=booking;
             }
             else
 
@@ -294,30 +340,31 @@ console.log(this.backend.salonsDisply[0].TokenID)
                 newhrs = newhrs + 1;
                 booking.sessionendtime = newhrs + ":" + newmins;
                 console.log("Time 000 =", booking.sessionendtime)
+                this.booking=booking;
               }
               else
 
                 if (newhrs < 10 && newmins == 0) {
                   booking.sessionendtime = "0" + newhrs + ":00";
                   console.log("Time 1 =", booking.sessionendtime)
-
+                  this.booking=booking;
                 }
                 else
                   if (newhrs < 10 && newmins == 30) {
                     booking.sessionendtime = "0" + newhrs + ":" + newmins;
                     console.log("Time 2 =", booking.sessionendtime)
-
+                    this.booking=booking;
                   }
       if (newhrs >= 10 && newmins == 0 && booking.estimatedtime != 30) {
         booking.sessionendtime = newhrs + ":00";
         console.log("Time 11 =", booking.sessionendtime)
-
+        this.booking=booking;
       }
       else
         if (newhrs >= 10 && newmins == 30 && booking.estimatedtime != 30) {
           booking.sessionendtime = newhrs + ":" + newmins;
           console.log("Time 22 =", booking.sessionendtime)
-
+          this.booking=booking;
         }
 
 
@@ -325,9 +372,9 @@ console.log(this.backend.salonsDisply[0].TokenID)
 
 
 
-    }
-  
-    //this.testbooking(this.booking)
+    
+  this.booking=booking;
+ 
     
   }
 
@@ -335,7 +382,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
     const alert = await this.alertController.create({
       header: 'Please note!',
       message: 'Your booking is at ' + this.booking.salonname + ' hair salon in ' + this.booking.salonlocation + '\n' +
-        ' from ' + this.booking.sessiontime + ' until ' + this.booking.sessionendtime + '.',
+        ' from ' + this.booking.sessiontime + ' until ' + this.booking.sessionendtime + ' on '+this.booking.userdate+'.',
       buttons: [
         {
           text: 'Cancel',
@@ -532,7 +579,9 @@ console.log(this.backend.salonsDisply[0].TokenID)
 
 
 
-  submit(booking: bookings) {
+  submit(booking) {
+
+    booking =this.booking; 
 
     if (booking.sessiontime) {
 
@@ -674,32 +723,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
 
 
 
-  async eventsconfirm() {
-    const alert = await this.alertController.create({
-      header: 'You can view '+this.booking.hairdresser+'\'s '+'bookings.',
-      message: 'Click the top buttons to change the calendar view.',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'dark',
-          handler: (blah) => {
-           this.control.router.navigateByUrl('dates')
-          }
-        }, {
-          text: 'Confirm',
-          handler: () => {
-
-           console.log("confirm")
-    
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
-
+  
 
 
   async bookingconfirm() {
@@ -763,16 +787,7 @@ loadEvents() {
 
 
 
-async Loading() {
-  const loading = await this.loadingController.create({
-    message: 'Please wait...',
-    duration: 5000
-  });
-  await loading.present();
 
-  const { role, data } = await loading.onDidDismiss();
-  this.eventsconfirm();
-}
 
 
 datespage()
@@ -785,10 +800,12 @@ datespage()
 
 onTimeSelected = (ev: { selectedTime: Date, events: any[] }) => {
   console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' + (ev.events !== undefined && ev.events.length !== 0));
-
+console.log("EVents clicked =",ev)
   console.log("this is the time =" , ev.selectedTime.toString().slice(16,21));
   this.booking.sessiontime=ev.selectedTime.toString().slice(16,21);
-  this.setbooking(this.booking);
+ 
+ 
+
 };
 
 
@@ -851,12 +868,7 @@ pickdates() {
 
 
 hairdresser;
-getdresser(hairdresser)
-  {
-    
-console.log(this.hairdresser);
-this.dresserLoading();
-  }
+
 
 
 
@@ -885,6 +897,7 @@ this.dresserLoading();
   
     const { role, data } = await loading.onDidDismiss();
     this.eventspopulation();
+    this.setbooking(this.booking)
     console.log('Loading dismissed!');
   }
 
@@ -1006,7 +1019,7 @@ console.log("Error here = ",this.d2)
   viewTitle;
   isToday: boolean;
   calendar = {
-    mode: 'month',
+    mode: 'day',
     currentDate: new Date()
   }; // these are the variable used by the calendar.
 
@@ -1017,13 +1030,13 @@ console.log("Error here = ",this.d2)
     console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
   }
 
-monthcolor ='orangered';
+monthcolor ='pink';
 daycolor ='black';
 weekcolor ='black';
   changeMode(mode) {
     if(mode =='month')
     {
-      this.monthcolor ='orangered'
+      this.monthcolor ='pink'
       this.daycolor ='black';
 this.weekcolor='black'
     }
@@ -1031,14 +1044,14 @@ this.weekcolor='black'
     if(mode =='day')
     {
       this.monthcolor ='black'
-      this.daycolor ='orangered';
+      this.daycolor ='pink';
 this.weekcolor='black'
     }
     else  if(mode =='week')
     {
       this.monthcolor ='black'
       this.daycolor ='black';
-this.weekcolor='orangered';
+this.weekcolor='pink';
     }
     this.calendar.mode = mode;
   }
@@ -1085,6 +1098,39 @@ else if ((new Date().getMonth() + 1) >= 10)
     this.booking.userdate =this.todate;
     return this.todate;
   }
+
+
+
+
+  async timeAlertConfirm() {
+    this.setbooking(this.booking)
+   this.booking.userdate=this.todate;
+   this.booking.hairdresser=this.hairdresser;
+    const alert = await this.alertController.create({
+      header: 'Confirm!',
+      message: 'Your booking will be at '+this.booking.salonname+" from "+this.booking.sessiontime+" until "+this.booking.sessionendtime,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+         
+       
+            console.log(this.booking);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
 }
 
 

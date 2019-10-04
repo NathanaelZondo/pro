@@ -9,26 +9,18 @@
 
 <ion-content class="has-header">
 
-  <ion-item id="dresser" style="width: 40vh; align-items: center" color="transparent">
-
-    <ion-label position="stacked">Hairdresser</ion-label>
-    <ion-select  value="brown" okText="Okay" [(ngModel)]="hairdresser" (ngModelChange)="getdresser(hairdresser)">
-      <ion-select-option *ngFor="let x of staff"   >{{x.name}}</ion-select-option>
-
-    </ion-select>
-
-  </ion-item>
+  
 
 
-<button  (click)="changeMode('month')" [style.background] ="monthcolor">MONTH</button>&nbsp;&nbsp;
+<button  (click)="changeMode('day')" [style.background] ="monthcolor">DAY</button>&nbsp;&nbsp;
 <button (click)="changeMode('week')" [style.background] ="weekcolor">WEEK</button>&nbsp;&nbsp;
-<button (click)="changeMode('day')" [style.background] ="daycolor">DAY</button>
+<button (click)="changeMode('month')" [style.background] ="daycolor">MONTH</button>
 
         <calendar style ="color:rgb(0, 0, 0);background-color:black;border-color:firebrick"   [eventSource]="eventSource" [calendarMode]="calendar.mode"
           [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
     (onTitleChanged)="onViewTitleChanged($event)"
          step="30" startHour="8" endHour="19" [markDisabled]="markDisabled" 
-         (onTimeSelected)="onTimeSelected($event)"
+         (onTimeSelected)="onTimeSelected($event)" (click) ="timeAlertConfirm()"
          >
        
         </calendar>
@@ -65,8 +57,8 @@
     </ion-item>
     <br>
         <div class="btn">
-          <ion-button color="dark" large  style="width: 300px" (click) ="pickdates()">
-            Next
+          <ion-button color="dark" large  style="width: 300px" (click) ="submit()">
+           SUBMIT
           </ion-button>
         </div>
      
