@@ -20,7 +20,7 @@ export class BookwithsalonPage implements OnInit {
   unit1: string;
   staff = [];
   userToken
-  markDisabled;
+
 staffnames =[];
   isvalidated = true;
   constructor(private oneSignal: OneSignal,public loadingController:LoadingController,public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
@@ -29,6 +29,7 @@ staffnames =[];
     this.Loading()
    
    this.cdate();
+   
     let cdate = new Date();
     cdate.getFullYear();
     let cd1 = new Date();
@@ -42,7 +43,10 @@ console.log(this.backend.salonsDisply[0].TokenID)
 
 
   }
-
+  markDisabled = (date: Date) => {
+    var current = new Date(this.cdate());
+    return date < current;
+};
 
   async Loading() {
     const loading = await this.loadingController.create({
@@ -803,7 +807,14 @@ onTimeSelected = (ev: { selectedTime: Date, events: any[] }) => {
 console.log("EVents clicked =",ev)
   console.log("this is the time =" , ev.selectedTime.toString().slice(16,21));
   this.booking.sessiontime=ev.selectedTime.toString().slice(16,21);
- 
+ if((ev.events !== undefined && ev.events.length !== 0))
+ {
+  console.log("found") 
+  for(var k =0;k<ev.events.length;k++)
+  {
+    console.log("Look here minutes = ",new Date(ev.events[k].startTime).getMinutes())
+  }
+ }
  
 
 };
@@ -1030,28 +1041,28 @@ console.log("Error here = ",this.d2)
     console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
   }
 
-monthcolor ='pink';
-daycolor ='black';
-weekcolor ='black';
+monthcolor ='rgb(179, 125, 93)';
+daycolor ='#DB5A6B';
+weekcolor ='rgb(179, 125, 93)';
   changeMode(mode) {
     if(mode =='month')
     {
-      this.monthcolor ='pink'
-      this.daycolor ='black';
-this.weekcolor='black'
+      this.monthcolor ='#DB5A6B'
+      this.daycolor ='rgb(179, 125, 93)';
+this.weekcolor='rgb(179, 125, 93)'
     }
     else
     if(mode =='day')
     {
-      this.monthcolor ='black'
-      this.daycolor ='pink';
-this.weekcolor='black'
+      this.monthcolor ='rgb(179, 125, 93)'
+      this.daycolor ='#DB5A6B';
+this.weekcolor='rgb(179, 125, 93)'
     }
     else  if(mode =='week')
     {
-      this.monthcolor ='black'
-      this.daycolor ='black';
-this.weekcolor='pink';
+      this.monthcolor ='rgb(179, 125, 93)'
+      this.daycolor ='rgb(179, 125, 93)';
+this.weekcolor='#DB5A6B';
     }
     this.calendar.mode = mode;
   }
@@ -1138,7 +1149,7 @@ else if ((new Date().getMonth() + 1) >= 10)
 
 
 
- 
+ pink ="#DB5A6B";
 
 val2 =false;
    
