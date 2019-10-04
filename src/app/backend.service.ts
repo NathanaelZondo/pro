@@ -104,11 +104,13 @@ return booking;
   }
 
 hairstyleimage;
-  sethairstyledata(name, duration, price,hairstyle)
+genderOptions;
+  sethairstyledata(name, duration, price,hairstyle,genderOptions)
    {
     this.hairstyletype = name;
     this.hairstyleprice = price;
     this.estimatedtime = duration;
+    this.genderOptions=genderOptions;
 this.hairstyleimage =hairstyle;
     console.log(name, duration, price);
   }

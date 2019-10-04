@@ -20,12 +20,23 @@ export class BookwithsalonPage implements OnInit {
   unit1: string;
   staff = [];
   userToken
-
+timeinterval;
 staffnames =[];
   isvalidated = true;
   constructor(private oneSignal: OneSignal,public loadingController:LoadingController,public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
    {
    
+console.log("Gender = ",this.backend.genderOptions)
+
+if(this.backend.genderOptions=='male')
+{
+this.timeinterval =30;
+}
+else
+{
+  this.timeinterval =60;
+}
+
     this.Loading()
    
    this.cdate();
@@ -74,6 +85,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
           cssClass: 'secondary',
           handler: () => {
             console.log('Confirm Cancel');
+            this.control.router.navigate(['viewhairstyle']);
           }
         }, {
           text: 'Ok',
@@ -223,7 +235,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
   
     {
     
-     return this.setbooking(booking);
+     //return this.setbooking(booking);
     }
 
 
@@ -454,129 +466,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
   preventinputs:boolean;
   
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  findtime(booking) {
-    this.events = [];
-    this.d1 = new Date((booking.userdate + 'T') + (booking.sessiontime));
-    this.d2 = new Date((booking.userdate + 'T0') + (booking.sessionendtime));
-    this.d3;
-
-    
-
-    //this.formodal=false;
-
-    console.log("TestArray = ", this.testarray)
-
-    for (let i = 0; i < this.testarray.length; i++) {
-
-      this.d1 = new Date((booking.userdate + 'T') + (booking.sessiontime));
-
-      this.d2 = new Date((this.testarray[i].userdate + 'T') + (this.testarray[i].sessiontime));
-
-
-      console.log("Second condition for end time =", (this.testarray[i].sessionendtime[0]))
-
-      this.d3 = new Date((this.testarray[i].userdate + 'T') + (this.testarray[i].sessionendtime));
-
-
-      let d4 = new Date((booking.userdate + 'T') + (booking.sessionendtime));
-
-
-      console.log("session end time = ", d4)
-
-      let a = "From ";
-      let b = " until";
-      let x = this.d2;
-      let y = this.d3;
-
-
-
-
-
-
-      this.formodal = false;
-
-
-      if (this.d2 <= this.d1 && this.d1 < this.d3 ) {
-
-        this.formodal = true;
-        this.isvalidated = true;
-        
-        
-       // this.eventspopulation(this.booking);
-
-       this.preventinputs =false;
-
-       
-    
-       return  0;
-
-        console.log("Booking Error slot occupied ")
-
-      }
-
-      else {
-
-        // console.log(" d1 =",this.d1," d2 =",this.d2," d3= ",this.d3);
-        // console.log(this.d2>=this.d1 && this.d1<=this.d3)
-
-
-        this.isvalidated = false;
-        this.preventinputs =true;
-       // this.control.SlotToast1();
-     
-
-      }
-   
-
-      this.db.collection('Bookings').where("userdate","==",booking.userdate).where("sessiontime", "==", booking.sessiontime).where("salonuid","==",booking.salonuid).where("hairdresser","==",booking.hairdresser).get().then(val => {
-        val.forEach(value => {
-          //console.log(value.data())
-          if (value.data().sessiontime != "") {
-            this.isvalidated = true;
-
-      
-          }
-          else {
-            this.isvalidated = true;
-
-     
-          }
-        })
-      })
-
-
-
-      this.db.collection('Bookings').where("userdate","==",booking.userdate).where("sessionendtime", "==", booking.sessionendtime).where("salonuid","==",booking.salonuid).where("hairdresser","==",booking.hairdresser).get().then(val => {
-        val.forEach(value => {
-          console.log(value.data())
-          if (value.data().sessiontime != "") {
-            this.isvalidated = true;
-
-      
-          }
-          else {
-            this.isvalidated = true;
-
-    
-          }
-        })
-      })
-
-
-
-
-
-
-
-    }
-
-
-
-    
-
-  }
-
-
+  
 
 
   events = [];
@@ -674,6 +564,10 @@ console.log(this.backend.salonsDisply[0].TokenID)
 
         }
 
+      
+
+    
+
 
 
 
@@ -703,7 +597,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
   ////////////////////////////////////////////////////////////////
 
   back() {
-    this.control.router.navigateByUrl('/dates');
+    this.control.router.navigateByUrl('/viewsalon');
   }
 
 
@@ -801,19 +695,18 @@ datespage()
   this.control.navCtrl.navigateRoot('/dates');  
 }
 
-
+ev;
 onTimeSelected = (ev: { selectedTime: Date, events: any[] }) => {
   console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' + (ev.events !== undefined && ev.events.length !== 0));
 console.log("EVents clicked =",ev)
   console.log("this is the time =" , ev.selectedTime.toString().slice(16,21));
+ 
+ this.ev =ev;
   this.booking.sessiontime=ev.selectedTime.toString().slice(16,21);
  if((ev.events !== undefined && ev.events.length !== 0))
  {
-  console.log("found") 
-  for(var k =0;k<ev.events.length;k++)
-  {
-    console.log("Look here minutes = ",new Date(ev.events[k].startTime).getMinutes())
-  }
+  console.log("There is an event") 
+ 
  }
  
 
@@ -908,7 +801,7 @@ hairdresser;
   
     const { role, data } = await loading.onDidDismiss();
     this.eventspopulation();
-    this.setbooking(this.booking)
+    //this.setbooking(this.booking)
     console.log('Loading dismissed!');
   }
 
@@ -1114,32 +1007,57 @@ else if ((new Date().getMonth() + 1) >= 10)
 
 
   async timeAlertConfirm() {
-    this.setbooking(this.booking)
-   this.booking.userdate=this.todate;
-   this.booking.hairdresser=this.hairdresser;
-    const alert = await this.alertController.create({
-      header: 'Confirm!',
-      message: 'Your booking will be at '+this.booking.salonname+" from "+this.booking.sessiontime+" until "+this.booking.sessionendtime,
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Okay',
-          handler: () => {
-         
-       
-            console.log(this.booking);
-          }
-        }
-      ]
-    });
+   
+//console.log(this.ev.events[0].endTime)
 
-    await alert.present();
+   if( (this.ev.events !== undefined && this.ev.events.length !== 0))
+   {
+
+    const toast = await this.control.toastController.create({
+      message: 'There is already a booking at '+this.booking.sessiontime+'.',
+      duration: 2000
+    });
+    toast.present();
+    this.booking.sessiontime=undefined;
+    this.booking.sessionendtime=undefined;
+  console.log("1141",this.booking)
+  }
+else
+{
+  
+  this.setbooking(this.booking);
+
+  this.booking.userdate=this.todate;
+  this.booking.hairdresser=this.hairdresser;
+
+  const alert = await this.alertController.create({
+    header: 'Confirm!',
+    message: 'Your booking will be at '+this.booking.salonname+" from "+this.booking.sessiontime+" until "+this.booking.sessionendtime,
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Okay',
+        handler: () => {
+       
+         // this.backend.userbookings(this.booking)
+          console.log(this.booking);
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
+
+
+
   }
 
 
@@ -1153,6 +1071,100 @@ else if ((new Date().getMonth() + 1) >= 10)
 
 val2 =false;
    
+findtime(booking) {
+  
+
+
+
+
+  this.d1 = new Date(this.ev.events[0].endTime);
+  this.d2 = new Date((booking.userdate + 'T0') + (booking.sessionendtime));
+  this.d3;
+
+  
+
+  //this.formodal=false;
+
+  console.log("TestArray = ", this.testarray)
+
+  for (let i = 0; i < this.testarray.length; i++) {
+
+    this.d1 = new Date((booking.userdate + 'T') + (booking.sessiontime));
+
+    this.d2 = new Date((this.testarray[i].userdate + 'T') + (this.testarray[i].sessiontime));
+
+
+    console.log("Second condition for end time =", (this.testarray[i].sessionendtime[0]))
+
+    this.d3 = new Date((this.testarray[i].userdate + 'T') + (this.testarray[i].sessionendtime));
+
+
+    let d4 = new Date((booking.userdate + 'T') + (booking.sessionendtime));
+
+
+    console.log("session end time = ", d4)
+
+    let a = "From ";
+    let b = " until";
+    let x = this.d2;
+    let y = this.d3;
+
+
+
+
+
+
+    this.formodal = false;
+
+
+    if (this.d2 <= this.d1 && this.d1 < this.d3 ) {
+
+      this.formodal = true;
+      this.isvalidated = true;
+      
+      
+     // this.eventspopulation(this.booking);
+
+     this.preventinputs =false;
+
+     console.log("Booking Error slot overlap ")
+  
+     return  0;
+
+     
+
+    }
+
+    else {
+
+      // console.log(" d1 =",this.d1," d2 =",this.d2," d3= ",this.d3);
+      // console.log(this.d2>=this.d1 && this.d1<=this.d3)
+
+
+      this.isvalidated = false;
+      this.preventinputs =true;
+     // this.control.SlotToast1();
+   
+
+    }
+ 
+
+   
+
+
+
+
+
+
+
+  }
+
+
+
+  
+
+}
+
 
 
 

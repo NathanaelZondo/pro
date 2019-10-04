@@ -150,7 +150,7 @@ else
 
   choosehair(x) {
     console.log(x);
-    this.backend.sethairstyledata(x.hairstyleName, x.duration, x.hairstylePrice, x.hairStyleImage);
+    this.backend.sethairstyledata(x.hairstyleName, x.duration, x.hairstylePrice, x.hairStyleImage,x.genderOptions);
     this.control.router.navigate(['bookwithsalon']);
   }
 

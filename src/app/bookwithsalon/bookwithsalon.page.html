@@ -28,17 +28,17 @@
         <calendar style ="color:rgb(0, 0, 0);background-color:black;border-color:firebrick"   [eventSource]="eventSource" [calendarMode]="calendar.mode"
           [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
     (onTitleChanged)="onViewTitleChanged($event)"
-         step="10" startHour="8" endHour="19" [markDisabled]="markDisabled" 
+         step="30" startHour="8" endHour="19" [markDisabled]="markDisabled" 
          (onTimeSelected)="onTimeSelected($event)" (click) ="timeAlertConfirm()"
          [markDisabled]="markDisabled"
-         [timeInterval]="10"
+         [timeInterval]="timeinterval"
          >
        
         </calendar>
   
     
-        <div class="flex-container" >
-      <div>
+      <div class="flex-container" >
+       <div>
         <ion-grid>
             <ion-radio-group>
               <ion-list-header >
@@ -77,15 +77,16 @@
             <pre>
 
             </pre>
-<button   [style.background] ="pink" align ="center"  style="width: 300px" (click) ="submit()">SUBMIT</button>
+            <button   [style.background] ="pink" align ="center"  style="width: 300px" (click) ="submit()">SUBMIT</button>
             </ion-row>
           </ion-grid>
         
      
     <br>
-      
-
-        </div>
-        </div>  
+  
+   
+       </div>
+        </div> 
+     
 
 </ion-content>
