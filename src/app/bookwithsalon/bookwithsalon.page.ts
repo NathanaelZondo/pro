@@ -1044,7 +1044,7 @@ else
       }, {
         text: 'Okay',
         handler: () => {
-       
+         this.findtime(this.booking); 
          // this.backend.userbookings(this.booking)
           console.log(this.booking);
         }
@@ -1074,47 +1074,35 @@ val2 =false;
 findtime(booking) {
   
 
-
-
-
-  this.d1 = new Date(this.ev.events[0].endTime);
-  this.d2 = new Date((booking.userdate + 'T0') + (booking.sessionendtime));
-  this.d3;
+ 
 
   
+  this.d1 = new Date(this.ev.events[0].endTime);
+
+  this.d2 = new Date(this.events[0].startTime);
 
   //this.formodal=false;
+  console.log("Dates = ", this.d1,"&&",this.d2);
+  console.log("TestArray = ", this.events)
 
-  console.log("TestArray = ", this.testarray)
+  for (let i = 0; i < this.events.length; i++) {
 
-  for (let i = 0; i < this.testarray.length; i++) {
+    this.events[i].startTime;
+    this.events[i].EndTime;
 
-    this.d1 = new Date((booking.userdate + 'T') + (booking.sessiontime));
 
-    this.d2 = new Date((this.testarray[i].userdate + 'T') + (this.testarray[i].sessiontime));
+
+    this.d1 = new Date(this.ev.events[i].endTime);
+
+    this.d2 = new Date(this.events[i].startTime);
 
 
     console.log("Second condition for end time =", (this.testarray[i].sessionendtime[0]))
 
-    this.d3 = new Date((this.testarray[i].userdate + 'T') + (this.testarray[i].sessionendtime));
-
-
-    let d4 = new Date((booking.userdate + 'T') + (booking.sessionendtime));
-
-
-    console.log("session end time = ", d4)
-
-    let a = "From ";
-    let b = " until";
-    let x = this.d2;
-    let y = this.d3;
+    this.d3 = new Date( this.events[i].startTime);
 
 
 
-
-
-
-    this.formodal = false;
 
 
     if (this.d2 <= this.d1 && this.d1 < this.d3 ) {
