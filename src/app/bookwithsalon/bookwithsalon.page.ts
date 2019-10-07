@@ -1212,11 +1212,13 @@ async present2() {
         }
       }, {
         text: 'Ok',
-        handler: () => {
-          console.log('Confirm Ok');
+        handler: (all) => {
+          console.log('Confirm Ok',all);
 
-         this.presentAlertPrompt()
-
+          if(all !="Myself")
+          {
+            this.presentAlertPrompt();
+          }
           
         }
       }
@@ -1257,8 +1259,16 @@ async presentAlertPrompt() {
         text: 'Ok',
         handler: (name1) => {
           console.log(name1);
+          if(name1.name1 ==undefined || name1.name2 ==undefined || name1.name1 =="" || name1.name2 =="")
+        {
+
+         this.presentToast4()
+  
+        }
+        else{
           this.booking.name =name1.name1;
           this.booking.surname =name1.name2;
+        }
         }
       }
     ]
@@ -1271,6 +1281,15 @@ async presentAlertPrompt() {
 async presentToast3() {
   const toast = await this.control.toastController.create({
     message: 'The booking will be for '+this.booking.name+" "+this.booking.surname+".",
+    duration: 5000
+  });
+  toast.present();
+}
+
+
+async presentToast4() {
+  const toast = await this.control.toastController.create({
+    message: 'The booking will be for '+this.booking.name+" "+this.booking.surname+" because the other information was not recorded.",
     duration: 5000
   });
   toast.present();
