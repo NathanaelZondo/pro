@@ -1,51 +1,104 @@
-@import url('https://fonts.googleapis.com/css?family=Lato%7CTeko%7CAbel%7CAnton%7CDosis%7COxygen%7CJura%7CPacifico%7CRighteous%7CCute+Font%7CUbuntu%7CMansalva');
-.content {
+@import url('https://fonts.googleapis.com/css?family=Abel|Poiret+One|Open+Sans+Condensed|Jura|Manjari|Poppins|Raleway|Montserrat ');
+
+.container {
+    background-image: linear-gradient(30deg, #BF967E 50%, #343A3F 40%);
     width: 100%;
     height: 100%;
+    padding: 0;
+    margin: 0;
 }
 
-.text {
+ion-slides {
+    width: 100%;
+    height: 100vh;
+}
+
+.msg{
+    h1{
+        font-family: 'Poiret One';
+        font-size: 5vw;
+    }
+}
+
+.group {
     position: absolute;
-    left: -30vh;
-    top: 6%;
+    left: -40vh;
+    top: 36%;
     transform: rotate(-90deg);
-    .title2 {
-        position: relative;
-        top: -18vh;
-        color: rgb(184, 51, 3);
-    }
-}
-
-.slideno {
-    position: absolute;
-    top: 40%;
-
-    h1 {
-        color: white;
-        font-size: 13vw;
-    }
-}
-
-.desc {
     color: white;
-    width: 45vh;
-    position: absolute;
-    top: 65%;
 
-    p {
-        font-size: 4vw;
+    .air {
+        width: 100vh;
+
+        h1 {
+            font-size: 30vw;
+            font-family: 'Poiret One';
+            font-weight: lighter;
+            opacity: 0.09;
+            letter-spacing: 1.5vw;
+            // width: 100%;
+            // object-fit: cover;
+        }
+
+    }
+
+    .skedge {
+        position: relative;
+        top: -15vh;
+        left: 3vh;
+
+        p {
+            font-family: 'Poiret One';
+            font-size: 10vw;
+            font-weight: bold;
+            height: 20px;
+            letter-spacing: 1.5vw;
+        }
     }
 }
 
-.buttz {
-    position: absolute;
-    top: 85%;
+.data {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100vh;
 
-    .button {
-        width: 30vh;
-        // background: white;
-        color: white;
-        // border-radius: 30px;
+    .title {
+        position: relative;
+        top: 25%;
+
+        h1 {
+            font-family: 'Poiret one';
+            font-size: 60px;
+            color: white;
+        }
+    }
+
+    .desc {
+        width: 35vh;
+        position: relative;
+        top: 30%;
+
+        p {
+            font-family: 'Montserrat';
+            font-weight: lighter;
+            color: white;
+            font-size: 4vw;
+        }
+    }
+
+    .btnz {
+        position: relative;
+        top: 35%;
+
+        ion-button {
+            width: 28vh;
+            background: #343A3F;
+            border-radius: 7px;
+            font-family: 'Poiret one';
+        }
     }
 }
 

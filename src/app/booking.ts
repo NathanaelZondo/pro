@@ -20,7 +20,6 @@ status2:string,
 salonuid:string,
 useruid:string,
 hairstyleimage:string,
-bookingid:string
 TokenID: string;
 UserTokenID : string
 bookingid:string,
