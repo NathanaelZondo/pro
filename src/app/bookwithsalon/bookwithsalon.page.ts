@@ -487,7 +487,7 @@ async presentToast() {
 
 
 
-  submit(booking) {
+ async submit(booking) {
 
     booking =this.booking; 
 
@@ -582,7 +582,7 @@ async presentToast() {
 
     
 
-
+       
 
 
 
@@ -714,14 +714,37 @@ onTimeSelected = (ev: { selectedTime: Date, events: any[] }) => {
   console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' + (ev.events !== undefined && ev.events.length !== 0));
 console.log("EVents clicked =",ev)
   console.log("this is the time =" , ev.selectedTime.toString().slice(16,21));
+  console.log("this is the date =" , ev.selectedTime.toLocaleDateString());
  
  this.ev =ev;
   this.booking.sessiontime=ev.selectedTime.toString().slice(16,21);
- if((ev.events !== undefined && ev.events.length !== 0))
- {
-  console.log("There is an event") 
- 
- }
+
+
+
+
+
+  this.todate = (new Date(ev.selectedTime).getFullYear().toString()) + '-' + (new Date(ev.selectedTime).getMonth()) + '-' + (new Date(ev.selectedTime).getDate());
+  if ((new Date(ev.selectedTime).getMonth() + 1) < 10) {
+
+    this.todate = (new Date(ev.selectedTime).getFullYear().toString()) + '-0' + (new Date(ev.selectedTime).getMonth() + 1) + '-' + (new Date(ev.selectedTime).getDate());
+    if ((new Date().getDate()) < 10) {
+      this.todate = (new Date(ev.selectedTime).getFullYear().toString()) + '-0' + (new Date(ev.selectedTime).getMonth() + 1) + '-0' + (new Date(ev.selectedTime).getDate());
+    }
+
+  }
+else if ((new Date(ev.selectedTime).getMonth() + 1) >= 10)
+{
+this.todate = (new Date(ev.selectedTime).getFullYear().toString()) + '-' + (new Date(ev.selectedTime).getMonth() + 1) + '-' + (new Date(ev.selectedTime).getDate());
+
+if ((new Date(ev.selectedTime).getDate()) < 10) {
+  this.todate = (new Date(ev.selectedTime).getFullYear().toString()) + '-' + (new Date(ev.selectedTime).getMonth() + 1) + '-0' + (new Date(ev.selectedTime).getDate());
+}
+}
+
+  console.log("Currentdate =", this.todate)
+  this.booking.userdate =this.todate;
+
+
  
 
 };
@@ -815,6 +838,7 @@ hairdresser;
   
     const { role, data } = await loading.onDidDismiss();
     this.eventspopulation();
+    this.present2();
     //this.setbooking(this.booking)
     console.log('Loading dismissed!');
   }
@@ -830,7 +854,7 @@ booking.userdate=this.currentdate;
 
     this.db.collection('Bookings').where("salonuid","==",booking.salonuid).where("hairdresser","==",this.hairdresser).orderBy("userdate", "desc").limit(50).get().then(val => {
       if (val.size == 0) {
-        this.isvalidated = false;
+     
         this.control.SlotToast2();
        
       }
@@ -1023,7 +1047,9 @@ else if ((new Date().getMonth() + 1) >= 10)
   async timeAlertConfirm() {
    
 //console.log(this.ev.events[0].endTime)
-
+this.setbooking(this.booking);
+this.findtime(this.booking);
+this.isvalidated =false;
    if( (this.ev.events !== undefined && this.ev.events.length !== 0))
    {
 
@@ -1039,34 +1065,12 @@ else if ((new Date().getMonth() + 1) >= 10)
 else
 {
   
-  this.setbooking(this.booking);
+  
 
   this.booking.userdate=this.todate;
   this.booking.hairdresser=this.hairdresser;
 
-  const alert = await this.alertController.create({
-    header: 'Confirm!',
-    message: 'Your booking will be at '+this.booking.salonname+" from "+this.booking.sessiontime+" until "+this.booking.sessionendtime+' on '+this.booking.userdate+'.',
-    buttons: [
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: (blah) => {
-          console.log('Confirm Cancel: blah');
-        }
-      }, {
-        text: 'Okay',
-        handler: () => {
-         this.findtime(this.booking); 
-         // this.backend.userbookings(this.booking)
-          console.log(this.booking);
-        }
-      }
-    ]
-  });
 
-  await alert.present();
 }
 
 
@@ -1121,7 +1125,7 @@ findtime(booking) {
     if (this.d2 < this.d1 && this.d1 < this.d3 ) {
 
       this.formodal = true;
-      this.isvalidated = true;
+     
       
       
      // this.eventspopulation(this.booking);
@@ -1142,7 +1146,7 @@ findtime(booking) {
       // console.log(this.d2>=this.d1 && this.d1<=this.d3)
 
 
-      this.isvalidated = false;
+      
       this.preventinputs =true;
      // this.control.SlotToast1();
    
@@ -1158,31 +1162,117 @@ findtime(booking) {
 
 
 async presentToastWithOptions() {
-  const toast = await this.control.toastController.create({
-    header: 'The time you selected overlaps into another booking.',
-    message: 'Click to Close',
-    position: 'bottom',
+  const alert = await this.alertController.create({
+    header: 'Warning!',
+    message: 'The time you selected overlaps into another booking.',
     buttons: [
-      {
-        side: 'start',
-        icon: 'ios-warning',
-        text: 'Error!',
+    
+       {
+        text: 'Okay',
         handler: () => {
-          console.log('ok');
-        }
-      }, {
-        text: 'Close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
+          console.log('Confirm Okay');
+          this.isvalidated =true;
         }
       }
     ]
   });
-  toast.present();
+  
+  await alert.present();
+
+  this.isvalidated =true;
 }
 
 
+
+async present2() {
+  const alert = await this.alertController.create({
+    header: 'Are you booking for yourself or someone else?',
+    inputs: [
+      {
+        name: 'Myself',
+        type: 'radio',
+        label: 'Myself',
+        value: 'Myself',
+        checked: true
+      },
+      {
+        name: 'Someone else',
+        type: 'radio',
+        label: 'Someone else',
+        value: 'Someone else'
+      }
+    ],
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+          console.log('Confirm Cancel');
+        }
+      }, {
+        text: 'Ok',
+        handler: () => {
+          console.log('Confirm Ok');
+
+         this.presentAlertPrompt()
+
+          
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
+
+
+async presentAlertPrompt() {
+  const alert = await this.alertController.create({
+    header: 'Fill in details below.',
+    inputs: [
+      {
+        name: 'name1',
+        type: 'text',
+        placeholder: 'Enter their name'
+      },
+      {
+        name: 'name2',
+        type: 'text',
+        placeholder: 'Enter their surname'
+      },
+    
+    ],
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+          console.log('Confirm Cancel');
+          this.presentToast3();
+        }
+      }, {
+        text: 'Ok',
+        handler: (name1) => {
+          console.log(name1);
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
+
+async presentToast3() {
+  const toast = await this.control.toastController.create({
+    message: 'The booking will be for '+this.booking.name+" "+this.booking.surname+".",
+    duration: 5000
+  });
+  toast.present();
+}
 
 }
 
