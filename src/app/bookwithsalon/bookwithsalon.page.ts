@@ -1257,6 +1257,8 @@ async presentAlertPrompt() {
         text: 'Ok',
         handler: (name1) => {
           console.log(name1);
+          this.booking.name =name1.name1;
+          this.booking.surname =name1.name2;
         }
       }
     ]
