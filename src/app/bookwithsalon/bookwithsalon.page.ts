@@ -1164,11 +1164,13 @@ findtime(booking) {
 async presentToastWithOptions() {
   const alert = await this.alertController.create({
     header: 'Warning!',
+    cssClass: 'secondary',
     message: 'The time you selected overlaps into another booking. Choose another time or date.',
     buttons: [
     
        {
         text: 'Okay',
+    
         handler: () => {
           console.log('Confirm Okay');
           this.isvalidated =true;
@@ -1187,6 +1189,7 @@ async presentToastWithOptions() {
 async present2() {
   const alert = await this.alertController.create({
     header: 'Are you booking for yourself or someone else?',
+    cssClass: 'secondary',
     inputs: [
       {
         name: 'Myself',
@@ -1233,6 +1236,7 @@ async present2() {
 async presentAlertPrompt() {
   const alert = await this.alertController.create({
     header: 'Fill in details below.',
+    cssClass: 'secondary',
     inputs: [
       {
         name: 'name1',
@@ -1281,6 +1285,7 @@ async presentAlertPrompt() {
 async presentToast3() {
   const toast = await this.control.toastController.create({
     message: 'The booking will be for '+this.booking.name+" "+this.booking.surname+".",
+    cssClass: 'secondary',
     duration: 5000
   });
   toast.present();
@@ -1290,6 +1295,7 @@ async presentToast3() {
 async presentToast4() {
   const toast = await this.control.toastController.create({
     message: 'The booking will be for '+this.booking.name+" "+this.booking.surname+" because the other information was not recorded.",
+    cssClass: 'secondary',
     duration: 5000
   });
   toast.present();
