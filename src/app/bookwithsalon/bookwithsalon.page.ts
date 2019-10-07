@@ -85,14 +85,22 @@ console.log(this.backend.salonsDisply[0].TokenID)
           cssClass: 'secondary',
           handler: () => {
             console.log('Confirm Cancel');
-            this.control.router.navigate(['viewhairstyle']);
+            this.control.router.navigate(['viewsalon']);
           }
         }, {
           text: 'Ok',
           handler: (data) => {
             console.log(data);
+
+            if(data==undefined)
+            {
+              this.presentToast();
+              this.control.navCtrl.navigateRoot('viewsalon');
+            }
+            else{
             this.hairdresser =data;
             this.dresserLoading();
+            }
           }
         }
       ]
@@ -103,7 +111,13 @@ console.log(this.backend.salonsDisply[0].TokenID)
 
 
 
-
+async presentToast() {
+    const toast = await this.control.toastController.create({
+      message: 'Pick a hairdresser\'s name!',
+      duration: 5000
+    });
+    toast.present();
+  }
 
 
 
@@ -779,7 +793,7 @@ hairdresser;
   async dresserLoading() {
     const loading = await this.loadingController.create({
       message: 'Please wait...',
-      duration: 2500
+      duration: 1500
     });
     await loading.present();
   
@@ -795,7 +809,7 @@ hairdresser;
   async otherLoading() {
     const loading = await this.loadingController.create({
       message: 'Please wait...',
-      duration: 2500
+      duration: 1500
     });
     await loading.present();
   
@@ -1015,7 +1029,7 @@ else if ((new Date().getMonth() + 1) >= 10)
 
     const toast = await this.control.toastController.create({
       message: 'There is already a booking at '+this.booking.sessiontime+'.',
-      duration: 2000
+      duration: 3000
     });
     toast.present();
     this.booking.sessiontime=undefined;
@@ -1032,7 +1046,7 @@ else
 
   const alert = await this.alertController.create({
     header: 'Confirm!',
-    message: 'Your booking will be at '+this.booking.salonname+" from "+this.booking.sessiontime+" until "+this.booking.sessionendtime,
+    message: 'Your booking will be at '+this.booking.salonname+" from "+this.booking.sessiontime+" until "+this.booking.sessionendtime+' on '+this.booking.userdate+'.',
     buttons: [
       {
         text: 'Cancel',
@@ -1077,42 +1091,41 @@ findtime(booking) {
  
 
   
-  this.d1 = new Date(this.ev.events[0].endTime);
+  this.d1 = new Date(this.events[0].startTime);
 
   this.d2 = new Date(this.events[0].startTime);
 
   //this.formodal=false;
   console.log("Dates = ", this.d1,"&&",this.d2);
-  console.log("TestArray = ", this.events)
+  console.log("TestArray = ", this.events[0].startTime)
 
   for (let i = 0; i < this.events.length; i++) {
 
-    this.events[i].startTime;
-    this.events[i].EndTime;
 
 
 
-    this.d1 = new Date(this.ev.events[i].endTime);
+
+    this.d1 =  new Date( this.booking.userdate+'T'+this.booking.sessionendtime);
 
     this.d2 = new Date(this.events[i].startTime);
+    this.d3 = new Date(this.events[i].endTime);
 
-
-    console.log("Second condition for end time =", (this.testarray[i].sessionendtime[0]))
-
-    this.d3 = new Date( this.events[i].startTime);
-
+    console.log("Second condition for end time =", this.d1.getHours(),this.d2.getHours(),this.d3.getHours())
 
 
 
 
-    if (this.d2 <= this.d1 && this.d1 < this.d3 ) {
+
+
+
+    if (this.d2 < this.d1 && this.d1 < this.d3 ) {
 
       this.formodal = true;
       this.isvalidated = true;
       
       
      // this.eventspopulation(this.booking);
-
+     this.presentToastWithOptions();
      this.preventinputs =false;
 
      console.log("Booking Error slot overlap ")
@@ -1137,23 +1150,37 @@ findtime(booking) {
     }
  
 
-   
-
-
-
-
-
-
 
   }
-
-
-
   
 
 }
 
 
+async presentToastWithOptions() {
+  const toast = await this.control.toastController.create({
+    header: 'The time you selected overlaps into another booking.',
+    message: 'Click to Close',
+    position: 'bottom',
+    buttons: [
+      {
+        side: 'start',
+        icon: 'ios-warning',
+        text: 'Error!',
+        handler: () => {
+          console.log('ok');
+        }
+      }, {
+        text: 'Close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }
+    ]
+  });
+  toast.present();
+}
 
 
 
