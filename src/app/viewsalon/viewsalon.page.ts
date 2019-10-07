@@ -205,28 +205,6 @@ async dislikeConfirm() {
 
 
 
-        //   firebase.firestore().collection('Analytics').doc(this.salond[0].userUID).onSnapshot(val=>{
-        //     let users = val.data().users;
-           
-           
-           
-        //     console.log("found") 
-        //     this.found =true;
-        //     this.color ="rgb(240, 10, 10)";
-
-        //     firebase.firestore().collection('Analytics').doc(this.salond[0].userUID).get().then(val=>{
-
-            
-         
-
-        // let smoray =val.data().users;
-        // console.log("smoray =",val.data().users)
-        // smoray.splice(this.position,1);
-        // console.log("aftersplice =",smoray)
-        //       firebase.firestore().collection('Analytics').doc(this.salond[0].userUID).set({numberofviews:val.data().numberofviews,numberoflikes:val.data().numberoflikes-1,usercancel:val.data().usercancel,saloncancel:val.data().saloncancel,allbookings:val.data().allbookings,users:smoray});
-
-        //     });
-        //   });
          }
           }
         ]

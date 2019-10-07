@@ -30,6 +30,7 @@ export class BackendService {
   salonsDisply = [];
   selectedsalon = [];
   salonplaceholder = [];
+  salondisp = [];
   constructor(public toastController:ToastController,public navCtrl:NavController,public afs: AngularFirestore, public control: ControlsService, public loadingController: LoadingController, ) {
   
  
@@ -156,7 +157,7 @@ this.hairstyleimage =hairstyle;
 
   }
 
-  salondisp = [];
+
   hairstyledata: Array<any> = [];
 
 
