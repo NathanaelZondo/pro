@@ -1052,9 +1052,9 @@ this.findtime(this.booking);
 this.isvalidated =false;
    if( (this.ev.events !== undefined && this.ev.events.length !== 0))
    {
-
+this.isvalidated=true;
     const toast = await this.control.toastController.create({
-      message: 'There is already a booking at '+this.booking.sessiontime+'.',
+      message: 'There is already a booking at '+this.booking.sessiontime+'. Choose another date or time.',
       duration: 3000
     });
     toast.present();
@@ -1164,7 +1164,7 @@ findtime(booking) {
 async presentToastWithOptions() {
   const alert = await this.alertController.create({
     header: 'Warning!',
-    message: 'The time you selected overlaps into another booking.',
+    message: 'The time you selected overlaps into another booking. Choose another time or date.',
     buttons: [
     
        {
