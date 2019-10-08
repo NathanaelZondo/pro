@@ -178,7 +178,7 @@ setTimeout(()=>{
             
             this.control.cancelbookingToast();
             console.log('Confirm Okay');
-
+            firebase.firestore().collection('Bookings').doc(this.alldata.id).delete();
            
             if( this.alldata.TokenID){
               var notificationObj = {
