@@ -161,7 +161,19 @@ async presentToast() {
   ngOnInit() {
     console.log(this.booking)
     
-  this.backend.gethairdresser().get().then(val => {
+  this.backend.gethairdresser().where("specialisation","==",this.backend.genderOptions).get().then(val => {
+    val.forEach(stav => {
+      this.staffnames.push(stav.data().name)
+      
+      this.input.data.push({name:stav.data().name,type: 'radio',label:stav.data().name.toString(),value:stav.data().name.toString()}) 
+      console.log(this.input)
+      
+      this.staff.push(stav.data());
+    })
+  })
+
+
+  this.backend.gethairdresser().where("specialisation","==","both").get().then(val => {
     val.forEach(stav => {
       this.staffnames.push(stav.data().name)
       
@@ -861,7 +873,7 @@ booking.userdate=this.currentdate;
       val.forEach(doc => {
         this.testarray.push(doc.data());
 
-        console.log(doc.data())
+        //console.log(doc.data())
       
 
       });
@@ -1095,13 +1107,13 @@ findtime(booking) {
  
 
   
-  this.d1 = new Date(this.events[0].startTime);
+  // this.d1 = new Date(this.events[0].startTime);
 
-  this.d2 = new Date(this.events[0].startTime);
+  // this.d2 = new Date(this.events[0].startTime);
 
   //this.formodal=false;
-  console.log("Dates = ", this.d1,"&&",this.d2);
-  console.log("TestArray = ", this.events[0].startTime)
+  //console.log("Dates = ", this.d1,"&&",this.d2);
+  //console.log("TestArray = ", this.events[0].startTime)
 
   for (let i = 0; i < this.events.length; i++) {
 
