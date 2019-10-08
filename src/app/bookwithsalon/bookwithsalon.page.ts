@@ -23,6 +23,14 @@ export class BookwithsalonPage implements OnInit {
 timeinterval;
 staffnames =[];
   isvalidated = true;
+  events = [];
+  name="";
+surname ="";
+d1: Date;
+d2: Date;
+d3: Date;
+testarray2 = [];
+
   constructor(private oneSignal: OneSignal,public loadingController:LoadingController,public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
    {
    
@@ -274,57 +282,19 @@ async presentToast() {
   }
 
 
-
-
-
-
-
-
-
- 
-
-  //click event from the calendar
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   event;
   setbooking(booking: bookings) {
-
-
-    
-
-
-
-
-
 
     console.log("This is the ==", booking)
 
     this.testarray = [];
     this.blocker = false;
-    //this.backend.userbookings(booking);
+   
     // prevents incorrect dates from being selected
 
- 
-
-      //time estimated by the salon
+    //time estimated by the salon
       let estimatedhours = parseInt((booking.estimatedtime / 60).toString());
       let estimatedmins = booking.estimatedtime % 60;
-
-
-
 
       let overlap = 0;
       //initial time variables
@@ -335,8 +305,6 @@ async presentToast() {
       //new time variables
       let newhrs;
       let newmins;
-
-
 
       newhrs = hrs + estimatedhours;
       newmins = mins;
@@ -359,8 +327,6 @@ async presentToast() {
           this.booking=booking;
         }
         else
-
-
 
           if (newmins == 0 && newhrs < 10 && booking.estimatedtime == 30) {
             newhrs;
@@ -456,9 +422,6 @@ async presentToast() {
 
               )
             })
-
-
-
             firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser.uid).collection('numbers').get().then(val => {
               console.log("These are the numbers", val)
               val.forEach(qu => {
@@ -471,7 +434,6 @@ async presentToast() {
                   console.log(zet)
                 })
               }
-
 
               )
             })
@@ -493,10 +455,6 @@ async presentToast() {
   
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
-
-
-  events = [];
-
 
 
  async submit(booking) {
@@ -645,11 +603,6 @@ async presentToast() {
 
 
 
-
-
-  
-
-
   async bookingconfirm() {
     const alert = await this.alertController.create({
       header: 'If you are booking for someone else, enter their name.',
@@ -704,23 +657,6 @@ loadEvents() {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-datespage()
-{
-  this.control.difftimeToast();
-  this.control.navCtrl.setDirection('root');
-  this.control.navCtrl.navigateRoot('/dates');  
-}
-
 ev;
 onTimeSelected = (ev: { selectedTime: Date, events: any[] }) => {
   console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' + (ev.events !== undefined && ev.events.length !== 0));
@@ -730,10 +666,6 @@ console.log("EVents clicked =",ev)
  
  this.ev =ev;
   this.booking.sessiontime=ev.selectedTime.toString().slice(16,21);
-
-
-
-
 
   this.todate = (new Date(ev.selectedTime).getFullYear().toString()) + '-' + (new Date(ev.selectedTime).getMonth()) + '-' + (new Date(ev.selectedTime).getDate());
   if ((new Date(ev.selectedTime).getMonth() + 1) < 10) {
@@ -756,17 +688,7 @@ if ((new Date(ev.selectedTime).getDate()) < 10) {
   console.log("Currentdate =", this.todate)
   this.booking.userdate =this.todate;
 
-
- 
-
 };
-
-
-
-
-name="";
-    surname ="";
-
 
 
 pickdates() {
@@ -822,9 +744,6 @@ pickdates() {
 
 hairdresser;
 
-
-
-
   async dresserLoading() {
     const loading = await this.loadingController.create({
       message: 'Please wait...',
@@ -837,9 +756,6 @@ hairdresser;
      this.otherLoading();
     console.log('Loading dismissed!');
   }
-
-
-
 
   async otherLoading() {
     const loading = await this.loadingController.create({
@@ -879,12 +795,8 @@ booking.userdate=this.currentdate;
       });
 
     });
-
-   
-    console.log("here = ",this.testarray)
-   
-
-  }
+console.log("here = ",this.testarray)
+     }
 
 
 
@@ -898,10 +810,6 @@ booking.userdate=this.currentdate;
     }
   ];
 
-  d1: Date;
-  d2: Date;
-  d3: Date;
-  testarray2 = [];
 
 
   
@@ -930,25 +838,15 @@ console.log("Testarray length =",this.testarray2.length)
 
 console.log("Error here = ",this.d2)
     //console.log("Second condition for end time =", (this.testarray2[i].sessionendtime[0]))
-
-
     this.d3 = new Date((this.testarray2[i].userdate + 'T') + (this.testarray2[i].sessionendtime));
-
-
-   // let d4 = new Date((booking.userdate + 'T') + (booking.sessionendtime));
-
-
-    //     console.log("session end time = ",d4)
 
     let a = "From ";
     let b = " until";
     let x = this.d2;
     let y = this.d3;
 
-
     this.d1 = new Date((booking.userdate + 'T') + (booking.sessiontime));
     this.d2 = new Date((booking.userdate + 'T') + (booking.sessionendtime));
-
 
     this.events.push({
       title: this.testarray2[i].hairstyletype,
@@ -961,9 +859,6 @@ console.log("Error here = ",this.d2)
     console.log("events = ",this.events);
   }
 
-
-
-
   this.getfuturedate(booking);
 }
 
@@ -975,7 +870,7 @@ console.log("Error here = ",this.d2)
   calendar = {
     mode: 'day',
     currentDate: new Date()
-  }; // these are the variable used by the calendar.
+  }; // these are the variables used by the calendar.
 
   onViewTitleChanged(title) {
     this.viewTitle = title;
@@ -1054,8 +949,6 @@ else if ((new Date().getMonth() + 1) >= 10)
   }
 
 
-
-
   async timeAlertConfirm() {
    
 //console.log(this.ev.events[0].endTime)
@@ -1077,23 +970,12 @@ this.isvalidated=true;
 else
 {
   
-  
-
   this.booking.userdate=this.todate;
   this.booking.hairdresser=this.hairdresser;
-
-
 }
 
 
-
-
   }
-
-
-
-
-
 
 
 
@@ -1104,21 +986,7 @@ val2 =false;
 findtime(booking) {
   
 
- 
-
-  
-  // this.d1 = new Date(this.events[0].startTime);
-
-  // this.d2 = new Date(this.events[0].startTime);
-
-  //this.formodal=false;
-  //console.log("Dates = ", this.d1,"&&",this.d2);
-  //console.log("TestArray = ", this.events[0].startTime)
-
   for (let i = 0; i < this.events.length; i++) {
-
-
-
 
 
     this.d1 =  new Date( this.booking.userdate+'T'+this.booking.sessionendtime);
@@ -1128,41 +996,14 @@ findtime(booking) {
 
     console.log("Second condition for end time =", this.d1.getHours(),this.d2.getHours(),this.d3.getHours())
 
-
-
-
-
-
-
     if (this.d2 < this.d1 && this.d1 < this.d3 ) {
 
-      this.formodal = true;
-     
-      
-      
-     // this.eventspopulation(this.booking);
      this.presentToastWithOptions();
      this.preventinputs =false;
 
      console.log("Booking Error slot overlap ")
   
      return  0;
-
-     
-
-    }
-
-    else {
-
-      // console.log(" d1 =",this.d1," d2 =",this.d2," d3= ",this.d3);
-      // console.log(this.d2>=this.d1 && this.d1<=this.d3)
-
-
-      
-      this.preventinputs =true;
-     // this.control.SlotToast1();
-   
-
     }
  
 
