@@ -1,54 +1,64 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title style=" margin-left: 6px; float: left; color: white; font-family: 'Poiret One'; letter-spacing: 5px;">AIRSKEDGE</ion-title>
+    </ion-toolbar>
+  </ion-header>
 <ion-content>
 
-  <div class="container">
-    <div class="icon">
-      <img src="../../assets/Untitled-1.svg">
-      <br>
-      <p>Sign-In to your account to continue </p>
+  <div class="login">
+    <div class="image">
+      <img src="../../assets/left-turn.svg">
     </div>
-<br><br>
-    <div class="npts">
+
+    <div class="form">
+      <div class="msg">
+        <h1 style="font-family: Poiret One; font-size: 8vw; font-weight: bold; letter-spacing: 5px">CREATE ACCOUNT</h1>
+        <p style="font-family: Poiret One; font-size: 4vw ; font-weight: bold;">Sign into your account to continue</p>
+      </div>
       <form [formGroup]="signupForm">
 
-        <ion-item color="transparent" style="color: white">
+        <ion-item>
 
           <ion-input formControlName="email" type="email" placeholder="Your email address"
-            [class.invalid]="!signupForm.controls['email'].valid && signupForm.controls['email'].touched">
+            [class.invalid]="!signupForm.controls['email'].valid && signupForm.controls['email'].touched"
+            style="font-family: Poiret One;">
           </ion-input>
         </ion-item>
 
-        <ion-label style="color:red; font-size: 15px" class="error-message" *ngIf="!signupForm.controls['email'].valid
+        <ion-label style="color:red; font-size: 15px; font-family: Poiret One;" class="error-message" *ngIf="!signupForm.controls['email'].valid
                         && signupForm.controls['email'].touched">Please enter a valid email.</ion-label>
 
 
 
-        <ion-item color="transparent" style="color: white">
+        <ion-item>
 
           <ion-input formControlName="password" type="password" placeholder="Your password"
-            [class.invalid]="!signupForm.controls['password'].valid && signupForm.controls['password'].touched">
+            [class.invalid]="!signupForm.controls['password'].valid && signupForm.controls['password'].touched"
+            style="font-family: Poiret One;">
           </ion-input>
         </ion-item>
 
-        <ion-label style="color:red; font-size: 15px" class="error-message" *ngIf="!signupForm.controls['password'].valid  &&
+        <ion-label style="color:red; font-size: 15px; font-family: Poiret One;" class="error-message" *ngIf="!signupForm.controls['password'].valid  &&
                                       signupForm.controls['password'].touched">Your password needs more than 6
           characters.</ion-label>
         <br>
 
         <br>
         <div class="btn">
-          <button ion-button round expand="block" color="light" (click)="signupUser(signupForm)"
+          <button ion-button  color="light" (click)="signupUser(signupForm)"
             [disabled]="!signupForm.valid"
-            style="height: 6vh; border-radius: 20px; font-size: 4vw; color: black; font-family: Manjari">
+            style="height: 6vh; font-size: 4vw; font-family: Poiret One; font-weight: bold; background: #BF6B7A; color: white; width: 25vh">
             Continue
           </button>
-
-          <button ion-button round expand="block" clear (click)="signin()"
-            style="height: 6vh; border-radius: 20px; background: transparent; color: white; font-size: 4vw; font-family: Manjari">
+          <br>
+          <button ion-button   (click)="signin()"
+          style="height: 6vh; font-size: 4vw; background: transparent; 
+          color: black; font-family: Poiret One; font-weight: bold;">
             Sign In
           </button>
 
         </div>
       </form>
     </div>
-    </div>
-  </ion-content>
+  </div>
+</ion-content>
