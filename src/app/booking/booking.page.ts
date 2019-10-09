@@ -129,53 +129,7 @@ setTimeout(()=>{
     this.haidressername = x.hairdresser;
     this.hairsalon = x.salonname;
     x.status = "cancelled";
-    firebase.firestore().collection('Bookings').doc(x.id).update({
-      status: 'cancelled'
-    }).then(res => {
-      console.log(res)
-    });
-
-
-
-    let click = 1;
-    let v1;
-    let docid;
-
-    // firebase.firestore().collection('salonAnalytics').doc(x.salonuid).collection('numbers').get().then(val=>{
-    //   console.log("These are the numbers",val)
-    //   val.forEach(qu=> 
-
-    //     {
-    //     docid =qu.id;
-    //     console.log(docid)
-    //     console.log(qu.data().usercancellations)
-    //     v1 =qu.data().usercancellations;
-
-    //     firebase.firestore().collection('salonAnalytics').doc(x.salonuid).collection('numbers').doc(qu.id).update({"usercancellations":v1+click}).then(zet=>{
-    //       console.log(zet)
-    //     })
-    //     })
-    //   })
-
-
-
-
-    // firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser.uid).collection('numbers').get().then(val=>{
-    //   console.log("These are the numbers",val)
-    //   val.forEach(qu=> 
-
-    //     {
-    //     docid =qu.id;
-    //     console.log(docid)
-    //     console.log(qu.data().usercancellations)
-    //     v1 =qu.data().usercancellations;
-
-    //     firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser.uid).collection('numbers').doc(qu.id).update({"usercancellations":v1+click}).then(zet=>{
-    //       console.log(zet)
-    //     })
-    //     })
-    //   })
-
+    firebase.firestore().collection('Bookings').doc(x.id).delete();
 
   }
 
@@ -224,7 +178,7 @@ setTimeout(()=>{
             
             this.control.cancelbookingToast();
             console.log('Confirm Okay');
-
+            firebase.firestore().collection('Bookings').doc(this.alldata.id).delete();
            
             if( this.alldata.TokenID){
               var notificationObj = {

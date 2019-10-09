@@ -1,20 +1,41 @@
 <ion-header>
-  <ion-toolbar color="dark">
+  <ion-toolbar color="transparent">
     <ion-icon name="arrow-round-back" style="font-size: 30px" (click)="back()"></ion-icon>
     <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  
-  <div style="height: 100vh;background:black;">
+<ion-content fullscreen>
+
+
+
+  <div class="container" *ngFor="let x of bookingdetails">
+    <div class="top">
+      <div class="image">
+        <img src="{{x.hairstyleimage}}" />
+      </div>
+
+      <div class="details">
+        <div class="style">
+          <h1>{{x.hairstyletype}}</h1>
+        </div>
+        <div class="active">
+          <p>Stylist: {{x.status2}}</p>
+          <p>Booking: {{x.status2}}</p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- <div class="container">
     <div class="flex-container">
       <div *ngFor="let x of bookingdetails">
 
-        <img src="{{x.hairstyleimage}}" height="350px" width="100%" />
+        <img src="{{x.hairstyleimage}}"/>
         <div class="flex-container2">
           <div>
-
             <p style="font-size:18px;color:white;font-family: sans-serif">Client Info </p>
             <p style="font-size:15px;color:rgb(206, 206, 206)">
               Name: {{x.name}}<br>
@@ -42,13 +63,9 @@
           </div>
 
 
-
-
-
-
         </div>
-        <div align="center">
-          <!-- <title style ="font-size:18px;color:white;font-family: sans-serif">Booking Info </title> -->
+        <div >
+         
           <p style="font-size:15px;color:rgb(206, 206, 206);font-family: sans-serif">
             Hairstyle: {{x.hairstyletype}}<br>
             Price: R{{x.hairstyleprice}}.00<br>
@@ -57,6 +74,6 @@
         </div>
 
       </div>
-    </div>
+    </div> -->
   </div>
 </ion-content>

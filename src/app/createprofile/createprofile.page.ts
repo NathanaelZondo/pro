@@ -198,10 +198,7 @@ else{
 
   signout() {
     this.backend.signout();
-    
 
-  
-    
     this.navCtrl.setDirection('root');
     this.navCtrl.navigateRoot('/login');
   }

@@ -110,7 +110,7 @@
     flex-flow: row;
     overflow-x: auto;
     position: absolute;
-    bottom: 0;
+    bottom: -2px;
 
     .magic {
         width: 90vh;
@@ -119,11 +119,11 @@
 
     .card {
         width: 85vw;
-        height: 100px;
+        height: 150px;
         display: flex;
         flex-flow: column;
         margin: 5px;
-        background: rgba(8, 8, 8, 0.719);
+        // background: rgba(8, 8, 8, 0.719);
         position: relative;
         overflow: hidden;
 
@@ -133,20 +133,36 @@
             justify-items: baseline;
 
             .image {
-                width: 100px;
-                height: 90px;
+                position: absolute;
+                z-index: 5;
+                width: 16vh;
+                height: 18vh;
                 margin: 5px;
+                border-radius: 20px;
 
                 img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
+                    border-radius: 10px;
                 }
             }
 
             .title {
                 margin: 25px;
                 float: left;
+                background: #343A3F;
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+                width: 30vh;
+                height: 13vh;
+                position: relative;
+                left: 11vh;
+                bottom: 5%;
+                p{
+                    position: relative;
+                    top: 25px;
+                }
             }
 
         }
@@ -158,11 +174,11 @@
     width: 95vw;
     height: 40px;
     margin: 10px;
-    background: rgba(94, 94, 94, 0.582);
+    background: rgb(255, 255, 255);
     box-shadow: 5px 5px 10px grey;
     font-size: 3.5vw;
     border: none;
-    color: rgb(255, 255, 255);
+    color: rgb(145, 142, 142);
     border-radius: 20px;
     padding: 7px;
 }
@@ -173,7 +189,4 @@ p {
     margin: 0;
 }
 
-.scroll-content {
-    padding-bottom: 0 !important;
-}
 

@@ -1,66 +1,52 @@
-*{
-    padding: 0;
-    margin: 0;
-}
+@import url('https://fonts.googleapis.com/css?family=Abel|Poiret+One|Open+Sans+Condensed|Jura|Manjari|Poppins|Raleway|Montserrat ');
 .container {
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-margin-top: 40px;
 }
 
-.title {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-    position: relative;
-   
-    h1 {
-        color: orangered;
-        font-size: 10vw;
-        float: left;
-   
-    }
-
-    p {
-        color: orangered;
-        font-size: 5vw;
-        position: absolute;
-        top: 40%;
-        right: -50px;
-    }
-}
-
-.userimage {
-    width: 200px;
-    height: 200px;
+.img {
+    width: 20vh;
+    height: 20vh;
+    border: 5px solid black;
     border-radius: 50%;
-    padding: 12px;
-    position: relative;
+    overflow: hidden;
+    background: url('../../assets/_ionicons_svg_ios-person-add.svg');
 
-    .img {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        background: rgba(14, 13, 13, 0.74);
-        overflow: hidden;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover
     }
-
 }
 
-.item {
-    background: transparent;
-    color: white;
-    .input{
-        border-bottom: 2px solid white;
+.inputs {
+    background: #343A3F;
+    width: 100%;
+    height: 60vh;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+
+    .item {
+        width: 90vw;
     }
+}
+
+.title{
+ h1{
+     font-family: 'Poiret One';
+     letter-spacing: 4px;
+ }
+}
+.btn{
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    flex-direction: column;
 }

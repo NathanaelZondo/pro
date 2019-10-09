@@ -25,8 +25,9 @@ import { IonicStorageModule,Storage } from '@ionic/storage';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Device } from '@ionic-native/device/ngx';
+import {CustomerPage} from '../app/customer/customer.page';
 @NgModule({
-  declarations: [AppComponent, ViewhairstylePipe,ModalPage],
+  declarations: [AppComponent, ViewhairstylePipe,ModalPage,CustomerPage],
   entryComponents: [ModalPage],
   imports: [IonicStorageModule.forRoot() ,BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     CommonModule,

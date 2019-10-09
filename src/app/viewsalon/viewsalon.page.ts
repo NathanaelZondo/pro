@@ -12,13 +12,14 @@ import * as firebase from 'firebase';
   styleUrls: ['./viewsalon.page.scss'],
 })
 export class ViewsalonPage implements OnInit {
+  styleCategory = 'female';
   db = firebase.firestore();
   sliderConfig = {
     spaceBetween: 5,
     slidesPerView: 1.2,
-    centeredSlides: true,
-    watchOverflow: true
+    
   }
+  
 likes;
 total = 0;
 rate = 0;
@@ -40,8 +41,6 @@ userRating = []
     //this.gethairstyles(this.gend);
 
     console.log("selectedsalon data", this.salond)
-
-
 
 
 firebase.firestore().collection('Analytics').doc(this.salond[0].userUID).onSnapshot(val=>{
@@ -120,6 +119,9 @@ else
   }
   gender = 0;
   selecthairstyle(x) {
+    console.log('Clicked', x);
+    
+    this.styleCategory = x;
     this.gender = x;
     this.gethairstyles(this.gender);
 
@@ -150,8 +152,8 @@ else
 
   choosehair(x) {
     console.log(x);
-    this.backend.sethairstyledata(x.hairstyleName, x.duration, x.hairstylePrice, x.hairStyleImage);
-    this.control.router.navigate(['customer']);
+    this.backend.sethairstyledata(x.hairstyleName, x.duration, x.hairstylePrice, x.hairStyleImage,x.genderOptions);
+    this.control.router.navigate(['bookwithsalon']);
   }
 
   viewHair() {
@@ -196,45 +198,16 @@ smoray.push({voteruid:"someting"});
 async dislikeConfirm() {
   const alert = await this.control.alertCrtl.create({
     header: 'Confirm!',
-    message: 'Do you want to dislike '+ this.backend.salonname+'?',
+    message: 'You have already liked '+ this.backend.salonname+'.',
     buttons: [
       {
-        text: 'Cancel',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: (blah) => {
-          console.log('Confirm Cancel: blah');
-        }
-      }, {
         text: 'Okay',
         handler: () => {
           console.log('Confirm Okay');
 
 
 
-          firebase.firestore().collection('Analytics').doc(this.salond[0].userUID).onSnapshot(val=>{
-            let users = val.data().users;
-           
-           
-           
-            console.log("found") 
-            this.found =true;
-            this.color ="rgb(240, 10, 10)";
-
-            firebase.firestore().collection('Analytics').doc(this.salond[0].userUID).get().then(val=>{
-
-            
-         
-
-        let smoray =val.data().users;
-        console.log("smoray =",val.data().users)
-        smoray.splice(this.position,1);
-        console.log("aftersplice =",smoray)
-              firebase.firestore().collection('Analytics').doc(this.salond[0].userUID).set({numberofviews:val.data().numberofviews,numberoflikes:val.data().numberoflikes-1,usercancel:val.data().usercancel,saloncancel:val.data().saloncancel,allbookings:val.data().allbookings,users:smoray});
-
-            });
-          });
-        }
+         }
           }
         ]
       });

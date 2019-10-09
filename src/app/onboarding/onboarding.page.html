@@ -1,120 +1,86 @@
 <ion-content>
   <div class="container">
+    <div class="skip">
+      <p style="color: white; font-family: 'Raleway'; padding: 20px; float: right">SKIP</p>
+    </div>
+    <div class="group">
+      <div class="air">
+        <h1>AIRSKEDGE</h1>
+      </div>
+      <div class="skedge">
+        <p>AIRSKEDGE</p>
+      </div>
+    </div>
+
     <ion-slides pager="true">
-      <ion-slide style="background: rgb(36, 36, 36); height: 100vh; display: flex; flex-flow: column">
-
-        <div class="text">
-          <div class="title1">
-            <h1 style="color:rgba(207, 204, 204, 0.205); font-size: 20vh; font-weight: bold">AirSkedge</h1>
+      <ion-slide>
+        <div class="data">
+          <div class="title">
+            <h1>Find <br> Salons</h1>
           </div>
-          <div class="title2">
-            <h1 style="font-size: 15vh; font-weight: bold">AirSkedge</h1>
-          </div>
-        </div>
-
-        <!-- <ion-button (click)="signin()">
-            Sign-In
-          </ion-button> -->
-
-        <div class="slideno">
-          <h1 style="font-family: Righteous">Find <br> Salons</h1>
-        </div>
-
-        <div class="desc">
-          <p style="font-family: Manjari">Locate salons near you using your location services.
-
-          </p>
-        </div>
-        <div class="buttz">
-          <ion-button (click)="signin()">
-            Get Started
-          </ion-button>
-        </div>
-      </ion-slide>
-
-      <ion-slide
-        style="background: linear-gradient(rgba(19, 18, 18, 0.637), rgb(0, 0, 0)) , url('../../assets/onboardingImage.svg'); height: 100vh; display: flex; flex-flow: column"
-        style="background: rgb(36, 36, 36); height: 100vh; display: flex; flex-flow: column">
-        <!-- <div class="logo">
-          <img src="../../assets/Untitled-1.svg">
-        </div>
-        <h1>AirSkedge</h1>
-        <div class="title">
           <br>
-          <h3>No more waiting in long queues</h3><br>
-          <p>Lorem ipsum dolor sit amet, quis eget
-            elementum maecenas metus donec.
-            Ligula velit neque mauris metus tellus, id platea.
-            Lorem ipsum dolor sit amet, quis eget
-          </p>
+          <div class="desc">
+            <p>Lorem ipsum dolor sit amet, at felis morbi,
+              mauris semper ut et, tristique felis quis vitae sollicitudin,
+              velit tellus leo.</p>
+          </div>
+          <br>
+          <div class="btnz">
+            <ion-button large (click)="signin()" color="transparent">
+              Next
+            </ion-button>
+          </div>
+          <br><br>
+        </div>
+
+      </ion-slide>
+      <div class="data" style=" position: relative; left: 20%">
+        <div class="title">
+          <h1 style="text-align: center">View <br> Hairstyles </h1>
         </div>
         <br>
-        <div class="btns">
-          <ion-button (click)="signin()">
-            Sign-In
-          </ion-button>
-
-          <ion-button (click)="register()" style="background: rgba(49, 49, 49, 0.76)">
-            Sign-Up
-          </ion-button> -->
-        <div class="text">
-          <div class="title1">
-            <h1 style="color:rgba(207, 204, 204, 0.205); font-size: 20vh; font-weight: bold">AirSkedge</h1>
-          </div>
-          <div class="title2">
-            <h1 style="font-size: 15vh; font-weight: bold">AirSkedge</h1>
-          </div>
-        </div>
-
-        <!-- <ion-button (click)="signin()">
-            Sign-In
-          </ion-button> -->
-
-        <div class="slideno">
-          <h1 style="font-family: Righteous">View <br> HairStyles</h1>
-        </div>
-
         <div class="desc">
-          <p style="font-family: Manjari">Go to your favourite salon, view their
-            hairstyles they have and pick your favourite one
-          </p>
+          <p>Lorem ipsum dolor sit amet, at felis morbi,
+            mauris semper ut et, tristique felis quis vitae sollicitudin,
+            velit tellus leo.</p>
         </div>
-        <div class="buttz">
-          <ion-button (click)="signin()">
-            Get Started
+        <br><br>
+        <div class="btnz">
+          <ion-button large (click)="signin()" color="transparent">
+            Next
           </ion-button>
         </div>
+        <br><br>
+      </div>
+      <ion-slide>
+
 
       </ion-slide>
+      <br><br>
+      <ion-slide>
 
-      <ion-slide
-        style="background: linear-gradient(rgba(19, 18, 18, 0.637), rgb(0, 0, 0)) , url('../../assets/onboardingImage.svg'); height: 100vh; display: flex; flex-flow: column"
-        style="background: rgb(36, 36, 36); height: 100vh; display: flex; flex-flow: column">
-        <div class="text">
-          <div class="title1">
-            <h1 style="color:rgba(207, 204, 204, 0.205); font-size: 20vh; font-weight: bold">AirSkedge</h1>
+        <div class="data" style=" position: relative; right: 60%">
+          <div class="title">
+            <h1>Make <br> Booking</h1>
           </div>
-          <div class="title2">
-            <h1 style="font-size: 15vh; font-weight: bold">AirSkedge</h1>
+          <br>
+          <div class="desc">
+            <p>Lorem ipsum dolor sit amet, at felis morbi,
+              mauris semper ut et, tristique felis quis vitae sollicitudin,
+              velit tellus leo.</p>
           </div>
+          <br>
+          <div class="btnz" style="position: relative; bottom: 15%">
+            <ion-button large (click)="signin()" color="transparent">
+              SignUp
+            </ion-button>
+            <br><br>
+            <ion-button large (click)="signin()" color="transparent" style="position: relative; bottom: 15px;">
+              Sign-In
+            </ion-button>
+          </div>
+          <br><br>
         </div>
-
-
-        <div class="slideno">
-          <h1 style="font-family: Righteous">Make <br> Booking</h1>
-        </div>
-<br>
-        <div class="desc">
-          <p style="font-family: Manjari">Once you have chosen your favourite style, pick your hairdresser
-            , time and date you'd like to see them and book you slot on the go
-          </p>
-        </div>
-        <div class="buttz">
-          <ion-button (click)="signin()">
-            Get Started
-          </ion-button>
-        </div>
-
       </ion-slide>
     </ion-slides>
   </div>

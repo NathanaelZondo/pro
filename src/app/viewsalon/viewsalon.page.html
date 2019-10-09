@@ -2,8 +2,8 @@
   <ion-header>
     <ion-toolbar>
       <div class="likes" style=" float: right" *ngFor="let x of salond">
-        <ion-icon name="heart" (click)="like(x)" id="heart"
-          style="float: left; font-size: 30px; margin: 10px" [style.color] ="color"></ion-icon>
+        <ion-icon name="heart" (click)="like(x)" id="heart" style="float: left; font-size: 30px; margin: 10px"
+          [style.color]="color"></ion-icon>
 
       </div>
 
@@ -17,64 +17,115 @@
 
     <div class="salonimage" *ngFor="let x of salond">
       <img src="{{x.salonImage}}">
-
-
-
     </div>
- 
+    <div class="blur">
 
-    <div class="details">
-      <div class="blur"></div>
-      <div class="card" *ngFor="let x of salond">
+      <div class="desc" *ngFor="let x of salond" style="font-family: Manjari; text-align: center;">
+        <p style="font-family: Manjari; text-align: center;">{{x.SalonDesc}}</p>
+        <br>
+        <div class="line">
 
-        <div class="subtitle" style="font-family: Pacifico; color: black">
-          {{x.salonName}}
         </div>
-        <div class="title" style="color:black; font-family: Manjari; font-weight: bold">
-          {{x.Address.streetName}}
-        </div>
-
-        <div class="desc" *ngFor="let x of salond" style="font-family: Manjari; text-align: center;">
-          <p style="font-family: Manjari; text-align: center;">{{x.SalonDesc}}</p>
-        </div>
-
-        <div class="analyze" *ngFor ="let x of analyticos">
-          <p style="font-size: 3.5vw">{{x.numberofviews}} <br> Views</p>&nbsp;&nbsp;&nbsp;
-          <p style="font-size: 3.5vw">{{x.numberoflikes}} <br> Likes</p>
-        </div>
-
-        <ionic4-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#db981a"
-          defaultColor="#A9A9A9" readonly="true" rating={{aveg}} fontSize="6vw" halfStar="true" style="position: relative;
-          top: 45%;
-          left: -25%;
-          z-index: 5;">
-        </ionic4-star-rating>
+      </div>
 
 
-        <div class="reviews" routerLink="/reviews">
-          <p style="font-family: Manjari; font-size: 4vw">Reviews &nbsp;> </p>
+      <div class="reviews" routerLink="/reviews">
+        <p style="font-family: Manjari; font-size: 4vw">Reviews</p>
+      </div>
+      <br>
+      <div class="gender">
+        <div class='female' (click)="selecthairstyle('female')" (click)="viewHair()">
+          <p>FEMALE</p>
         </div>
         <br>
-
-        <div class="rating">
-  
-
+        <div class='male' (click)="selecthairstyle('male')" (click)="viewHair()">
+          <p>MALE</p>
         </div>
       </div>
     </div>
 
+    <div class="details">
 
-    <div class=" buttonz">
+      <div class="card" *ngFor="let x of salond">
+
+        <div class="subtitle" style="font-family: Poiret One; color: white">
+          {{x.salonName}}
+        </div>
+        <div class="title" style="color:white; font-family: Manjari;">
+          {{x.Address.streetName}}
+        </div>
+
+
+        <div class="analyze" *ngFor="let x of analyticos">
+          <p style="font-size: 3.5vw; color: white; 
+          font-family: Poiret One; 
+          letter-spacing: 2px; text-align: center">{{x.numberofviews}} <br> Views</p>&nbsp;&nbsp;&nbsp;
+          <p style="font-size: 3.5vw; color: white; font-family: Poiret One;
+           letter-spacing: 2px; text-align: center">{{x.numberoflikes}} <br> Likes</p>
+        </div>
+
+        <ionic4-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#db981a"
+          defaultColor="#A9A9A9" readonly="true" rating={{aveg}} fontSize="6vw" halfStar="true" style="position: relative;
+          bottom: 45%;
+          right: -58vw;
+          z-index: 5;">
+        </ionic4-star-rating>
+
+
+      </div>
+    </div>
+
+    <div class="stylez">
+      <ion-slides [options]="sliderConfig">
+
+        <ion-slide style="display: flex; flex-flow: column">
+          <!-- <ion-card>
+            <ion-card-header id="head">
+             <img src="../../assets/danai.jpg">
+
+              <br>
+              <ion-card-subtitle></ion-card-subtitle>
+              <ion-card-title style="color: white; font-size: 15px;">
+                <p>
+                  </p>
+              </ion-card-title>
+            </ion-card-header> -->
+          <!-- </ion-card> -->
+          <img src="../../assets/danai.jpg">
+
+        </ion-slide>
+
+        <ion-slide style="display: flex; flex-flow: column">
+          <!-- <ion-card>
+              <ion-card-header id="head">
+               <img src="../../assets/danai.jpg">
+  
+                <br>
+                <ion-card-subtitle></ion-card-subtitle>
+                <ion-card-title style="color: white; font-size: 15px;">
+                  <p>
+                    </p>
+                </ion-card-title>
+              </ion-card-header>
+  
+            </ion-card> -->
+          <img src="../../assets/danai.jpg">
+
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+  </div>
+
+  <!-- <div class=" buttonz">
       <ion-button (click)="selecthairstyle('female')" id="btn" (click)="viewHair()"
         style="background: rgb(49, 49, 49); font-family: Manjari">Ladies
       </ion-button>
       <ion-button (click)="selecthairstyle('male')" id="btn" (click)="viewHair()"
         style="background: rgb(49, 49, 49); font-family: Manjari">
         Gents</ion-button>
-    </div>
-  </div>
-
-  <div [ngClass]="{'hair-inactive': !more, 'hair-active': more}" id="hair">
+    </div> -->
+  <!-- <div [ngClass]="{'hair-inactive': !more, 'hair-active': more}" id="hair">
     <div class="close" (click)="viewHair()">
       <ion-fab-button style="float: right">
         <ion-icon name="close-circle-outline"></ion-icon>
@@ -111,7 +162,7 @@
       </div>
     </div>
 
-  </div>
+  </div> -->
 
 
 
