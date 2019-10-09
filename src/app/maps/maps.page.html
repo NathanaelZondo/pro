@@ -1,72 +1,5 @@
 <ion-content>
-  <!-- <div #map id="map">
-      <input id="pac-input" class="controls" type="text" placeholder="Search Location">
-
-  </div>
-  <div class="salonlist"> -->
-  <!-- <div class="card" *ngFor="let x of salond" (click)="selectsalon(x)">
-      <div class="image">
-        <img src="{{x.salonImage}}">
-      </div>
-      <div class="details">
-        <div class="subtitle">
-          <p>{{x.salonName}} <br> 
-            {{x.streetName}}
-          </p>
-        </div>
-
-      </div>
-
-          <ion-icon class="icon1" name="pin">Directions</ion-icon>
-    
-
-        <ion-fab-button class="color2">
-            <ion-icon class="icon2" name="call">Directions</ion-icon>
-          </ion-fab-button>
-     
-    </div> -->
-  <!-- <div class="container">
-        <ion-card *ngFor="let x of salond" (click)="selectsalon(x)">
-
-            <ion-card-content class="images">
-                <img src="{{x.salonImage}}">
-            </ion-card-content>
-            <ion-item>
-                <ion-fab-button class="btn1">
-                    <ion-icon class="icon1" name="pin"></ion-icon>
-                  </ion-fab-button>
-              <ion-label><strong>{{x.salonName}} </strong></ion-label>
-              <ion-button fill="outline" slot="end">View</ion-button>
-            </ion-item>
-          
-         
-          </ion-card>
-
-            
-      
-    </div>
-
-  </div> -->
-
-  <!-- 
-  <ion-card class="Card"  *ngFor="let x of salond" (click)="selectsalon(x)">
-      <ion-card-header>
-          <div class="image">
-              <img src="{{x.salonImage}}">
-            </div>
-      </ion-card-header>
-    
-      <ion-card-content class="CCad">
-          <div class="details">
-              <div class="subtitle">
-                <p>{{x.salonName}} <br> 
-                  {{x.streetName}}
-                </p>
-              </div>
-      
-            </div>
-      </ion-card-content>
-    </ion-card>  -->
+ 
     <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
       <div class="maploader">
       
@@ -104,12 +37,12 @@
              
             </div>
             <div class="title">
-              <p class="stars" style="font-size: 5vw; color: #FFB082; font-family: Manjari"><strong>{{b.salonName}}</strong></p>
-              <p class="stars" style="color: rgb(185, 184, 184); font-size: 4vw; font-family: Manjari">{{b.Address.streetName}}</p>
+              <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One;
+              letter-spacing: 4px;"><strong>{{b.salonName}}</strong></p>
+              <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway" >{{b.Address.streetName}}</p>
             </div>
           </div>
-          <hr style="border-color: rgb(255, 3, 3)">
-       
+      
         </div>
       </ion-slide>
     </ion-slides>

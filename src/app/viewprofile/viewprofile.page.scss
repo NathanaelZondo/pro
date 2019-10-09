@@ -2,8 +2,11 @@
 
 ion-toolbar {
     --background: white;
-    --opacity: 0;
     position: absolute;
+}
+
+* {
+    transition: 0.7s;
 }
 
 .content {
