@@ -1,42 +1,58 @@
 @import url('https://fonts.googleapis.com/css?family=Abel|Poiret+One|Open+Sans+Condensed|Jura|Manjari|Poppins|Raleway|Montserrat ');
-  .name {
-    
-    margin: 10px;
-    background: #BF967E;
-    justify-content: center;
-    height: 10vh;
-    border-radius: 10px;
 
-    h2 {
-      padding: 8px;
-      margin: 5px;
-      color: white;
-      font-weight: normal;
-      font-family: 'Poiret One';
-    }
+.container {
+  background: linear-gradient(rgba(255, 255, 255, 0.795), rgba(255, 255, 255, 0.795)), url('../../assets/iPhone\ X-XS\ –\ 98.svg');
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-top: 0 !important;
+}
+
+.name {
+
+  margin: 10px;
+  background: #BF967E;
+  justify-content: center;
+  height: 7vh;
+  border-radius: 5px;
+
+  h2 {
+    padding: 8px;
+    margin: 5px;
+    font-size: 5vw;
+    color: white;
+    font-weight: normal;
+    font-family: 'Poiret One';
+  }
+}
+
+.text {
+
+  p {
+    font-family: 'Raleway';
+    font-size: 4vw;
   }
 
-  .copy {
-    width: 100%;
-    position: absolute;
-    left: -10px;
-    bottom: 0;
-    font-size: 12px;
-
-    p {
-      text-align: center;
-    }
+  li {
+    font-family: 'Raleway';
+    font-size: 4vw
   }
+}
 
-  .list{
-    height: 60vh;
-    overflow-y: auto;
+.list {
+  height: 80vh;
+  overflow-y: auto;
+}
+
+.copy {
+  position: absolute;
+  bottom: 10px;
+  width: 100vw;
+
+  p {
+    align-items: center;
+    font-size: 3vw;
   }
-
-  .content{
-    width: 100%;
-    height: 100%;
-    
-  }
-
- 
+}

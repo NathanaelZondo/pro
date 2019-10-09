@@ -2,8 +2,10 @@
 
   <ion-header>
     <ion-toolbar color="dark">
-      <ion-icon name="arrow-round-back" style="font-size: 20px; color: white; margin: 10px;" (click)="back()"></ion-icon>
-      <ion-icon name="exit" (click)="signout()" style="font-size: 20px; color: white; float: right; margin: 10px"></ion-icon>
+      <ion-icon name="arrow-round-back" style="font-size: 20px; color: white; margin: 10px;" (click)="back()">
+      </ion-icon>
+      <ion-icon name="exit" (click)="signout()" style="font-size: 20px; color: white; float: right; margin: 10px">
+      </ion-icon>
     </ion-toolbar>
   </ion-header>
 
@@ -13,24 +15,67 @@
     <div class="flex-container">
       <div style="width:100vw;padding-left:0px">
 
-        <div class="edit">
+        <div class="info-open" [ngClass]="{'bookings-inactive': !seeBookings, 'bookings-active': seeBookings}">
+          <div class="edit">
             <ion-icon name="create" (click)="update()"></ion-icon>
-        </div>
-
-        <div class="info">
+          </div>
           <p id="name" style="color: black; font-family: Poiret One;">{{profile.name}} {{profile.surname}}</p>
           <br>
           <p id="cell" style="color: black">0815253696</p>
+          <br>
+          <div class="line"></div>
           <div class="bookings">
-            <ion-button (click)="onClick()" color="transparent" style=" color: white;">
+            <ion-button *ngIf="!seeBookings" (click)=" bookings()" color="transparent" style=" color: white;">
               VIEW BOOKINGS
             </ion-button>
+            <ion-button *ngIf="seeBookings" (click)=" bookings()" color="transparent" style=" color: white;">
+                CLOSE BOOKINGS
+              </ion-button>
+          </div>
+          <div class="cards">
+            <div class="card">
+              <div class="style">
+                <p>relax</p>
+              </div>
+                <div class="details">
+                  <div>
+                      <h4>Robaletheka Salon</h4>
+                      <p style="color: green">Stylist Available</p>
+                      <p style="color: green">Booking Active</p>
+                  </div>
+                </div>
+                <div class="date"><p>25 Sep 2019</p></div>
+            </div>
+            <div class="card">
+                <div class="style">
+                  <p>bob cut</p>
+                </div>
+                  <div class="details">
+                    <div>
+                        <h4>Kennedy Hair Salon</h4>
+                        <p style="color: red">Stylist Available</p>
+                        <p style="color: red">Booking Active</p>
+                    </div>
+                  </div>
+                  <div class="date"><p>25 Oct 2019</p></div>
+              </div>
 
+              <div class="card">
+                  <div class="style">
+                    <p>fade</p>
+                  </div>
+                    <div class="details">
+                      <div>
+                          <h4>Maxzine's Salon</h4>
+                          <p style="color: green">Stylist Available</p>
+                          <p style="color: green">Booking Active</p>
+                      </div>
+                    </div>
+                    <div class="date"><p>25 Nov 2019</p></div>
+                </div>
           </div>
         </div>
-        <div class="line">
 
-        </div>
 
 
 

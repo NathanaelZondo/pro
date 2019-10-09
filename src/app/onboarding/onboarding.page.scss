@@ -9,12 +9,12 @@
 }
 
 ion-slides {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
 }
 
-.msg{
-    h1{
+.msg {
+    h1 {
         font-family: 'Poiret One';
         font-size: 5vw;
     }
@@ -22,7 +22,7 @@ ion-slides {
 
 .group {
     position: absolute;
-    left: -40vh;
+    left: -41vh;
     top: 36%;
     transform: rotate(-90deg);
     color: white;
@@ -35,7 +35,7 @@ ion-slides {
             font-family: 'Poiret One';
             font-weight: lighter;
             opacity: 0.09;
-            letter-spacing: 1.5vw;
+            letter-spacing: 3.5vw;
             // width: 100%;
             // object-fit: cover;
         }
@@ -45,7 +45,7 @@ ion-slides {
     .skedge {
         position: relative;
         top: -15vh;
-        left: 3vh;
+        left: 5vw;
 
         p {
             font-family: 'Poiret One';
@@ -62,16 +62,16 @@ ion-slides {
     flex-flow: column;
     align-items: center;
     position: relative;
-    width: 100%;
-    height: 100vh;
+    width: 100vw;
+    // height: 100vh;
 
     .title {
         position: relative;
-        top: 25%;
+        top: 15%;
 
         h1 {
             font-family: 'Poiret one';
-            font-size: 60px;
+            font-size: 15vw;
             color: white;
         }
     }
@@ -79,22 +79,24 @@ ion-slides {
     .desc {
         width: 35vh;
         position: relative;
-        top: 30%;
+        top: 20%;
 
         p {
             font-family: 'Montserrat';
             font-weight: lighter;
             color: white;
             font-size: 4vw;
+            text-align: center;
         }
     }
 
     .btnz {
         position: relative;
-        top: 35%;
+        top: 25%;
+        overflow: hidden;
 
         ion-button {
-            width: 28vh;
+            width: 34vw;
             background: #343A3F;
             border-radius: 7px;
             font-family: 'Poiret one';

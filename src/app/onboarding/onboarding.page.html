@@ -1,5 +1,8 @@
 <ion-content>
   <div class="container">
+    <div class="skip">
+      <p style="color: white; font-family: 'Raleway'; padding: 20px; float: right">SKIP</p>
+    </div>
     <div class="group">
       <div class="air">
         <h1>AIRSKEDGE</h1>
@@ -31,9 +34,34 @@
         </div>
 
       </ion-slide>
-      <div class="data"  style=" position: relative; left: 20%">
+      <div class="data" style=" position: relative; left: 20%">
+        <div class="title">
+          <h1 style="text-align: center">View <br> Hairstyles </h1>
+        </div>
+        <br>
+        <div class="desc">
+          <p>Lorem ipsum dolor sit amet, at felis morbi,
+            mauris semper ut et, tristique felis quis vitae sollicitudin,
+            velit tellus leo.</p>
+        </div>
+        <br><br>
+        <div class="btnz">
+          <ion-button large (click)="signin()" color="transparent">
+            Next
+          </ion-button>
+        </div>
+        <br><br>
+      </div>
+      <ion-slide>
+
+
+      </ion-slide>
+      <br><br>
+      <ion-slide>
+
+        <div class="data" style=" position: relative; right: 60%">
           <div class="title">
-            <h1 style="text-align: center">View <br> Hairstyles </h1>
+            <h1>Make <br> Booking</h1>
           </div>
           <br>
           <div class="desc">
@@ -41,43 +69,18 @@
               mauris semper ut et, tristique felis quis vitae sollicitudin,
               velit tellus leo.</p>
           </div>
-          <br><br>
-          <div class="btnz">
+          <br>
+          <div class="btnz" style="position: relative; bottom: 15%">
             <ion-button large (click)="signin()" color="transparent">
-              Next
+              SignUp
+            </ion-button>
+            <br><br>
+            <ion-button large (click)="signin()" color="transparent" style="position: relative; bottom: 15px;">
+              Sign-In
             </ion-button>
           </div>
           <br><br>
         </div>
-      <ion-slide>
-  
-
-      </ion-slide>
-<br><br>
-      <ion-slide>
-
-          <div class="data" style=" position: relative; right: 65%">
-              <div class="title">
-                <h1>Make <br> Booking</h1>
-              </div>
-              <br>
-              <div class="desc">
-                <p>Lorem ipsum dolor sit amet, at felis morbi,
-                  mauris semper ut et, tristique felis quis vitae sollicitudin,
-                  velit tellus leo.</p>
-              </div>
-              <br>
-              <div class="btnz" style="position: relative; bottom: 25%">
-                <ion-button large (click)="signin()" color="transparent">
-                  SignUp
-                </ion-button>
-                <br><br>
-                <ion-button large (click)="signin()" color="transparent" style="position: relative; bottom: 15px;">
-                   Sign-In
-                  </ion-button>
-              </div>
-              <br><br>
-            </div>
       </ion-slide>
     </ion-slides>
   </div>
