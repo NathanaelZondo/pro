@@ -1,15 +1,19 @@
 <ion-header>
   <ion-toolbar color="transparent">
-    <ion-icon name="arrow-round-back" style="font-size: 30px" (click)="back()"></ion-icon>
-    <ion-title></ion-title>
+    <ion-icon name="arrow-round-back" style="font-size: 30px; color: white" (click)="back()"></ion-icon>
+   <ion-fab-button style="float:right;
+   width: 5vh; height: 5vh; background: green; border-radius: 50%;" color="transparent">
+     <ion-icon name="call" style="color: white"></ion-icon>
+   </ion-fab-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
 
-
-
   <div class="container" *ngFor="let x of bookingdetails">
+
+
+
     <div class="top">
       <div class="image">
         <img src="{{x.hairstyleimage}}" />
@@ -24,6 +28,37 @@
           <p>Booking: {{x.status2}}</p>
         </div>
       </div>
+    </div>
+
+    <div class="bottom">
+      <div class="name">
+        <h3> {{x.salonname}}</h3>
+        <p>{{x.salonlocation}}</p>
+      </div>
+      <br>
+      <div class="stylist">
+        <p>Stylist</p>
+        <h4>{{x.hairdresser}}</h4>
+      </div>
+
+      <div class="appdets">
+          <p>Hairstyle Info</p>
+          <h4>{{x.estimatedtime}} Minutes <br>
+            From {{x.sessiontime}} to {{x.sessionendtime}} at {{x.userdate}}<br>
+            Cost: {{x.hairstyleprice | currency:'&#82;'}}
+          </h4>
+          
+        </div>
+
+        <div class="btnz">
+          <ion-button (click)="onClick()" color="transparent" style="background:#343A3F ">
+            I am late
+          </ion-button>
+
+          <ion-button (click)="onClick()" color="transparent" style="background: #BF6B7A">
+             Cancel Booking
+            </ion-button>
+        </div>
     </div>
 
 
@@ -75,5 +110,4 @@
 
       </div>
     </div> -->
-  <!-- </div> -->
 </ion-content>
