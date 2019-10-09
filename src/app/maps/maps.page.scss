@@ -1,5 +1,93 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Teko|Abel|Anton|Dosis|Oxygen|Jura|Pacifico|Righteous|Roboto+Condensed|Ubuntu|Manjari| Mansalva');
+.loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 20;
+    background: linear-gradient(rgba(255, 240, 217, 0.973)),url(../../assets/loader.svg);
+    background-repeat: repeat-x;
+    transform: scale(1);
+    overflow: hidden;
+    transition: 0.4s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation: backgroundmover 30s linear infinite;
+    .maploader {
 
+      overflow: hidden;
+      width: 50px;
+      height: 50px;
+      margin: 40vh auto;
+      text-align: center;
+      // animation: name duration timing-function delay iteration-count direction fill-mode;
+      animation: maploader 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+      border-radius: 200px;
+      display: grid;
+      align-content: center;
+      position: relative;
+      border-top: solid 2px gray;
+
+    }
+  }
+  
+  .loading-text {
+    // color: yellow;
+    position: absolute;
+    bottom: 50vh;
+    left: 0px;
+    width: 100vw;
+    text-align: center;
+    // background: red;
+    height: 50vh;
+    z-index: 50;
+  }
+  .loader-hide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 20;
+    background: rgb(255, 255, 255);
+    transform: scale(0);
+    overflow: hidden;
+    transition: 0.4s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    .maploader {
+
+      overflow: hidden;
+      width: 50px;
+      height: 50px;
+      margin: 40vh auto;
+      text-align: center;
+      // animation: name duration timing-function delay iteration-count direction fill-mode;
+      animation: maploader 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+      border-radius: 200px;
+      display: grid;
+      align-content: center;
+      position: relative;
+      border-top: solid 2px gray;
+
+    }
+  }
+  @keyframes maploader {
+    0% {
+      transform: rotate(0deg);
+      border-color: rgb(182, 70, 95);
+      // background: rgb(255, 192, 192);
+    }
+    50% {
+      // background: rgb(206, 206, 255);
+      // transform: rotate(360deg);
+      border-color: rgb(42, 50, 75);
+    }
+    100%{
+      border-color: rgb(250, 182, 43);
+      // background: rgb(255, 167, 167);
+      transform: rotate(360deg);
+    }
+  }
 .container {
     display: flex;
     flex-flow: column;
@@ -9,7 +97,11 @@
 
 #map {
     width: 100%;
-    height: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+
+    
 }
 
 .salonlist {

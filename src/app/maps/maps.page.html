@@ -67,13 +67,34 @@
             </div>
       </ion-card-content>
     </ion-card>  -->
-
+    <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
+      <div class="maploader">
+      
+      </div>
+      <div class="loading-text">
+        <p>Loading Map</p>
+      </div>
+    </div>
+    <button (click)="requestPrompt()" ion-fab mini><ion-icon name="locate"></ion-icon></button>
   <input id="pac-input" class="controls" type="text" placeholder="Search Location">
+  <ion-item>
+    <ion-label>Search by salon name</ion-label>
+    <ionic-selectable
+    item-content
+      [(ngModel)]="port"
+      [items]="ports"
+  
+      itemTextField="names"
+      [canSearch]="true"
+     searchFailText = "Nothing Found :("
+      (onChange)="portChange($event)">
+    </ionic-selectable>
+  </ion-item>
   <div #map id="map"></div>
   <br><br><br>
   <div class="salonlist">
 
-    <ion-slides [options]="sliderConfig" (ionSlideDidChange)="moveMapEvent($event)">
+    <ion-slides [options]="sliderConfig" #sliderRef (ionSlideDidChange)="moveMapEvent($event)">
       <ion-slide class="magic" *ngFor="let b of salons" (click)="selectsalon(b)">
         <div class="card">
           <div class="top">
