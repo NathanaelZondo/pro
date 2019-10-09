@@ -1,55 +1,60 @@
 <ion-header>
-  <ion-toolbar color="dark">
-    <ion-icon name="arrow-round-back" style="font-size: 30px" (click)="back()"></ion-icon>
+  <ion-toolbar >
+    <ion-icon color="dark" name="arrow-round-back" style="font-size: 30px" (click)="back()"></ion-icon>
 
   </ion-toolbar>
-  <ion-title>{{viewTitle}}</ion-title>
+  <ion-title></ion-title>
 
 </ion-header>
 
 <ion-content class="has-header">
 
-<button  (click)="changeMode('month')" [style.background] ="monthcolor">MONTH</button>&nbsp;&nbsp;
+
+<h1 align ="center" style ="font-family:cocomat;position: absolute;top:0">{{viewTitle}}</h1>
+<pre>
+
+
+
+</pre >
+<div align ="center">
+<button  (click)="changeMode('day')" [style.background] ="daycolor">DAY</button>&nbsp;&nbsp;
 <button (click)="changeMode('week')" [style.background] ="weekcolor">WEEK</button>&nbsp;&nbsp;
-<button (click)="changeMode('day')" [style.background] ="daycolor">DAY</button>
+<button (click)="changeMode('month')" [style.background] ="monthcolor">MONTH</button>
+</div>
+<pre>
+
+</pre>
 
         <calendar style ="color:rgb(0, 0, 0);background-color:black;border-color:firebrick"   [eventSource]="eventSource" [calendarMode]="calendar.mode"
           [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
     (onTitleChanged)="onViewTitleChanged($event)"
-         step="30" startHour="8" endHour="19" [markDisabled]="markDisabled" >
+         step="30" startHour="8" endHour="19" [markDisabled]="markDisabled" 
+         (onTimeSelected)="onTimeSelected($event)" (click) ="timeAlertConfirm()"
+         [markDisabled]="markDisabled"
+         [timeInterval]="timeinterval"
+         >
        
         </calendar>
   
+    
+      <div class="flex-container" >
+       <div>
+        <ion-grid>
+         
+            <ion-row align ="center">
+            <pre>
+
+            </pre>
+            <button   [style.background] ="pink" align ="center"  style="width: 300px" (click) ="submit()" [hidden] ="isvalidated">Book Now!</button>
+            </ion-row>
+          </ion-grid>
         
-        <ion-fab  vertical="bottom" horizontal="end">
-          <ion-fab-button  (click) ="datespage()">Continue</ion-fab-button>
-        </ion-fab>
-      <!-- <div class="hairstyle">
-
-        <div class="prc">
-          <label>Price: {{booking.hairstyleprice | currency:'&#82;'}} </label>
-        </div>
-
-        <div class="info">
-          <label>Hairstyle:{{booking.hairstyletype}}</label>
-          <label>Duration: {{booking.estimatedtime}} mins</label>
-        </div>
-
-      </div> -->
-
-<!-- <div class="cal" class="has-subheader">
-  <h3>{{viewTitle}}</h3>
-  <ion-buttons>
-        <button ion-button [disabled]="isToday" (click)="today()">Today</button>
-        <button ion-button (click)="changeMode('month')">M</button>
-      </ion-buttons>
-      <calendar   [eventSource]="eventSource" [calendarMode]="calendar.mode"
-        [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
-        (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
-        (onTimeSelected)="onTimeSelected($event,booking)" step="30">
-      </calendar>
-</div> -->
-      
- 
+     
+    <br>
+  
+   
+       </div>
+        </div> 
+     
 
 </ion-content>

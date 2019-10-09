@@ -23,8 +23,9 @@ import { ReviewsPageModule } from './reviews/reviews.module';
 import { ViewsalonPageModule } from './viewsalon/viewsalon.module';
 import { IonicStorageModule,Storage } from '@ionic/storage';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+import {CustomerPage} from '../app/customer/customer.page';
 @NgModule({
-  declarations: [AppComponent, ViewhairstylePipe,ModalPage],
+  declarations: [AppComponent, ViewhairstylePipe,ModalPage,CustomerPage],
   entryComponents: [ModalPage],
   imports: [IonicStorageModule.forRoot() ,BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     CommonModule,

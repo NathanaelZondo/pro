@@ -129,53 +129,7 @@ setTimeout(()=>{
     this.haidressername = x.hairdresser;
     this.hairsalon = x.salonname;
     x.status = "cancelled";
-    firebase.firestore().collection('Bookings').doc(x.id).update({
-      status: 'cancelled'
-    }).then(res => {
-      console.log(res)
-    });
-
-
-
-    let click = 1;
-    let v1;
-    let docid;
-
-    // firebase.firestore().collection('salonAnalytics').doc(x.salonuid).collection('numbers').get().then(val=>{
-    //   console.log("These are the numbers",val)
-    //   val.forEach(qu=> 
-
-    //     {
-    //     docid =qu.id;
-    //     console.log(docid)
-    //     console.log(qu.data().usercancellations)
-    //     v1 =qu.data().usercancellations;
-
-    //     firebase.firestore().collection('salonAnalytics').doc(x.salonuid).collection('numbers').doc(qu.id).update({"usercancellations":v1+click}).then(zet=>{
-    //       console.log(zet)
-    //     })
-    //     })
-    //   })
-
-
-
-
-    // firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser.uid).collection('numbers').get().then(val=>{
-    //   console.log("These are the numbers",val)
-    //   val.forEach(qu=> 
-
-    //     {
-    //     docid =qu.id;
-    //     console.log(docid)
-    //     console.log(qu.data().usercancellations)
-    //     v1 =qu.data().usercancellations;
-
-    //     firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser.uid).collection('numbers').doc(qu.id).update({"usercancellations":v1+click}).then(zet=>{
-    //       console.log(zet)
-    //     })
-    //     })
-    //   })
-
+    firebase.firestore().collection('Bookings').doc(x.id).delete();
 
   }
 
@@ -224,11 +178,12 @@ setTimeout(()=>{
             
             this.control.cancelbookingToast();
             console.log('Confirm Okay');
-
+            firebase.firestore().collection('Bookings').doc(this.alldata.id).delete();
            
             if( this.alldata.TokenID){
               var notificationObj = {
-                contents: { en: "Cancellation Alert!!" +this.alldata.name + " Has cancelled their booking with " + this.alldata.hairdresser + " on "+ this.alldata.userdate + " at " + this.alldata.sessiontime},
+                headings: {en: "APPOINTMENT CANCELLATION! "},
+                contents: { en: "Hey customer " +this.alldata.name + " Has cancelled their booking with " + this.alldata.hairdresser + " on "+ this.alldata.userdate + " at " + this.alldata.sessiontime},
                 include_player_ids: [this.alldata.TokenID],
               }
               this.oneSignal.postNotification(notificationObj).then(res => {
@@ -254,6 +209,9 @@ setTimeout(()=>{
 
   late(x)
   {
+    this.alldata = x;
+    this.haidressername = x.hairdresser;
+    this.hairsalon = x.salonname;
     this.presentAlertPrompt(x)
 
   }
@@ -284,7 +242,17 @@ setTimeout(()=>{
           text: 'Send',
           handler: (name1) => {
             console.log(name1.name1);
-
+            if( this.alldata.TokenID){
+              var notificationObj = {
+                headings: {en: " APPOINTMENT ALERT for:" + this.alldata.haidressername},
+                small_icon : '../src/assets/Untitled-1.jpg',
+                contents: { en: "Hey! " +this.alldata.name + " will be late  on "+ this.alldata.userdate + " at " + this.alldata.sessiontime + " their reason is: \""+ name1.name1 +"\""},
+                include_player_ids: [this.alldata.TokenID],
+              }
+              this.oneSignal.postNotification(notificationObj).then(res => {
+               // console.log('After push notifcation sent: ' +res);
+              })
+            }
             firebase.firestore().collection('Bookings').doc(x.id).update({
               late: name1.name1
             }).then(res => {
