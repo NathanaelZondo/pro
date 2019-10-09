@@ -33,7 +33,7 @@
               </ion-button>
           </div>
           <div class="cards">
-            <div class="card"  *ngFor="let x of userbooking">
+            <div class="card"  *ngFor="let x of userbooking" (click)="viewdetails(x)">
               <div class="style">
                 <p>{{x.hairstyletype}}</p>
               </div>

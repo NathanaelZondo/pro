@@ -51,13 +51,14 @@
         </div>
 
         <div class="btnz">
-          <ion-button (click)="onClick()" color="transparent" style="background:#343A3F ">
+          <ion-button (click)="late(x)" color="transparent" style="background:#343A3F ">
             I am late
           </ion-button>
 
-          <ion-button (click)="onClick()" color="transparent" style="background: #BF6B7A">
-             Cancel Booking
-            </ion-button>
+        
+            <ion-button  [disabled] ="x.status2!='cancelled' && x.status!='cancelled' && x.userdate >= currentdate" (click)="forthealert(x)" color="transparent" style="background: rgb(10, 10, 10)" >
+              Cancel Booking
+             </ion-button>
         </div>
     </div>
 
