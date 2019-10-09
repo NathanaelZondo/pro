@@ -33,46 +33,22 @@
               </ion-button>
           </div>
           <div class="cards">
-            <div class="card">
+            <div class="card"  *ngFor="let x of userbooking">
               <div class="style">
-                <p>relax</p>
+                <p>{{x.hairstyletype}}</p>
               </div>
                 <div class="details">
                   <div>
-                      <h4>Robaletheka Salon</h4>
-                      <p style="color: green">Stylist Available</p>
-                      <p style="color: green">Booking Active</p>
-                  </div>
-                </div>
-                <div class="date"><p>25 Sep 2019</p></div>
-            </div>
-            <div class="card">
-                <div class="style">
-                  <p>bob cut</p>
-                </div>
-                  <div class="details">
-                    <div>
-                        <h4>Kennedy Hair Salon</h4>
-                        <p style="color: red">Stylist Available</p>
-                        <p style="color: red">Booking Active</p>
-                    </div>
-                  </div>
-                  <div class="date"><p>25 Oct 2019</p></div>
-              </div>
+                      <h4>{{x.salonname}}</h4>
+                      <p style="color: green">Stylist: {{x.hairdresser}}</p>
 
-              <div class="card">
-                  <div class="style">
-                    <p>fade</p>
+                      <p *ngIf="x.status.localeCompare('Active')  " style="color: green">Booking Active</p>
+                      <p *ngIf="x.status.localeCompare('cancelled') " style="color: red">Booking Cancelled</p>
                   </div>
-                    <div class="details">
-                      <div>
-                          <h4>Maxzine's Salon</h4>
-                          <p style="color: green">Stylist Available</p>
-                          <p style="color: green">Booking Active</p>
-                      </div>
-                    </div>
-                    <div class="date"><p>25 Nov 2019</p></div>
                 </div>
+                <div class="date" displayFormat="MM DD YY" ><p>{{x.userdate}}</p></div>
+            </div>
+       
           </div>
         </div>
 

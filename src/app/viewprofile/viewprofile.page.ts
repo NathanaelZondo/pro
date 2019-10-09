@@ -14,6 +14,8 @@ import { NavController, AlertController, ModalController } from '@ionic/angular'
 export class ViewprofilePage implements OnInit {
   profiles = [];
   seeBookings = false
+  userbooking = [];
+  ob = {};
   constructor(private navCtrl:NavController, public modalController: ModalController,public backend: BackendService, public control: ControlsService,public alertController:AlertController) {
     this.profiles =this.backend.profiles;
     console.log(this.profiles)
@@ -22,7 +24,7 @@ export class ViewprofilePage implements OnInit {
   ngOnInit() {
 
   //  this.control.Loading2();
-
+this.getBookings()
 
   }
 
@@ -88,5 +90,18 @@ export class ViewprofilePage implements OnInit {
     });
 
     await alert.present();
+  }
+  getBookings(){
+    firebase.firestore().collection('Bookings').where("useruid", "==", firebase.auth().currentUser.uid).orderBy("userdate", "desc").limit(15).get().then(val => {
+      val.forEach(doc => {
+        console.log(doc.id)
+        this.ob = { id: doc.id };
+        this.userbooking.push({ ...this.ob, ...doc.data() })
+
+        console.log(this.userbooking)
+
+
+      });
+    });
   }
 }
