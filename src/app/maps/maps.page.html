@@ -13,8 +13,6 @@
   </ion-toolbar>
 <ion-content fullscreen>
 
-
- 
     <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
       <div class="maploader">
       
@@ -48,15 +46,19 @@
   <div #map id="map"></div>
   <br><br><br>
   <div class="salonlist">
-
     <ion-slides [options]="sliderConfig" #sliderRef (ionSlideDidChange)="moveMapEvent($event)">
-      <ion-slide class="magic" *ngFor="let b of salons" (click)="selectsalon(b)">
+      <ion-slide class="magic" *ngFor="let b of salons; let i = index" (click)="selectsalon(b)">
         <div class="card">
+          
           <div class="top">
             <div class="image">
              
               <img src="{{b.salonImage}}" alt="tough">
-             
+              <div  [ngClass]="{'distance-active': cardIndex, 'distance-inactive': !cardIndex}" (click)="showDistance()">
+                  <div class="data">
+                      <ion-icon name="hourglass"></ion-icon><p>{{duration}}</p><ion-icon name="compass"></ion-icon><p>{{distance}} km</p>
+                  </div>
+                </div>
             </div>
             <div class="title">
               <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One;
@@ -64,8 +66,9 @@
               <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway" >{{b.Address.streetName}}</p>
             </div>
           </div>
-      
+          
         </div>
+       
       </ion-slide>
     </ion-slides>
   </div>

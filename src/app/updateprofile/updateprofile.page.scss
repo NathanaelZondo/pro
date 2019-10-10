@@ -3,12 +3,12 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-content: center;
+    // justify-content: center;
 }
 
 .img {
-    width: 25vh;
-    height: 25vh;
+    width: 20vh;
+    height: 20vh;
     border: 5px solid black;
     border-radius: 50%;
     overflow: hidden;
@@ -24,7 +24,7 @@
 .inputs {
     background: #343A3F;
     width: 100%;
-    height: 60vh;
+    height: 65vh;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     display: flex;

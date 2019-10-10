@@ -273,10 +273,6 @@ async presentToast() {
     }
 
 
-
-
-
-
     //return this.futuredate;
 
   }

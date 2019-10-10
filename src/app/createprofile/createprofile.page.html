@@ -3,7 +3,7 @@
     <div class="title">
       <h1> Create Profile </h1>
     </div>
-    <br>
+    
     <div class="userimage">
       <div class="img" (click)="takePhoto()">
         <img src="{{styleImage}}" placeholder="Choose Image" width="100px" height="100px">
@@ -34,7 +34,7 @@
       </ion-item>
       <ion-item style="color: white" color="transparent">
         <!-- <ion-label ><p>Bio</p></ion-label> -->
-        <ion-textarea rows="4" cols="20" [(ngModel)]="profile.about" placeholder="Tell us about yourself"
+        <ion-textarea rows="1" cols="20" [(ngModel)]="profile.about" placeholder="Tell us about yourself"
           style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-textarea>
         <!-- <ion-input [(ngModel)]="profile.about" placeholder="Tell us about yourself"
           style="color: rgb(255, 255, 255); font-size: 4vw"></ion-input> -->
@@ -42,14 +42,14 @@
       <br><br>
       <div class="btn">
         <ion-button
-          style="background: #BF6B7A; width:40vw; border-radius: 6px; font-family: 'Poiret One'; letter-spacing: 4px;"
+          style="background: #BF6B7A; height: 30px; width:40vw; border-radius: 6px; font-family: 'Poiret One'; letter-spacing: 4px;"
           color="transparent" [disabled]="sub" (click)="saveprofile(profile)" full>
           DONE</ion-button>
-
-        <!-- <ion-button color="transparent"
-          style="color: white; width:30vh; border-radius: 6px; font-family: 'Poiret One'; letter-spacing: 4px;"
+        <br>
+        <ion-button color="transparent"
+          style="color: white; width:40vw; border-radius: 6px; font-family: 'Poiret One'; letter-spacing: 4px;"
           color="transparent" (click)="signout()" full>
-          CANCEL</ion-button> -->
+          CANCEL</ion-button>
       </div>
 
     </div>

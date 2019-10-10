@@ -3,7 +3,6 @@
 
 ion-toolbar {
     --background: white;
-    --opacity: 0;
     position: absolute;
 }
 
@@ -16,7 +15,7 @@ ion-toolbar {
 }
 
 .unlike {
-    color: blue
+    color: rgb(255, 255, 255)
 }
 
 .back {
@@ -78,9 +77,9 @@ ion-toolbar {
         }
 
         .likes {
-            position: relative;
-            left: 45vh;
-            bottom: 5vh;
+            position: absolute;
+            right: 45vh;
+            bottom: 1vh;
             width: 15vh;
             display: flex;
             flex-flow: row;
@@ -130,34 +129,57 @@ ion-toolbar {
     border-bottom-left-radius: 20px;
     position: relative;
 
-    // .gender {
-    //     position: absolute;
-    //     bottom: -3vh;
-    //     left: 18vw;
-    //     display: flex;
-    //     flex-flow: row;
-    //     justify-content: space-around;
-    //     background: grey;
-    //     width: 30vh;
-    //     height: 6vh;
-    //     border-radius: 30px;
+    .gender {
+        position: absolute;
+        bottom: -3vh;
+        left: 18vw;
+        display: flex;
+        flex-flow: row;
+        justify-content: space-around;
+        background: rgb(255, 255, 255);
+        box-shadow: 5px 5px 10px lightgrey;
+        width: 30vh;
+        height: 6vh;
+        z-index: 200;
+        border-radius: 30px;
 
-    //     // .female {
-    //     //     margin: 10px;
+        .female {
+            // margin: 10px;
+            width: 50%;
+            height: 100%;
+            border-radius: 30px;
+            align-items: center;
+            overflow: hidden;
 
-    //     //     p {
-    //     //         font-size: 4vw;
-    //     //     }
-    //     // }
+            button {
+                width: 100%;
+                height: 100%;
+                border-radius: 30px;
+                font-family: 'Poiret One';
+                font-weight: bold;
+                background: #BF967E;
+                color: white;
+            }
 
-    //     // .male {
-    //     //     margin: 10px;
+        }
 
-    //     //     p {
-    //     //         font-size: 4vw;
-    //     //     }
-    //     // }
-    // }
+        .male {
+            width: 50%;
+            height: 100%;
+            border-radius: 30px;
+            overflow: hidden;
+
+            button {
+                width: 100%;
+                height: 100%;
+                border-radius: 30px;
+                font-family: 'Poiret One';
+                font-weight: bold;
+                background: #ffff;
+            }
+
+        }
+    }
 
     .desc {
         position: absolute;
@@ -183,9 +205,10 @@ ion-toolbar {
     .reviews {
         position: absolute;
         bottom: 0.3%;
-        left: 35%;
-        margin: 15px;
-        z-index: 200;
+        left: 34%;
+        // margin: 15px;
+        padding: 10px;
+        z-index: 400;
 
         p {
             width: 100%;
@@ -244,24 +267,30 @@ ion-toolbar {
             width: 80vw;
             height: 28vh;
             width: 50px;
-            // background: blue;
+            background: black;
+            border-radius: 20px;
 
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 border-radius: 20px;
+                opacity: 0.6;
             }
 
             p {
                 position: absolute;
                 z-index: 5;
-                color: white;
+                color: rgb(214, 213, 213);
                 font-family: 'Poiret One';
                 letter-spacing: 6px;
                 bottom: 10px;
                 left: 10px;
-                font-size: 8vw;
+                font-size: 6vw;
+
+                span {
+                    font-size: 4vw;
+                }
             }
         }
     }
@@ -281,7 +310,7 @@ ion-toolbar {
 .viewreviews {
     position: absolute;
     z-index: 150;
-    background: rgba(255, 255, 255, 0.774);
+    background: rgba(255, 255, 255, 0.856);
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     width: 90vw;
