@@ -149,7 +149,7 @@ async presentToast() {
     sessiontime: this.backend.sessiontime,
     sessionendtime: "",
     hairdresser: "",
-    userdate: undefined,
+    userdate: this.cdate(),
     status: "Active",
     status2: "Active",
     salonuid: this.backend.salonuid,
@@ -685,8 +685,35 @@ if ((new Date(ev.selectedTime).getDate()) < 10) {
 }
 }
 
-  console.log("Currentdate =", this.todate)
+  console.log("selected datedate =", this.todate)
   this.booking.userdate =this.todate;
+
+
+
+
+  if (this.todate> this.futuredate) {
+
+
+    console.log("futureDate =", this.futuredate)
+    this.control.FutureDateToast();
+    this.isvalidated = true;
+
+  
+  }
+  else
+  if (this.cdate() > this.todate) {
+  
+  
+  
+    this.control.PastDateToast();
+    this.isvalidated = true;
+     console.log("pastdate")
+  
+  
+  
+  
+  }
+
 
 };
 
@@ -780,7 +807,7 @@ booking.userdate=this.currentdate;
     this.testarray = [];
    
 
-    this.db.collection('Bookings').where("salonuid","==",booking.salonuid).where("hairdresser","==",this.hairdresser).orderBy("userdate", "desc").limit(50).get().then(val => {
+    this.db.collection('Bookings').where("salonuid","==",booking.salonuid).where("hairdresser","==",this.hairdresser).where('userdate','>=',this.cdate()).orderBy("userdate", "desc").limit(50).get().then(val => {
       if (val.size == 0) {
      
         this.control.SlotToast2();
@@ -924,28 +951,28 @@ this.weekcolor='#DB5A6B';
 
 
   cdate() {
-   
-    this.todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth()) + '-' + (new Date().getDate());
+   let todate;
+    todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth()) + '-' + (new Date().getDate());
     if ((new Date().getMonth() + 1) < 10) {
 
-      this.todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-' + (new Date().getDate());
+      todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-' + (new Date().getDate());
       if ((new Date().getDate()) < 10) {
-        this.todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-0' + (new Date().getDate());
+        todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-0' + (new Date().getDate());
       }
 
     }
 else if ((new Date().getMonth() + 1) >= 10)
 {
-  this.todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth() + 1) + '-' + (new Date().getDate());
+  todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth() + 1) + '-' + (new Date().getDate());
 
   if ((new Date().getDate()) < 10) {
-    this.todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth() + 1) + '-0' + (new Date().getDate());
+    todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth() + 1) + '-0' + (new Date().getDate());
   }
 }
 
-    console.log("Currentdate =", this.todate)
-    this.booking.userdate =this.todate;
-    return this.todate;
+    console.log("Currentdate =", todate)
+    
+    return todate;
   }
 
 
@@ -955,6 +982,9 @@ else if ((new Date().getMonth() + 1) >= 10)
 this.setbooking(this.booking);
 this.findtime(this.booking);
 this.isvalidated =false;
+
+
+
    if( (this.ev.events !== undefined && this.ev.events.length !== 0))
    {
 this.isvalidated=true;
@@ -1001,7 +1031,7 @@ val2 =false;
    
 findtime(booking) {
   
-  this.findtime2(booking);
+
   for (let i = 0; i < this.events.length; i++) {
 
 
@@ -1010,7 +1040,7 @@ findtime(booking) {
     this.d2 = new Date(this.events[i].startTime);
     this.d3 = new Date(this.events[i].endTime);
 
-    console.log("Second condition for end time =", this.d1.getHours(),this.d2.getHours(),this.d3.getHours())
+    console.log("Second condition for end time =", this.d1,this.d2,this.d3)
 
     if (this.d2 < this.d1 && this.d1 < this.d3 ) {
 
@@ -1030,7 +1060,7 @@ findtime(booking) {
   }
   
 
-
+  this.findtime2(this.booking);
  
 
 }
@@ -1045,10 +1075,12 @@ console.log("findtime2")
     
     this.d1 =  new Date(this.events[i].startTime);
     console.log(this.d1)
-    this.d2 = new Date(booking.userdate+'T'+booking.sessiontime);
-    this.d3 = new Date(booking.userdate+'T'+booking.sessionendtime);
+    this.d2 = new Date(this.booking.userdate+'T'+booking.sessiontime);
+    this.d3 = new Date(this.booking.userdate+'T'+booking.sessionendtime);
 
-    console.log("findtime2 = ", this.d1.getHours(),this.d2.getHours(),this.d3.getHours())
+    console.log("xx1 = ", this.d1)
+    console.log("xx2 = ", this.d2)
+    console.log("xx3 = ", this.d3)
 
     if (this.d2 < this.d1 && this.d1 < this.d3 ) {
 
