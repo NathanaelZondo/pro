@@ -27,6 +27,8 @@ declare var google;
   styleUrls: ['./maps.page.scss'],
 })
 export class MapsPage implements OnInit {
+  searchbyName = false
+  searchbyLocation = false
   sliderConfig = {
     initialSlide: 0,
     spaceBetween: 5,
@@ -100,6 +102,14 @@ export class MapsPage implements OnInit {
   showDistance() {
     this.cardIndex = !this.cardIndex;
   }
+  searchByName(){
+    this.searchbyName = !this.searchbyName
+  }
+
+  searchByLocation(){
+    this.searchbyLocation=!this.searchbyLocation
+  }
+
   moveMapEvent(): Promise<void> {
     this.slides.getActiveIndex().then(index => {
 

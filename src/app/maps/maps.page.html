@@ -1,4 +1,19 @@
-<ion-content>
+
+<ion-toolbar color="transparent">
+    <ion-buttons slot="secondary">
+      <ion-button (click)="requestPrompt()">
+        <ion-icon slot="icon-only" name="locate"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button style="color: black;" (click)="searchByLocation()">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+<ion-content fullscreen>
+
+
  
     <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
       <div class="maploader">
@@ -8,21 +23,28 @@
         <p>Loading Map</p>
       </div>
     </div>
-    <button (click)="requestPrompt()" ion-fab mini><ion-icon name="locate"></ion-icon></button>
-  <input id="pac-input" class="controls" type="text" placeholder="Search Location">
-  <ion-item>
-    <ion-label>Search by salon name</ion-label>
-    <ionic-selectable
-    item-content
-      [(ngModel)]="port"
-      [items]="ports"
-  
-      itemTextField="names"
-      [canSearch]="true"
-     searchFailText = "Nothing Found :("
-      (onChange)="portChange($event)">
-    </ionic-selectable>
-  </ion-item>
+    <!-- <div class="menu" >
+        <ion-icon name="menu" (click)="searchByLocation()"></ion-icon>
+        <button (click)="requestPrompt()" ion-fab mini><ion-icon name="locate"></ion-icon></button>
+    </div> -->
+    <div class="aaa" *ngIf="searchbyLocation">
+      
+        <input id="pac-input" class="controls" type="text" placeholder="Search Location">
+        <ion-item>
+          <ion-label>Search by salon name</ion-label>
+          <ionic-selectable
+          item-content
+            [(ngModel)]="port"
+            [items]="ports"
+        
+            itemTextField="names"
+            [canSearch]="true"
+           searchFailText = "Nothing Found :("
+            (onChange)="portChange($event)">
+          </ionic-selectable>
+        </ion-item>
+    </div>
+   
   <div #map id="map"></div>
   <br><br><br>
   <div class="salonlist">

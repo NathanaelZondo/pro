@@ -3,6 +3,7 @@ import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
 import { ModalController, } from '@ionic/angular';
 import * as firebase from 'firebase';
+import { ReviewsPage } from '../reviews/reviews.page';
 
 // import Swiper from 'swiper';
 
@@ -13,6 +14,7 @@ import * as firebase from 'firebase';
 })
 export class ViewsalonPage implements OnInit {
   styleCategory = 'female';
+  viewReviews =  false
   db = firebase.firestore();
   sliderConfig = {
     spaceBetween: 5,
@@ -110,7 +112,7 @@ export class ViewsalonPage implements OnInit {
       })
     }
   }
-  gender = 0;
+  gender;
   selecthairstyle(x) {
     console.log('Clicked', x);
 
@@ -124,12 +126,13 @@ export class ViewsalonPage implements OnInit {
   }
 
   onViewDidEnter() {
-    this.gethairstyles("female");
+  
   }
-  gethairstyles(x) {
 
-    console.log(this.backend.salonname)
+  gethairstyles(x) {
     this.hair = [];
+    console.log(this.backend.salonname)
+  
     let user = this.db.collection('Salons').doc(this.salond[0].userUID).collection('Styles')
 
 
@@ -137,10 +140,11 @@ export class ViewsalonPage implements OnInit {
       val.forEach(doc => {
 
         this.hair.push(doc.data());
+        console.log('jkl', this.hair)
       })
     })
 
-    console.log('jkl', this.hair)
+    
   }
 
   choosehair(x) {
@@ -204,6 +208,10 @@ export class ViewsalonPage implements OnInit {
 
     await alert.present();
   }
+
+    reviewed(){
+      this.viewReviews= !this.viewReviews
+    }
 
 }
 
