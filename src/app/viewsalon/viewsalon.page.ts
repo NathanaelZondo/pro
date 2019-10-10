@@ -14,7 +14,7 @@ import { ReviewsPage } from '../reviews/reviews.page';
 })
 export class ViewsalonPage implements OnInit {
   styleCategory = 'female';
-  viewReviews =  false
+  viewReviews =  false;
   db = firebase.firestore();
   sliderConfig = {
     spaceBetween: 5,
@@ -41,7 +41,7 @@ userRating = []
     this.backend.getHairSalon();
 
     //this.gethairstyles(this.gend);
-
+    this.selecthairstyle('female');
     console.log("selectedsalon data", this.salond)
 
 

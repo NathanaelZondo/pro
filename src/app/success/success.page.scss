@@ -1,40 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Abel|Poiret+One|Open+Sans+Condensed|Jura|Manjari|Poppins|Raleway|Montserrat ');
+
 .container {
     display: flex;
     flex-flow: column;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
-    background: #313131;
+    background: url('../../assets/success.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     height: 100%;
 }
 
 .main {
-    font-size: 60px;
-    color: white;
+    position: relative;
+    top: 15%;
+
+    h1 {
+
+        position: absolute;
+        left: -58vw;
+        font-size: 18vw;
+        color: rgba(182, 181, 181, 0.822);
+        font-family: 'Poiret One';
+        letter-spacing: 10px;
+        font-weight: bold;
+    }
+
+    p {
+        font-family: 'Poiret One';
+        font-size: 8vw;
+        font-weight: bold;
+        letter-spacing: 4px;
+        position: absolute;
+        top: 40px;
+        left: -15vw;
+        z-index: 5;
+    }
 }
 
 .icon {
-    margin-top: 30px;
-    font-size: 250px;
+    position: absolute;
+    top: 30%;
+    right: 25vw;
+    font-size: 55vw;
+    font-weight: lighter;
+    font-family: 'Poiret One';
     flex-grow: 3;
-    color: orangered;
+    color: #BF6B7A;
 }
 
 .msg {
-    font-size: 35px;
-    color: white;
+    font-family: 'Raleway';
+    color: #343A3F;
     text-align: center;
     flex-grow: 2;
     position: absolute;
-    top:60%;
+    top: 70%;
+    font-size: 5vw;
+    p{
+        span{
+            text-decoration: underline;
+            color: #BF6B7A;
+        }
+    }
 }
 
 .btn {
     .button {
-        border-radius: 20px;
-        width: 70%;
+        border-radius: 5px;
+        width: 50vw;
+        height: 5vh;
         position: absolute;
         bottom: 10%;
-        left: 15%;
-        font-size: 3vh;
+        left: 25%;
+        font-size: 3vw;
+        font-weight: bold;
+        font-family: 'Poiret One';
+        letter-spacing: 4px;
+        background: white;
+        color: #343A3F;
+        box-shadow: 5px 5px 20px #343A3F;
     }
 }

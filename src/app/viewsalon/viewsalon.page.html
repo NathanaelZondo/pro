@@ -18,6 +18,8 @@
     <div class="salonimage" *ngFor="let x of salond">
       <img src="{{x.salonImage}}">
     </div>
+
+   
     <div class="blur">
 
       <div class="desc" *ngFor="let x of salond" style="font-family: Manjari; text-align: center;">
@@ -30,18 +32,18 @@
       </div>
 
 
-      <div class="reviews">
-     
+      <div class="reviews" (click)="reviewed()">
+        
         <p style="font-family: Poiret One; font-size: 4vw; letter-spacing: 3px; margin: 5px">Reviews</p>
       </div>
       <br>
       <div class="gender">
         <div class='female' (click)="selecthairstyle('female')" (click)="viewHair()">
-          <button (click)="selecthairstyle('female')" (click)="viewHair()" >FEMALE</button>
+          <button color="transparent" (click)="selecthairstyle('female')" (click)="viewHair()" >FEMALE</button>
         </div>
         <br>
         <div class='male' >
-          <button (click)="selecthairstyle('male')" (click)="viewHair()" >MALE</button>
+          <button color="transparent" (click)="selecthairstyle('male')" (click)="viewHair()" >MALE</button>
         </div>
       </div>
     </div>
@@ -79,10 +81,10 @@
     <div class="stylez">
       <ion-slides [options]="sliderConfig">
 
-        <ion-slide style="display: flex; flex-flow: column" *ngFor ="let x of hair" >
+        <ion-slide style="display: flex; flex-flow: column" *ngFor ="let x of hair" (click)="choosehair(x)" >
     
-          <img src="{{x.hairStyleImage}}" (click)="choosehair(x)">
-          <p>{{x.hairstyleName}}<br>R{{x.hairstylePrice}}.00<br>{{x.duration}}Minutes</p>
+          <img src="{{x.hairStyleImage}}" >
+          <p>{{x.hairstyleName}}<br><span>{{x.hairstylePrice | currency:'&#82;'}}</span></p>
 
 
         </ion-slide>
@@ -92,8 +94,8 @@
     </div>
 
   </div>
-
-<div class="viewreviews" [ngClass]="{'viewreviews': viewReviews, 'closereviews': !viewreviews}">
+<!--  -->
+<div [ngClass]="{'viewreviews': viewReviews, 'closereviews': !viewReviews}">
 
   <div class="heading">
     <h2>People Said</h2>
@@ -109,7 +111,7 @@
           <img src="../../assets/danai.jpg">
         </div>
 
-        <div class="reviewdets" *ngIf="!viewReviews">
+        <div class="reviewdets" *ngIf="viewReviews">
           <h4>Keketso Matsuma</h4>
           <p>12/11/2000</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing 
@@ -124,7 +126,7 @@
           <img src="../../assets/danai.jpg">
         </div>
 
-        <div class="reviewdets" *ngIf="!viewReviews">
+        <div class="reviewdets" *ngIf="viewReviews">
           <h4>Keketso Matsuma</h4>
           <p>12/11/2000</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing 
