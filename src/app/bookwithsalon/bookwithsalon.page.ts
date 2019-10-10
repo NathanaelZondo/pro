@@ -259,9 +259,9 @@ async presentToast() {
 
     if (booking.userdate > this.futuredate) {
 
-
+      
       console.log("futureDate =", this.futuredate)
-      this.control.FutureDateToast();
+      this.FutureDateToast();
       this.isvalidated = true;
     
     }
@@ -457,9 +457,9 @@ async presentToast() {
   
 
 
- async submit(booking) {
+ async submit() {
 
-    booking =this.booking; 
+   let booking =this.booking; 
 
     if (booking.sessiontime) {
 
@@ -695,7 +695,8 @@ if ((new Date(ev.selectedTime).getDate()) < 10) {
 
 
     console.log("futureDate =", this.futuredate)
-    this.control.FutureDateToast();
+    this.booking.userdate=undefined;
+    this.FutureDateToast();
     this.isvalidated = true;
 
   
@@ -703,9 +704,9 @@ if ((new Date(ev.selectedTime).getDate()) < 10) {
   else
   if (this.cdate() > this.todate) {
   
+    this.booking.userdate=undefined;
   
-  
-    this.control.PastDateToast();
+    this.PastDateToast();
     this.isvalidated = true;
      console.log("pastdate")
   
@@ -716,6 +717,71 @@ if ((new Date(ev.selectedTime).getDate()) < 10) {
 
 
 };
+
+
+
+async FutureDateToast() {
+  this.isvalidated =true;
+  
+  const alert = await this.alertController.create({
+    header: 'Warning!',
+    cssClass: 'secondary',
+    message: 'You cannot select a past date!',
+    buttons: [
+    
+       {
+        text: 'Okay',
+    
+        handler: () => {
+          console.log('Confirm Okay');
+          this.isvalidated =true;
+        }
+      }
+    ]
+  });
+  
+  await alert.present();
+}
+
+
+
+
+
+
+
+
+
+
+async PastDateToast() {
+  this.isvalidated =true;
+  const alert = await this.alertController.create({
+    header: 'Warning!',
+    cssClass: 'secondary',
+    message: 'You cannot select a past date!',
+    buttons: [
+    
+       {
+        text: 'Okay',
+    
+        handler: () => {
+          console.log('Confirm Okay');
+          this.isvalidated =true;
+        }
+      }
+    ]
+  });
+  
+  await alert.present();
+}
+
+
+
+
+
+
+
+
+
 
 
 pickdates() {
@@ -1045,7 +1111,7 @@ findtime(booking) {
     if (this.d2 < this.d1 && this.d1 < this.d3 ) {
 
      this.presentToastWithOptions();
-     this.preventinputs =false;
+   
 
      console.log("Booking Error slot overlap ")
   
@@ -1085,7 +1151,7 @@ console.log("findtime2")
     if (this.d2 < this.d1 && this.d1 < this.d3 ) {
 
     this.presentToastWithOptions2();
-     this.preventinputs =false;
+    
 
      console.log("Booking Error slot between ")
   
