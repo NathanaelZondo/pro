@@ -131,13 +131,13 @@ else
   }
 
   onViewDidEnter() {
-    this.gethairstyles("female");
+  
   }
 
   gethairstyles(x) {
-
-    console.log(this.backend.salonname)
     this.hair = [];
+    console.log(this.backend.salonname)
+  
     let user = this.db.collection('Salons').doc(this.salond[0].userUID).collection('Styles')
 
 
