@@ -32,17 +32,22 @@ export class UpdateprofilePage implements OnInit {
       this.profile.TokenID = res.userId;
       })
   
-    this.backend.getprofile2().then(res => {
+  
       //  res.data()
-      this.profiles.push(res.data());
+      this.profiles =this.backend.profiles;
+    
+
+
+    
+   
       this.profile.name = this.profiles[0].name;
       this.profile.surname = this.profiles[0].surname;
       this.profile.cell = this.profiles[0].cell;
       this.profile.about = this.profiles[0].about;
       this.profile.image = this.profiles[0].image;
-      this.profile.TokenID = this.profile[0].tokenID;
+      //this.profile.TokenID = this.profile[0].tokenID;
       console.log("Dis d name", this.profile);
-    });
+    
   }
   profile: Profile = {
     name: this.name,

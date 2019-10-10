@@ -1352,6 +1352,11 @@ async presentToast4() {
   toast.present();
 }
 
+
+closebutton()
+{
+  this.isvalidated=true;
+}
 }
 
 
