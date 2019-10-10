@@ -23,31 +23,37 @@
       <div class="desc" *ngFor="let x of salond" style="font-family: Manjari; text-align: center;">
         <p style="font-family: Manjari; text-align: center;">{{x.SalonDesc}}</p>
         <br>
-        <div class="line">
 
+        <div class="line">
         </div>
+
       </div>
 
 
-      <div class="reviews" routerLink="/reviews">
-        <p style="font-family: Manjari; font-size: 4vw">Reviews</p>
+      <div class="reviews">
+     
+        <p style="font-family: Poiret One; font-size: 4vw; letter-spacing: 3px; margin: 5px">Reviews</p>
       </div>
       <br>
       <div class="gender">
-        <div class='female' (click)="selecthairstyle('female')" (click)="viewHair()">
+        <div class='female'
+        style="font-family: Poiret One; letter-spacing: 3px; font-weight: bold;"
+        (click)="selecthairstyle('female')" (click)="viewHair()">
           <p>FEMALE</p>
         </div>
         <br>
-        <div class='male' (click)="selecthairstyle('male')" (click)="viewHair()">
+        <div class='male' 
+        style="font-family: Poiret One; letter-spacing: 3px; font-weight: bold;"
+        (click)="selecthairstyle('male')" (click)="viewHair()">
           <p>MALE</p>
         </div>
       </div>
     </div>
 
-    <div class="details">
-
-      <div class="card" *ngFor="let x of salond">
-
+    <div class="details" *ngFor="let x of salond">
+       
+       
+      
         <div class="subtitle" style="font-family: Poiret One; color: white">
           {{x.salonName}}
         </div>
@@ -66,12 +72,12 @@
 
         <ionic4-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#db981a"
           defaultColor="#A9A9A9" readonly="true" rating={{aveg}} fontSize="6vw" halfStar="true" style="position: relative;
-          bottom: 45%;
+          bottom: 83%;
           right: -58vw;
           z-index: 5;">
         </ionic4-star-rating>
 
-      </div>
+     
     </div>
 
     <div class="stylez">
@@ -117,53 +123,50 @@
 
   </div>
 
-  <!-- <div class=" buttonz">
-      <ion-button (click)="selecthairstyle('female')" id="btn" (click)="viewHair()"
-        style="background: rgb(49, 49, 49); font-family: Manjari">Ladies
-      </ion-button>
-      <ion-button (click)="selecthairstyle('male')" id="btn" (click)="viewHair()"
-        style="background: rgb(49, 49, 49); font-family: Manjari">
-        Gents</ion-button>
-    </div> -->
-  <!-- <div [ngClass]="{'hair-inactive': !more, 'hair-active': more}" id="hair">
-    <div class="close" (click)="viewHair()">
-      <ion-fab-button style="float: right">
-        <ion-icon name="close-circle-outline"></ion-icon>
-      </ion-fab-button>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div class="gallery">
-      <div class="hair">
+<div class="viewreviews" [ngClass]="{'viewreviews': viewReviews, 'closereviews': !viewreviews}">
 
-        <p style="text-align: center; color: white">Pick the hairstyle that you want and make an appointment</p>
+  <div class="heading">
+    <h2>People Said</h2>
+    <ion-button (click)="reviewed()" color="transparent">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
+  </div>
+  <div class="line"></div>
 
-        <ion-slides [options]="sliderConfig">
+  <div class="crds">
+      <div class="crd">
+        <div class="profimage">
+          <img src="../../assets/danai.jpg">
+        </div>
 
-          <ion-slide *ngFor="let x of hair" (click)="choosehair(x)" style="display: flex; flex-flow: column">
-            <ion-card>
-              <ion-card-header id="head">
-                <img src='{{x.hairStyleImage}}' style="width: 40vh; height: 50vh;">
-
-                <br>
-                <ion-card-subtitle>{{x.hairstyleName}}</ion-card-subtitle>
-                <ion-card-title style="color: white; font-size: 15px;">
-                  <p>
-                    {{x.hairstylePrice | currency:'&#82;'}}</p>
-                </ion-card-title>
-              </ion-card-header>
-
-            </ion-card>
-
-
-          </ion-slide>
-        </ion-slides>
+        <div class="reviewdets" *ngIf="!viewReviews">
+          <h4>Keketso Matsuma</h4>
+          <p>12/11/2000</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing 
+            elit, sed do eiusmod tempor incididunt
+             dolore magna aliqua. </p>
+             <p style="font-size: 6vw">*****</p>
+          </div>
       </div>
+
+      <div class="crd">
+        <div class="profimage">
+          <img src="../../assets/danai.jpg">
+        </div>
+
+        <div class="reviewdets" *ngIf="!viewReviews">
+          <h4>Keketso Matsuma</h4>
+          <p>12/11/2000</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing 
+            elit, sed do eiusmod tempor incididunt
+             dolore magna aliqua. </p>
+             <p style="font-size: 6vw">*****</p>
+          </div>
+      </div>
+
     </div>
 
-  </div> -->
-
+</div>
 
 
 </ion-content>
