@@ -14,8 +14,8 @@
     <div class="form">
 
       <div class="msg">
-        <h1 style="font-family: Poiret One; font-size: 4vw; font-weight: bold; letter-spacing: 5px">WELCOME</h1>
-        <p style="font-family: Poiret One; font-size: 2vw ; font-weight: bold;">Sign into your account to continue</p>
+        <h1 style="font-family: Poiret One; font-size: 6vw; font-weight: bold; letter-spacing: 5px">WELCOME</h1>
+        <p style="font-family: Poiret One; font-size: 3vw ; font-weight: bold;">Sign into your account to continue</p>
       </div>
       <form [formGroup]="loginForm">
 
@@ -47,7 +47,7 @@
         <br><br>
         <div class="btn">
           <button ion-button (click)="loginUser(loginForm)"  [disabled]="!loginForm.valid"
-            style="height: 6vh; font-size: 4vw; font-family: Poiret One; font-weight: bold; background: #BF6B7A; color: white; width: 25vh">
+            style="height: 6vh; font-size: 4vw; font-family: Poiret One; font-weight: bold;border-radius: 5px ;background: #BF6B7A; color: white; width: 25vh">
             Sign-In
           </button>
           <br>

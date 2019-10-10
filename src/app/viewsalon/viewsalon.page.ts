@@ -14,7 +14,7 @@ import { ReviewsPage } from '../reviews/reviews.page';
 })
 export class ViewsalonPage implements OnInit {
   styleCategory = 'female';
-  viewReviews =  false
+  viewReviews =  false;
   db = firebase.firestore();
   sliderConfig = {
     spaceBetween: 5,
@@ -40,6 +40,9 @@ export class ViewsalonPage implements OnInit {
   cardIndex = false
   constructor(public control: ControlsService, public backend: BackendService, public modalController: ModalController, private ngZone: NgZone) {
     this.backend.getHairSalon();
+
+    //this.gethairstyles(this.gend);
+    this.selecthairstyle('female');
     console.log("selectedsalon data", this.salond)
     console.log(this.likes)
 
