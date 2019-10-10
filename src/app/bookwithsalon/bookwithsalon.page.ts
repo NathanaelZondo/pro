@@ -149,7 +149,7 @@ async presentToast() {
     sessiontime: this.backend.sessiontime,
     sessionendtime: "",
     hairdresser: "",
-    userdate: this.cdate(),
+    userdate: undefined,
     status: "Active",
     status2: "Active",
     salonuid: this.backend.salonuid,
@@ -399,6 +399,9 @@ async presentToast() {
           text: 'Confirm',
           handler: () => {
 
+
+
+
             this.backend.userbookings(this.booking);
             let v1;
             let click = 1;
@@ -436,6 +439,7 @@ async presentToast() {
 
             this.control.BookToast();
             this.control.navCtrl.navigateRoot('/success');
+          
           }
         }
       ]
@@ -717,12 +721,12 @@ if ((new Date(ev.selectedTime).getDate()) < 10) {
 
 
 async FutureDateToast() {
-  this.isvalidated =true;
+
   
   const alert = await this.alertController.create({
     header: 'Warning!',
     cssClass: 'secondary',
-    message: 'You cannot select a past date!',
+    message: 'You cannot select a date greater than 7 days from today!',
     buttons: [
     
        {
@@ -736,7 +740,14 @@ async FutureDateToast() {
     ]
   });
   
+ 
   await alert.present();
+  alert.onDidDismiss().then(val=>{
+    
+    console.log('Yes/No', val);
+    this.isvalidated =true;
+})
+  
 }
 
 
@@ -749,7 +760,7 @@ async FutureDateToast() {
 
 
 async PastDateToast() {
-  this.isvalidated =true;
+  
   const alert = await this.alertController.create({
     header: 'Warning!',
     cssClass: 'secondary',
@@ -768,6 +779,13 @@ async PastDateToast() {
   });
   
   await alert.present();
+
+
+  alert.onDidDismiss().then(val=>{
+    
+    console.log('No', val);
+    this.isvalidated =true;
+})
 }
 
 
@@ -863,7 +881,7 @@ hairdresser;
 
   testbooking(booking) {
 console.log(booking)
-booking.userdate=this.currentdate;
+booking.userdate=this.todate;
 
     this.events = [];
     this.testarray = [];
