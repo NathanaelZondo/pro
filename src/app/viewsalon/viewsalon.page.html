@@ -77,9 +77,9 @@
     <div class="stylez">
       <ion-slides [options]="sliderConfig">
 
-        <ion-slide style="display: flex; flex-flow: column" *ngFor ="let x of hair" (click)="choosehair(x)">
+        <ion-slide style="display: flex; flex-flow: column" *ngFor ="let x of hair" >
     
-          <img src="{{x.hairStyleImage}}">
+          <img src="{{x.hairStyleImage}}" (click)="choosehair(x)">
           <p>{{x.hairstyleName}}<br>R{{x.hairstylePrice}}.00<br>{{x.duration}}Minutes</p>
 
 
