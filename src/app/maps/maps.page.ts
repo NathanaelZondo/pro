@@ -87,6 +87,11 @@ export class MapsPage implements OnInit {
   salons = []
   salond = this.backend.salonsDisply;
   private versionType: any;
+  cardIndex = true;
+  duration
+  distance
+
+  unlike = false
   constructor(private device: Device, private androidPermissions: AndroidPermissions, public store: Storage, private ngZone: NgZone, private geolocation: Geolocation, public alertController: AlertController, public elementref: ElementRef, public router: Router, private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, public backend: BackendService, public control: ControlsService, private platform: Platform) {
     console.log('element Slideers: ', this.mapCenter);
     console.log('salond: ', this.salond);
@@ -94,6 +99,9 @@ export class MapsPage implements OnInit {
 
   }
 
+  showDistance() {
+    this.cardIndex = !this.cardIndex;
+  }
   searchByName(){
     this.searchbyName = !this.searchbyName
   }
@@ -104,8 +112,10 @@ export class MapsPage implements OnInit {
 
   moveMapEvent(): Promise<void> {
     this.slides.getActiveIndex().then(index => {
+
+      // this.cardIndex = index;
       console.log(index);
-      console.log('currentIndex:', index);
+      console.log('currentIndex:', this.cardIndex);
       let currentEvent = this.salons[index]
       console.log('something nyana', currentEvent.Address.lat);
       this.fullAdress = currentEvent.Address.fullAddress;
@@ -114,9 +124,11 @@ export class MapsPage implements OnInit {
         lng: currentEvent.Address.lng
       }
 
+
     });
-    console.log('addres is ', this.fullAdress);
+    // console.log('addres is ', this.fullAdress);
     this.geolocation.getCurrentPosition().then((resp) => {
+
       let geoData = {
         lat: resp.coords.latitude,
         lng: resp.coords.longitude
@@ -124,19 +136,26 @@ export class MapsPage implements OnInit {
       let start = new google.maps.LatLng(geoData.lat, geoData.lng);
       let end = new google.maps.LatLng(this.DirectionsCenter.lat, this.DirectionsCenter.lng);
       const that = this;
-
       this.directionsService.route({
         origin: start,
         destination: end,
-        travelMode: 'DRIVING'
+        travelMode: 'DRIVING',
+        unitSystem: google.maps.UnitSystem.METRIC
       }, (response, status) => {
         if (status === 'OK') {
+          let distance = response.routes[0].legs[0].distance.text
+          let duration = response.routes[0].legs[0].duration.text
+          this.duration = duration
+          this.distance = distance
+          console.log('Distance: ', distance, ' Duration: ', duration);
+
           that.directionsDisplay.setDirections(response);
           that.directionsDisplay.setMap(this.map);
         } else {
           console.log('    request failed due to ' + status);
         }
       });
+      //
     })
     return Promise.resolve();
   }
@@ -180,10 +199,10 @@ export class MapsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getHairSalon();
+
     this.ngZone.run(() => {
       let versionNumber = '5.1.1'
-      if (this.versionType === versionNumber ) {
+      if (this.versionType === versionNumber) {
         this.getUserPosition()
         console.log('its got it')
       } else {
@@ -221,9 +240,8 @@ export class MapsPage implements OnInit {
       }
     })
   }
-  portChange(event: { component: IonicSelectableComponent, value: any }) {
-    this.loaderAnimate = true
 
+  portChange(event: { component: IonicSelectableComponent, value: any }) {
 
     this.db.collection('Salons').where("salonName", "==", event.value.names).get().then(response => {
 
@@ -231,20 +249,22 @@ export class MapsPage implements OnInit {
         console.log('size for tshirt', doc.data());
         this.selectsalon(doc.data())
       })
-      this.getHairSalon();
+
     })
 
     console.log('port:', event.value.names);
   }
-  addInfoWindows(marker, content) {
 
-    let infoWindow = new google.maps.InfoWindow({
-      content: content
-    });
-    google.maps.event.addListener(marker, 'click', () => {
-      infoWindow.open(this.mapElement, marker);
-    });
-  }
+
+  // addInfoWindows(marker, content) {
+
+  //   let infoWindow = new google.maps.InfoWindow({
+  //     content: content
+  //   });
+  //   google.maps.event.addListener(marker, 'click', () => {
+  //     infoWindow.open(this.mapElement, marker);
+  //   });
+  // }
 
   getUserPosition() {
     this.options = {
@@ -708,9 +728,10 @@ export class MapsPage implements OnInit {
     await this.db.collection('Salons').where('Metro', '==', this.fiter).get().then(async snapshot => {
       console.log('Salon filtered');
       this.users = [];
-
+      this.ports = []
       snapshot.forEach(async doc => {
         let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().Address.fullAddress
+        this.ports.push({ names: doc.data().salonName })
         this.salons.push(doc.data())
         const icon = {
           url: '../../assets/icon/Hair_Dresser_7.svg', // image url

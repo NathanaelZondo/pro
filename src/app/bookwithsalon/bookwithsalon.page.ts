@@ -69,8 +69,8 @@ console.log(this.backend.salonsDisply[0].TokenID)
 
   async Loading() {
     const loading = await this.loadingController.create({
-      message: 'Please wait...',
-      duration: 500
+      message: 'Loading '+this.booking.salonname+ ' hairdressers...',
+      duration: 1500
     });
     await loading.present();
   
@@ -743,7 +743,7 @@ hairdresser;
   async dresserLoading() {
     const loading = await this.loadingController.create({
       message: 'Please wait...',
-      duration: 1500
+      duration: 2500
     });
     await loading.present();
   
@@ -755,7 +755,7 @@ hairdresser;
 
   async otherLoading() {
     const loading = await this.loadingController.create({
-      message: 'Please wait...',
+      message: 'Loading events...',
       duration: 1500
     });
     await loading.present();
@@ -954,11 +954,27 @@ this.isvalidated =false;
    if( (this.ev.events !== undefined && this.ev.events.length !== 0))
    {
 this.isvalidated=true;
-    const toast = await this.control.toastController.create({
+    const alert = await this.alertController.create({
+      header: 'Warning!',
+      cssClass: 'secondary',
       message: 'There is already a booking at '+this.booking.sessiontime+'. Choose another date or time.',
-      duration: 3000
+      buttons: [
+      
+         {
+          text: 'Okay',
+      
+          handler: () => {
+            console.log('Confirm Okay');
+            this.isvalidated =true;
+          }
+        }
+      ]
     });
-    toast.present();
+    
+    await alert.present();
+
+
+
     this.booking.sessiontime=undefined;
     this.booking.sessionendtime=undefined;
   console.log("1141",this.booking)
@@ -981,7 +997,7 @@ val2 =false;
    
 findtime(booking) {
   
-
+  this.findtime2(booking);
   for (let i = 0; i < this.events.length; i++) {
 
 
@@ -999,6 +1015,44 @@ findtime(booking) {
 
      console.log("Booking Error slot overlap ")
   
+   
+    }
+ 
+
+
+    
+
+
+  }
+  
+
+
+ 
+
+}
+
+
+findtime2(booking) {
+  
+console.log("findtime2")
+
+  for (let i = 0; i < this.events.length; i++) {
+
+    
+    this.d1 =  new Date(this.events[i].startTime);
+    console.log(this.d1)
+    this.d2 = new Date(booking.userdate+'T'+booking.sessiontime);
+    this.d3 = new Date(booking.userdate+'T'+booking.sessionendtime);
+
+    console.log("findtime2 = ", this.d1.getHours(),this.d2.getHours(),this.d3.getHours())
+
+    if (this.d2 < this.d1 && this.d1 < this.d3 ) {
+
+    this.presentToastWithOptions2();
+     this.preventinputs =false;
+
+     console.log("Booking Error slot between ")
+  
      return  0;
     }
  
@@ -1010,11 +1064,42 @@ findtime(booking) {
 }
 
 
+
+
+
+
 async presentToastWithOptions() {
   const alert = await this.alertController.create({
     header: 'Warning!',
     cssClass: 'secondary',
     message: 'The time you selected overlaps into another booking. Choose another time or date.',
+    buttons: [
+    
+       {
+        text: 'Okay',
+    
+        handler: () => {
+          console.log('Confirm Okay');
+          this.isvalidated =true;
+        }
+      }
+    ]
+  });
+  
+  await alert.present();
+
+  this.isvalidated =true;
+}
+
+
+
+
+
+async presentToastWithOptions2() {
+  const alert = await this.alertController.create({
+    header: 'Warning!',
+    cssClass: 'secondary',
+    message: 'There is already a booking within the time you have selected. Choose another time or date.',
     buttons: [
     
        {
@@ -1061,6 +1146,7 @@ async present2() {
         cssClass: 'secondary',
         handler: () => {
           console.log('Confirm Cancel');
+          this.presentToast3();
         }
       }, {
         text: 'Ok',
