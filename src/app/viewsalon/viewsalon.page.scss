@@ -130,34 +130,34 @@ ion-toolbar {
     border-bottom-left-radius: 20px;
     position: relative;
 
-    .gender {
-        position: absolute;
-        bottom: -3vh;
-        left: 18vw;
-        display: flex;
-        flex-flow: row;
-        justify-content: space-around;
-        background: grey;
-        width: 30vh;
-        height: 6vh;
-        border-radius: 30px;
+    // .gender {
+    //     position: absolute;
+    //     bottom: -3vh;
+    //     left: 18vw;
+    //     display: flex;
+    //     flex-flow: row;
+    //     justify-content: space-around;
+    //     background: grey;
+    //     width: 30vh;
+    //     height: 6vh;
+    //     border-radius: 30px;
 
-        .female {
-            margin: 10px;
+    //     // .female {
+    //     //     margin: 10px;
 
-            p {
-                font-size: 4vw;
-            }
-        }
+    //     //     p {
+    //     //         font-size: 4vw;
+    //     //     }
+    //     // }
 
-        .male {
-            margin: 10px;
+    //     // .male {
+    //     //     margin: 10px;
 
-            p {
-                font-size: 4vw;
-            }
-        }
-    }
+    //     //     p {
+    //     //         font-size: 4vw;
+    //     //     }
+    //     // }
+    // }
 
     .desc {
         position: absolute;

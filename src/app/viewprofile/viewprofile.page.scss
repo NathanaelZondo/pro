@@ -282,7 +282,8 @@ img {
             min-width: 80%;
             height: 90%;
             margin: 10px 5px;
-            background-image: linear-gradient(-50deg,rgba(54, 54, 54, 0) 50%,rgb(39, 38, 38) 40%),url('../../assets/danai.jpg');
+        //  background-image: linear-gradient(-50deg,rgba(54, 54, 54, 0) 50%,rgb(39, 38, 38) 40%),url('../../assets/danai.jpg');
+            background: linear-gradient(-50deg,rgba(54, 54, 54, 0) 50%,rgb(39, 38, 38) 40%);
             background-repeat: no-repeat;
             background-position: inherit;
             background-size: cover; 
