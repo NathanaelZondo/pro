@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Abel|Poiret+One|Open+Sans+Condensed|Jura|Manjari|Poppins|Raleway|Montserrat ');
 
+* {
+  transition: 0.7s;
+}
 .container {
   background: linear-gradient(rgba(255, 255, 255, 0.795), rgba(255, 255, 255, 0.795)), url('../../assets/iPhone\ X-XS\ –\ 98.svg');
   width: 100%;

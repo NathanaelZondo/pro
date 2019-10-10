@@ -5,10 +5,6 @@ ion-toolbar {
     position: absolute;
 }
 
-* {
-    transition: 0.7s;
-}
-
 .content {
     width: 100%;
     height: 100%;
@@ -80,15 +76,15 @@ img {
         height: 2px;
         background: grey;
         text-align: center;
-    
-    
+
+
     }
 
     .edit {
         position: absolute;
         top: 8%;
         left: 90vw;
-    
+
         ion-icon {
             font-size: 8vw;
         }
@@ -103,7 +99,7 @@ img {
     // left: 20%;
     z-index: 5;
     background: white;
-    
+
     box-shadow: 5px 5px 10px lightgray;
     width: 100%;
     // height: 25vh;
@@ -141,41 +137,45 @@ img {
         height: 2px;
         background: grey;
         text-align: center;
-    
-    
+
+
     }
 
     .edit {
         position: absolute;
         top: 8%;
         left: 90vw;
-    
+
         ion-icon {
             font-size: 8vw;
         }
     }
+
     .cards {
         width: 100%;
         height: 100%;
         overflow-x: auto;
         display: flex;
         opacity: 0;
+
         // background: red;
         .card {
             min-width: 80%;
             height: 90%;
             margin: 10px 5px;
-            background-image: linear-gradient(-50deg,rgba(54, 54, 54, 0) 50%,rgb(39, 38, 38) 40%),url('../../assets/danai.jpg');
+            background-image: linear-gradient(-50deg, rgba(54, 54, 54, 0) 50%, rgb(39, 38, 38) 40%), url('../../assets/danai.jpg');
             background-repeat: no-repeat;
             background-position: inherit;
-            background-size: cover; 
+            background-size: cover;
             position: relative;
             border-radius: 10px;
             overflow: hidden;
+
             .style {
                 position: absolute;
                 top: 0;
                 right: 5px;
+
                 p {
                     text-transform: uppercase;
                     opacity: 0.5;
@@ -185,12 +185,14 @@ img {
                     font-family: 'Poiret One';
                 }
             }
+
             .details {
                 display: grid;
                 align-items: center;
                 width: 100%;
                 height: 100%;
                 margin: 5px;
+
                 div {
                     h4 {
                         font-size: 6vw;
@@ -199,6 +201,7 @@ img {
                         font-family: 'Poiret One';
                         text-transform: uppercase;
                     }
+
                     p {
                         font-size: 4vw;
                         margin: 0px;
@@ -207,12 +210,14 @@ img {
                     }
                 }
             }
+
             .date {
                 position: absolute;
                 bottom: 0px;
                 right: 5px;
                 font-size: 6vw;
-                p{
+
+                p {
                     font-family: 'Poiret One';
                     color: white;
                     // font-weight: bold;
@@ -222,6 +227,7 @@ img {
         }
     }
 }
+
 .bookings-active {
     display: flex;
     flex-flow: column;
@@ -230,7 +236,7 @@ img {
     // left: 20%;
     z-index: 5;
     background: white;
-    
+
     box-shadow: 5px 5px 10px grey;
     width: 100%;
     height: 50vh;
@@ -268,15 +274,17 @@ img {
         height: 2px;
         background: grey;
         text-align: center;
-        margin:10px auto;
-    
+        margin: 10px auto;
+
     }
+
     .cards {
         width: 100%;
         height: 100%;
         overflow-x: auto;
         display: flex;
         opacity: 1;
+
         // background: red;
         .card {
             min-width: 80%;
@@ -286,14 +294,16 @@ img {
             background: linear-gradient(-50deg,rgba(54, 54, 54, 0) 50%,rgb(39, 38, 38) 40%);
             background-repeat: no-repeat;
             background-position: inherit;
-            background-size: cover; 
+            background-size: cover;
             position: relative;
             border-radius: 10px;
             overflow: hidden;
+
             .style {
                 position: absolute;
                 top: 0;
                 right: 5px;
+
                 p {
                     text-transform: uppercase;
                     opacity: 0.5;
@@ -303,12 +313,14 @@ img {
                     font-family: 'Poiret One';
                 }
             }
+
             .details {
                 display: grid;
                 align-items: center;
                 width: 100%;
                 height: 100%;
                 margin: 5px;
+
                 div {
                     h4 {
                         font-size: 6vw;
@@ -317,6 +329,7 @@ img {
                         font-family: 'Poiret One';
                         text-transform: uppercase;
                     }
+
                     p {
                         font-size: 4vw;
                         margin: 0px;
@@ -325,12 +338,14 @@ img {
                     }
                 }
             }
+
             .date {
                 position: absolute;
                 bottom: 0px;
                 right: 5px;
                 font-size: 6vw;
-                p{
+
+                p {
                     font-family: 'Poiret One';
                     color: white;
                     // font-weight: bold;
@@ -339,11 +354,12 @@ img {
             }
         }
     }
+
     .edit {
         position: absolute;
         top: 8%;
         left: 90vw;
-    
+
         ion-icon {
             font-size: 8vw;
         }
@@ -383,3 +399,4 @@ body {
     position: absolute;
     top: 0;
 }
+

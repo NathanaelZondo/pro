@@ -3,6 +3,7 @@ import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
 import { ModalController, } from '@ionic/angular';
 import * as firebase from 'firebase';
+import { ReviewsPage } from '../reviews/reviews.page';
 
 // import Swiper from 'swiper';
 
@@ -13,6 +14,7 @@ import * as firebase from 'firebase';
 })
 export class ViewsalonPage implements OnInit {
   styleCategory = 'female';
+  viewReviews =  false
   db = firebase.firestore();
   sliderConfig = {
     spaceBetween: 5,
@@ -215,6 +217,10 @@ async dislikeConfirm() {
       });
   
       await alert.present();
+    }
+
+    reviewed(){
+      this.viewReviews= !this.viewReviews
     }
 
 }
