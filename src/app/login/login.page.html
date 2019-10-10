@@ -1,69 +1,66 @@
-<!-- <ion-header>
+<ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title style=" margin-left: 6px; float: left; color: white; font-family: 'Poiret One'; letter-spacing: 5px;">AIRSKEDGE</ion-title>
   </ion-toolbar>
-</ion-header> -->
+</ion-header>
 
 <ion-content>
 
-  <div class="container">
-
-    <div class="icon">
-      <img src="../../assets/Untitled-1.svg">
-      <br>
-      <p>Sign-In to your account to continue </p>
+  <div class=" login">
+    <div class="image">
+      <img src="../../assets/braidchick.svg">
     </div>
 
-<br><br>
-    <div class="npts">
+    <div class="form">
+
+      <div class="msg">
+        <h1 style="font-family: Poiret One; font-size: 4vw; font-weight: bold; letter-spacing: 5px">WELCOME</h1>
+        <p style="font-family: Poiret One; font-size: 2vw ; font-weight: bold;">Sign into your account to continue</p>
+      </div>
       <form [formGroup]="loginForm">
 
-        <ion-item style=" margin: 5px; color: white; font-family: Manjari" color="transparent">
+        <ion-item>
 
           <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!loginForm.controls['email'].valid &&
-                         loginForm.controls['email'].touched" 
-                         style="font-family: Manjari" >
+                             loginForm.controls['email'].touched" style="font-family: 'Poiret One'">
           </ion-input>
         </ion-item>
-          <ion-label 
-          class="error-message" *ngIf="!loginForm.controls['email'].valid &&
-                                     loginForm.controls['email'].touched"
-          style="color:red; font-size: 15px; font-family: Manjari">Please enter a valid email address.</ion-label>
-      
+        <ion-label class="error-message" *ngIf="!loginForm.controls['email'].valid &&
+                                         loginForm.controls['email'].touched"
+          style="color:red; font-size: 15px; font-family: Poiret One;">Please enter a valid email address.</ion-label>
 
-        <ion-item style=" margin: 5px; color: white; font-family: Manjari"color="transparent">
+
+        <ion-item>
 
           <ion-input id="pass" formControlName="password" type="password" placeholder="Your password"
             [class.invalid]="!loginForm.controls['password'].valid&& loginForm.controls['password'].touched"
-            style="font-family: Manjari">
+            style="font-family: Poiret One">
           </ion-input>
         </ion-item>
-          <ion-label 
-          class="error-message" *ngIf="!loginForm.controls['password'].valid
-                                      && loginForm.controls['password'].touched"
-          style="color:red; font-size: 15px; font-family: Manjari">Your password needs more than 6 characters.</ion-label>
+        <ion-label class="error-message" *ngIf="!loginForm.controls['password'].valid
+                                          && loginForm.controls['password'].touched"
+          style="color:red; font-size: 15px; font-family: Poiret One;">Your password needs more than 6 characters.
+        </ion-label>
         <br>
-        <button ion-button routerLink="/reset-password" id="reset" style="color: rgb(204, 203, 203); background: none;
-        position: relative;
-        right: -10px; font-family: Manjari"> Forgot
-          Password? </button>
-
+        <p routerLink="/reset-password" id="reset" style="float: right; font-weight: bold; font-family: Poiret One; margin: 5px;"> Forgot
+          Password? </p>
+        <br><br>
         <div class="btn">
-          <button ion-button (click)="loginUser(loginForm)" color="light" [disabled]="!loginForm.valid"
-            style="height: 6vh; font-size: 4vw; font-family: Manjari">
+          <button ion-button (click)="loginUser(loginForm)"  [disabled]="!loginForm.valid"
+            style="height: 6vh; font-size: 4vw; font-family: Poiret One; font-weight: bold; background: #BF6B7A; color: white; width: 25vh">
             Sign-In
           </button>
-
+          <br>
           <button ion-button (click)="login()" clear style="height: 6vh; font-size: 4vw; background: transparent; 
-            color: white; font-family: Manjari">
+                color: black; font-family: Poiret One; font-weight: bold;">
             Sign-Up
           </button>
 
         </div>
       </form>
     </div>
-
   </div>
- 
+
+
 
 </ion-content>

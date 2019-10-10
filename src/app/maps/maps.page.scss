@@ -1,87 +1,201 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Teko|Abel|Anton|Dosis|Oxygen|Jura|Pacifico|Righteous|Roboto+Condensed|Ubuntu|Manjari| Mansalva');
 
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 20;
+  background: linear-gradient(rgba(255, 240, 217, 0.973)), url(../../assets/loader.svg);
+  background-repeat: repeat-x;
+  transform: scale(1);
+  overflow: hidden;
+  transition: 0.4s;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation: backgroundmover 30s linear infinite;
+
+  .maploader {
+
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    margin: 40vh auto;
+    text-align: center;
+    // animation: name duration timing-function delay iteration-count direction fill-mode;
+    animation: maploader 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+    border-radius: 200px;
+    display: grid;
+    align-content: center;
+    position: relative;
+    border-top: solid 2px gray;
+
+  }
+}
+
+.loading-text {
+  // color: yellow;
+  position: absolute;
+  bottom: 50vh;
+  left: 0px;
+  width: 100vw;
+  text-align: center;
+  // background: red;
+  height: 50vh;
+  z-index: 50;
+}
+
+.loader-hide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 20;
+  background: rgb(255, 255, 255);
+  transform: scale(0);
+  overflow: hidden;
+  transition: 0.4s;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  .maploader {
+
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    margin: 40vh auto;
+    text-align: center;
+    // animation: name duration timing-function delay iteration-count direction fill-mode;
+    animation: maploader 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+    border-radius: 200px;
+    display: grid;
+    align-content: center;
+    position: relative;
+    border-top: solid 2px gray;
+
+  }
+}
+
+@keyframes maploader {
+  0% {
+    transform: rotate(0deg);
+    border-color: rgb(182, 70, 95);
+    // background: rgb(255, 192, 192);
+  }
+
+  50% {
+    // background: rgb(206, 206, 255);
+    // transform: rotate(360deg);
+    border-color: rgb(42, 50, 75);
+  }
+
+  100% {
+    border-color: rgb(250, 182, 43);
+    // background: rgb(255, 167, 167);
+    transform: rotate(360deg);
+  }
+}
+
 .container {
-    display: flex;
-    flex-flow: column;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  height: 100%;
 }
 
 #map {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+
+
 }
 
 .salonlist {
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  overflow-x: auto;
+  position: absolute;
+  bottom: -2px;
+
+  .magic {
     width: 100%;
+    height: 100%;
+  }
+
+  .card {
+    width: 85vw;
+    height: 150px;
     display: flex;
-    flex-flow: row;
-    overflow-x: auto;
-    position: absolute;
-    bottom: 0;
+    flex-flow: column;
+    margin: 5px;
+    // background: rgba(8, 8, 8, 0.719);
+    position: relative;
+    overflow: hidden;
 
-    .magic {
-        width: 90vh;
-        height: 30vh;
-    }
+    .top {
+      display: flex;
+      flex-flow: row;
+      justify-items: baseline;
 
-    .card {
-        width: 85vw;
-        height: 100px;
-        display: flex;
-        flex-flow: column;
+      .image {
+        position: absolute;
+        z-index: 5;
+        width: 16vh;
+        height: 16vh;
         margin: 5px;
-        background: rgba(8, 8, 8, 0.719);
-        position: relative;
-        overflow: hidden;
+        border-radius: 20px;
 
-        .top {
-            display: flex;
-            flex-flow: row;
-            justify-items: baseline;
-
-            .image {
-                width: 100px;
-                height: 90px;
-                margin: 5px;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
-
-            .title {
-                margin: 25px;
-                float: left;
-            }
-
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 10px;
         }
+      }
+
+      .title {
+        margin: 25px;
+        float: left;
+        background: #343A3F;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        width: 50vw;
+        height: 13vh;
+        position: relative;
+        left: 11vh;
+        bottom: 5%;
+        display: grid;
+        align-items: center;
+
+        p {
+          // position: relative;
+          // top: 25px;
+        }
+      }
 
     }
+
+  }
 }
 
 #pac-input {
-    width: 95vw;
-    height: 40px;
-    margin: 10px;
-    background: rgba(94, 94, 94, 0.582);
-    box-shadow: 5px 5px 10px grey;
-    font-size: 3.5vw;
-    border: none;
-    color: rgb(255, 255, 255);
-    border-radius: 20px;
-    padding: 7px;
+  width: 95vw;
+  height: 40px;
+  margin: 10px;
+  background: rgb(255, 255, 255);
+  box-shadow: 5px 5px 10px grey;
+  font-size: 3.5vw;
+  border: none;
+  color: rgb(145, 142, 142);
+  border-radius: 20px;
+  padding: 7px;
 }
 
 p {
-    color: rgb(255, 255, 255);
-    font-size: 5vw;
-    margin: 0;
+  color: rgb(255, 255, 255);
+  font-size: 5vw;
+  margin: 0;
 }
-
-.scroll-content {
-    padding-bottom: 0 !important;
-}
-

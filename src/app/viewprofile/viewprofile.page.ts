@@ -3,7 +3,8 @@ import { BackendService } from '../backend.service';
 import { Profile } from '../profile';
 import { ControlsService } from '../controls.service';
 import * as firebase from 'firebase';
-import { NavController, AlertController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
+import { NavController, AlertController, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-viewprofile',
@@ -12,16 +13,36 @@ import { NavController, AlertController } from '@ionic/angular';
 })
 export class ViewprofilePage implements OnInit {
   profiles = [];
-  constructor(private navCtrl:NavController,public backend: BackendService, public control: ControlsService,public alertController:AlertController) {
+  seeBookings = false
+  userbooking = [];
+  ob = {};
+  constructor(private navCtrl:NavController, public modalController: ModalController,public backend: BackendService, public control: ControlsService,public alertController:AlertController) {
     this.profiles =this.backend.profiles;
     console.log(this.profiles)
   }
 
   ngOnInit() {
 
-   this.control.Loading2();
+  //  this.control.Loading2();
+this.getBookings()
 
+  }
 
+  viewdetails(x) {
+    console.log(x)
+    this.backend.setbookingdetails(x)
+    this.presentModal();
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalPage
+    });
+    return await modal.present();
+  }
+
+  bookings(){
+    this.seeBookings = !this.seeBookings;
   }
 
 
@@ -70,4 +91,18 @@ export class ViewprofilePage implements OnInit {
 
     await alert.present();
   }
+  getBookings(){
+    firebase.firestore().collection('Bookings').where("useruid", "==", firebase.auth().currentUser.uid).orderBy("userdate", "desc").limit(15).get().then(val => {
+      val.forEach(doc => {
+        console.log(doc.id)
+        this.ob = { id: doc.id };
+        this.userbooking.push({ ...this.ob, ...doc.data() })
+
+        console.log(this.userbooking)
+
+
+      });
+    });
+  }
+  
 }

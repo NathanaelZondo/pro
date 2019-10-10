@@ -4,14 +4,18 @@ import { Router } from '@angular/router';
 import { BackendService } from '../backend.service';
 import * as firebase from 'firebase';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+ import { Device } from '@ionic-native/device/ngx';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.page.html',
   styleUrls: ['./navigation.page.scss'],
 })
 export class NavigationPage implements OnInit {
-
-  constructor(public control:ControlsService,public router:Router,public backend:BackendService,    private oneSignal: OneSignal) {  }
+  private versionType:any;
+  constructor(public control:ControlsService,public router:Router,public backend:BackendService,    private oneSignal: OneSignal,private device: Device) { 
+this.versionType  = device.version;
+console.log('version', this.versionType)
+   }
 profiles =[];
   ngOnInit() {
     console.log("id of the id",this.backend.userId);
@@ -23,7 +27,7 @@ profiles =[];
       
     });
     console.log("heloo bangani");
-    this.control.Loading2()
+    // this.control.Loading2()
     this.profiles =[];
     firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot(val=>{
  
@@ -59,33 +63,33 @@ profiles =[];
 
 
 
-//   home()
-//   {
-//   this.router.navigate([('home')]);  
-//   }
-//   map()
-//   {
+  home()
+  {
+  this.router.navigate([('maps')]);  
+  }
+  map()
+  {
 
-// this.router.navigate(['home']);
-//   }
+this.router.navigate(['home']);
+  }
 
-//   profile()
-//   {
+  profile()
+  {
 
-// this.router.navigate(['/viewprofile']);
-//   }
+this.router.navigate(['/viewprofile']);
+  }
 
-//   bookings()
-//   {
+  bookings()
+  {
 
-// this.router.navigate(['booking']);
-//   }
+this.router.navigate(['booking']);
+  }
 
-//   info()
-//   {
+  info()
+  {
 
-// this.router.navigate(['info']);
-//   }
+this.router.navigate(['info']);
+  }
 
   signout() {
     this.backend.signout();

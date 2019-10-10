@@ -1,67 +1,28 @@
-<!-- <ion-content>
-
-  <div class="container" *ngFor="let profile of profiles">
-
-    <div class="icons">
-      <div class="back" (click)="back()">
-        <ion-icon name="arrow-round-back" style="font-size:30px; color: white"></ion-icon>
-      </div>
-      <div class="exit" (click)="signout()">
-        <ion-icon name="exit" style="font-size:30px; color: white;"></ion-icon>
-      </div>
-
-    </div>
-    <div class="img">
-      <img src="{{profile.image}}">
-    </div>
-
-    <div class="info">
-      <p id="name">{{profile.name}} {{profile.surname}}</p>
-
-      <p id="cell"><strong>{{profile.cell}}</strong></p> -->
-<!-- <p id="about">{{profile.about}}</p> -->
-<!-- </div>
-
-    <div class="goUp">
-      <div class="sumt">
-
-      </div>
-      <div class="up">
-
-      </div>
-    </div>
-
-    <div class="edit">
-      <ion-fab-button (click)="update()" style="background: rgba(255, 166, 0, 0.678); border-radius: 50%">
-        <ion-icon name="create"></ion-icon>
-      </ion-fab-button>
-       <ion-icon name="create" style="font-size:30px;" (click)="update()"></ion-icon> 
-    </div>
-
-
-  </div>
-
-
-
-
-</ion-content> -->
 <!-- <ion-header>
-  <ion-toolbar>
-    <ion-icon name="arrow-round-back" style="font-size: 20px; margin: 5px" (click)="back()"></ion-icon>
-    <ion-icon name="exit" style="font-size: 20px; float: right; margin: 5px" (click)="signout()"></ion-icon>
-  </ion-toolbar>
-</ion-header> -->
-
-<ion-content fulscreen>
-
-  <ion-header>
     <ion-toolbar color="dark">
-      <ion-icon name="arrow-round-back" style="font-size: 20px; color: grey" (click)="back()"></ion-icon>
-
-      <ion-icon name="exit" (click)="signout()" style="font-size:20   px; color: grey; float: right"></ion-icon>
-
+      <ion-icon name="arrow-round-back" style="font-size: 200%; color: white; margin: 10px;" (click)="back()">
+      </ion-icon>
+      <ion-icon name="exit" (click)="signout()" style="font-size: 20px; color: white; float: right; margin: 10px">
+      </ion-icon>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
+
+  <ion-toolbar color="transparent">
+      <ion-buttons slot="start">
+        <ion-button style="color: white">
+          <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+        </ion-button>
+        
+      </ion-buttons>
+    
+      <ion-buttons slot="primary">
+        <ion-button style="color: white">
+          <ion-icon slot="icon-only" name="exit"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    
+<ion-content fullscreen>
 
   <body *ngFor="let profile of profiles">
 
@@ -69,46 +30,50 @@
     <div class="flex-container">
       <div style="width:100vw;padding-left:0px">
 
-        <div class="edit">
-          <!-- <ion-fab-button [disabled] ="isvalidated" (click)="update()" style="background: rgba(252, 166, 6, 0); border-radius: 50%; width: 30px; height: 30px;">
-                <ion-icon name="create" style="font-size: 20px"></ion-icon>
-              </ion-fab-button> -->
-          <button ion-button (click)="update()"
-            style=" width: 150px; height: 50px; text-align: center; background: black; color: orangered; font-size: 5vw">
-            Edit
-          </button>
+        <div class="info-open" [ngClass]="{'bookings-inactive': !seeBookings, 'bookings-active': seeBookings}">
+          <div class="edit">
+            <ion-icon name="create" (click)="update()"></ion-icon>
+          </div>
+          <p id="name" style="color: black; font-family: Poiret One;">{{profile.name}} {{profile.surname}}</p>
+          <br>
+          <p id="cell" style="color: black">0815253696</p>
+          <br>
+          <div class="line"></div>
+          <div class="bookings">
+            <ion-button *ngIf="!seeBookings" (click)=" bookings()" color="transparent" style=" color: white;">
+              VIEW BOOKINGS
+            </ion-button>
+            <ion-button *ngIf="seeBookings" (click)=" bookings()" color="transparent" style=" color: white;">
+                CLOSE BOOKINGS
+              </ion-button>
+          </div>
+          <div class="cards">
+            <div class="card"  *ngFor="let x of userbooking" (click)="viewdetails(x)">
+              <div class="style">
+                <p>{{x.hairstyletype}}</p>
+              </div>
+                <div class="details">
+                  <div>
+                      <h4>{{x.salonname}}</h4>
+                      <p style="color: green">Stylist: {{x.hairdresser}}</p>
 
+                      <p *ngIf="x.status.localeCompare('Active')  " style="color: green">Booking Active</p>
+                      <p *ngIf="x.status.localeCompare('cancelled') " style="color: red">Booking Cancelled</p>
+                  </div>
+                </div>
+                <div class="date" displayFormat="MM DD YY" ><p>{{x.userdate}}</p></div>
+            </div>
+       
+          </div>
         </div>
 
-        <div class="info">
-          <p id="name" style="color: black; font-family: Pacifico;">{{profile.name}} {{profile.surname}}</p>
 
-          <p id="cell" style="color: black">{{profile.cell}}</p>
 
-          <p id="about" style="color: black">{{profile.about}}</p>
-        </div>
 
-        <!-- <table width ="auto" style ="margin-left:15px; ">
-                 <tr >
-                  
-                  <label style="font-size:25px;font-family:sans-serif;color:white" >{{profile.name}} {{profile.surname}}     </label><br>
-                  <br>
-                  <br>
-                <label style="font-size:22px;font-family:sans-serif;color:white">{{profile.cell}}    </label><br>
-                
-               
-               <br>
-               <br>
-                   <label style="font-size:20px;font-family:sans-serif;color:white">{{profile.about}}</label><br>
-                     <br>
-               
-                   
-                 
-                   
-                  </table> -->
       </div>
     </div>
   </body>
+  <!-- {{profile.cell}} -->
 </ion-content>
 
 

@@ -7,34 +7,42 @@
       <h1> Update Profile </h1>
     </div>
     <div class="userimage">
-      <div class="img"  (click)="takePhoto()">
-        <img src="{{styleImage}}" placeholder="Choose Image" width ="100px" height ="100px">
-      </div>
+        <div class="img" (click)="takePhoto()">
+            <img src="{{styleImage}}" placeholder="Choose Image" width="100px" height="100px">
+          </div>
       <!-- <div class="chooseimg" (click)="takePhoto()">
         <ion-icon name ="camera" style="font-size: 30px;"></ion-icon>
       </div>   -->
     </div>
     <div class="inputs">
-      <ion-item>
-        <ion-label><p>Name</p></ion-label>
-          <ion-input type = "text" [(ngModel)] ="profile.name" placeholder ="Enter your name" style="color: rgba(19, 19, 19, 0.788);"></ion-input>
+      <br>
+      <ion-item color= "transparent">
+        <!-- <ion-label><p>Name</p></ion-label> -->
+          <ion-input type = "text" [(ngModel)] ="profile.name" placeholder ="Enter your name" style="color: rgb(255, 255, 255); font-family: 'Poiret One';"></ion-input>
       </ion-item>
-      <ion-item>
-          <ion-label><p>Surname</p></ion-label>
-        <ion-input type = "text" [(ngModel)] ="profile.surname" placeholder ="Enter your surnamename" style="color: rgba(19, 19, 19, 0.788);"></ion-input>
+      <ion-item color= "transparent">
+          <!-- <ion-label><p>Surname</p></ion-label> -->
+        <ion-input type = "text" [(ngModel)] ="profile.surname" placeholder ="Enter your surnamename" style="color: rgb(255, 255, 255); font-family: 'Poiret One';"></ion-input>
       </ion-item>
-       <ion-item>
-          <ion-label><p>Phone</p></ion-label>
-          <ion-input type = "text" [(ngModel)] ="profile.cell" placeholder ="Enter your cell number" style="color: rgba(19, 19, 19, 0.788);"></ion-input>
+       <ion-item color= "transparent">
+          <!-- <ion-label><p>Phone</p></ion-label> -->
+          <ion-input type = "text" [(ngModel)] ="profile.cell" placeholder ="Your cell number" style="color: rgb(255, 255, 255); font-family: 'Poiret One';"></ion-input>
        </ion-item>
-       <ion-item>
-          <ion-label ><p>Bio</p></ion-label>
-         <ion-input [(ngModel)] ="profile.about" placeholder="Tell us about yourself" style="color: rgba(19, 19, 19, 0.788);"></ion-input>
+       <ion-item color= "transparent">
+          <!-- <ion-label ><p>Bio</p></ion-label> -->
+          <ion-textarea rows="4" cols="20" [(ngModel)]="profile.about" placeholder="Tell us about yourself"
+          style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-textarea>
         </ion-item>
-         <p  style="color: rgba(0, 0, 0, 0.788);" >{{message}}</p>
+        <br>
+         <p  style="color: rgb(255, 255, 255);" >{{message}}</p>
     </div>
     <div class="btn">
-        <ion-button color="dark" [disabled] ="sub" (click) ="updateprofile(profile)">SUBMIT</ion-button>
+        <ion-button
+        style="background: #BF6B7A; width:30vh; border-radius: 6px; font-family: 'Poiret One'; letter-spacing: 4px;"
+        color="transparent"
+      [disabled] ="sub" (click) ="updateprofile(profile)">SUBMIT</ion-button>
+
+    
 
         
     </div>

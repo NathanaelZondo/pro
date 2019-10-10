@@ -23,6 +23,8 @@ import { ReviewsPageModule } from './reviews/reviews.module';
 import { ViewsalonPageModule } from './viewsalon/viewsalon.module';
 import { IonicStorageModule,Storage } from '@ionic/storage';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { Device } from '@ionic-native/device/ngx';
 import {CustomerPage} from '../app/customer/customer.page';
 @NgModule({
   declarations: [AppComponent, ViewhairstylePipe,ModalPage,CustomerPage],
@@ -42,9 +44,9 @@ import {CustomerPage} from '../app/customer/customer.page';
    ,
    Geolocation,
    NativeGeocoder,
-   LocalNotifications
- 
-   
+   LocalNotifications,
+   AndroidPermissions,
+   Device
   ],
   bootstrap: [AppComponent]
 })

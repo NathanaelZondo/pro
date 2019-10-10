@@ -12,13 +12,14 @@ import * as firebase from 'firebase';
   styleUrls: ['./viewsalon.page.scss'],
 })
 export class ViewsalonPage implements OnInit {
+  styleCategory = 'female';
   db = firebase.firestore();
   sliderConfig = {
     spaceBetween: 5,
     slidesPerView: 1.2,
-    centeredSlides: true,
-    watchOverflow: true
+    
   }
+  
 likes;
 total = 0;
 rate = 0;
@@ -40,8 +41,6 @@ userRating = []
     //this.gethairstyles(this.gend);
 
     console.log("selectedsalon data", this.salond)
-
-
 
 
 firebase.firestore().collection('Analytics').doc(this.salond[0].userUID).onSnapshot(val=>{
@@ -120,6 +119,9 @@ else
   }
   gender = 0;
   selecthairstyle(x) {
+    console.log('Clicked', x);
+    
+    this.styleCategory = x;
     this.gender = x;
     this.gethairstyles(this.gender);
 

@@ -1,89 +1,53 @@
-@import url('https://fonts.googleapis.com/css?family=Lato|Teko|Abel|Anton|Dosis|Oxygen|Jura|Pacifico|Righteous|Roboto+Condensed|Ubuntu|Manjari');
+@import url('https://fonts.googleapis.com/css?family=Abel|Poiret+One|Open+Sans+Condensed|Jura|Manjari|Poppins|Raleway|Montserrat ');
 
-.container {
-  background: url('../../assets/background.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+ion-toolbar {
+  --background: white;
+  --opacity: 0;
+  position: absolute;
+  
+}  
+.form{
+  position: absolute;
+
+  z-index: 5;
+  background: white;
+  bottom:0;
+  width: 100%;
+  // height: 50vh;
   display: flex;
   flex-flow: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  text-align: center;
+}
+.login{
+  width: 100%;
   height: 100%;
+  overflow: hidden;
+  .image{
+    
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      img{
+           
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      }
+  }
 }
 
-.icon {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
+.item{
+  width: 90vw;
+  margin: 10px;
+}
+
+.btn{
   align-items: center;
-
-  img{
-    width: 20vh;
-    height: 20vh;
-  }
-
-  p {
-    text-align: center;
-    color: white;
-  }
 }
-
-.npts {
-  align-items: center;
-  position: relative;
-  left: 15%;
-  bottom: 10px;
-
-  .item {
-    background: transparent;
-    color: black;
-    width: 70%;
-
-    .input {
-      border-bottom: 1px solid black;
-      color: white;
-    }
-  }
-
-  .label {
-    color: white;
-  }
-}
-
-.btn {
-  opacity: 1;
-  position: relative;
-  right: 5%;
-  top: 15px;
-
-
-  button {
-
-    background: whitesmoke;
-    color: black;
-    width: 80%;
-    align-items: center;
-    margin: 2px;
-    border-radius: 20px;
-
-    #login {
-      color: white;
-    }
-  }
-
-  p {
-    position: relative;
-    right: 10%;
-    text-align: center;
-  }
-}
-
-#reset {
-  position: relative;
-  left: 100px;
-}
-
 
 
 
