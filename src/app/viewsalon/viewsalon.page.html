@@ -1,10 +1,22 @@
+<ion-toolbar color="transparent">
+    <ion-buttons slot="start">
+      <ion-button style="color: white" routerLink="/maps">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+      
+    </ion-buttons>
+  
+    <ion-buttons slot="primary">
+      <ion-button >
+          <ion-icon  [ngClass]="{'unlike': !cardIndex, 'like': cardIndex}" (click)="event()" name="heart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
 <ion-content fullscreen>
-  <ion-header>
+  <!-- <ion-header>
     <ion-toolbar>
       <div class="likes">
-        <!-- <ion-icon [ngClass]="{'distance-active': cardIndex, 'distance-inactive': !cardIndex}" (click)="event()" id="heart" style="float: left; font-size: 30px; margin: 10px"
-
-        ></ion-icon> -->
         <ion-icon  [ngClass]="{'unlike': !cardIndex, 'like': cardIndex}" (click)="event()" name="heart"></ion-icon>
       </div>
 
@@ -12,7 +24,7 @@
         <ion-icon name="arrow-back" style="float: right; margin: 10px; color: white; font-size: 25px;"></ion-icon>
       </div>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
 
   <div class="container">
 
@@ -39,12 +51,7 @@
       </div>
       <br>
       <div class="gender">
-        <pre>
-
-
-
-          
-        </pre>
+   
         <div class='female' (click)="selecthairstyle('female')" (click)="viewHair()">
           <button color="transparent" (click)="selecthairstyle('female')" (click)="viewHair()" >FEMALE</button>
         </div>

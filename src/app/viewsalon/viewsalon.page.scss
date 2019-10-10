@@ -3,7 +3,6 @@
 
 ion-toolbar {
     --background: white;
-    --opacity: 0;
     position: absolute;
 }
 
@@ -206,8 +205,8 @@ ion-toolbar {
     .reviews {
         position: absolute;
         bottom: 0.3%;
-        left: 35%;
-        margin: 15px;
+        left: 34%;
+        // margin: 15px;
         padding: 10px;
         z-index: 400;
 
