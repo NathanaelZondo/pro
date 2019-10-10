@@ -36,16 +36,12 @@
       </div>
       <br>
       <div class="gender">
-        <div class='female'
-        style="font-family: Poiret One; letter-spacing: 3px; font-weight: bold;"
-        (click)="selecthairstyle('female')" (click)="viewHair()">
-          <p>FEMALE</p>
+        <div class='female' (click)="selecthairstyle('female')" (click)="viewHair()">
+          <button (click)="selecthairstyle('female')" (click)="viewHair()" >FEMALE</button>
         </div>
         <br>
-        <div class='male' 
-        style="font-family: Poiret One; letter-spacing: 3px; font-weight: bold;"
-        (click)="selecthairstyle('male')" (click)="viewHair()">
-          <p>MALE</p>
+        <div class='male' >
+          <button (click)="selecthairstyle('male')" (click)="viewHair()" >MALE</button>
         </div>
       </div>
     </div>
@@ -83,41 +79,15 @@
     <div class="stylez">
       <ion-slides [options]="sliderConfig">
 
-        <ion-slide style="display: flex; flex-flow: column" >
-          <!-- <ion-card>
-            <ion-card-header id="head">
-             <img src="../../assets/danai.jpg">
+        <ion-slide style="display: flex; flex-flow: column" *ngFor ="let x of hair" >
+    
+          <img src="{{x.hairStyleImage}}" (click)="choosehair(x)">
+          <p>{{x.hairstyleName}}<br>R{{x.hairstylePrice}}.00<br>{{x.duration}}Minutes</p>
 
-              <br>
-              <ion-card-subtitle></ion-card-subtitle>
-              <ion-card-title style="color: white; font-size: 15px;">
-                <p>
-                  </p>
-              </ion-card-title>
-            </ion-card-header> -->
-          <!-- </ion-card> -->
-          <img src="../../assets/danai.jpg">
-          <p>FADE</p>
 
         </ion-slide>
 
-        <ion-slide style="display: flex; flex-flow: column">
-          <!-- <ion-card>
-              <ion-card-header id="head">
-               <img src="../../assets/danai.jpg">
   
-                <br>
-                <ion-card-subtitle></ion-card-subtitle>
-                <ion-card-title style="color: white; font-size: 15px;">
-                  <p>
-                    </p>
-                </ion-card-title>
-              </ion-card-header>
-  
-            </ion-card> -->
-          <img src="../../assets/danai.jpg">
-          <p>RELAX</p>
-        </ion-slide>
       </ion-slides>
     </div>
 

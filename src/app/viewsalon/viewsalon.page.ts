@@ -119,7 +119,7 @@ else
   salond = this.backend.selectedsalon;
   ngOnInit() {
   }
-  gender = 0;
+  gender;
   selecthairstyle(x) {
     console.log('Clicked', x);
     
@@ -135,6 +135,7 @@ else
   onViewDidEnter() {
     this.gethairstyles("female");
   }
+
   gethairstyles(x) {
 
     console.log(this.backend.salonname)
@@ -146,10 +147,11 @@ else
       val.forEach(doc => {
 
         this.hair.push(doc.data());
+        console.log('jkl', this.hair)
       })
     })
 
-    console.log('jkl', this.hair)
+    
   }
 
   choosehair(x) {
