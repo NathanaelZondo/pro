@@ -21,7 +21,7 @@
 
         <ion-item>
 
-          <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!loginForm.controls['email'].valid &&
+          <ion-input formControlName="email" type="email" placeholder="Your email address" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')" [class.invalid]="!loginForm.controls['email'].valid &&
                              loginForm.controls['email'].touched" style="font-family: 'Poiret One'">
           </ion-input>
         </ion-item>
@@ -32,7 +32,7 @@
 
         <ion-item>
 
-          <ion-input id="pass" formControlName="password" type="password" placeholder="Your password"
+          <ion-input id="pass" formControlName="password" type="password" placeholder="Your password" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
             [class.invalid]="!loginForm.controls['password'].valid&& loginForm.controls['password'].touched"
             style="font-family: Poiret One">
           </ion-input>
@@ -42,10 +42,10 @@
           style="color:red; font-size: 15px; font-family: Poiret One;">Your password needs more than 6 characters.
         </ion-label>
         <br>
-        <p routerLink="/reset-password" id="reset" style="float: right; font-weight: bold; font-family: Poiret One; margin: 5px;"> Forgot
+        <p (click)="reset()" id="reset" style="float: right; font-weight: bold; font-family: Poiret One; margin: 5px;"> Forgot
           Password? </p>
         <br><br>
-        <div class="btn">
+        <div class="btn" *ngIf="!hide">
           <button ion-button (click)="loginUser(loginForm)"  [disabled]="!loginForm.valid"
             style="height: 10vw; width: 10vw; font-size: 4vw; font-family: Poiret One; font-weight: bold;border-radius: 5px ;background: #BF6B7A; color: white; width: 25vh">
             Sign-In

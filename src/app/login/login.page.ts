@@ -13,7 +13,7 @@ import { ControlsService } from '../controls.service';
 export class LoginPage implements OnInit {
   public loginForm: FormGroup;
   public loading: HTMLIonLoadingElement;
-
+  hide='';
   constructor(
     public nav:NavController,
     public loadingCtrl: LoadingController,
@@ -74,4 +74,81 @@ export class LoginPage implements OnInit {
 
 this.control.router.navigate(['signup']);
   }
+
+  reset(){
+this.presentAlertPrompt();
+  }
+  async presentAlertPrompt() {
+    const alert = await this.alertCtrl.create({
+      header: 'Reset Password',
+      message: 'Enter your email so we can send the password reset link.',
+      inputs: [
+        {
+          name: 'name1',
+          type: 'text',
+          placeholder: 'Email'
+        },
+
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Send Email',
+          handler: data => {
+            this.authService.resetPassword(data.name1).then(
+              async () => {
+                const alert = await this.alertCtrl.create({
+                  message: 'Check your email for a password reset link',
+                  buttons: [
+                    {
+                      text: 'Ok',
+                      role: 'cancel',
+                      handler: () => {
+                 
+                          this.presentLoading()
+                      }
+                    }
+                  ]
+                });
+                await alert.present();
+              },
+              async error => {
+                const errorAlert = await this.alertCtrl.create({
+                  message: error.message,
+                  buttons: [{ text: 'Ok', role: 'cancel' }]
+                });
+                await errorAlert.present();
+              }
+            );
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+  async presentLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Please wait..',
+      duration: 1000
+    });
+    await loading.present();
+
+}
+inputEvent(data){
+
+  if(data=='open'){
+     this.hide='value'
+  } else if(data=='close') {
+    this.hide='';
+  }
+  
+}
+
 }
