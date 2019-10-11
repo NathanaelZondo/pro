@@ -1,20 +1,18 @@
+<ion-toolbar color="transparent">
+  <ion-buttons slot="start">
+    <ion-button style="color: white" (click)="back()">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
 
+  </ion-buttons>
 
-  <ion-toolbar color="transparent">
-      <ion-buttons slot="start">
-        <ion-button style="color: white" (click)="back()">
-          <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
-        </ion-button>
-        
-      </ion-buttons>
-    
-      <ion-buttons slot="primary">
-        <ion-button style="color: white" (click)="signout()">
-          <ion-icon slot="icon-only" name="exit"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-    
+  <ion-buttons slot="primary">
+    <ion-button style="color: white" (click)="signout()">
+      <ion-icon slot="icon-only" name="exit"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
 <ion-content fullscreen>
 
   <body *ngFor="let profile of profiles">
@@ -37,32 +35,35 @@
               VIEW BOOKINGS
             </ion-button>
             <ion-button *ngIf="seeBookings" (click)=" bookings()" color="transparent" style=" color: white;">
-                CLOSE BOOKINGS
-              </ion-button>
+              CLOSE BOOKINGS
+            </ion-button>
           </div>
           <div class="cards">
-            <div class="card"  *ngFor="let x of userbooking" (click)="viewdetails(x)" [style.background]="'url('+x.hairstyleimage+')'">
-                <div class="skew">
-                    <div class="details">
-              
-                        <div>
-                            <h4>{{x.salonname}}</h4>
-                            <p style="color: green">Stylist: {{x.hairdresser}}</p>
-      
-                            <p *ngIf="x.status.localeCompare('Active')  " style="color: green">Booking Active</p>
-                            <p *ngIf="x.status.localeCompare('cancelled') " style="color: red">Booking Cancelled</p>
-                        </div>
-                      </div>
+            <div class="card" *ngFor="let x of userbooking" (click)="viewdetails(x)"
+              [style.background]="'url('+x.hairstyleimage+')'">
+              <div class="skew">
+                <div class="details">
 
-                      <div class="style">
-                          <p>{{x.hairstyletype}}</p>
-                        </div>
-                        
-                          <div class="date" displayFormat="MM DD YY" ><p>{{x.userdate}}</p></div>
+                  <div>
+                    <h4>{{x.salonname}}</h4>
+                    <p style="color: green">Stylist: {{x.hairdresser}}</p>
+
+                    <p *ngIf="x.status.localeCompare('Active')  " style="color: green">Booking Active</p>
+                    <p *ngIf="x.status.localeCompare('cancelled') " style="color: red">Booking Cancelled</p>
+                  </div>
                 </div>
-             
+
+                <div class="style">
+                  <p>{{x.hairstyletype}}</p>
+                </div>
+
+                <div class="date" displayFormat="MM DD YY">
+                  <p>{{x.userdate}}</p>
+                </div>
+              </div>
+
             </div>
-       
+
           </div>
         </div>
 
@@ -72,48 +73,5 @@
       </div>
     </div>
   </body>
- 
+
 </ion-content>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -4,74 +4,72 @@
       <ion-icon name="locate"></ion-icon>
     </ion-fab-button>
   </div>
-  <div class="g-search" (click)="searchByLocation()">
-          <ion-fab-button size="small">
-            <ion-icon name="search"></ion-icon>
-          </ion-fab-button>
+  <div class="g-search">
+    <ion-fab-button size="small" (click)="option('location')">
+      <ion-icon name="pin"></ion-icon>
+    </ion-fab-button>
+    <br>
+    <ion-fab-button size="small" (click)="option('salon')">
+      <ion-icon name="cut"></ion-icon>
+    </ion-fab-button>
   </div>
 
-    <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
-      <div class="maploader">
-      
-      </div>
-      <div class="loading-text">
-        <p>Loading Map</p>
-      </div>
+  <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
+    <div class="maploader">
+
     </div>
-    <!-- <div class="menu" >
-        <ion-icon name="menu" (click)="searchByLocation()"></ion-icon>
-        <button (click)="requestPrompt()" ion-fab mini><ion-icon name="locate"></ion-icon></button>
-    </div> -->
-    <div [ngClass]="{'aaa': searchbyLocation, 'aaa-in': !searchbyLocation}">
-        <div class="s-location" (click)="option('location')">
-            <input id="pac-input" name="pac-input" class="controls" type="text" placeholder="Search Location">
-        </div>
-        <div class="s-location" (click)="option('salon')">
-          <p>Search Salon</p>
-        </div>
+    <div class="loading-text">
+      <p>Loading Map</p>
     </div>
-   <div class="Sinput" *ngIf="searchby.location">
-            
-        </div>
-        <ion-item *ngIf="searchby.salon">
-          <ion-label position="floating">Search by salon name</ion-label>
-          <ionic-selectable
-          item-content
-            [(ngModel)]="port"
-            [items]="ports"
-        
-            itemTextField="names"
-            [canSearch]="true"
-           searchFailText = "Nothing Found :("
-            (onChange)="portChange($event)">
-          </ionic-selectable>
-        </ion-item>
+  </div>
+<!-- 
+  <div [ngClass]="{'aaa': searchbyLocation, 'aaa-in': !searchbyLocation}">
+   
+
+  </div> -->
+
+  
   <div #map id="map"></div>
+
+  <div class="s-location" *ngIf="searchby.location">
+      <input id="pac-input" name="pac-input" class="controls" type="text" placeholder="Search Location">
+    </div>
+
+  <ion-item *ngIf="searchby.salon" id="salonlocate">
+    <ion-label position="floating">Search by salon name</ion-label>
+    <ionic-selectable item-content [(ngModel)]="port" [items]="ports" itemTextField="names" [canSearch]="true"
+      searchFailText="Nothing Found :(" (onChange)="portChange($event)">
+    </ionic-selectable>
+  </ion-item>
+  
   <br><br><br>
   <div class="salonlist">
     <ion-slides [options]="sliderConfig" #sliderRef (ionSlideDidChange)="moveMapEvent($event)">
       <ion-slide class="magic" *ngFor="let b of salons; let i = index" (click)="selectsalon(b)">
         <div class="card">
-          
+
           <div class="top">
             <div class="image">
-             
+
               <img src="{{b.salonImage}}" alt="tough">
-              <div  [ngClass]="{'distance-active': cardIndex, 'distance-inactive': !cardIndex}" (click)="showDistance()">
-                  <div class="data">
-                      <ion-icon name="hourglass"></ion-icon><p>{{duration}}</p>&nbsp;<ion-icon name="compass"></ion-icon><p>{{distance}}</p>
-                  </div>
+              <div [ngClass]="{'distance-active': cardIndex, 'distance-inactive': !cardIndex}" (click)="showDistance()">
+                <div class="data">
+                  <ion-icon name="hourglass"></ion-icon>
+                  <p>{{duration}}</p>&nbsp;<ion-icon name="compass"></ion-icon>
+                  <p>{{distance}}</p>
                 </div>
+              </div>
             </div>
-            <div class="title">
-              <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; margin-left: 5px;
-              letter-spacing: 4px;"><strong>{{b.salonName}}</strong></p>
-              <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway" >{{b.Address.streetName}}</p>
+            <div class="title" (click)="selectsalon(b)">
+              <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; padding-left: 10px;">
+                <strong>{{b.salonName}}</strong></p>
+              <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway">
+                {{b.Address.streetName}}</p>
             </div>
           </div>
-          
+
         </div>
-       
+
       </ion-slide>
     </ion-slides>
   </div>

@@ -112,10 +112,10 @@ export class MapsPage implements OnInit {
   }
   option(cmd) {
     if (cmd == 'location') {
-      this.searchby.location = true;
+      this.searchby.location = !this.searchby.location
       this.searchbyLocation = false;
     } else {
-      this.searchby.salon = true;
+      this.searchby.salon = !this.searchby.salon
       this.searchbyLocation = false;
     }
   }
