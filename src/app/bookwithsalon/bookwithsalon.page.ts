@@ -155,11 +155,11 @@ async presentToast() {
     salonuid: this.backend.salonuid,
     hairstyleimage: this.backend.hairstyleimage,
     useruid:firebase.auth().currentUser.uid,
-    // bookingid:Math.floor(Math.random() * 2000000).toString(),
-   // TokenID:this.backend.selectedsalon[0].TokenID,
-   TokenID:"",
+    //  bookingid:Math.floor(Math.random() * 2000000).toString(),
+    TokenID:this.backend.selectedsalon[0].TokenID,
+ 
     UserTokenID:"",
-    // UserTokenID: this.userToken,
+    
     late:"",
     saloncell:this.backend.selectedsalon[0].SalonContactNo
   }
