@@ -201,9 +201,6 @@ export class ViewsalonPage implements OnInit {
           text: 'Okay',
           handler: () => {
             console.log('Confirm Okay');
-
-
-
           }
         }
       ]

@@ -28,7 +28,7 @@ declare var google;
 })
 export class MapsPage implements OnInit {
   searchbyName = false
-  searchbyLocation = false
+  
   sliderConfig = {
     initialSlide: 0,
     spaceBetween: 5,
@@ -90,7 +90,11 @@ export class MapsPage implements OnInit {
   cardIndex = true;
   duration
   distance
-
+  searchby = {
+    location: false,
+    salon: false
+  }
+  searchbyLocation = false;
   unlike = false
   constructor(private device: Device, private androidPermissions: AndroidPermissions, public store: Storage, private ngZone: NgZone, private geolocation: Geolocation, public alertController: AlertController, public elementref: ElementRef, public router: Router, private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, public backend: BackendService, public control: ControlsService, private platform: Platform) {
     console.log('element Slideers: ', this.mapCenter);
@@ -102,12 +106,18 @@ export class MapsPage implements OnInit {
   showDistance() {
     this.cardIndex = !this.cardIndex;
   }
-  searchByName(){
-    this.searchbyName = !this.searchbyName
+  option(cmd){
+    if (cmd == 'location') {
+      this.searchby.location = true;
+      this.searchbyLocation= false;
+    } else {
+      this.searchby.salon = true;
+      this.searchbyLocation= false;
+    }
   }
 
-  searchByLocation(){
-    this.searchbyLocation=!this.searchbyLocation
+  searchByLocation() {
+    this.searchbyLocation= true;
   }
 
   moveMapEvent(): Promise<void> {

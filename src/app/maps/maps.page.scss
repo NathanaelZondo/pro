@@ -1,11 +1,99 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Teko|Abel|Anton|Dosis|Oxygen|Jura|Pacifico|Righteous|Roboto+Condensed|Ubuntu|Manjari| Mansalva');
-
+.g-search {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+.g-locate {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+}
 ion-toolbar {
   --background: white;
   position: absolute;
   z-index: 9;
 }
-
+.aaa {
+  width: 100vw;
+  overflow: hidden;
+  position: absolute;
+  background: white;
+  top: 0vw;
+  left: 0px;
+  right: 0px;
+  height: 13vh;
+  z-index: 20;
+  display: block;
+  padding: 10px 0px;
+  display: flex;
+  border-radius: 0px 0px 10px 10px;
+  justify-content: center;
+  p {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    color: black;
+    text-align: center;
+  }
+  .s-location {
+    width: 47%;
+    height: 97%;
+    display: grid;
+    align-items: center;
+    // margin: 10px;
+    background: rgb(240, 240, 240);
+    border-radius: 20px;
+  }
+}
+.aaa-in {
+  width: 100vw;
+  overflow: hidden;
+  position: absolute;
+  background: white;
+  top: 0vw;
+  left: 0px;
+  right: 0px;
+  height: 0vh;
+  z-index: 20;
+  display: block;
+  padding: 0px 0px;
+  display: flex;
+  border-radius: 0px 0px 10px 10px;
+  justify-content: center;
+  p {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    color: black;
+    text-align: center;
+  }
+  .s-location {
+    width: 47%;
+    height: 97%;
+    display: grid;
+    align-items: center;
+    // margin: 10px;
+    background: rgb(240, 240, 240);
+    border-radius: 20px;
+  }
+}
+#pac-input {
+  width: 95vw;
+  height: 40px;
+  margin: 10px;
+  background: rgb(255, 255, 255);
+  // box-shadow: 5px 5px 10px grey;
+  font-size: 3.5vw;
+  border: none;
+  color: rgb(145, 142, 142);
+  border-radius: 20px;
+  padding: 7px;
+  position: absolute !important;
+  z-index: 20 !important;
+}
 .loader {
   position: absolute;
   top: 0;
@@ -109,6 +197,7 @@ ion-toolbar {
   // height: 100%;
 }
 
+
 .content{
   height: 100vh;
   padding-bottom: 0 !important;
@@ -161,8 +250,8 @@ ion-icon{
       .image {
         position: absolute;
         z-index: 5;
-        width: 16vh;
-        height: 16vh;
+        width: 30vw;
+        height: 35vw;
         margin: 5px;
         border-radius: 20px;
         overflow: hidden;
@@ -178,7 +267,7 @@ ion-icon{
             margin: 0px auto;
             background: rgba(255, 255, 255, 0.507);
             color: black;
-            border-radius: 200px;
+            // border-radius: 200px;
             display: flex;
             p {
               font-size: 3vw;
@@ -198,7 +287,7 @@ ion-icon{
             margin: 3px auto;
             background: rgba(255, 255, 255, 0.507);
             color: black;
-            border-radius: 200px;
+            // border-radius: 200px;
             display: flex;
             p {
               font-size: 3vw;
@@ -216,14 +305,14 @@ ion-icon{
 
       .title {
         margin: 25px;
-        float: left;
+        // float: left;
         background: #343A3F;
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
         width: 50vw;
-        height: 13vh;
+        height: 25vw;
         position: relative;
-        left: 11vh;
+        left: 15vw;
         bottom: 5%;
         display: grid;
         align-items: center;
@@ -235,18 +324,7 @@ ion-icon{
   }
 }
 
-#pac-input {
-  width: 95vw;
-  height: 40px;
-  margin: 10px;
-  background: rgb(255, 255, 255);
-  // box-shadow: 5px 5px 10px grey;
-  font-size: 3.5vw;
-  border: none;
-  color: rgb(145, 142, 142);
-  border-radius: 20px;
-  padding: 7px;
-}
+
 
 p {
   color: rgb(255, 255, 255);
