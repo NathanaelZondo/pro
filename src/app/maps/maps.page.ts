@@ -28,7 +28,7 @@ declare var google;
 })
 export class MapsPage implements OnInit {
   searchbyName = false
-  
+
   sliderConfig = {
     initialSlide: 0,
     spaceBetween: 5,
@@ -96,7 +96,11 @@ export class MapsPage implements OnInit {
   }
   searchbyLocation = false;
   unlike = false
-  constructor(private device: Device, private androidPermissions: AndroidPermissions, public store: Storage, private ngZone: NgZone, private geolocation: Geolocation, public alertController: AlertController, public elementref: ElementRef, public router: Router, private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, public backend: BackendService, public control: ControlsService, private platform: Platform) {
+  constructor(private device: Device, private androidPermissions: AndroidPermissions, 
+    public store: Storage, private ngZone: NgZone, private geolocation: Geolocation, 
+    public alertController: AlertController, public elementref: ElementRef, public router: Router, 
+    private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, 
+    public backend: BackendService, public control: ControlsService, private platform: Platform) {
     console.log('element Slideers: ', this.mapCenter);
     console.log('salond: ', this.salond);
     this.versionType = device.version;
@@ -106,18 +110,18 @@ export class MapsPage implements OnInit {
   showDistance() {
     this.cardIndex = !this.cardIndex;
   }
-  option(cmd){
+  option(cmd) {
     if (cmd == 'location') {
       this.searchby.location = true;
-      this.searchbyLocation= false;
+      this.searchbyLocation = false;
     } else {
       this.searchby.salon = true;
-      this.searchbyLocation= false;
+      this.searchbyLocation = false;
     }
   }
 
   searchByLocation() {
-    this.searchbyLocation= true;
+    this.searchbyLocation = true;
   }
 
   async  moveMapEvent(): Promise<void> {
@@ -374,6 +378,8 @@ export class MapsPage implements OnInit {
     this.getSalonmarkrs();
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     let input = document.getElementById('pac-input');
+
+
     let searchBox = new google.maps.places.SearchBox(input);
     this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -606,9 +612,12 @@ export class MapsPage implements OnInit {
 
     // this.loaderAnimate = false;
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-    let input = document.getElementById('pac-input');
-    let searchBox = new google.maps.places.SearchBox(input);
-    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    let input = document.getElementsByName('pac-input')
+    setTimeout(() => {
+      console.log('in', input[0]);
+    }, 1000);
+    let searchBox = new google.maps.places.SearchBox(input[0]);
+   // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     console.log('bafo', input);
 
     // Bias the SearchBox results towards current map's viewport.

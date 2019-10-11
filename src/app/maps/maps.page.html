@@ -24,7 +24,7 @@
     </div> -->
     <div [ngClass]="{'aaa': searchbyLocation, 'aaa-in': !searchbyLocation}">
         <div class="s-location" (click)="option('location')">
-          <p>Search Location</p>
+            <input id="pac-input" name="pac-input" class="controls" type="text" placeholder="Search Location">
         </div>
         <div class="s-location" (click)="option('salon')">
           <p>Search Salon</p>
