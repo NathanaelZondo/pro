@@ -24,14 +24,14 @@
     </div> -->
     <div [ngClass]="{'aaa': searchbyLocation, 'aaa-in': !searchbyLocation}">
         <div class="s-location" (click)="option('location')">
-          <p>Search Location</p>
+            <input id="pac-input" name="pac-input" class="controls" type="text" placeholder="Search Location">
         </div>
         <div class="s-location" (click)="option('salon')">
           <p>Search Salon</p>
         </div>
     </div>
    <div class="Sinput" *ngIf="searchby.location">
-            <input id="pac-input" class="controls" type="text" placeholder="Search Location">
+            
         </div>
         <ion-item *ngIf="searchby.salon">
           <ion-label position="floating">Search by salon name</ion-label>
