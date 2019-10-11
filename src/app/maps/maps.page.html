@@ -31,7 +31,7 @@
         </div>
     </div>
    <div class="Sinput" *ngIf="searchby.location">
-            <input id="pac-input" class="controls" type="text" placeholder="Search Location">
+           
         </div>
         <ion-item *ngIf="searchby.salon">
           <ion-label position="floating">Search by salon name</ion-label>
@@ -63,9 +63,8 @@
                   </div>
                 </div>
             </div>
-            <div class="title">
-              <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; margin-left: 5px;
-              letter-spacing: 4px;"><strong>{{b.salonName}}</strong></p>
+            <div class="title" (click)="selectsalon(b)">
+              <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; margin-left: 5px;"><strong>{{b.salonName}}</strong></p>
               <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway" >{{b.Address.streetName}}</p>
             </div>
           </div>

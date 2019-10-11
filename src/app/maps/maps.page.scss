@@ -6,7 +6,7 @@
   z-index: 10;
 }
 .g-locate {
-  position: absolute;
+  position: absolute; 
   top: 10px;
   left: 10px;
   z-index: 10;
@@ -75,7 +75,6 @@ ion-toolbar {
     height: 97%;
     display: grid;
     align-items: center;
-    // margin: 10px;
     background: rgb(240, 240, 240);
     border-radius: 20px;
   }
@@ -198,10 +197,10 @@ ion-toolbar {
 }
 
 
-.content{
-  height: 100vh;
-  padding-bottom: 0 !important;
-}
+// .content{
+//   height: 100vh;
+//   padding-bottom: 0 !important;
+// }
 
 .menu{
   display: flex;
@@ -251,7 +250,7 @@ ion-icon{
         position: absolute;
         z-index: 5;
         width: 30vw;
-        height: 35vw;
+        height: 32vw;
         margin: 5px;
         border-radius: 20px;
         overflow: hidden;
@@ -309,7 +308,7 @@ ion-icon{
         background: #343A3F;
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
-        width: 50vw;
+        width: 55vw;
         height: 25vw;
         position: relative;
         left: 15vw;
