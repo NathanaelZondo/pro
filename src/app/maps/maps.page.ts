@@ -120,56 +120,61 @@ export class MapsPage implements OnInit {
     this.searchbyLocation= true;
   }
 
-  moveMapEvent(): Promise<void> {
-    this.slides.getActiveIndex().then(index => {
+  async  moveMapEvent(): Promise<void> {
+    this.ngZone.run(() => {
+      this.slides.getActiveIndex().then(index => {
 
-      // this.cardIndex = index;
-      console.log(index);
-      console.log('currentIndex:', this.cardIndex);
-      let currentEvent = this.salons[index]
-      console.log('something nyana', currentEvent.Address.lat);
-      this.fullAdress = currentEvent.Address.fullAddress;
-      this.DirectionsCenter = {
-        lat: currentEvent.Address.lat,
-        lng: currentEvent.Address.lng
-      }
-
-
-    });
-    // console.log('addres is ', this.fullAdress);
-    this.geolocation.getCurrentPosition().then((resp) => {
-
-      let geoData = {
-        lat: resp.coords.latitude,
-        lng: resp.coords.longitude
-      }
-      let start = new google.maps.LatLng(geoData.lat, geoData.lng);
-      let end = new google.maps.LatLng(this.DirectionsCenter.lat, this.DirectionsCenter.lng);
-      const that = this;
-      this.directionsService.route({
-        origin: start,
-        destination: end,
-        travelMode: 'DRIVING',
-        unitSystem: google.maps.UnitSystem.METRIC
-      }, (response, status) => {
-        if (status === 'OK') {
-          let distance = response.routes[0].legs[0].distance.text
-          let duration = response.routes[0].legs[0].duration.text
-          this.duration = duration
-          this.distance = distance
-          console.log('Distance: ', distance, ' Duration: ', duration);
-
-          that.directionsDisplay.setDirections(response);
-          that.directionsDisplay.setMap(this.map);
-        } else {
-          console.log('    request failed due to ' + status);
+        // this.cardIndex = index;
+        console.log(index);
+        console.log('currentIndex:', this.cardIndex);
+        let currentEvent = this.salons[index]
+        console.log('something nyana', currentEvent.Address.lat);
+        this.fullAdress = currentEvent.Address.fullAddress;
+        this.DirectionsCenter = {
+          lat: currentEvent.Address.lat,
+          lng: currentEvent.Address.lng
         }
-      });
-      //
+
+
+      })
+      this.geolocation.getCurrentPosition().then((resp) => {
+
+        let geoData = {
+          lat: resp.coords.latitude,
+          lng: resp.coords.longitude
+        }
+        this.ngZone.run(() => {
+          let start = new google.maps.LatLng(geoData.lat, geoData.lng);
+          let end = new google.maps.LatLng(this.DirectionsCenter.lat, this.DirectionsCenter.lng);
+          const that = this;
+          this.directionsService.route({
+            origin: start,
+            destination: end,
+            travelMode: 'DRIVING',
+            unitSystem: google.maps.UnitSystem.METRIC
+          }, (response, status) => {
+            if (status === 'OK') {
+              let distance = response.routes[0].legs[0].distance.text
+              let duration = response.routes[0].legs[0].duration.text
+              this.duration = duration
+              this.distance = distance
+              console.log('Distance: ', distance, ' Duration: ', duration);
+
+              that.directionsDisplay.setDirections(response);
+              that.directionsDisplay.setMap(this.map);
+            } else {
+              console.log('    request failed due to ' + status);
+            }
+          });
+        })
+
+        //
+      })
     })
+
+
     return Promise.resolve();
   }
-
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Added to booking list.',
@@ -180,8 +185,6 @@ export class MapsPage implements OnInit {
 
     await alert.present();
   }
-
-
   selectsalon(x) {
     console.log("Address = ", x.Address.streetName)
     this.backend.selectedsalon.splice(0, 1);
@@ -222,8 +225,6 @@ export class MapsPage implements OnInit {
     })
 
   }
-
-
   getHairSalon() {
     this.hairstyledata = [];
     this.ports = [];
@@ -250,39 +251,23 @@ export class MapsPage implements OnInit {
       }
     })
   }
-
   portChange(event: { component: IonicSelectableComponent, value: any }) {
+    this.ngZone.run(() => {
+      this.db.collection('Salons').where("salonName", "==", event.value.names).get().then(response => {
 
-    this.db.collection('Salons').where("salonName", "==", event.value.names).get().then(response => {
+        response.forEach(doc => {
+          console.log('size for tshirt', doc.data());
+          this.selectsalon(doc.data())
+        })
 
-      response.forEach(doc => {
-        console.log('size for tshirt', doc.data());
-        this.selectsalon(doc.data())
       })
-
     })
-
-    console.log('port:', event.value.names);
   }
-
-
-  // addInfoWindows(marker, content) {
-
-  //   let infoWindow = new google.maps.InfoWindow({
-  //     content: content
-  //   });
-  //   google.maps.event.addListener(marker, 'click', () => {
-  //     infoWindow.open(this.mapElement, marker);
-  //   });
-  // }
-
   getUserPosition() {
     this.options = {
       enableHighAccuracy: true,
     };
-
     this.geolocation.getCurrentPosition(this.options).then((pos: Geoposition) => {
-
       let geoData = {
         lat: pos.coords.latitude,
         lng: pos.coords.longitude

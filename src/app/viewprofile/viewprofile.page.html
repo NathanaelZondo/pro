@@ -1,11 +1,4 @@
-<!-- <ion-header>
-    <ion-toolbar color="dark">
-      <ion-icon name="arrow-round-back" style="font-size: 200%; color: white; margin: 10px;" (click)="back()">
-      </ion-icon>
-      <ion-icon name="exit" (click)="signout()" style="font-size: 20px; color: white; float: right; margin: 10px">
-      </ion-icon>
-    </ion-toolbar>
-  </ion-header> -->
+
 
   <ion-toolbar color="transparent">
       <ion-buttons slot="start">
@@ -36,7 +29,7 @@
           </div>
           <p id="name" style="color: black; font-family: Poiret One;">{{profile.name}} {{profile.surname}}</p>
           <br>
-          <p id="cell" style="color: black">0815253696</p>
+          <p id="cell" style="color: black">{{profile.cell}}</p>
           <br>
           <div class="line"></div>
           <div class="bookings">
@@ -79,7 +72,7 @@
       </div>
     </div>
   </body>
-  <!-- {{profile.cell}} -->
+ 
 </ion-content>
 
 
@@ -124,15 +117,3 @@
 
 
 
-
-<!-- <ion-item *ngFor ="let profile of profiles">
-    <ion-thumbnail item-start>
-        <img src ="{{profile.image}}">
-      </ion-thumbnail>
-<pre>
-  
-{{profile.name}}
-{{profile.surname}}
-{{profile.cell}}
-{{profile.bio}}
-</pre> -->

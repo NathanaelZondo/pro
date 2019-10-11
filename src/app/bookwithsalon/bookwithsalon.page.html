@@ -17,9 +17,9 @@
 
 </pre >
 <div align ="center">
-<button  (click)="changeMode('day')" [style.background] ="daycolor">DAY</button>&nbsp;&nbsp;
-<button (click)="changeMode('week')" [style.background] ="weekcolor">WEEK</button>&nbsp;&nbsp;
-<button (click)="changeMode('month')" [style.background] ="monthcolor">MONTH</button>
+<button class ="buttonz" (click)="changeMode('day')" [style.background] ="daycolor">DAY</button>&nbsp;&nbsp;
+<button  class ="buttonz" (click)="changeMode('week')" [style.background] ="weekcolor">WEEK</button>&nbsp;&nbsp;
+<button class ="buttonz"  (click)="changeMode('month')" [style.background] ="monthcolor">MONTH</button>
 </div>
 <pre>
 
@@ -38,22 +38,27 @@
   
     
       <div class="flex-container" >
-       <div>
-        <ion-grid>
+      
+       
          
-            <ion-row align ="center">
+            
             <pre>
 
             </pre>
-            <button   [style.background] ="pink" align ="center"  style="width: 300px" (click) ="submit()" [hidden] ="isvalidated">Book Now!</button>
-            </ion-row>
-          </ion-grid>
+            <div style ="width:100vh;height:100px;background: linear-gradient(rgba(179, 125, 93, 0.342),rgba(179, 125, 93, 0.384),rgba(179, 125, 93, 0.363));position:fixed" [hidden] ="isvalidated" align ="center">
+                <div align ="right" style ="width:30px"><button  style ="background:transparent;background-color:transparent;" width ="10px" (click)="closebutton()"><ion-icon name ="close" style ="color:black" ></ion-icon></button></div>
+            <br>
+              <button   [style.background] ="pink"   style="width: 300px; width: 27%;
+              height: 40px;color:white;border-radius: 100px;background-color:rgb(179, 125, 93);" (click) ="submit()"  >Book Now!</button>
+          </div>
+           
+         
         
      
-    <br>
+    
   
    
-       </div>
+       
         </div> 
      
 
