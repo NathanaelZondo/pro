@@ -155,11 +155,11 @@ async presentToast() {
     salonuid: this.backend.salonuid,
     hairstyleimage: this.backend.hairstyleimage,
     useruid:firebase.auth().currentUser.uid,
-    // bookingid:Math.floor(Math.random() * 2000000).toString(),
-   // TokenID:this.backend.selectedsalon[0].TokenID,
-   TokenID:"",
+    //  bookingid:Math.floor(Math.random() * 2000000).toString(),
+    TokenID:this.backend.selectedsalon[0].TokenID,
+ 
     UserTokenID:"",
-    // UserTokenID: this.userToken,
+    
     late:"",
     saloncell:this.backend.selectedsalon[0].SalonContactNo
   }
@@ -403,6 +403,18 @@ async presentToast() {
 
 
             this.backend.userbookings(this.booking);
+           
+            if( this.backend.selectedsalon[0].TokenID){
+              var notificationObj = {
+                headings: {en:" NEW BOOKING ALERT! "},
+                small_icon : '../src/assets/Untitled-1.jpg',
+                contents: { en:  this.booking.name + " Has made a booking with "+ this.booking.hairdresser +" on "+ this.booking.userdate + " from " + this.booking.sessiontime+ " to "+ this.booking.sessionendtime },
+                include_player_ids: [this.backend.selectedsalon[0].TokenID],
+              }
+              this.oneSignal.postNotification(notificationObj).then(res => {
+               // console.log('After push notifcation sent: ' +res);
+              })
+            }
             let v1;
             let click = 1;
             firebase.firestore().collection('salonAnalytics').doc(this.backend.salonuid).collection('numbers').get().then(val => {

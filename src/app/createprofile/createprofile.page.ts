@@ -21,6 +21,7 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 })
 
 export class CreateprofilePage  {
+  hide='';
   storage = firebase.storage().ref();
   uploadprogress
   profiles =[];
@@ -201,6 +202,15 @@ else{
 
     this.navCtrl.setDirection('root');
     this.navCtrl.navigateRoot('/login');
+  }
+  inputEvent(data){
+
+    if(data=='open'){
+       this.hide='value'
+    } else if(data=='close') {
+      this.hide='';
+    }
+    
   }
 
 //   async createprofile(profileForm: FormGroup): Promise<void> {

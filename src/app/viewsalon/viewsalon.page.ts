@@ -164,6 +164,26 @@ export class ViewsalonPage implements OnInit {
     this.viewReviews= !this.viewReviews
   }
 
+
+
+  async dislikeConfirm() {
+    const alert = await this.control.alertCrtl.create({
+      header: 'Confirm!',
+      message: 'You have already liked ' + this.backend.salonname + '.',
+      buttons: [
+        {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+
 }
 
 

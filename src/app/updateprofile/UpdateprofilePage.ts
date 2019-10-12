@@ -13,6 +13,7 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 })
 export class UpdateprofilePage implements OnInit {
   profiles = [];
+  hide =''
   name;
   surname;
   image;
@@ -204,5 +205,13 @@ else{
 
     console.log('Loading dismissed!');
   }
+  inputEvent(data){
 
+    if(data=='open'){
+       this.hide='value'
+    } else if(data=='close') {
+      this.hide='';
+    }
+    
+  }
 }

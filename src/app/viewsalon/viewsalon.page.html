@@ -37,13 +37,13 @@
         <p style="font-family: Poiret One; font-size: 4vw; letter-spacing: 3px; margin: 5px">Reviews</p>
       </div>
       <br>
-      <div class="gender">
+      <div class="gender" >
 
-        <div class='female' (click)="selecthairstyle('female')" (click)="viewHair()">
+        <div class='female' [ngClass]="{'female': styleCategory=='female', 'female-inactive': styleCategory=='male'}">
           <button color="transparent" (click)="selecthairstyle('female')" (click)="viewHair()">FEMALE</button>
         </div>
         <br>
-        <div class='male'>
+        <div class='male' [ngClass]="{'male': styleCategory=='male', 'male-inactive': styleCategory=='female'}">
           <button color="transparent" (click)="selecthairstyle('male')" (click)="viewHair()">MALE</button>
         </div>
       </div>
@@ -75,27 +75,19 @@
           right: -58vw;
           z-index: 5;">
       </ionic4-star-rating>
-
-
     </div>
 
     <div class="stylez">
       <ion-slides [options]="sliderConfig">
-
         <ion-slide style="display: flex; flex-flow: column" *ngFor="let x of hair" (click)="choosehair(x)">
-
           <img src="{{x.hairStyleImage}}">
           <p>{{x.hairstyleName}}<br><span>{{x.hairstylePrice | currency:'&#82;'}}</span></p>
-
-
         </ion-slide>
-
-
       </ion-slides>
     </div>
 
   </div>
-  <!--  -->
+
   <div [ngClass]="{'viewreviews': viewReviews, 'closereviews': !viewReviews}">
 
     <div class="heading">
@@ -107,42 +99,20 @@
     <div class="line"></div>
 
     <div class="crds">
-      <div class="crd" *ngFor =" let  x of rating">
+      <div class="crd" *ngFor=" let  x of rating">
         <div class="profimage">
           <img src="{{x.image}}">
         </div>
 
-        <div class="reviewdets" >
-          <h4>{{x.name}}</h4>
+        <div class="reviewdets">
+          <h4>{{x.name}}&nbsp;{{x.surname}}</h4>
           <p>12/11/2000</p>
           <p>{{x.review}} </p>
-          <ionic4-star-rating #rating
-          activeIcon = "ios-star"
-          defaultIcon = "ios-star-outline"
-          activeColor = "#db981a" 
-          defaultColor = "#A9A9A9"
-          readonly="true"
-          rating= {{x.rating}}
-          fontSize = "12px"
-          >
-      </ionic4-star-rating>
+          <ionic4-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#db981a"
+            defaultColor="#A9A9A9" readonly="true" rating={{x.rating}} fontSize="12px">
+          </ionic4-star-rating>
         </div>
       </div>
-<!-- 
-      <div class="crd">
-        <div class="profimage">
-          <img src="../../assets/danai.jpg">
-        </div>
-
-        <div class="reviewdets" *ngIf="viewReviews">
-          <h4>Keketso Matsuma</h4>
-          <p>12/11/2000</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt
-            dolore magna aliqua. </p>
-          <p style="font-size: 6vw">*****</p>
-        </div>
-      </div> -->
 
     </div>
 

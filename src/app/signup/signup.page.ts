@@ -13,6 +13,7 @@ import * as firebase from 'firebase';
 export class SignupPage implements OnInit {
   public signupForm: FormGroup;
   public loading: any;
+  hide='';
   constructor(
     private authService: AuthService,
     private loadingCtrl: LoadingController,
@@ -72,5 +73,14 @@ firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser
   {
 
 this.control.router.navigate(['login']);
+  }
+  inputEvent(data){
+
+    if(data=='open'){
+       this.hide='value'
+    } else if(data=='close') {
+      this.hide='';
+    }
+    
   }
 }
