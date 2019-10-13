@@ -107,7 +107,7 @@ ion-toolbar {
   bottom: 0;
   right: 0;
   z-index: 20;
-  background: linear-gradient(rgba(255, 240, 217, 0.973)), url(../../assets/loader.svg);
+  background:rgb(22, 13, 0);
   background-repeat: repeat-x;
   transform: scale(1);
   overflow: hidden;
@@ -116,18 +116,57 @@ ion-toolbar {
   animation: backgroundmover 30s linear infinite;
 
   .maploader {
-    overflow: hidden;
-    width: 50px;
+    // overflow: hidden;
+    width: 70px;
     height: 50px;
     margin: 40vh auto;
     text-align: center;
     // animation: name duration timing-function delay iteration-count direction fill-mode;
-    animation: maploader 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+    animation: maploader 1.2s linear infinite;
     border-radius: 200px;
     display: grid;
     align-content: center;
     position: relative;
-    border-top: solid 2px gray;
+    border: solid 2px gray;
+    .lds-facebook {
+      display: inline-block;
+      position: relative;
+      width: 64px;
+      height: 64px;
+    }
+    .lds-facebook div {
+      border-radius: 200px;
+      display: inline-block;
+      position: absolute;
+      left: 6px;
+      right: 6px;
+      width: 13px;
+      background: #fff;
+      animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    }
+    .lds-facebook div:nth-child(1) {
+      left: 6px;
+      animation-delay: -0.24s;
+    }
+    .lds-facebook div:nth-child(2) {
+      left: 26px;
+      animation-delay: -0.12s;
+    }
+    .lds-facebook div:nth-child(3) {
+      left: 45px;
+      animation-delay: 0;
+    }
+    @keyframes lds-facebook {
+      0% {
+        top: 6px;
+        height: 51px;
+      }
+      50%, 100% {
+        top: 19px;
+        height: 26px;
+      }
+    }
+    
 
   }
 }
@@ -156,28 +195,65 @@ ion-toolbar {
   overflow: hidden;
   transition: 0.4s;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-
   .maploader {
-
-    overflow: hidden;
-    width: 50px;
+    // overflow: hidden;
+    width: 70px;
     height: 50px;
     margin: 40vh auto;
     text-align: center;
     // animation: name duration timing-function delay iteration-count direction fill-mode;
-    animation: maploader 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+    animation: maploader 1.2s linear infinite;
     border-radius: 200px;
     display: grid;
     align-content: center;
     position: relative;
-    border-top: solid 2px gray;
+    border: solid 2px gray;
+    .lds-facebook {
+      display: inline-block;
+      position: relative;
+      width: 64px;
+      height: 64px;
+    }
+    .lds-facebook div {
+      border-radius: 200px;
+      display: inline-block;
+      position: absolute;
+      left: 6px;
+      right: 6px;
+      width: 13px;
+      background: #fff;
+      animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    }
+    .lds-facebook div:nth-child(1) {
+      left: 6px;
+      animation-delay: -0.24s;
+    }
+    .lds-facebook div:nth-child(2) {
+      left: 26px;
+      animation-delay: -0.12s;
+    }
+    .lds-facebook div:nth-child(3) {
+      left: 45px;
+      animation-delay: 0;
+    }
+    @keyframes lds-facebook {
+      0% {
+        top: 6px;
+        height: 51px;
+      }
+      50%, 100% {
+        top: 19px;
+        height: 26px;
+      }
+    }
+    
 
   }
 }
 
 @keyframes maploader {
   0% {
-    transform: rotate(0deg);
+    // transform: rotate(0deg);
     border-color: rgb(182, 70, 95);
     // background: rgb(255, 192, 192);
   }
@@ -191,7 +267,7 @@ ion-toolbar {
   100% {
     border-color: rgb(250, 182, 43);
     // background: rgb(255, 167, 167);
-    transform: rotate(360deg);
+    // transform: rotate(360deg);
   }
 }
 

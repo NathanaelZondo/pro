@@ -26,6 +26,7 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Device } from '@ionic-native/device/ngx';
 import {CustomerPage} from '../app/customer/customer.page';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 @NgModule({
   declarations: [AppComponent, ViewhairstylePipe,ModalPage,CustomerPage],
   entryComponents: [ModalPage],
@@ -46,7 +47,8 @@ import {CustomerPage} from '../app/customer/customer.page';
    NativeGeocoder,
    LocalNotifications,
    AndroidPermissions,
-   Device
+   Device,
+   CallNumber
   ],
   bootstrap: [AppComponent]
 })
