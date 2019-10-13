@@ -775,7 +775,6 @@ async PastDateToast() {
   
   const alert = await this.alertController.create({
     header: 'Warning!',
-    cssClass: 'secondary',
     message: 'You cannot select a past date!',
     buttons: [
     
@@ -1348,7 +1347,7 @@ async presentAlertPrompt() {
 async presentToast3() {
   const toast = await this.control.toastController.create({
     message: 'The booking will be for '+this.booking.name+" "+this.booking.surname+".",
-    cssClass: 'secondary',
+  
     duration: 5000
   });
   toast.present();
@@ -1358,7 +1357,7 @@ async presentToast3() {
 async presentToast4() {
   const toast = await this.control.toastController.create({
     message: 'The booking will be for '+this.booking.name+" "+this.booking.surname+" because the other information was not recorded.",
-    cssClass: 'secondary',
+ 
     duration: 5000
   });
   toast.present();
