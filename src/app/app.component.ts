@@ -35,32 +35,41 @@ export class AppComponent {
     this.initializeApp();
     //this.control.router.resetConfig([{path: '', loadChildren: './navigation/navigation.module#NavigationPageModule'}]);
 
-    this.afAuth.authState.subscribe(data => {
-      console.log(data)
+    // this.afAuth.authState.subscribe(data => {
+    //   console.log(data)
 
-      this.backend.uid = data.uid;
-      if (data) {
+    //   this.backend.uid = data.uid;
+    //   if (data) {
 
-        firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot(val => {
-          console.log(val.data())
-          if (val.data() == undefined) {
-            this.control.navCtrl.setDirection('root');
-            this.control.navCtrl.navigateRoot('/navigation');
-          }
-          else {
-            this.backend.name = val.data().name;
-            this.backend.surname = val.data().surname;
-            this.backend.welcomeToast();
-            this.control.navCtrl.setDirection('root');
-            this.control.navCtrl.navigateRoot('/navigation');
-          }
-        })
-      }
+    //     firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot(val => {
+    //       console.log(val.data())
+    //       if (val.data() == undefined) {
+    //         this.control.navCtrl.setDirection('root');
+    //         this.control.navCtrl.navigateRoot('/navigation');
+    //       }
+    //       else {
+    //         this.backend.name = val.data().name;
+    //         this.backend.surname = val.data().surname;
+    //         this.backend.welcomeToast();
+    //         this.control.navCtrl.setDirection('root');
+    //         this.control.navCtrl.navigateRoot('/navigation');
+    //       }
+    //     })
+    //   }
 
-      else {
+    //   else {
 
-        this.control.navCtrl.setDirection('root');
-        this.control.navCtrl.navigateRoot('/login');
+    //     this.control.navCtrl.setDirection('root');
+    //     this.control.navCtrl.navigateRoot('/login');
+    //   }
+    // });
+    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        this.router.navigateByUrl("/login");
+        unsubscribe();
+      } else {
+        this.router.navigateByUrl("/navigation");
+        unsubscribe();
       }
     });
   }
