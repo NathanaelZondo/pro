@@ -727,9 +727,42 @@ if ((new Date(ev.selectedTime).getDate()) < 10) {
   
   
   }
+  if(this.calendar.mode== 'month')
+  {
+    this.modealert();
+  }
 
 
 };
+
+async modealert()
+{
+  const alert = await this.alertController.create({
+    header: 'Oops!',
+    message: 'Change the view of the calendar to book.',
+    buttons: [
+    
+       {
+        text: 'Okay',
+    
+        handler: () => {
+          console.log('Confirm Okay');
+   
+        }
+      }
+    ]
+  });
+  
+  await alert.present();
+
+  alert.onDidDismiss().then(val=>{
+    
+    console.log('No', val);
+    this.isvalidated =true;
+});
+
+
+}
 
 
 
@@ -748,6 +781,7 @@ async FutureDateToast() {
         handler: () => {
           console.log('Confirm Okay');
           this.isvalidated =true;
+          this.today();
         }
       }
     ]
@@ -756,7 +790,7 @@ async FutureDateToast() {
  
   await alert.present();
   alert.onDidDismiss().then(val=>{
-    
+    this.today();
     console.log('Yes/No', val);
     this.isvalidated =true;
 })
