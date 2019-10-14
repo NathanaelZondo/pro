@@ -22,7 +22,7 @@ export class ViewsalonPage implements OnInit {
     slidesPerView: 1.2,
 
   }
-
+isRated = false
   likes;
   total = 0;
   rate = 0;
@@ -59,6 +59,7 @@ export class ViewsalonPage implements OnInit {
             this.total += doc.data().rating;
             console.log(this.total);
             this.dummy.push(doc.data().rating)
+this.isRated = true
 
           })
           this.aveg = this.total / this.dummy.length;
@@ -78,7 +79,6 @@ export class ViewsalonPage implements OnInit {
   
 
   checkLikes() {
-  
     this.ngZone.run(() => {
       this.db.collection('Salons').where("salonName", "==", this.backend.salonname).onSnapshot(doc => {
         doc.forEach(res => {
@@ -96,12 +96,9 @@ export class ViewsalonPage implements OnInit {
         })
       })
     })
-
   }
   event() {
-
     this.cardIndex = !this.cardIndex;
-   
     if (this.cardIndex == true) {
       this.presentToast();
       let liked = 'liked'

@@ -51,8 +51,8 @@
 
           <div class="top">
             <div class="image">
-
-              <img src="{{b.salonImage}}" alt="tough">
+                <img *ngIf="!b.salonImage" src="../../assets/defaultSalon.jpg" alt="tough">
+              <img *ngIf="b.salonImage" src="{{b.salonImage}}" alt="tough">
               <div [ngClass]="{'distance-active': cardIndex, 'distance-inactive': !cardIndex}" (click)="showDistance()">
                 <div class="data">
                   <ion-icon name="hourglass"></ion-icon>

@@ -44,19 +44,19 @@
       <div class="appdets">
           <p>Hairstyle Info</p>
           <h4>{{x.estimatedtime}} Minutes <br>
-            From {{x.sessiontime}} to {{x.sessionendtime}} at {{x.userdate}}<br>
+            From {{x.sessiontime}} to {{x.sessionendtime}} on {{x.userdate}}<br>
             Cost: {{x.hairstyleprice | currency:'&#82;'}}
           </h4>
           
         </div>
 
         <div class="btnz">
-          <ion-button (click)="late(x)" color="transparent" style="background:#343A3F ">
+          <ion-button (click)="late(x)" color="transparent" style="background:#BF6B7A  ">
             I am late
           </ion-button>
 
         
-            <ion-button  [disabled] ="x.status2!='cancelled' && x.status!='cancelled' && x.userdate >= currentdate" (click)="forthealert(x)" color="transparent" style="background: rgb(10, 10, 10)" >
+            <ion-button  [disabled] ="x.status2!='cancelled' && x.status!='cancelled' && x.userdate >= currentdate" (click)="forthealert(x)" color="transparent" style="background: #BF967E " >
               Cancel Booking
              </ion-button>
         </div>

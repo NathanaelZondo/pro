@@ -99,7 +99,10 @@
     <div class="line"></div>
 
     <div class="crds">
-      <div class="crd" *ngFor=" let  x of rating">
+      <div *ngIf="!isRated" >
+          <p> no reviews yet for this salon</p>
+      </div>
+      <div class="crd" *ngFor=" let  x of rating" >
         <div class="profimage">
           <img src="{{x.image}}">
         </div>

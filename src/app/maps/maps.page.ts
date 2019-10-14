@@ -237,7 +237,12 @@ export class MapsPage implements OnInit {
         snap.forEach(doc => {
 
           // this.name = doc.data().salonName;
-          this.salons.push(doc.data())
+          this.db.collection('Salons').doc(doc.id).collection('staff').get().then(res => {
+            if (!res.empty) {
+                this.salons.push(doc.data())
+            }
+          })
+          
 
           this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles').onSnapshot(qu => {
             qu.forEach(doc => {
@@ -500,7 +505,7 @@ export class MapsPage implements OnInit {
   }
 
   async requestPrompt() {
-    this.loaderAnimate = true;
+    
     console.log('Requested Prompt')
     await this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(async res => {
       console.log('Accepted', res);
@@ -523,7 +528,7 @@ export class MapsPage implements OnInit {
     })
   }
   async promptLocation() {
-    this.loaderAnimate = true;
+
     this.store.get('acceptedPermission').then(async res => {
       // checks the acceptedPermission value if its null
       if (res == null) {
@@ -588,7 +593,7 @@ export class MapsPage implements OnInit {
     })
   }
   async loadMap(zoomlevel: number) {
-    this.loaderAnimate = true;
+
     console.log('Loaded map with soom of', zoomlevel);
 
 
@@ -675,7 +680,7 @@ export class MapsPage implements OnInit {
     });
   }
   async getlocation() {
-    this.loaderAnimate = true;
+
     // get the current position
     await this.geolocation.getCurrentPosition().then((resp) => {
       console.log('Location responded with', resp);
@@ -727,7 +732,6 @@ export class MapsPage implements OnInit {
   }
   async getFilteredSalonMarkers() {
 
-    this.loaderAnimate = true;
 
 
     await this.db.collection('Salons').where('Metro', '==', this.fiter).get().then(async snapshot => {
