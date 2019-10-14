@@ -48,43 +48,19 @@ ion-toolbar {
     border-radius: 20px;
   }
 }
-// .aaa-in {
-//   width: 100vw;
-//   overflow: hidden;
-//   position: absolute;
-//   background: white;
-//   top: 0vw;
-//   left: 0px;
-//   right: 0px;
-//   height: 0vh;
-//   z-index: 20;
-//   display: block;
-//   padding: 0px 0px;
-//   display: flex;
-//   border-radius: 0px 0px 10px 10px;
-//   justify-content: center;
-//   p {
-//     margin: 0;
-//     padding: 0;
-//     width: 100%;
-//     color: black;
-//     text-align: center;
-//   }
-//   .s-location {
-//     width: 47%;
-//     height: 97%;
-//     display: grid;
-//     align-items: center;
-//     background: rgb(240, 240, 240);
-//     border-radius: 20px;
-//   }
-// }
 
-.salonlocate{
+
+#salonlocate{
   position: absolute;
-  top: 50%;
-  width: 85vw;
+  top: 8%;
+  width: 80vw;
+  height: 40px;
   z-index: 10;
+  border-radius: 20px;
+  margin: 10px;
+  font-size: 3.5vw;
+  color: rgb(145, 142, 142);
+  
 }
 #pac-input {
   width: 80vw;
