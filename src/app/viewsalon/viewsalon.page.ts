@@ -148,7 +148,7 @@ else
 
 console.log('limit = ',limit)
 
-   let user = this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles')
+   let user = this.db.collection('Salons').doc(this.backend.salonuid).collection('Styles')
 
 
    let query = user.where("genderOptions", "==", x).limit(limit).get().then(val => {
