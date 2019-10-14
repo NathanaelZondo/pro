@@ -16,6 +16,7 @@ export class ViewprofilePage implements OnInit {
   seeBookings = false
   userbooking = [];
   ob = {};
+  isBooking = false
   constructor(private navCtrl:NavController, public modalController: ModalController,public backend: BackendService, public control: ControlsService,public alertController:AlertController) {
     this.profiles =this.backend.profiles;
     console.log(this.profiles)
@@ -99,7 +100,7 @@ this.getBookings()
         this.userbooking.push({ ...this.ob, ...doc.data() })
 
         console.log(this.userbooking)
-
+this.isBooking = true
 
       });
     });

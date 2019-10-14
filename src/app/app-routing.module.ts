@@ -2,6 +2,19 @@ import { NgModule } from '@angular/core';
 import { CanActivate,PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {GuardsGuard} from './guards.guard';
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   redirectTo: 'login',
+  //   pathMatch: 'full'
+  // },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: 'navigation',
+    loadChildren: () => import('./navigation/navigation.module').then(m => m.NavigationPageModule)
+  },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule',canActivate:[GuardsGuard]},
   { path: 'home',  loadChildren: './home/home.module#HomePageModule'},
   { path: 'createprofile', loadChildren: './createprofile/createprofile.module#CreateprofilePageModule' },
@@ -24,7 +37,7 @@ const routes: Routes = [
   { path: 'navigation', loadChildren: './navigation/navigation.module#NavigationPageModule' },
   { path: 'customer', loadChildren: './customer/customer.module#CustomerPageModule'},
   { path: 'dates', loadChildren: './dates/dates.module#DatesPageModule'},
-  { path: '', loadChildren: './login/login.module#LoginPageModule',canActivate:[GuardsGuard]}
+  // { path: '', loadChildren: './login/login.module#LoginPageModule',canActivate:[GuardsGuard]}
 ]
 
 
