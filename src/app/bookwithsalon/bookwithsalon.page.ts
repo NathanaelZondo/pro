@@ -157,6 +157,7 @@ async presentToast() {
     useruid:firebase.auth().currentUser.uid,
     //  bookingid:Math.floor(Math.random() * 2000000).toString(),
     TokenID:this.backend.selectedsalon[0].TokenID,
+    payment:"Unpaid",
  
     UserTokenID:"",
     
