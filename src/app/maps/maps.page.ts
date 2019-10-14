@@ -601,6 +601,7 @@ export class MapsPage implements OnInit {
       zoom: zoomlevel,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       disableDefaultUI: true,
+
       restriction: {
         latLngBounds: this.SOUTH_AFRICAN_BOUNDS,
         strictBounds: true
@@ -773,6 +774,9 @@ export class MapsPage implements OnInit {
 
     })
 
+
+  }
+  styles(){
 
   }
 }

@@ -19,7 +19,7 @@ console.log('version', this.versionType)
 profiles =[];
   ngOnInit() {
     console.log("id of the id",this.backend.userId);
-    
+    this.getReviews()
 
     this.oneSignal.getIds().then((res)=>{
       console.log('Token ID', res.userId)
@@ -58,7 +58,16 @@ profiles =[];
   }
 
  
-
+getReviews(){
+  let num = -1 ;
+  if( num == -1){
+    
+    console.log('its in')
+  }else{
+    console.log('nothing');
+    
+  }
+}
 
 
 
@@ -76,7 +85,7 @@ this.router.navigate(['home']);
   profile()
   {
 
-this.router.navigate(['/viewprofile']);
+this.router.navigate(['/reviews']);
   }
 
   bookings()

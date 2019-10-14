@@ -71,7 +71,7 @@ export class AppComponent {
       // this.statusBar.styleLightContent();
       this.splashScreen.hide();
       if (this.platform.is('cordova')) {
-       // this.setupPush();
+       this.setupPush();
       }
     });
     AngularFireModule.initializeApp(config)

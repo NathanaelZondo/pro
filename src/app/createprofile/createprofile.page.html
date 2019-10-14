@@ -17,30 +17,30 @@
       <br>
       <ion-item style="color: white" color="transparent">
         <!-- <ion-label><p>Name</p></ion-label> -->
-        <ion-input type="text" [(ngModel)]="profile.name" placeholder="Enter your name"
+        <ion-input type="text" [(ngModel)]="profile.name" placeholder="Enter your name" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
           style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-input>
       </ion-item>
 
       <ion-item style="color: white" color="transparent">
         <!-- <ion-label><p>Surname</p></ion-label> -->
-        <ion-input style="border-bottom: 2px solid white;" type="text" [(ngModel)]="profile.surname"
+        <ion-input style="border-bottom: 2px solid white;" type="text" [(ngModel)]="profile.surname" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
           placeholder="Enter your surname"
           style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-input>
       </ion-item>
       <ion-item style="color: white" color="transparent">
         <!-- <ion-label><p>Phone</p></ion-label> -->
-        <ion-input type="text" [(ngModel)]="profile.cell" placeholder="Enter your cell number"
+        <ion-input type="text" [(ngModel)]="profile.cell" placeholder="Enter your cell number" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
           style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-input>
       </ion-item>
       <ion-item style="color: white" color="transparent">
         <!-- <ion-label ><p>Bio</p></ion-label> -->
-        <ion-textarea rows="1" cols="20" [(ngModel)]="profile.about" placeholder="Tell us about yourself"
+        <ion-textarea rows="1" cols="20" [(ngModel)]="profile.about" placeholder="Tell us about yourself" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
           style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-textarea>
         <!-- <ion-input [(ngModel)]="profile.about" placeholder="Tell us about yourself"
           style="color: rgb(255, 255, 255); font-size: 4vw"></ion-input> -->
       </ion-item>
       <br><br>
-      <div class="btn">
+      <div class="btn" *ngIf="!hide">
         <ion-button
           style="background: #BF6B7A; height: 10vw; width:40vw; border-radius: 6px; font-family: 'Poiret One'; letter-spacing: 4px;"
           color="transparent" [disabled]="sub" (click)="saveprofile(profile)" full>

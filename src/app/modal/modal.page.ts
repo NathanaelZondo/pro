@@ -5,6 +5,7 @@ import { BackendService } from '../backend.service';
 import { ControlsService } from '../controls.service';
 import { ModalController, AlertController } from '@ionic/angular';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.page.html',
@@ -31,7 +32,8 @@ export class ModalPage implements OnInit {
     public backend: BackendService,
     public control: ControlsService,
     private oneSignal: OneSignal,
-    private alertController: AlertController) {
+    private alertController: AlertController,
+    private callNumber: CallNumber) {
     this.bookingdetails = this.backend.bookingdetails;
 
     console.log(this.bookingdetails)
@@ -56,6 +58,11 @@ export class ModalPage implements OnInit {
 
     console.log(this.alldata)
 
+  }
+  call(){
+    this.callNumber.callNumber( this.alldata.saloncell, true)
+  .then(res => console.log('Launched dialer!', res))
+  .catch(err => console.log('Error launching dialer', err));
   }
   cancel(v) {
     let x = v;

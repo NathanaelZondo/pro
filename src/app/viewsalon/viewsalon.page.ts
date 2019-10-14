@@ -136,20 +136,30 @@ export class ViewsalonPage implements OnInit {
   gethairstyles(x) {
     this.hair = [];
     console.log(this.backend.salonname)
-  
-    let user = this.db.collection('Salons').doc(this.salond[0].userUID).collection('Styles')
+    let limit;
+    if(x =='male')
+{
+  limit =10;
+}
+else
+{
+  limit = 30;
+}
+
+console.log('limit = ',limit)
+
+   let user = this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles')
 
 
-    let query = user.where("genderOptions", "==", x).get().then(val => {
-      val.forEach(doc => {
+   let query = user.where("genderOptions", "==", x).limit(limit).get().then(val => {
+     val.forEach(doc => {
 
-        this.hair.push(doc.data());
-        console.log('jkl', this.hair)
-      })
-    })
-
-    
+       this.hair.push(doc.data());
+       console.log('jkl', this.hair)
+     })
+   })
   }
+
 
   choosehair(x) {
     console.log(x);

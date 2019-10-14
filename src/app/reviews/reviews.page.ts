@@ -71,7 +71,8 @@ ngOnInit(){}
                   rating: rating,
                   review : data.comment,
                   name: this.Profile.name,
-                  image : this.Profile.image
+                  image : this.Profile.image,
+                  date : Date.now()
                 })
               })
             })
