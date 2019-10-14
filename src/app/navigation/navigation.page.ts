@@ -12,8 +12,10 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 })
 export class NavigationPage implements OnInit {
   private versionType:any;
+  loaderAnimate = true;
   constructor(public control:ControlsService,public router:Router,public backend:BackendService,    private oneSignal: OneSignal,private device: Device) { 
 this.versionType  = device.version;
+
 console.log('version', this.versionType)
    }
 profiles =[];
@@ -30,7 +32,7 @@ profiles =[];
     // this.control.Loading2()
     this.profiles =[];
     firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot(val=>{
- 
+//  this.loaderAnimate = true
      console.log(val.data())
 
       if(val.data()==undefined)
@@ -49,6 +51,9 @@ profiles =[];
       }  
     
     })
+    setTimeout(()=>{
+      this.loaderAnimate = false
+    },2000)
 
 
 
