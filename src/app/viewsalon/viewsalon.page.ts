@@ -4,7 +4,8 @@ import { BackendService } from '../backend.service';
 import { ModalController, } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { ReviewsPage } from '../reviews/reviews.page';
-
+import { ModalPage } from '../modal/modal.page';
+import { PicturePage } from '../picture/picture.page';
 // import Swiper from 'swiper';
 
 @Component({
@@ -194,6 +195,29 @@ console.log('limit = ',limit)
   }
 
 
+  async pressed(x)
+  {
+    this.backend.sethairstyledata(x.hairstyleName, x.duration, x.hairstylePrice, x.hairStyleImage, x.genderOptions);
+    console.log("PRESSED")
+
+
+    let modal = await this.modalController.create(
+      {
+        component: PicturePage,
+        cssClass: "wideModal"
+      }
+    );
+    modal.present();
+  }
+
+
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalPage
+    });
+    return await modal.present();
+  }
 }
 
 

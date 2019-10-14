@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from '../backend.service';
+import { ControlsService } from '../controls.service';
 
 @Component({
   selector: 'app-picture',
@@ -6,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./picture.page.scss'],
 })
 export class PicturePage implements OnInit {
-
-  constructor() { }
+ 
+  constructor(public backend:BackendService,public control:ControlsService) { }
 
   ngOnInit() {
   }
-
+  hairStyleImage =this.backend.hairstyleimage;
 }
