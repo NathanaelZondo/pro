@@ -1,6 +1,15 @@
 
 <ion-content>
   <div class="container">
+      <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
+
+    <div class="maploader">
+        <div class="lds-facebook"><div></div><div></div><div></div></div>
+    </div>
+    <div class="loading-text">
+      <p>Loading Page</p>
+    </div>
+  </div>
     <div class="title">
       <h1><span>AIR</span>SKEDGE</h1>
     </div>

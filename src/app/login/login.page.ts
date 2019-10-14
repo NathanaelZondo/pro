@@ -13,6 +13,7 @@ import { ControlsService } from '../controls.service';
 export class LoginPage implements OnInit {
   public loginForm: FormGroup;
   public loading: HTMLIonLoadingElement;
+  loaderAnimate = true;
   hide='';
   constructor(
     public nav:NavController,
@@ -39,22 +40,24 @@ export class LoginPage implements OnInit {
   }
 
   async loginUser(loginForm: FormGroup): Promise<void> {
+    //this.loaderAnimate = true;
     if (!loginForm.valid) {
       console.log('Form is not valid yet, current value:', loginForm.value);
     } else {
-      this.loading = await this.loadingCtrl.create();
-      await this.loading.present();
+      // this.loading = await this.loadingCtrl.create();
+      // await this.loading.present();
 
       const email = loginForm.value.email;
       const password = loginForm.value.password;
 
       this.authService.loginUser(email, password).then(
         () => {
-          this.loading.dismiss().then(() => {
+          // this.loading.dismiss().then(() => {
           //  this.nav.navigateRoot('/navigation');
           this.control.LoginToast();
             this.control.router.navigateByUrl('/navigation',{ replaceUrl: true });
-          });
+          // });
+         // this.loaderAnimate = false;
         },
         error => {
           this.loading.dismiss().then(async () => {
