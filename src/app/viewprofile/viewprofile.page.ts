@@ -104,5 +104,7 @@ this.getBookings()
       });
     });
   }
-  
+  // getReviews(){
+  //   firebase.firestore().collection('Payments').
+  // }
 }
