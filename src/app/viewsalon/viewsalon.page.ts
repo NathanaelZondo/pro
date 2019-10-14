@@ -209,7 +209,7 @@ console.log('limit = ',limit)
   }
 
 
-  async pressed(x)
+  async press(x)
   {
     this.backend.sethairstyledata(x.hairstyleName, x.duration, x.hairstylePrice, x.hairStyleImage, x.genderOptions);
     console.log("PRESSED")
@@ -228,7 +228,8 @@ console.log('limit = ',limit)
 
   async presentModal() {
     const modal = await this.modalController.create({
-      component: ModalPage
+      component: ModalPage,
+      cssClass: "wideModal"
     });
     return await modal.present();
   }

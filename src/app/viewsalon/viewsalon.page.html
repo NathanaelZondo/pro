@@ -79,7 +79,7 @@
 
     <div class="stylez">
       <ion-slides [options]="sliderConfig">
-        <ion-slide style="display: flex; flex-flow: column" *ngFor="let x of hair" (click)="choosehair(x)" (press)="pressed(x)" >
+        <ion-slide style="display: flex; flex-flow: column"  (click)="choosehair(x)" (press) ="press(x)" *ngFor="let x of hair" >
           <img src="{{x.hairStyleImage}}">
           <p>{{x.hairstyleName}}<br><span>{{x.hairstylePrice | currency:'&#82;'}}</span></p>
         </ion-slide>
