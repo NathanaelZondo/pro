@@ -231,7 +231,8 @@ console.log('limit = ',limit)
 
   async presentModal() {
     const modal = await this.modalController.create({
-      component: ModalPage
+      component: ModalPage,
+      cssClass: "wideModal"
     });
     return await modal.present();
   }
