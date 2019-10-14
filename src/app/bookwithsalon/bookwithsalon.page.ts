@@ -21,6 +21,8 @@ export class BookwithsalonPage implements OnInit {
   staff = [];
   userToken
 timeinterval;
+openTime =parseInt(this.backend.selectedsalon[0].openTime[0]+this.backend.selectedsalon[0].openTime[1]);
+closeTime =parseInt(this.backend.selectedsalon[0].closeTime[0]+this.backend.selectedsalon[0].closeTime[1])+1;
 staffnames =[];
   isvalidated = true;
   events = [];
@@ -33,7 +35,9 @@ testarray2 = [];
 
   constructor(private oneSignal: OneSignal,public loadingController:LoadingController,public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
    {
-   
+
+
+   console.log(this.openTime,"+",this.closeTime)
 console.log("Gender = ",this.backend.genderOptions)
 
 if(this.backend.genderOptions=='male')
@@ -770,7 +774,7 @@ async FutureDateToast() {
 
   
   const alert = await this.alertController.create({
-    header: 'Warning!',
+    header: 'Oops!',
     cssClass: 'secondary',
     message: 'You cannot select a date greater than 7 days from today!',
     buttons: [
@@ -809,7 +813,7 @@ async FutureDateToast() {
 async PastDateToast() {
   
   const alert = await this.alertController.create({
-    header: 'Warning!',
+    header: 'Oop!',
     message: 'You cannot select a past date!',
     buttons: [
     
@@ -1115,7 +1119,7 @@ this.isvalidated =false;
    {
 this.isvalidated=true;
     const alert = await this.alertController.create({
-      header: 'Warning!',
+      header: 'Oops!',
       cssClass: 'secondary',
       message: 'There is already a booking at '+this.booking.sessiontime+'. Choose another date or time.',
       buttons: [
@@ -1232,7 +1236,7 @@ console.log("findtime2")
 
 async presentToastWithOptions() {
   const alert = await this.alertController.create({
-    header: 'Warning!',
+    header: 'Oops!',
     cssClass: 'secondary',
     message: 'The time you selected overlaps into another booking. Choose another time or date.',
     buttons: [
@@ -1259,7 +1263,7 @@ async presentToastWithOptions() {
 
 async presentToastWithOptions2() {
   const alert = await this.alertController.create({
-    header: 'Warning!',
+    header: 'Oops!',
     cssClass: 'secondary',
     message: 'There is already a booking within the time you have selected. Choose another time or date.',
     buttons: [
