@@ -119,7 +119,7 @@ this.hairstyleimage =hairstyle;
   name: string;
   surname: string;
   cell: string;
-  salonname: string = 'Nakanjani';
+  salonname: string ;
   salonlocation: string;
   hairstyletype: string;
   hairstyleprice: string;

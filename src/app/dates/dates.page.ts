@@ -74,6 +74,7 @@ export class DatesPage implements OnInit {
     userdate: undefined,
     status: "Active",
     status2: "Active",
+    payment:"Unpaid",
     salonuid: this.backend.salonuid,
     hairstyleimage: this.backend.hairstyleimage,
     useruid:firebase.auth().currentUser.uid,

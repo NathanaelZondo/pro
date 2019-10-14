@@ -23,5 +23,6 @@ hairstyleimage:string,
 TokenID: string;
 UserTokenID : string,
 late:string,
-saloncell:string
+saloncell:string,
+payment:string
 }
