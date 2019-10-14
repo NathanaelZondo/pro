@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
-import { ModalController, } from '@ionic/angular';
+import { ModalController, ToastController, } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { ReviewsPage } from '../reviews/reviews.page';
 import { ModalPage } from '../modal/modal.page';
@@ -41,7 +41,7 @@ export class ViewsalonPage implements OnInit {
   position: number;
   cardIndex = false
 
-  constructor(public control: ControlsService, public backend: BackendService, public modalController: ModalController, private ngZone: NgZone) {
+  constructor(public control: ControlsService, public backend: BackendService, public modalController: ModalController, private ngZone: NgZone,public toastController: ToastController) {
     this.backend.getHairSalon();
 
     //this.gethairstyles(this.gend);
@@ -78,12 +78,14 @@ export class ViewsalonPage implements OnInit {
   
 
   checkLikes() {
+  
     this.ngZone.run(() => {
       this.db.collection('Salons').where("salonName", "==", this.backend.salonname).onSnapshot(doc => {
         doc.forEach(res => {
           this.db.collection('Salons').doc(res.id).collection('likes').doc(firebase.auth().currentUser.uid).onSnapshot(res => {
             if (res.exists) {
-              this.cardIndex = true
+              this.cardIndex = true ;
+           
               console.log('it exists')
             } else {
               console.log('it doesnt exist');
@@ -99,8 +101,9 @@ export class ViewsalonPage implements OnInit {
   event() {
 
     this.cardIndex = !this.cardIndex;
-
+   
     if (this.cardIndex == true) {
+      this.presentToast();
       let liked = 'liked'
       console.log('liked');
       this.db.collection('Salons').where("salonName", "==", this.backend.salonname).get().then(res => {
@@ -113,6 +116,7 @@ export class ViewsalonPage implements OnInit {
       })
     }
     else {
+      this.presentToasta();
       this.db.collection('Salons').where("salonName", "==", this.backend.salonname).get().then(res => {
         res.forEach(doc => {
           this.db.collection('Salons').doc(doc.id).collection('likes').doc(firebase.auth().currentUser.uid).delete()
@@ -160,7 +164,20 @@ console.log('limit = ',limit)
      })
    })
   }
-
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Thank You for liking our salon.',
+      duration: 2000
+    });
+    toast.present();
+  }
+  async presentToasta() {
+    const toast = await this.toastController.create({
+      message: 'Thank You for unliking our salon.',
+      duration: 2000
+    });
+    toast.present();
+  }
 
   choosehair(x) {
     console.log(x);
