@@ -237,7 +237,12 @@ export class MapsPage implements OnInit {
         snap.forEach(doc => {
 
           // this.name = doc.data().salonName;
-          this.salons.push(doc.data())
+          this.db.collection('Salons').doc(doc.id).collection('staff').get().then(res => {
+            if (!res.empty) {
+                this.salons.push(doc.data())
+            }
+          })
+          
 
           this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles').onSnapshot(qu => {
             qu.forEach(doc => {

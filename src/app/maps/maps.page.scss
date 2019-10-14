@@ -306,6 +306,7 @@ ion-icon{
       justify-items: baseline;
 
       .image {
+        box-shadow: 5px 5px 15px gray;
         position: absolute;
         z-index: 5;
         width: 30vw;
