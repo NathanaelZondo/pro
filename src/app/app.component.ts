@@ -52,7 +52,7 @@ export class AppComponent {
             this.backend.surname = val.data().surname;
             this.backend.welcomeToast();
             this.control.navCtrl.setDirection('root');
-            this.control.navCtrl.navigateRoot('/onboarding');
+            this.control.navCtrl.navigateRoot('/navigation');
           }
         })
       }
