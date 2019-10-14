@@ -537,3 +537,14 @@ ion-toolbar {
         }
     }
 }
+
+
+.wideModal
+{
+    opacity: 0.3 !important;
+
+    .modal-wrapper 
+    {
+        width: 800px;
+    }
+}
