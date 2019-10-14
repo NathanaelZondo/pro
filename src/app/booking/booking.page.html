@@ -7,43 +7,7 @@
 
    
 
-  <div class="container">
-
-    <div class="card front">
-      <!-- <div class="personal-intro">
-        <p style="text-align: center; font-size: 6vw; color:orangered">Bookings</p>
-      </div> -->
-    </div>
-    <div class="cardback" *ngFor="let x of userbooking">
-    
-     
-        <ion-button color ="clear"  *ngIf="n.userdate == currentday && n.payment!='Paid' " (click)="forthealert(x)" id="cancel">
-          <ion-icon color="danger" name="close"></ion-icon>
-        </ion-button><br>
-        <ion-button color ="clear"   (click)="late(x)" id="cancel"  *ngIf="n.userdate == currentday && n.payment!='Paid' ">
-          <ion-icon color="secondary" name="md-clock"></ion-icon>
-        </ion-button>
-      
-      <div class="personal" (click)="viewdetails(x)">
-        <div class="date" [style.background]="color" style="color:white; font-family: 'Manjari';">
-          <p style="margin: 5px"> {{x.userdate}}</p>
-        </div>
-        <div class="stuff"  style="color:rgb(253, 253, 253); margin: 10px;font-family: 'Manjari';font-size: 14px;
-        position: absolute;
-        left: 20%;">
-          Salon: {{x.salonname}}<br>
-          Stylist: {{x.hairdresser}}<br>
-          Location: {{x.salonlocation}}<br>
-          Time: {{x.sessiontime}} <br>
-          You: {{x.status}}&nbsp;&nbsp;{{x.late}}<br>
-          Stylist: {{x.status2}}<br>
-          Contact:{{x.saloncell}}
-        </div>
-      </div>
-    </div>
-  </div>
   
-
 </ion-content>
   
 

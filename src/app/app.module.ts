@@ -27,8 +27,10 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Device } from '@ionic-native/device/ngx';
 import {CustomerPage} from '../app/customer/customer.page';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import {PicturePage} from '../app/picture/picture.page';
+
 @NgModule({
-  declarations: [AppComponent, ViewhairstylePipe,ModalPage,CustomerPage],
+  declarations: [AppComponent, ViewhairstylePipe,ModalPage,CustomerPage,PicturePage],
   entryComponents: [ModalPage],
   imports: [IonicStorageModule.forRoot() ,BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     CommonModule,

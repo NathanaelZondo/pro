@@ -24,7 +24,8 @@ const routes: Routes = [
   { path: 'navigation', loadChildren: './navigation/navigation.module#NavigationPageModule' },
   { path: 'customer', loadChildren: './customer/customer.module#CustomerPageModule'},
   { path: 'dates', loadChildren: './dates/dates.module#DatesPageModule'},
-  { path: '', loadChildren: './login/login.module#LoginPageModule',canActivate:[GuardsGuard]}
+  { path: '', loadChildren: './login/login.module#LoginPageModule',canActivate:[GuardsGuard]},  { path: 'picture', loadChildren: './picture/picture.module#PicturePageModule' }
+
 ]
 
 
