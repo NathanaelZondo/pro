@@ -59,8 +59,8 @@ isRated = false
             this.total += doc.data().rating;
             console.log(this.total);
             this.dummy.push(doc.data().rating)
+this.isRated = true
 
-            
           })
           this.aveg = this.total / this.dummy.length;
           console.log('averge', this.aveg);
