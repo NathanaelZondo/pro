@@ -5,9 +5,10 @@ ion-toolbar {
     position: absolute;
 }
 
-*{
+* {
     transition: 0.7s;
 }
+
 .content {
     width: 100%;
     height: 100%;
@@ -294,11 +295,12 @@ img {
         overflow-x: auto;
         display: flex;
         opacity: 1;
+
         .card {
             min-width: 80%;
             height: 85%;
             margin: 10px 5px;
-        //  background-image: linear-gradient(-50deg,rgba(54, 54, 54, 0) 50%,rgb(39, 38, 38) 40%),url('../../assets/danai.jpg');
+            //  background-image: linear-gradient(-50deg,rgba(54, 54, 54, 0) 50%,rgb(39, 38, 38) 40%),url('../../assets/danai.jpg');
             background-repeat: no-repeat;
             background-position: center;
             background-size: 100% 100%;
@@ -306,16 +308,17 @@ img {
             border-radius: 10px;
             overflow: hidden;
 
-            .skew{
-                width:100%;
+            .skew {
+                width: 100%;
                 height: 110%;
                 // object-fit: cover;
                 margin: 0 !important;
                 padding: 0 !important;
-                background: linear-gradient(-50deg,rgba(54, 54, 54, 0) 50%,rgb(39, 38, 38) 40%);
+                background: linear-gradient(-50deg, rgba(54, 54, 54, 0) 50%, rgb(39, 38, 38) 40%);
                 position: relative;
                 top: -9px;
             }
+
             .style {
                 position: absolute;
                 top: 0;
@@ -342,7 +345,8 @@ img {
                 z-index: 99;
 
                 div {
-                z-index: 5;
+                    z-index: 5;
+
                     h4 {
                         font-size: 6vw;
                         margin: 0px;
@@ -394,6 +398,7 @@ img {
     left: 20%;
     text-align: center;
     bottom: 20px;
+    margin-top: 30px;
 
     ion-button {
         background: #BF967E;
@@ -422,14 +427,14 @@ body {
     top: 0;
 }
 
-.isbooking{
+.isbooking {
     text-align: center;
     width: 100vw;
-    display:grid;
+    display: grid;
     align-items: center;
-    p{
+
+    p {
         font-size: 7vw;
         font-family: 'Poiret one';
     }
 }
-
