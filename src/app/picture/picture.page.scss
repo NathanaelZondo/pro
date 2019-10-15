@@ -1,0 +1,19 @@
+
+    .wideModal
+    {
+        opacity: 0.3 !important;
+
+        .modal-wrapper 
+        {
+            width: 800px;
+        }
+    }
+
+    ion-content{
+        --background: transparent;
+    }
+
+    ion-toolbar {
+        --background: transparent;
+        --ion-color-base: transparent !important;
+        }

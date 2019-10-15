@@ -1,10 +1,11 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
-import { ModalController, } from '@ionic/angular';
+import { ModalController, ToastController, } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { ReviewsPage } from '../reviews/reviews.page';
-
+import { ModalPage } from '../modal/modal.page';
+import { PicturePage } from '../picture/picture.page';
 // import Swiper from 'swiper';
 
 @Component({
@@ -21,7 +22,7 @@ export class ViewsalonPage implements OnInit {
     slidesPerView: 1.2,
 
   }
-
+isRated = false
   likes;
   total = 0;
   rate = 0;
@@ -40,7 +41,7 @@ export class ViewsalonPage implements OnInit {
   position: number;
   cardIndex = false
 
-  constructor(public control: ControlsService, public backend: BackendService, public modalController: ModalController, private ngZone: NgZone) {
+  constructor(public control: ControlsService, public backend: BackendService, public modalController: ModalController, private ngZone: NgZone,public toastController: ToastController) {
     this.backend.getHairSalon();
 
     //this.gethairstyles(this.gend);
@@ -58,6 +59,7 @@ export class ViewsalonPage implements OnInit {
             this.total += doc.data().rating;
             console.log(this.total);
             this.dummy.push(doc.data().rating)
+this.isRated = true
 
           })
           this.aveg = this.total / this.dummy.length;
@@ -82,7 +84,8 @@ export class ViewsalonPage implements OnInit {
         doc.forEach(res => {
           this.db.collection('Salons').doc(res.id).collection('likes').doc(firebase.auth().currentUser.uid).onSnapshot(res => {
             if (res.exists) {
-              this.cardIndex = true
+              this.cardIndex = true ;
+           
               console.log('it exists')
             } else {
               console.log('it doesnt exist');
@@ -93,13 +96,11 @@ export class ViewsalonPage implements OnInit {
         })
       })
     })
-
   }
   event() {
-
     this.cardIndex = !this.cardIndex;
-
     if (this.cardIndex == true) {
+      this.presentToast();
       let liked = 'liked'
       console.log('liked');
       this.db.collection('Salons').where("salonName", "==", this.backend.salonname).get().then(res => {
@@ -112,6 +113,7 @@ export class ViewsalonPage implements OnInit {
       })
     }
     else {
+      this.presentToasta();
       this.db.collection('Salons').where("salonName", "==", this.backend.salonname).get().then(res => {
         res.forEach(doc => {
           this.db.collection('Salons').doc(doc.id).collection('likes').doc(firebase.auth().currentUser.uid).delete()
@@ -159,7 +161,20 @@ console.log('limit = ',limit)
      })
    })
   }
-
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Thank You for liking our salon.',
+      duration: 2000
+    });
+    toast.present();
+  }
+  async presentToasta() {
+    const toast = await this.toastController.create({
+      message: 'Thank You for unliking our salon.',
+      duration: 2000
+    });
+    toast.present();
+  }
 
   choosehair(x) {
     console.log(x);
@@ -194,6 +209,30 @@ console.log('limit = ',limit)
   }
 
 
+  async press(x)
+  {
+    this.backend.sethairstyledata(x.hairstyleName, x.duration, x.hairstylePrice, x.hairStyleImage, x.genderOptions);
+    console.log("PRESSED")
+
+
+    let modal = await this.modalController.create(
+      {
+        component: PicturePage,
+        cssClass: "wideModal"
+      }
+    );
+    modal.present();
+  }
+
+
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      cssClass: "wideModal"
+    });
+    return await modal.present();
+  }
 }
 
 

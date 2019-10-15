@@ -31,7 +31,7 @@ import {PicturePage} from '../app/picture/picture.page';
 
 @NgModule({
   declarations: [AppComponent, ViewhairstylePipe,ModalPage,CustomerPage,PicturePage],
-  entryComponents: [ModalPage],
+  entryComponents: [ModalPage,PicturePage],
   imports: [IonicStorageModule.forRoot() ,BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     CommonModule,
   AngularFireModule.initializeApp(config),

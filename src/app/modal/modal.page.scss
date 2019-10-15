@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Abel|Poiret+One|Open+Sans+Condensed|Jura|Manjari|Poppins|Raleway|Montserrat ');
-
+*{
+  transition: 0.7s;
+}
 ion-toolbar {
   --background: white;
   --opacity: 0;
@@ -114,5 +116,6 @@ background: black;
     height: 5vh;
     font-family: 'Poiret One';
     font-size: 3vw;
+    border-radius: 5px;
   }
 }

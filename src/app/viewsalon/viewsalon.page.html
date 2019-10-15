@@ -69,7 +69,7 @@
            letter-spacing: 2px; text-align: center">{{x.numberoflikes}} <br> Likes</p>
       </div>
 
-      <ionic4-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#db981a"
+      <ionic4-star-rating #rating  defaultIcon="ios-star-outline" activeColor="#db981a"
         defaultColor="#A9A9A9" readonly="true" rating={{aveg}} fontSize="6vw" halfStar="true" style="position: relative;
           bottom: 83%;
           right: -58vw;
@@ -79,7 +79,7 @@
 
     <div class="stylez">
       <ion-slides [options]="sliderConfig">
-        <ion-slide style="display: flex; flex-flow: column" *ngFor="let x of hair" (click)="choosehair(x)">
+        <ion-slide style="display: flex; flex-flow: column"  (click)="choosehair(x)" (press) ="press(x)" *ngFor="let x of hair" >
           <img src="{{x.hairStyleImage}}">
           <p>{{x.hairstyleName}}<br><span>{{x.hairstylePrice | currency:'&#82;'}}</span></p>
         </ion-slide>
@@ -99,7 +99,10 @@
     <div class="line"></div>
 
     <div class="crds">
-      <div class="crd" *ngFor=" let  x of rating">
+      <div *ngIf="!isRated" >
+          <p> no reviews yet for this salon</p>
+      </div>
+      <div class="crd" *ngFor=" let  x of rating" >
         <div class="profimage">
           <img src="{{x.image}}">
         </div>
