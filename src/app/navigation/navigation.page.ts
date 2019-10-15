@@ -22,19 +22,9 @@ profiles =[];
   ngOnInit() {
     console.log("id of the id",this.backend.userId);
     this.getReviews()
-
-    this.oneSignal.getIds().then((res)=>{
-      console.log('Token ID', res.userId)
-    
-      
-    });
-    console.log("heloo bangani");
-    // this.control.Loading2()
     this.profiles =[];
     firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot(val=>{
-//  this.loaderAnimate = true
      console.log(val.data())
-
       if(val.data()==undefined)
       {
         this.control.profileToast()
@@ -43,8 +33,6 @@ profiles =[];
       }
       else{
        this.profiles.push(val.data());
-
-
        this.backend.profiles =this.profiles;
        console.log("Profile data =",this.profiles)
       this.backend.setuserdata(this.profiles[0].name, this.profiles[0].surname, this.profiles[0].personalNumber)
@@ -54,12 +42,6 @@ profiles =[];
     setTimeout(()=>{
       this.loaderAnimate = false
     },2000)
-
-
-
-
-    
-
   }
 
  

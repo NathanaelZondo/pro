@@ -1,6 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Abel|Poiret+One|Open+Sans+Condensed|Jura|Manjari|Poppins|Raleway|Montserrat ');
 
+.ionic4-star-rating {
+    background: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    padding : 0px;
+}
+.rating{
+    
+    background: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    padding : 0px;
+}
 
+#rating{
+    background: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    padding : 0px;
+    border: none;
+}
 ion-toolbar {
     --background: white;
     position: absolute;
