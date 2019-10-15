@@ -28,10 +28,11 @@ import { Device } from '@ionic-native/device/ngx';
 import {CustomerPage} from '../app/customer/customer.page';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import {PicturePage} from '../app/picture/picture.page';
+import { ZeroPage } from './zero/zero.page';
 
 @NgModule({
-  declarations: [AppComponent, ViewhairstylePipe,ModalPage,CustomerPage,PicturePage],
-  entryComponents: [ModalPage,PicturePage],
+  declarations: [AppComponent, ViewhairstylePipe,ModalPage,CustomerPage,PicturePage,ZeroPage],
+  entryComponents: [ModalPage,PicturePage,ZeroPage],
   imports: [IonicStorageModule.forRoot() ,BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     CommonModule,
   AngularFireModule.initializeApp(config),

@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'navigation', loadChildren: './navigation/navigation.module#NavigationPageModule' },
   { path: 'customer', loadChildren: './customer/customer.module#CustomerPageModule'},
   { path: 'dates', loadChildren: './dates/dates.module#DatesPageModule'},
-  // { path: '', loadChildren: './login/login.module#LoginPageModule',canActivate:[GuardsGuard]}
+  { path: 'zero', loadChildren: './zero/zero.module#ZeroPageModule'}
 ]
 
 

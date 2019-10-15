@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlsService } from '../controls.service';
 import { Router } from '@angular/router';
+import { BackendService } from '../backend.service';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-zero',
@@ -8,39 +10,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./zero.page.scss'],
 })
 export class ZeroPage implements OnInit {
-
-  constructor(public control:ControlsService,public router:Router) { }
+  staffnames =[];
+  constructor(public popoverController:PopoverController,public control:ControlsService,public router:Router,public backend:BackendService) { }
 
   ngOnInit() {
+    this.staffnames =[];
+    this.staffnames=this.backend.staffnames;
+    
+console.log( this.staffnames)
   }
 
 
-  home()
+  select(x)
   {
-  this.router.navigate([('home')]);  
-  }
-  map()
-  {
-
-this.router.navigate(['maps']);
-  }
-
-  profile()
-  {
-
-this.router.navigate(['viewprofile']);
-  }
-
-  bookings()
-  {
-
-this.router.navigate(['booking']);
-  }
-
-  info()
-  {
-
-this.router.navigate(['info']);
+    console.log(x)
+    this.popoverController.dismiss(x);
   }
 
 }
