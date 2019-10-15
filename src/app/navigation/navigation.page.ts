@@ -5,6 +5,8 @@ import { BackendService } from '../backend.service';
 import * as firebase from 'firebase';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
  import { Device } from '@ionic-native/device/ngx';
+import { PopoverController } from '@ionic/angular';
+import {ZeroPage} from '../zero/zero.page'
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.page.html',
@@ -13,7 +15,7 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 export class NavigationPage implements OnInit {
   private versionType:any;
   loaderAnimate = true;
-  constructor(public control:ControlsService,public router:Router,public backend:BackendService,    private oneSignal: OneSignal,private device: Device) { 
+  constructor(public popoverController:PopoverController,public control:ControlsService,public router:Router,public backend:BackendService,    private oneSignal: OneSignal,private device: Device) { 
 this.versionType  = device.version;
 
 console.log('version', this.versionType)
@@ -111,4 +113,15 @@ this.router.navigate(['info']);
   }
  
 
+
+
+
+
+
+
+
+
+
+
+  
 }

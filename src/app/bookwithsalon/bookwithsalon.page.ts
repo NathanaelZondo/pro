@@ -2,11 +2,11 @@ import { Component, OnInit, ɵConsole } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { ControlsService } from '../controls.service';
 import { bookings } from '../booking';
-import { AlertController, ModalController, LoadingController } from '@ionic/angular';
+import { AlertController, ModalController, LoadingController, PopoverController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import {CustomerPage} from '../../app/customer/customer.page';
-
+import {ZeroPage} from '../zero/zero.page'
 @Component({
   selector: 'app-bookwithsalon',
   templateUrl: './bookwithsalon.page.html',
@@ -22,7 +22,7 @@ export class BookwithsalonPage implements OnInit {
   userToken
 timeinterval;
 openTime =parseInt(this.backend.selectedsalon[0].openTime[0]+this.backend.selectedsalon[0].openTime[1]);
-closeTime =parseInt(this.backend.selectedsalon[0].closeTime[0]+this.backend.selectedsalon[0].closeTime[1])+1;
+closeTime =parseInt(this.backend.selectedsalon[0].closeTime[0]+this.backend.selectedsalon[0].closeTime[1]);
 staffnames =[];
   isvalidated = true;
   events = [];
@@ -33,10 +33,10 @@ d2: Date;
 d3: Date;
 testarray2 = [];
 
-  constructor(private oneSignal: OneSignal,public loadingController:LoadingController,public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
+  constructor(public popoverController:PopoverController,private oneSignal: OneSignal,public loadingController:LoadingController,public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
    {
 
-
+    
    console.log(this.openTime,"+",this.closeTime)
 console.log("Gender = ",this.backend.genderOptions)
 
@@ -66,6 +66,38 @@ console.log(this.backend.salonsDisply[0].TokenID)
 
 
   }
+
+  poppy()
+  {
+    console.log("poppy")
+    this.presentPopover({value:500})
+  }
+
+  async presentPopover(ev: any) {
+    const popover = await this.popoverController.create({
+      component: ZeroPage,
+      backdropDismiss:false,
+      event: ev,
+      translucent: true
+    });
+
+    popover.onDidDismiss().then(val=>{
+      console.log(val)
+      this.hairdresser =val.data.name;
+      this.dresserLoading();
+    })
+    return await popover.present();
+
+
+
+  }
+
+
+
+
+
+
+
   markDisabled = (date: Date) => {
     var current = new Date(this.cdate());
     return date < current;
@@ -80,45 +112,45 @@ console.log(this.backend.salonsDisply[0].TokenID)
   
     const { role, data } = await loading.onDidDismiss();
     console.log('Loading dismissed!');
-    this.presentAlertRadio();
+    this.poppy();
   }
 
-  async presentAlertRadio() {
-    let input=this.input;
+  // async presentAlertRadio() {
+  //   let input=this.input;
    
-    console.log(input);
-    const alert = await this.alertController.create({
-      header: 'Pick any hairdresser.',
-      inputs: input.data,
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-            this.control.router.navigate(['viewsalon']);
-          }
-        }, {
-          text: 'Ok',
-          handler: (data) => {
-            console.log(data);
+  //   console.log(input);
+  //   const alert = await this.alertController.create({
+  //     header: 'Pick any hairdresser.',
+  //     inputs: input.data,
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         role: 'cancel',
+  //         cssClass: 'secondary',
+  //         handler: () => {
+  //           console.log('Confirm Cancel');
+  //           this.control.router.navigate(['viewsalon']);
+  //         }
+  //       }, {
+  //         text: 'Ok',
+  //         handler: (data) => {
+  //           console.log(data);
 
-            if(data==undefined)
-            {
-              this.presentToast();
-              this.control.navCtrl.navigateRoot('viewsalon');
-            }
-            else{
-            this.hairdresser =data;
-            this.dresserLoading();
-            }
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
+  //           if(data==undefined)
+  //           {
+  //             this.presentToast();
+  //             this.control.navCtrl.navigateRoot('viewsalon');
+  //           }
+  //           else{
+  //           this.hairdresser =data;
+  //           this.dresserLoading();
+  //           }
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   await alert.present();
+  // }
 
 
 
@@ -173,11 +205,14 @@ async presentToast() {
   formodal: boolean = false;
   ngOnInit() {
     console.log(this.booking)
-    
+    this.staffnames =[];
+    this.backend.staffnames =[];
   this.backend.gethairdresser().where("specialisation","==",this.backend.genderOptions).get().then(val => {
     val.forEach(stav => {
-      this.staffnames.push(stav.data().name)
+      this.staffnames.push(stav.data())
       
+      this.backend.staffnames.push(stav.data())
+
       this.input.data.push({name:stav.data().name,type: 'radio',label:stav.data().name.toString(),value:stav.data().name.toString()}) 
       console.log(this.input)
       
@@ -188,8 +223,9 @@ async presentToast() {
 
   this.backend.gethairdresser().where("specialisation","==","both").get().then(val => {
     val.forEach(stav => {
-      this.staffnames.push(stav.data().name)
-      
+      this.staffnames.push(stav.data())
+      this.backend.staffnames.push(stav.data());
+      console.log(this.backend.staffnames)
       this.input.data.push({name:stav.data().name,type: 'radio',label:stav.data().name.toString(),value:stav.data().name.toString()}) 
       console.log(this.input)
       
@@ -408,6 +444,8 @@ async presentToast() {
 
 
             this.backend.userbookings(this.booking);
+
+            
            
             if( this.backend.selectedsalon[0].TokenID){
               var notificationObj = {
@@ -1290,6 +1328,7 @@ async present2() {
   const alert = await this.alertController.create({
     header: 'Are you booking for yourself or someone else?',
     cssClass: 'secondary',
+    backdropDismiss:false,
     inputs: [
       {
         name: 'Myself',
@@ -1338,6 +1377,7 @@ async presentAlertPrompt() {
   const alert = await this.alertController.create({
     header: 'Fill in details below.',
     cssClass: 'secondary',
+    backdropDismiss:false,
     inputs: [
       {
         name: 'name1',
@@ -1356,6 +1396,7 @@ async presentAlertPrompt() {
         text: 'Cancel',
         role: 'cancel',
         cssClass: 'secondary',
+        
         handler: () => {
           console.log('Confirm Cancel');
           this.presentToast3();

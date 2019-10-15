@@ -127,7 +127,7 @@ this.hairstyleimage =hairstyle;
   sessiontime: string;
   hairdresser: string;
   bookingdate: string;
-
+staffnames =[];
 
 
   userbookings(booking: bookings) {
