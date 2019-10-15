@@ -69,17 +69,23 @@
            letter-spacing: 2px; text-align: center">{{x.numberoflikes}} <br> Likes</p>
       </div>
 
-      <ionic4-star-rating #rating  defaultIcon="ios-star-outline" activeColor="#db981a"
-        defaultColor="#A9A9A9" readonly="true" rating={{aveg}} fontSize="6vw" halfStar="true" style="position: relative;
+      <ionic4-star-rating #rating id="rating" activeColor="#db981a"
+        defaultColor="#A9A9A9"
+         readonly="true"
+          rating={{aveg}}
+           fontSize="6vw" 
+           halfStar="true" 
+        
+           style="position: relative;
           bottom: 83%;
           right: -58vw;
-          z-index: 5;">
+          z-index: 5; overflow: hidden;">
       </ionic4-star-rating>
     </div>
 
     <div class="stylez">
       <ion-slides [options]="sliderConfig">
-        <ion-slide style="display: flex; flex-flow: column"  (click)="choosehair(x)" (press) ="press(x)" *ngFor="let x of hair" >
+        <ion-slide (click)="choosehair(x)" style="display: flex; flex-flow: column"   (press) ="press(x)" *ngFor="let x of hair" >
           <img src="{{x.hairStyleImage}}">
           <p>{{x.hairstyleName}}<br><span>{{x.hairstylePrice | currency:'&#82;'}}</span></p>
         </ion-slide>
@@ -92,14 +98,22 @@
 
     <div class="heading">
       <h2>People Said</h2>
-      <ion-button (click)="reviewed()" color="transparent">
-        <ion-icon slot="icon-only" name="close"></ion-icon>
+      <ion-button color="transparent" clear (click)="reviewed()" >
+        <ion-icon slot="icon-only" name="close" ></ion-icon>
       </ion-button>
     </div>
     <div class="line"></div>
 
     <div class="crds">
-      <div *ngIf="!isRated" >
+      <div style="display: grid; align-items: center" *ngIf="!isRated" >
+        <pre>
+
+
+
+
+
+        </pre>
+        <img src="../../assets/icon/Infos_2.svg" alt="">
           <p> no reviews yet for this salon</p>
       </div>
       <div class="crd" *ngFor=" let  x of rating" >

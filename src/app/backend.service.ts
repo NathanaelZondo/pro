@@ -187,15 +187,15 @@ staffnames =[];
 this.bookingdetails.push(bd);
 }
 
-  async welcomeToast() 
-  {
-    console.log(this.name)
-    const toast = await this.toastController.create({
-      message: 'Welcome back '+this.name+' '+this.surname,
-      duration: 7000
-    });
-    toast.present();
-  }
+  // async welcomeToast() 
+  // {
+  //   console.log(this.name)
+  //   const toast = await this.toastController.create({
+  //     message: 'Welcome back '+this.name+' '+this.surname,
+  //     duration: 7000
+  //   });
+  //   toast.present();
+  // }
 
 
 

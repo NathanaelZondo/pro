@@ -6,8 +6,8 @@
   </div> -->
   <div class="g-search">
     <br>
-    <ion-fab-button size="small" id="salon" (click)="option('salon')">
-      <ion-icon name="cut"></ion-icon>
+    <ion-fab-button size="small" id="salon" (click)="option('salon')" style="width: 5vh; height: 5vh">
+        <ion-icon name="funnel" style="font-size: 5vw;"></ion-icon>
     </ion-fab-button>
   </div>
   <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
@@ -27,8 +27,7 @@
     </div>
 
   <ion-item *ngIf="searchby.salon" id="salonlocate">
-    <ion-label position="floating" style="margin: 5px;
-    ">Search by salon name</ion-label>
+    <ion-label position="floating" style="margin: 5px; ">Search by salon name</ion-label>
     <ionic-selectable item-content [(ngModel)]="port" [items]="ports" itemTextField="names" [canSearch]="true"
       searchFailText="Nothing Found :(" (onChange)="portChange($event)">
     </ionic-selectable>

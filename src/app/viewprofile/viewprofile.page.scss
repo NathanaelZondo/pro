@@ -44,7 +44,7 @@ img {
     z-index: 5;
     background: white;
     width: 100%;
-    height: 30vh;
+    // height: 20vh;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 
@@ -72,7 +72,7 @@ img {
     .line {
         position: absolute;
         z-index: 5;
-        top: 45%;
+        // top: 45%;
         width: 90vw;
         left: 5%;
         right: 5%;
@@ -85,8 +85,8 @@ img {
 
     .edit {
         position: absolute;
-        top: 8%;
-        left: 90vw;
+        top: 6%;
+        left: 85vw;
 
         ion-icon {
             font-size: 8vw;
@@ -420,5 +420,16 @@ img {
 body {
     position: absolute;
     top: 0;
+}
+
+.isbooking{
+    text-align: center;
+    width: 100vw;
+    display:grid;
+    align-items: center;
+    p{
+        font-size: 7vw;
+        font-family: 'Poiret one';
+    }
 }
 
