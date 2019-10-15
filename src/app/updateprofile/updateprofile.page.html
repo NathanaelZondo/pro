@@ -7,8 +7,8 @@
       <h1> Update Profile </h1>
     </div>
     <div class="userimage">
-        <div class="img" (click)="takePhoto()">
-            <img src="{{styleImage}}" placeholder="Choose Image" width="100px" height="100px">
+        <div class="img" (click)="takePhoto()" *ngFor = "let x of profiles">
+            <img src="{{x.image}}" placeholder="Choose Image" width="100px" height="100px">
           </div>
       <!-- <div class="chooseimg" (click)="takePhoto()">
         <ion-icon name ="camera" style="font-size: 30px;"></ion-icon>
