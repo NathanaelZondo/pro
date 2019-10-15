@@ -12,8 +12,6 @@
 
   <div class="container" *ngFor="let x of bookingdetails">
 
-
-
     <div class="top">
       <div class="image">
         <img src="{{x.hairstyleimage}}" />
@@ -56,7 +54,7 @@
           </ion-button>
 
         
-            <ion-button  [disabled] ="x.status2!='cancelled' && x.status!='cancelled' && x.userdate >= currentdate" (click)="forthealert(x)" color="transparent" style="background: #BF967E " >
+            <ion-button  [disabled] ="x.status2!='cancelled' && x.status!='cancelled' && x.userdate >= currentdate"  *ngIf="n.userdate == currentday && n.payment!='Paid' " (click)="forthealert(x)" color="transparent" style="background: #BF967E" >
               Cancel Booking
              </ion-button>
         </div>

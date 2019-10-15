@@ -1,15 +1,12 @@
 <ion-content fullscreen>
-  <div class="g-locate" (click)="requestPrompt()">
+  <!-- <div class="g-locate" (click)="requestPrompt()">
     <ion-fab-button size="small">
       <ion-icon name="locate"></ion-icon>
     </ion-fab-button>
-  </div>
+  </div> -->
   <div class="g-search">
-    <ion-fab-button size="small" (click)="option('location')">
-      <ion-icon name="pin"></ion-icon>
-    </ion-fab-button>
     <br>
-    <ion-fab-button size="small" (click)="option('salon')">
+    <ion-fab-button size="small" id="salon" (click)="option('salon')">
       <ion-icon name="cut"></ion-icon>
     </ion-fab-button>
   </div>
@@ -22,17 +19,11 @@
         <p>Loading Map</p>
       </div>
     </div>
-<!-- 
-  <div [ngClass]="{'aaa': searchbyLocation, 'aaa-in': !searchbyLocation}">
-   
 
-  </div> -->
-
-  
   <div #map id="map"></div>
-
-  <div class="s-location" *ngIf="searchby.location">
+  <div class="s-location" >
       <input id="pac-input" name="pac-input" class="controls" type="text" placeholder="Search Location">
+       <ion-icon name="locate" id="locater" (click)="requestPrompt()"></ion-icon>
     </div>
 
   <ion-item *ngIf="searchby.salon" id="salonlocate">
