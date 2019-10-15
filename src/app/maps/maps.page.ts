@@ -731,9 +731,6 @@ export class MapsPage implements OnInit {
     })
   }
   async getFilteredSalonMarkers() {
-
-
-
     await this.db.collection('Salons').where('Metro', '==', this.fiter).get().then(async snapshot => {
       console.log('Salon filtered');
       this.users = [];

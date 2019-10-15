@@ -176,7 +176,7 @@ async presentToast() {
   booking: bookings = {
     name: this.backend.username,
     surname: this.backend.surname,
-    cell: this.backend.cell,
+    cell: this.backend.profiles[0].cell,
     salonname: this.backend.salonname,
     salonlocation: this.backend.salonlocation,
     hairstyletype: this.backend.hairstyletype,
@@ -718,7 +718,12 @@ onTimeSelected = (ev: { selectedTime: Date, events: any[] }) => {
 console.log("EVents clicked =",ev)
   console.log("this is the time =" , ev.selectedTime.toString().slice(16,21));
   console.log("this is the date =" , ev.selectedTime.toLocaleDateString());
- 
+  if(this.calendar.mode== 'month')
+  {
+    this.isvalidated = true;
+  }
+else
+{
  this.ev =ev;
   this.booking.sessiontime=ev.selectedTime.toString().slice(16,21);
 
@@ -769,42 +774,10 @@ if ((new Date(ev.selectedTime).getDate()) < 10) {
   
   
   }
-  if(this.calendar.mode== 'month')
-  {
-    this.modealert();
-  }
-
+}
 
 };
 
-async modealert()
-{
-  const alert = await this.alertController.create({
-    header: 'Oops!',
-    message: 'Change the view of the calendar to book.',
-    buttons: [
-    
-       {
-        text: 'Okay',
-    
-        handler: () => {
-          console.log('Confirm Okay');
-   
-        }
-      }
-    ]
-  });
-  
-  await alert.present();
-
-  alert.onDidDismiss().then(val=>{
-    
-    console.log('No', val);
-    this.isvalidated =true;
-});
-
-
-}
 
 
 
@@ -1080,6 +1053,7 @@ weekcolor ='rgb(179, 125, 93)';
   changeMode(mode) {
     if(mode =='month')
     {
+      this.today();
       this.monthcolor ='#DB5A6B'
       this.daycolor ='rgb(179, 125, 93)';
 this.weekcolor='rgb(179, 125, 93)'
@@ -1087,12 +1061,14 @@ this.weekcolor='rgb(179, 125, 93)'
     else
     if(mode =='day')
     {
+      this.today();
       this.monthcolor ='rgb(179, 125, 93)'
       this.daycolor ='#DB5A6B';
 this.weekcolor='rgb(179, 125, 93)'
     }
     else  if(mode =='week')
     {
+      this.today();
       this.monthcolor ='rgb(179, 125, 93)'
       this.daycolor ='rgb(179, 125, 93)';
 this.weekcolor='#DB5A6B';
@@ -1191,7 +1167,7 @@ else
 
   }
 
-
+text;
 
  pink ="#DB5A6B";
 
@@ -1199,7 +1175,7 @@ val2 =false;
    
 findtime(booking) {
   
-
+this.text ="Time:"+booking.sessiontime+"-"+booking.sessionendtime+" on "+booking.userdate; 
   for (let i = 0; i < this.events.length; i++) {
 
 
