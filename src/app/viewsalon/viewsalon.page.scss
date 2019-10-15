@@ -408,7 +408,7 @@ ion-toolbar {
             justify-content: space-between;
             width: 90vw;
             height: 20vh;
-            margin: 10px;
+            margin: 5px;
 
             .profimage {
                 width: 20%;
@@ -474,8 +474,7 @@ ion-toolbar {
         ion-button {
             border: none !important;
             box-shadow: none !important;
-            background: transparent;
-
+        margin: 5px;
             ion-icon {
                 color: black;
                 position: relative;
