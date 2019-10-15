@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import * as firebase from 'firebase';
 import { Platform, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -78,7 +78,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       // this.statusBar.backgroundColorByHexString('#1E1E1E');
       // this.statusBar.styleLightContent();
-      this.splashScreen.hide();
+      // this.splashScreen.hide();
       if (this.platform.is('cordova')) {
        this.setupPush();
       }
@@ -132,5 +132,11 @@ export class AppComponent {
     })
     alert.present();
   }
+  @HostListener('document:readystatechange', ['$event'])
+onReadyStateChanged(event) {
+   if (event.target.readyState === 'complete') {
+       this.splashScreen.hide();
+   }
+}
 
 }
