@@ -57,8 +57,10 @@
     flex-grow: 2;
     position: absolute;
     top: 70%;
-    font-size: 5vw;
+    width: 100vw;
+    padding: 10px;
     p{
+        font-size: 5vw;
         span{
             text-decoration: underline;
             color: #BF6B7A;
