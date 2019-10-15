@@ -27,9 +27,7 @@ export class InfoPage implements OnInit {
 
   }
 
-  goback() {
-
-  }
+ 
 
   back() {
     this.control.navCtrl.setDirection('root');

@@ -1,11 +1,13 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-icon name="arrow-round-back" style="font-size:20px"></ion-icon>
+<ion-toolbar color="transparent">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
    
   </ion-toolbar>
-</ion-header>
 
-<ion-content>
+<ion-content fullscreen>
   <div class="container">
     <br>
     <h1 style="text-align: center; font-family: Poiret One; font-weight: bold; letter-spacing: 5px;">AirSkedge</h1>
