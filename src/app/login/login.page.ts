@@ -58,17 +58,20 @@ export class LoginPage implements OnInit {
             this.control.router.navigateByUrl('/navigation',{ replaceUrl: true });
           // });
          // this.loaderAnimate = false;
-        },
-        error => {
-          this.loading.dismiss().then(async () => {
+        }).catch(async err=>{
+          console.log()
+         
+      
             const alert = await this.alertCtrl.create({
-              message: error.message,
+              subHeader:"Login error",
+              message: err.message,
               buttons: [{ text: 'Ok', role: 'cancel' }]
             });
             await alert.present();
-          });
-        }
-      );
+
+
+
+        })
     }
   }
 
