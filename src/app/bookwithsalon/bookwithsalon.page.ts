@@ -720,7 +720,7 @@ console.log("EVents clicked =",ev)
   console.log("this is the date =" , ev.selectedTime.toLocaleDateString());
   if(this.calendar.mode== 'month')
   {
-    
+    this.isvalidated = true;
   }
 else
 {
@@ -1175,7 +1175,7 @@ val2 =false;
    
 findtime(booking) {
   
-this.text ="Selected time:"+booking.sessiontime+" until "+booking.sessionendtime 
+this.text ="Time:"+booking.sessiontime+"-"+booking.sessionendtime+" on "+booking.userdate; 
   for (let i = 0; i < this.events.length; i++) {
 
 
