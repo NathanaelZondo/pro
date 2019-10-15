@@ -38,9 +38,12 @@
             <pre>
 
             </pre>
-            <div style ="width:100vw;height:100px;background: linear-gradient(rgba(179, 125, 93, 0.342),rgba(179, 125, 93, 0.384),rgba(179, 125, 93, 0.363));position:fixed" [hidden] ="isvalidated" align ="center">
-                <div align ="right" style ="width:30px"><button  style ="background:transparent;background-color:transparent;" width ="10px" (click)="closebutton()"><ion-icon name ="close" style ="color:black" ></ion-icon></button></div>
+            <div style ="width:100vw;height:120px;background: linear-gradient(rgba(179, 125, 93, 0.342),rgba(179, 125, 93, 0.384),rgba(179, 125, 93, 0.363));position:fixed" [hidden] ="isvalidated" align ="center">
+                <div align ="right" style ="width:30px;float:right;margin-right:15px;"><button  style ="background:transparent;background-color:transparent;" width ="10px" (click)="closebutton()"><ion-icon name ="close" style ="color:black" ></ion-icon></button></div>
             <br>
+<pre>{{text}}
+
+</pre>
               <button   [style.background] ="pink"   style="width: 300px; width: 27%;
               height: 40px;color:white;border-radius: 100px;background-color:rgb(179, 125, 93);" (click) ="submit()"  >Book Now!</button>
           </div>
