@@ -322,7 +322,7 @@ export class MapsPage implements OnInit {
         //  this.addMarkersOnTheCustomersCurrentLocation(doc.data().lat, doc.data().lng, content);
         const icon = {
           url: '../../assets/icon/Hair_Dresser_7.svg', // image url
-          scaledSize: new google.maps.Size(35, 35), // scaled size
+          scaledSize: new google.maps.Size(55, 55), // scaled size
           size: new google.maps.Size(71, 71),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(17, 34),
@@ -692,6 +692,20 @@ export class MapsPage implements OnInit {
         lat: resp.coords.latitude,
         lng: resp.coords.longitude
       }
+      const icon = {
+        url: '../../assets/icon/pin.svg', // image url
+        scaledSize: new google.maps.Size(55, 55), // scaled size
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+
+      };
+      let marker = new google.maps.Marker({
+        map: this.map,
+        animation: google.maps.Animation.DROP,
+        position: geoData,
+        icon: icon
+      });
 
       // get the address from the current position's coords
       this.geocoder.geocode({ 'location': geoData }, (results, status) => {

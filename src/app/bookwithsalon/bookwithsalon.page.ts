@@ -97,12 +97,6 @@ console.log(this.backend.salonsDisply[0].TokenID)
 
   }
 
-
-
-
-
-
-
   markDisabled = (date: Date) => {
     var current = new Date(this.cdate());
     return date < current;
@@ -163,17 +157,6 @@ async presentToast() {
     });
     toast.present();
   }
-
-
-
-
-
-
-
-
-
-
-
   booking: bookings = {
     name: this.backend.username,
     surname: this.backend.surname,
@@ -715,13 +698,17 @@ loadEvents() {
 
 ev;
 onTimeSelected = (ev: { selectedTime: Date, events: any[] }) => {
+  this.loaderAnimate = true;
   console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' + (ev.events !== undefined && ev.events.length !== 0));
 console.log("EVents clicked =",ev)
   console.log("this is the time =" , ev.selectedTime.toString().slice(16,21));
   console.log("this is the date =" , ev.selectedTime.toLocaleDateString());
+
+ 
+ 
   if(this.calendar.mode== 'month')
   {
-    
+  
   }
 else
 {
@@ -775,9 +762,10 @@ if ((new Date(ev.selectedTime).getDate()) < 10) {
   
   
   }
-}
 
-};
+}
+this.loaderAnimate = false;
+}
 
 
 
@@ -1179,7 +1167,7 @@ val2 =false;
    
 findtime(booking) {
   
-this.text ="TIME:"+booking.sessiontime+"-"+booking.sessionendtime+", DATE:"+booking.userdate; 
+this.text ="Time:"+booking.sessiontime+"-"+booking.sessionendtime+", Date:"+booking.userdate+"\nStylist:"+this.hairdresser; 
   for (let i = 0; i < this.events.length; i++) {
 
 
