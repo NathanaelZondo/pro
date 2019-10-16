@@ -16,14 +16,7 @@
 
 </ion-header>
 
-<ion-content class="has-header">
-  <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
 
-    <div class="maploader">
-      <div class="lds-facebook">
-        <div></div>
-        <div></div>
-        <div></div>
 <ion-content class="has-header" fullscreen>
     <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
 
@@ -34,11 +27,7 @@
           <p>Loading Map</p>
         </div>
       </div>
-    </div>
-    <div class="loading-text">
-      <p>Loading Map</p>
-    </div>
-  </div>
+    
 
   <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
     (onCurrentDateChanged)="onCurrentDateChanged($event)" (onTitleChanged)="onViewTitleChanged($event)" step="30"
