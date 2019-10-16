@@ -3,9 +3,12 @@
   transition: 0.7s;
 }
 ion-toolbar {
-  --background: white;
-  --opacity: 0;
+  --background: transparent;
   position: absolute;
+}
+.back-button-md,
+.back-button-ios {
+  color: white;
 }
 
 .top {

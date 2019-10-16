@@ -1,14 +1,14 @@
-
-  <ion-toolbar color="transparent">
-    <ion-icon name="arrow-round-back" style="font-size: 30px; color: white" (click)="back()"></ion-icon>
-   <button ion-button style="float:right; 
-   width: 3vh; height: 3vh; border-radius: 50%; background: green;" color="transparent">
-     <ion-icon name="call" (click)="call()" style="color: white"></ion-icon>
-   </button>
-  </ion-toolbar>
-
-
+<ion-toolbar color="transparent">
+        <ion-icon name="arrow-round-back" style="font-size: 200%; color: white;padding: 10px;" (click)="back()"></ion-icon>
+       <!-- <button ion-button style="float:right; 
+       width: 3vh; height: 3vh; border-radius: 50%; background: green; padding: 10px" color="transparent">
+         <ion-icon name="call" (click)="call()" style="color: white"></ion-icon>
+       </button> -->
+      </ion-toolbar>
+  
 <ion-content fullscreen>
+
+    
 
   <div class="container" *ngFor="let x of bookingdetails">
 
@@ -56,6 +56,10 @@
             <ion-button  [disabled] ="x.status2!='cancelled' && x.status!='cancelled' && x.userdate >= currentdate"  *ngIf="n.userdate == currentday && n.payment!='Paid' " (click)="forthealert(x)" color="transparent" style="background: #BF967E" >
               Cancel Booking
              </ion-button>
+
+             <ion-button  (click)="call()" color="transparent" style="background: green" >
+                Call Salon
+               </ion-button>
         </div>
     </div>
 
