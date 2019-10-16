@@ -3,9 +3,12 @@
   transition: 0.7s;
 }
 ion-toolbar {
-  --background: white;
-  --opacity: 0;
+  --background: transparent;
   position: absolute;
+}
+.back-button-md,
+.back-button-ios {
+  color: white;
 }
 
 .top {
@@ -112,7 +115,7 @@ background: black;
   justify-content: space-around;
 
   ion-button {
-    width: 35vw;
+    width: 30vw;
     height: 5vh;
     font-family: 'Poiret One';
     font-size: 3vw;

@@ -52,12 +52,7 @@ export class LoginPage implements OnInit {
 
       this.authService.loginUser(email, password).then(
         () => {
-          // this.loading.dismiss().then(() => {
-          //  this.nav.navigateRoot('/navigation');
-          this.control.LoginToast();
             this.control.router.navigateByUrl('/navigation',{ replaceUrl: true });
-          // });
-         // this.loaderAnimate = false;
         }).catch(async err=>{
           console.log()
          

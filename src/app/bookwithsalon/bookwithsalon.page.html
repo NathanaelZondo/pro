@@ -1,61 +1,82 @@
 <ion-header>
-  <ion-toolbar >
-      <ion-buttons collapse="true" slot="start" (click) ="back()">
-  <ion-icon slot="icon-only" name="arrow-round-back" ></ion-icon>
-     </ion-buttons> 
-   
-    <ion-title align ="center" style ="font-family: 'Quicksand', sans-serif;" size="large">{{viewTitle}}</ion-title>
-    <ion-buttons collapse="true" slot="end" >
-<ion-button class ="buttonz" (click)="changeMode('day')" [style.background] ="daycolor">D</ion-button>
-<ion-button class ="buttonz" (click)="changeMode('week')" [style.background] ="weekcolor">W</ion-button>
-<ion-button class ="buttonz"  (click)="changeMode('month')" [style.background] ="monthcolor">M</ion-button>
-           </ion-buttons> 
-  
+  <ion-toolbar>
+    <ion-buttons collapse="true" slot="start" (click)="back()">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-buttons>
+
+    <ion-title align="center" style="font-family: 'Quicksand', sans-serif;" size="large">{{viewTitle}}</ion-title>
+    <ion-buttons collapse="true" slot="end">
+      <ion-button class="buttonz" (click)="changeMode('day')" [style.background]="daycolor">D</ion-button>
+      <ion-button class="buttonz" (click)="changeMode('week')" [style.background]="weekcolor">W</ion-button>
+      <ion-button class="buttonz" (click)="changeMode('month')" [style.background]="monthcolor">M</ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
- 
+
 
 </ion-header>
 
 <ion-content class="has-header">
+  <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
 
-        <calendar    [eventSource]="eventSource" [calendarMode]="calendar.mode"
-          [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
-    (onTitleChanged)="onViewTitleChanged($event)"
-         step="30" [startHour]="openTime"  [endHour]="closeTime"  [markDisabled]="markDisabled" 
-         (onTimeSelected)="onTimeSelected($event)" (click) ="timeAlertConfirm()"
-         [markDisabled]="markDisabled"
-         [timeInterval]="timeinterval"
-         >
-       
-        </calendar>
-  
-    
-      <div class="flex-container" >
-      
-       
-         
-            
-            <pre>
+    <div class="maploader">
+      <div class="lds-facebook">
+        <div></div>
+        <div></div>
+        <div></div>
+<ion-content class="has-header" fullscreen>
+    <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
 
-            </pre>
-            <div style ="width:100vw;height:120px;background: linear-gradient(rgba(179, 125, 93, 0.342),rgba(179, 125, 93, 0.384),rgba(179, 125, 93, 0.363));position:fixed" [hidden] ="isvalidated" align ="center">
-                <div align ="right" style ="width:30px;float:right;margin-right:15px;"><button  style ="background:transparent;background-color:transparent;" width ="10px" (click)="closebutton()"><ion-icon name ="close" style ="color:black" ></ion-icon></button></div>
-            <br>
-<pre>{{text}}
+        <div class="maploader">
+            <div class="lds-facebook"><div></div><div></div><div></div></div>
+        </div>
+        <div class="loading-text">
+          <p>Loading Map</p>
+        </div>
+      </div>
+    </div>
+    <div class="loading-text">
+      <p>Loading Map</p>
+    </div>
+  </div>
 
-</pre>
-              <button   [style.background] ="pink"   style="width: 300px; width: 27%;
-              height: 40px;color:white;border-radius: 100px;background-color:rgb(179, 125, 93);" (click) ="submit()"  >Book Now!</button>
-          </div>
-           
-         
-        
-     
-    
-  
-   
-       
-        </div> 
-     
+  <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
+    (onCurrentDateChanged)="onCurrentDateChanged($event)" (onTitleChanged)="onViewTitleChanged($event)" step="30"
+    [startHour]="openTime" [endHour]="closeTime" [markDisabled]="markDisabled" (onTimeSelected)="onTimeSelected($event)"
+    (click)="timeAlertConfirm()" [markDisabled]="markDisabled" [timeInterval]="timeinterval">
+
+  </calendar>
+
+
+  <div class="flex-container">
+
+    <pre>
+
+    </pre>
+    <div
+      style="width:100vw;height:120px;background: linear-gradient(rgba(179, 125, 93, 0.342),rgba(179, 125, 93, 0.384),rgba(179, 125, 93, 0.363));position:fixed"
+      [hidden]="isvalidated" align="center">
+      <div align="right" style="width:30px;float:right;margin-right:15px;"><button
+          style="background:transparent;background-color:transparent;" width="10px" (click)="closebutton()">
+          <ion-icon name="close" style="color:black; font-size: 4vw;"></ion-icon>
+        </button></div>
+      <br>
+      <pre>{{text}}
+
+      </pre>
+      <button [style.background]="pink" style="width: 300px; width: 27%;
+              height: 40px;color:white;border-radius: 100px;background-color:rgb(179, 125, 93);"
+        (click)="submit()">Book Now!</button>
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+
 
 </ion-content>
