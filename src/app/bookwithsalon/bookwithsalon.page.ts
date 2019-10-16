@@ -7,6 +7,7 @@ import * as firebase from 'firebase';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import {CustomerPage} from '../../app/customer/customer.page';
 import {ZeroPage} from '../zero/zero.page'
+import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
 @Component({
   selector: 'app-bookwithsalon',
   templateUrl: './bookwithsalon.page.html',
@@ -78,8 +79,10 @@ console.log(this.backend.salonsDisply[0].TokenID)
     const popover = await this.popoverController.create({
       component: ZeroPage,
       backdropDismiss:false,
-      event: ev,
-      translucent: true,
+      translucent:false,
+      mode:"ios",
+      event: ev
+      
       
     });
 
@@ -490,7 +493,7 @@ async presentToast() {
               )
             })
 
-            this.control.BookToast();
+         
             this.control.navCtrl.navigateRoot('/success');
           
           }
@@ -718,7 +721,7 @@ console.log("EVents clicked =",ev)
   console.log("this is the date =" , ev.selectedTime.toLocaleDateString());
   if(this.calendar.mode== 'month')
   {
-    this.isvalidated = true;
+    
   }
 else
 {
@@ -1176,7 +1179,7 @@ val2 =false;
    
 findtime(booking) {
   
-this.text ="Time:"+booking.sessiontime+"-"+booking.sessionendtime+" on "+booking.userdate; 
+this.text ="TIME:"+booking.sessiontime+"-"+booking.sessionendtime+", DATE:"+booking.userdate; 
   for (let i = 0; i < this.events.length; i++) {
 
 
@@ -1277,26 +1280,24 @@ async presentToastWithOptions() {
 
 
 async presentToastWithOptions2() {
-  const alert = await this.alertController.create({
-    header: 'Oops!',
-    cssClass: 'secondary',
-    message: 'There is already a booking within the time you have selected. Choose another time or date.',
-    buttons: [
-    
-       {
-        text: 'Okay',
-    
-        handler: () => {
-          console.log('Confirm Okay');
-          this.isvalidated =true;
-        }
-      }
-    ]
-  });
-  
-  await alert.present();
 
   this.isvalidated =true;
+  const loading = await this.loadingController.create({
+    spinner: null,
+    duration: 10,
+    cssClass: null,
+  });
+
+   loading.present();
+
+   loading.dismiss().then(val=>{
+    console.log('Toaster dismissed!');
+    this.booking.sessionendtime=undefined;
+    this.booking.sessiontime=undefined;
+    this.booking.userdate =undefined;
+    this.isvalidated =true;
+   })
+ 
 }
 
 

@@ -13,11 +13,11 @@
   <div class="container" *ngFor="let x of bookingdetails">
 
     <div class="top">
-      <div class="image">
+      <div class="image" *ngFor="let x of bookingdetails">
         <img src="{{x.hairstyleimage}}" />
       </div>
 
-      <div class="details">
+      <div class="details" *ngFor="let x of bookingdetails">
         <div class="style">
           <h1>{{x.hairstyletype}}</h1>
         </div>
@@ -28,18 +28,18 @@
       </div>
     </div>
 
-    <div class="bottom">
-      <div class="name">
+    <div class="bottom" *ngFor="let x of bookingdetails">
+      <div class="name" *ngFor="let x of bookingdetails">
         <h3> {{x.salonname}}</h3>
         <p>{{x.salonlocation}}</p>
       </div>
       <br>
-      <div class="stylist">
+      <div class="stylist" *ngFor="let x of bookingdetails">
         <p>Stylist</p>
         <h4>{{x.hairdresser}}</h4>
       </div>
 
-      <div class="appdets">
+      <div class="appdets" *ngFor="let x of bookingdetails">
           <p>Hairstyle Info</p>
           <h4>{{x.estimatedtime}} Minutes <br>
             From {{x.sessiontime}} to {{x.sessionendtime}} on {{x.userdate}}<br>
@@ -48,12 +48,12 @@
           
         </div>
 
-        <div class="btnz">
+        <div class="btnz" *ngFor="let x of bookingdetails">
           <ion-button (click)="late(x)" color="transparent" style="background:#BF6B7A  ">
             I am late
           </ion-button>
 
-            <ion-button  [disabled] ="x.status2!='cancelled' && x.status!='cancelled' && x.userdate >= currentdate"  *ngIf="n.userdate == currentday && n.payment!='Paid' " (click)="forthealert(x)" color="transparent" style="background: #BF967E" >
+            <ion-button   *ngIf="x.userdate == currentdate && x.payment!='Paid' " (click)="forthealert(x)" color="transparent" style="background: #BF967E" >
               Cancel Booking
              </ion-button>
 
