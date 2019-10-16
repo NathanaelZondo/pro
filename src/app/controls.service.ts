@@ -44,22 +44,22 @@ export class ControlsService {
     console.log('Loading dismissed!');
   }
   
-  async LoginToast() {
-    const toast = await this.toastController.create({
-      message: 'Login successful.',
-      duration: 5000
-    });
-    toast.present();
-  }
+  // async LoginToast() {
+  //   const toast = await this.toastController.create({
+  //     message: 'Login successful.',
+  //     duration: 5000
+  //   });
+  //   toast.present();
+  // }
 
 
-  async RegToast() {
-    const toast = await this.toastController.create({
-      message: 'Registration successful.',
-      duration: 5000
-    });
-    toast.present();
-  }
+  // async RegToast() {
+  //   const toast = await this.toastController.create({
+  //     message: 'Registration successful.',
+  //     duration: 5000
+  //   });
+  //   toast.present();
+  // }
 
 
   async BookToast() {
@@ -71,13 +71,13 @@ export class ControlsService {
   }
 
 
-  async LogoutToast() {
-    const toast = await this.toastController.create({
-      message: 'Logout successful.',
-      duration: 5000
-    });
-    toast.present();
-  }
+  // async LogoutToast() {
+  //   const toast = await this.toastController.create({
+  //     message: 'Logout successful.',
+  //     duration: 5000
+  //   });
+  //   toast.present();
+  // }
 
 
   async ProfileToast() {

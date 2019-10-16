@@ -21,6 +21,7 @@ export class BookwithsalonPage implements OnInit {
   staff = [];
   userToken
 timeinterval;
+loaderAnimate = true
 openTime =parseInt(this.backend.selectedsalon[0].openTime[0]+this.backend.selectedsalon[0].openTime[1]);
 closeTime =parseInt(this.backend.selectedsalon[0].closeTime[0]+this.backend.selectedsalon[0].closeTime[1]);
 staffnames =[];
@@ -84,7 +85,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
     popover.onDidDismiss().then(val=>{
       console.log(val)
       this.hairdresser =val.data.name;
-      this.dresserLoading();
+       this.dresserLoading();
     })
     return await popover.present();
 
@@ -104,14 +105,9 @@ console.log(this.backend.salonsDisply[0].TokenID)
 };
 
   async Loading() {
-    const loading = await this.loadingController.create({
-      message: 'Loading '+this.booking.salonname+ ' hairdressers...',
-      duration: 1500
-    });
-    await loading.present();
-  
-    const { role, data } = await loading.onDidDismiss();
-    console.log('Loading dismissed!');
+  setTimeout(() => {
+    this.loaderAnimate = false
+  }, 2000);
     this.poppy();
   }
 
@@ -913,26 +909,29 @@ pickdates() {
 hairdresser;
 
   async dresserLoading() {
-    const loading = await this.loadingController.create({
-      message: 'Please wait...',
-      duration: 2500
-    });
-    await loading.present();
+    // const loading = await this.loadingController.create({
+    //   message: 'Please wait...',
+    //   duration: 2500
+    // });
+    // await loading.present();
   
-    const { role, data } = await loading.onDidDismiss();
+    // const { role, data } = await loading.onDidDismiss();
     this.testbooking(this.booking);
      this.otherLoading();
     console.log('Loading dismissed!');
   }
 
   async otherLoading() {
+    this.loaderAnimate = true
     const loading = await this.loadingController.create({
-      message: 'Loading events...',
+      spinner: null,
+      cssClass:null,
       duration: 1500
     });
     await loading.present();
   
     const { role, data } = await loading.onDidDismiss();
+    this.loaderAnimate = false
     this.eventspopulation();
     this.present2();
     //this.setbooking(this.booking)
