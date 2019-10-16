@@ -309,6 +309,7 @@ ion-toolbar {
     bottom: 10px;
     height: 30vh;
     width: 100%;
+    z-index: 10;
 
     ion-slides {
 
@@ -554,6 +555,26 @@ ion-toolbar {
                 }
             }
         }
+    }
+}
+
+.msgz{
+    width: 100vw;
+    height: 45vh;
+    display: grid;
+    align-items: center;
+    text-align: center;
+    p{
+        font-family: 'Poiret One';
+        font-size: 6vw;
+    }
+
+    img{
+        position: relative;
+        left: 33%;
+        top: 10vh;
+        width: 15vh;
+        height:15vh;
     }
 }
 
