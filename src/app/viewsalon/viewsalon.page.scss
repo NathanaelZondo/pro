@@ -13,6 +13,11 @@
     -webkit-box-shadow: none;
     padding : 0px;
 }
+.rating:focus {
+    background: white;
+    color: red;
+    outline: none !important;
+  }
 
 #rating{
     background: none;
