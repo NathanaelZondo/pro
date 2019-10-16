@@ -48,7 +48,7 @@ export class MapsPage implements OnInit {
   @ViewChild('map', { static: false }) mapElement: ElementRef;
   @ViewChild('sliderRef', { static: true }) slides: IonSlides;
   directionsService = new google.maps.DirectionsService;
-  directionsDisplay = new google.maps.DirectionsRenderer;
+  directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
   db = firebase.firestore();
   users = [];
   map: any;
