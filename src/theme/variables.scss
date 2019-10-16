@@ -11,6 +11,23 @@
   // --ion-color-primary-shade: #e08631;
   // --ion-color-primary-tint: #ff944c;
 
+
+ion-popover {
+
+  ion-backdrop{
+    opacity: 0.7 !important;
+    }
+ 
+  --height: 100%;
+  --max-height: 30vh;
+  --max-width: 80vw;
+  --min-height: 30vh;
+  --min-width: 30vw;
+  --width: 100%;
+}
+
+
+
   /** secondary **/
   --ion-color-secondary: #0cd1e8;
   --ion-color-secondary-rgb: 12, 209, 232;

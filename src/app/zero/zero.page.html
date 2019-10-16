@@ -1,16 +1,23 @@
 <ion-content padding>
+<div class="container">
+  <div class="heading">
+     <h3 >Select a hairdresser</h3>
+  </div>
 
-  <h3 align = "center">Select a hairdresser</h3>
-  <ion-item  *ngFor=" let n of staffnames "> 
+  <div class="details">
+      <ion-item  *ngFor=" let n of staffnames "> 
     <ion-avatar slot="start">
       <img src="{{n.staffImage}}">
-    </ion-avatar>
+    </ion-avatar> &nbsp;&nbsp;
     <ion-button slot="end" (click)="select(n)" color ="clear"><ion-icon name ="md-hand" style ="color:grey"></ion-icon></ion-button>
     <ion-label>
       <p class="p1">&nbsp;{{n.name}} {{n.staffSurname}}</p>
     </ion-label>
   </ion-item>
+  </div>
+ 
 
+</div>
  
 
 </ion-content>

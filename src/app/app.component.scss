@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Abel|Poiret+One|Open+Sans+Condensed|Jura|Manjari|Poppins|Raleway|Montserrat ');
+
 .ion-page{
     z-index: -5 !important;
     display: block !important;
@@ -8,3 +10,13 @@
     position: absolute; 
     display: block;  
  }
+
+ .secondary{
+     .alert-message{
+background-color: blue;
+font-size: 100px;
+}
+ }
+
+
+
