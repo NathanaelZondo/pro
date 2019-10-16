@@ -79,7 +79,8 @@ console.log(this.backend.salonsDisply[0].TokenID)
       component: ZeroPage,
       backdropDismiss:false,
       event: ev,
-      translucent: true
+      translucent: true,
+      
     });
 
     popover.onDidDismiss().then(val=>{
@@ -106,9 +107,10 @@ console.log(this.backend.salonsDisply[0].TokenID)
 
   async Loading() {
   setTimeout(() => {
-    this.loaderAnimate = false
+    this.loaderAnimate = false;
+     this.poppy();
   }, 2000);
-    this.poppy();
+
   }
 
   // async presentAlertRadio() {
