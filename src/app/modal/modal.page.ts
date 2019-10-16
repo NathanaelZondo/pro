@@ -29,6 +29,7 @@ export class ModalPage implements OnInit {
   hairsalon;
   alldata;
   userbooking =[];
+  SalonNumber
   constructor(private modalController: ModalController,
     public backend: BackendService,
     public control: ControlsService,
@@ -55,14 +56,14 @@ export class ModalPage implements OnInit {
     this.alldata = x;
     this.haidressername = x.hairdresser;
     this.hairsalon = x.salonname;
-
+this.SalonNumber = x.cell
     this.cancelbookingConfirm();
 
     console.log(this.alldata)
 
   }
   call(){
-    this.callNumber.callNumber( this.alldata.saloncell, true)
+    this.callNumber.callNumber( this.SalonNumber, true)
   .then(res => console.log('Launched dialer!', res))
   .catch(err => console.log('Error launching dialer', err));
   }

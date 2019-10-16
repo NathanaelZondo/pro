@@ -433,7 +433,7 @@ console.log(booking)
             }
       
 
-            this.control.BookToast();
+            // this.control.BookToast();
             this.control.navCtrl.navigateRoot('/success');
             
           }
