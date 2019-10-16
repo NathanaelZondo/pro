@@ -84,13 +84,12 @@
     </div>
 
     <div class="stylez">
-        <ion-slides [options]="sliderConfig">
-            <ion-slide (click)="choosehair(x)" style="display: flex; flex-flow: column" (press) ="press(x)" *ngFor="let x of hair"  >
-              <img src="{{x.hairStyleImage}}">
-              <p>{{x.hairstyleName}}<br><span>{{x.hairstylePrice | currency:'&#82;'}}</span></p>
-            </ion-slide>
-          </ion-slides>
-    
+      <ion-slides [options]="sliderConfig">
+        <ion-slide (click)="choosehair(x)" style="display: flex; flex-flow: column"   (press) ="press(x)" *ngFor="let x of hair" >
+          <img src="{{x.hairStyleImage}}">
+          <p>{{x.hairstyleName}}<br><span>{{x.hairstylePrice | currency:'&#82;'}}</span><br><span>{{x.duration}}Mins</span></p>
+        </ion-slide>
+      </ion-slides>
     </div>
  
   </div>

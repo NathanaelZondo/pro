@@ -62,14 +62,7 @@ export class ControlsService {
   // }
 
 
-  async BookToast() {
-    const toast = await this.toastController.create({
-      message: 'Booking successful.',
-      duration: 5000
-    });
-    toast.present();
-  }
-
+  
 
   // async LogoutToast() {
   //   const toast = await this.toastController.create({

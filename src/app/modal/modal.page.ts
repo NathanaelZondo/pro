@@ -19,7 +19,7 @@ export class ModalPage implements OnInit {
   userdate;
   hairdresser;
   salonname;
-  currentdate;
+  currentdate =this.cdate();
   useruid;
   newdata = [];
   ob = {};
@@ -27,7 +27,8 @@ export class ModalPage implements OnInit {
   isvalidated = true;
   haidressername;
   hairsalon;
-  alldata
+  alldata;
+  userbooking =[];
   constructor(private modalController: ModalController,
     public backend: BackendService,
     public control: ControlsService,
@@ -37,6 +38,7 @@ export class ModalPage implements OnInit {
     this.bookingdetails = this.backend.bookingdetails;
 
     console.log(this.bookingdetails)
+  this.cdate() ;
 
   }
 
@@ -178,6 +180,37 @@ export class ModalPage implements OnInit {
 
     await alert.present();
   }
+
+
+
+  cdate() {
+    let todate;
+     todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth()) + '-' + (new Date().getDate());
+     if ((new Date().getMonth() + 1) < 10) {
+ 
+       todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-' + (new Date().getDate());
+       if ((new Date().getDate()) < 10) {
+         todate = (new Date().getFullYear().toString()) + '-0' + (new Date().getMonth() + 1) + '-0' + (new Date().getDate());
+       }
+ 
+     }
+ else if ((new Date().getMonth() + 1) >= 10)
+ {
+   todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth() + 1) + '-' + (new Date().getDate());
+ 
+   if ((new Date().getDate()) < 10) {
+     todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth() + 1) + '-0' + (new Date().getDate());
+   }
+ }
+ 
+     console.log("Currentdate =", todate)
+     
+     return todate;
+   }
+ 
+
+
+
 
 
 }
