@@ -43,17 +43,17 @@
 
     </pre>
     <div
-      style="width:100vw;height:120px;background: linear-gradient(rgba(179, 125, 93, 0.342),rgba(179, 125, 93, 0.384),rgba(179, 125, 93, 0.363));position:fixed"
+      style="width:100%;height:140px;background: linear-gradient(rgba(179, 125, 93, 0.342),rgba(179, 125, 93, 0.384),rgba(179, 125, 93, 0.363));position:fixed"
       [hidden]="isvalidated" align="center">
       <div align="right" style="width:30px;float:right;margin-right:15px;"><button
-          style="background:transparent;background-color:transparent;" width="10px" (click)="closebutton()">
-          <ion-icon name="close" style="color:black; font-size: 4vw;"></ion-icon>
+          style="background:transparent;background-color:rgba(255, 192, 203, 0);color:black" width="25px" (click)="closebutton()">
+          <ion-icon name="close" style="color:black; font-size: 25px;"></ion-icon>
         </button></div>
       <br>
       <pre>{{text}}
 
       </pre>
-      <button [style.background]="pink" style="width: 300px; width: 27%;
+      <button  [style.background]="pink" style="width: 300px; width: 27%;
               height: 40px;color:white;border-radius: 100px;background-color:rgb(179, 125, 93);"
         (click)="submit()">Book Now!</button>
     </div>
