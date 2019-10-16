@@ -20,6 +20,10 @@ export class ViewprofilePage implements OnInit {
   constructor(private navCtrl:NavController, public modalController: ModalController,public backend: BackendService, public control: ControlsService,public alertController:AlertController) {
     this.profiles =this.backend.profiles;
     console.log(this.profiles)
+
+
+   
+
   }
 
   ngOnInit() {
