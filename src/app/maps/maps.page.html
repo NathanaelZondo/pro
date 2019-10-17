@@ -32,19 +32,21 @@
             <div class="image">
                 <img *ngIf="!b.salonImage" src="../../assets/defaultSalon.jpg" alt="tough">
               <img *ngIf="b.salonImage" src="{{b.salonImage}}" alt="tough">
-              <div [ngClass]="{'distance-active': cardIndex, 'distance-inactive': !cardIndex}" (click)="showDistance()">
-                <div class="data">
-                  <ion-icon name="hourglass"></ion-icon>
-                  <p>{{duration}}</p>&nbsp;<ion-icon name="compass"></ion-icon>
-                  <p>{{distance}}</p>
-                </div>
-              </div>
+             
             </div>
             <div class="title" (click)="selectsalon(b)">
               <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; padding-left: 10px;">
                 <strong>{{b.salonName}}</strong></p>
               <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway">
                 {{b.Address.streetName}}</p>
+
+                <div [ngClass]="{'distance-active': cardIndex, 'distance-inactive': !cardIndex}" (click)="showDistance()">
+                    <div class="data">
+                      <ion-icon name="hourglass"></ion-icon>
+                      <p>{{duration}}</p>&nbsp;<ion-icon name="compass"></ion-icon>
+                      <p>{{distance}}</p>
+                    </div>
+                  </div>
             </div>
           </div>
 
