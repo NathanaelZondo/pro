@@ -11,7 +11,7 @@
 
   <div #map id="map"></div>
   <div class="s-location" >
-      <input id="pac-input" name="pac-input" class="controls" type="text" placeholder="Search Location">
+      <input id="pac-input" name="pac-input" class="controls" type="text" placeholder="Search Location" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')">
        <ion-icon name="locate" id="locater" (click)="requestPrompt()"></ion-icon>
     </div>
 
@@ -23,8 +23,8 @@
   </ion-item> -->
   
   <br><br><br>
-  <div class="salonlist">
-    <ion-slides [options]="sliderConfig" #sliderRef (ionSlideDidChange)="moveMapEvent($event)">
+  <div class="salonlist"  *ngIf="!hide">
+    <ion-slides [options]="sliderConfig" #sliderRef (ionSlideDidChange)="moveMapEvent($event)" >
       <ion-slide class="magic" *ngFor="let b of salons; let i = index" (click)="selectsalon(b)">
         <div class="card">
 
@@ -41,7 +41,12 @@
                 {{b.Address.streetName}}</p>
 
                 <div [ngClass]="{'distance-active': cardIndex, 'distance-inactive': !cardIndex}" (click)="showDistance()">
-                    <div class="data">
+                  <div class="data" *ngIf="!duration">
+                      <ion-icon name="car"></ion-icon>
+                      <p> 0 Min</p>&nbsp;<ion-icon name="compass"></ion-icon>
+                      <p> 0 Km</p>
+                  </div>
+                  <div class="data" *ngIf="duration">
                       <ion-icon name="car"></ion-icon>
                       <p>{{duration}}</p>&nbsp;<ion-icon name="compass"></ion-icon>
                       <p>{{distance}}</p>
