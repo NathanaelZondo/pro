@@ -697,14 +697,40 @@ loadEvents() {
 }
 
 ev;
-onTimeSelected = (ev: { selectedTime: Date, events: any[] }) => {
-  this.loaderAnimate = true;
+lastpopup:boolean =false;
+async smallLoading() {
+  this.loaderAnimate = true
+  const loading = await this.loadingController.create({
+    spinner: null,
+    cssClass:null,
+    duration: 100
+  });
+  await loading.present();
+
+  const { role, data } = await loading.onDidDismiss();
+  if(this.lastpopup ==true)
+  {
+   console.log("lastpopup") 
+  }
+  else
+  {
+   console.log("Nopopup") 
+  }
+  this.loaderAnimate = false
+  
+  console.log('Loading dismissed!');
+}
+
+
+
+ onTimeSelected = (ev: { selectedTime: Date, events: any[] }) => {
+ 
   console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' + (ev.events !== undefined && ev.events.length !== 0));
 console.log("EVents clicked =",ev)
   console.log("this is the time =" , ev.selectedTime.toString().slice(16,21));
   console.log("this is the date =" , ev.selectedTime.toLocaleDateString());
 
- 
+  this.smallLoading();
  
   if(this.calendar.mode== 'month')
   {
@@ -712,6 +738,7 @@ console.log("EVents clicked =",ev)
   }
 else
 {
+  this.loaderAnimate = true;
  this.ev =ev;
   this.booking.sessiontime=ev.selectedTime.toString().slice(16,21);
 
@@ -764,7 +791,7 @@ if ((new Date(ev.selectedTime).getDate()) < 10) {
   }
 
 }
-this.loaderAnimate = false;
+
 }
 
 
