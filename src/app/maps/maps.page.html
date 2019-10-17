@@ -23,8 +23,8 @@
   </ion-item> -->
   
   <br><br><br>
-  <div class="salonlist"  *ngIf="!hide">
-    <ion-slides [options]="sliderConfig" #sliderRef (ionSlideDidChange)="moveMapEvent($event)" >
+  <div class="salonlist"  >
+    <ion-slides [options]="sliderConfig" #sliderRef (ionSlideDidChange)="moveMapEvent($event)"  >
       <ion-slide class="magic" *ngFor="let b of salons; let i = index" (click)="selectsalon(b)">
         <div class="card">
 
