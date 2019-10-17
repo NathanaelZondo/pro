@@ -14,7 +14,7 @@
       </div>
 
 
-    <ion-slides pager="true">
+    <ion-slides #slides pager="true">
       <ion-slide>
     
         <div class="data">
@@ -29,7 +29,7 @@
           </div>
           <br>
           <div class="btnz">
-            <ion-button large (click)="signin()" color="transparent">
+            <ion-button large (click)="nextslides()" color="transparent">
               Next
             </ion-button>
           </div>
@@ -52,7 +52,7 @@
           </div>
           <br><br>
           <div class="btnz">
-            <ion-button large (click)="signin()" color="transparent">
+            <ion-button large (click)="nextslides()" color="transparent">
               Next
             </ion-button>
           </div>

@@ -15,36 +15,42 @@ ion-toolbar {
 }
 
 .s-location {
-  width: 47%;
-  height: 97%;
+  width: 90vw;
+  height: 10vw;
+  border-radius: 20px;
   display: grid;
   align-items: center;
+  background: #343A3F;
   position: absolute;
-  top: 0;
+  top: 15px;
+  left: 13px;
+  right: 10px;
+  overflow: hidden;
+  margin: 5px;
 
   #locater {
-    position: absolute;
+    position: relative;
     padding: 5px;
-    top: 4.5vw;
-    left: 85vw;
+    // top: -2.5vw;
+    left: 77vw;
     z-index: 10;
     font-size: 7.5vw;
+    color: rgb(207, 207, 207);
+    align-items: center;
   }
 
   #pac-input {
-    width: 95vw;
-    height: 5vh;
-    margin: 10px;
-    background: rgb(255, 255, 255);
-    box-shadow: 2px 2px 10px grey;
+    width: 75vw;
+    // height: 10vw;
+    background: transparent;
     font-size: 3.5vw;
     border: none;
-    color: rgb(145, 142, 142);
+    color: #BF6B7A;
+
     border-radius: 20px;
-    padding: 7px;
+    padding: 10px;
     position: absolute !important;
-    top: 10px;
-    // z-index: 20 !important;
+    // // top: 10px;
   }
 }
 
@@ -238,13 +244,6 @@ ion-toolbar {
 }
 
 
-.container {
-  display: flex;
-  flex-flow: column;
-  width: 100%;
-  // height: 100%;
-}
-
 .menu {
   display: flex;
   flex-flow: row;
@@ -259,7 +258,7 @@ ion-toolbar {
   width: 100%;
   height: 100%;
   position: absolute;
-  bottom: 0;
+  // bottom: -1px;
 }
 
 .salonlist {
@@ -268,11 +267,11 @@ ion-toolbar {
   flex-flow: row;
   overflow-x: auto;
   position: absolute;
-  bottom: -2px;
+  bottom: 0px;
 
   .magic {
     width: 100%;
-    height: 100%;
+    // height: 100%;
   }
 
   .card {
@@ -289,7 +288,7 @@ ion-toolbar {
       display: flex;
       flex-flow: row;
       justify-items: baseline;
-
+      margin: 5px;
       .image {
         box-shadow: 2px 2px 10px grey;
         position: absolute;
@@ -308,19 +307,7 @@ ion-toolbar {
           height: auto;
           transform: translateY(0px);
 
-          .data {
-            width: 97%;
-            margin: 0px auto;
-            background: rgba(255, 255, 255, 0.507);
-            color: black;
-            // border-radius: 200px;
-            display: flex;
-
-            p {
-              font-size: 3vw;
-              color: black !important;
-            }
-          }
+      
         }
 
         .distance-inactive {
@@ -369,7 +356,22 @@ ion-toolbar {
         // display: grid;
         // align-items: center;
         p {
-          margin: 20px 10px;
+          margin: 10px 10px;
+        }
+
+        .data {
+          width: 97%;
+          margin: 6px auto;
+          color: rgb(179, 179, 179);
+          // border-radius: 200px;
+          display: flex;
+          flex-flow: row;
+          position: relative;
+
+          p {
+            font-size: 3vw;
+            color: black !important;
+          }
         }
 
       }

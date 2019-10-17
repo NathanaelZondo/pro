@@ -97,12 +97,6 @@ console.log(this.backend.salonsDisply[0].TokenID)
 
   }
 
-
-
-
-
-
-
   markDisabled = (date: Date) => {
     var current = new Date(this.cdate());
     return date < current;
@@ -163,17 +157,6 @@ async presentToast() {
     });
     toast.present();
   }
-
-
-
-
-
-
-
-
-
-
-
   booking: bookings = {
     name: this.backend.username,
     surname: this.backend.surname,

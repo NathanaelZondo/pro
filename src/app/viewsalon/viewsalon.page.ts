@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, Renderer2 } from '@angular/core';
 import { ControlsService } from '../controls.service';
 import { BackendService } from '../backend.service';
 import { ModalController, ToastController, } from '@ionic/angular';
@@ -40,8 +40,8 @@ isRated = false
   color = "#DCDCDC";
   position: number;
   cardIndex = false
-
-  constructor(public control: ControlsService, public backend: BackendService, public modalController: ModalController, private ngZone: NgZone,public toastController: ToastController) {
+  starRating = document.getElementsByClassName('ionic4-star-rating')
+  constructor(public control: ControlsService, public backend: BackendService, public modalController: ModalController, private ngZone: NgZone,public toastController: ToastController, public renderer: Renderer2) {
     this.backend.getHairSalon();
 
     //this.gethairstyles(this.gend);
@@ -74,6 +74,18 @@ this.isRated = true
 
 
   ngOnInit() {
+    setTimeout(()=>{
+      console.log(this.starRating);
+      
+      let starButtons =  this.starRating[0].children
+
+      for (let i = 0; i < starButtons.length; i++) {
+        console.log(this.starRating[0].children[i]);
+        this.renderer.setStyle(this.starRating[0].children[i], 'outline', 'none');
+
+      }
+      
+    }, 500)
     this.checkLikes()
   }
   
@@ -85,14 +97,11 @@ this.isRated = true
           this.db.collection('Salons').doc(res.id).collection('likes').doc(firebase.auth().currentUser.uid).onSnapshot(res => {
             if (res.exists) {
               this.cardIndex = true ;
-           
               console.log('it exists')
             } else {
               console.log('it doesnt exist');
-
             }
           })
-
         })
       })
     })

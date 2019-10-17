@@ -131,8 +131,6 @@ this.SalonNumber = x.cell
     this.presentAlertPrompt(x)
 
   }
-
-
   async presentAlertPrompt(x) {
     const alert = await this.alertController.create({
       header: 'Are you going to be late?',
@@ -142,9 +140,6 @@ this.SalonNumber = x.cell
           type: 'text',
           placeholder: 'Give ' + x.hairdresser + ' your reason...'
         }
-        // input date with min & max
-
-
       ],
       buttons: [
         {
@@ -182,9 +177,7 @@ this.SalonNumber = x.cell
     await alert.present();
   }
 
-
-
-  cdate() {
+cdate() {
     let todate;
      todate = (new Date().getFullYear().toString()) + '-' + (new Date().getMonth()) + '-' + (new Date().getDate());
      if ((new Date().getMonth() + 1) < 10) {
