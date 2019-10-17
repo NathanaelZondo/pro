@@ -5,9 +5,7 @@ ion-toolbar {
     position: absolute;
 }
 
-* {
-    transition: 0.7s;
-}
+
 
 .content {
     width: 100%;
@@ -37,6 +35,10 @@ img {
 
 
 .info {
+    * {
+        transition: 0.7s;
+    }
+
     display: flex;
     flex-flow: column;
     position: absolute;
@@ -45,7 +47,6 @@ img {
     z-index: 5;
     background: white;
     width: 100%;
-    // height: 20vh;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 
@@ -99,7 +100,7 @@ img {
     display: flex;
     flex-flow: column;
     position: absolute;
-    bottom: 0;
+    bottom: 5px;
     // left: 20%;
     z-index: 5;
     background: white;

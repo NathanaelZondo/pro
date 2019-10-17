@@ -1,11 +1,4 @@
 <ion-content fullscreen>
-
-  <!-- <div class="g-search">
-    <br>
-    <ion-fab-button size="small" id="salon" (click)="option('salon')" style="width: 5vh; height: 5vh">
-        <ion-icon name="funnel" style="font-size: 5vw;"></ion-icon>
-    </ion-fab-button>
-  </div> -->
   <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
 
       <div class="maploader">
@@ -39,26 +32,26 @@
             <div class="image">
                 <img *ngIf="!b.salonImage" src="../../assets/defaultSalon.jpg" alt="tough">
               <img *ngIf="b.salonImage" src="{{b.salonImage}}" alt="tough">
-              <div [ngClass]="{'distance-active': cardIndex, 'distance-inactive': !cardIndex}" (click)="showDistance()">
-                <div class="data">
-                  <ion-icon name="hourglass"></ion-icon>
-                  <p>{{duration}}</p>&nbsp;<ion-icon name="compass"></ion-icon>
-                  <p>{{distance}}</p>
-                </div>
-              </div>
+             
             </div>
             <div class="title" (click)="selectsalon(b)">
               <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; padding-left: 10px;">
                 <strong>{{b.salonName}}</strong></p>
               <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway">
                 {{b.Address.streetName}}</p>
+
+                <div [ngClass]="{'distance-active': cardIndex, 'distance-inactive': !cardIndex}" (click)="showDistance()">
+                    <div class="data">
+                      <ion-icon name="hourglass"></ion-icon>
+                      <p>{{duration}}</p>&nbsp;<ion-icon name="compass"></ion-icon>
+                      <p>{{distance}}</p>
+                    </div>
+                  </div>
             </div>
           </div>
 
         </div>
-
       </ion-slide>
     </ion-slides>
   </div>
-
 </ion-content>
