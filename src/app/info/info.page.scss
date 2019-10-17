@@ -21,10 +21,10 @@ ion-toolbar {
 
 .name {
 
-  margin: 10px;
-  background: #BF967E;
+  margin: 15px;
+  background: #343A3F;
   justify-content: center;
-  height: 7vh;
+  height: 6vh;
   border-radius: 5px;
 
   h2 {
@@ -38,15 +38,23 @@ ion-toolbar {
 }
 
 .text {
+  padding: 5px;
 
   p {
-    font-family: 'Raleway';
+    font-family: 'Manjari';
     font-size: 4vw;
+    padding: 5px;
   }
 
   li {
-    font-family: 'Raleway';
+   
+    font-family: 'Manjari';
     font-size: 4vw
+  }
+
+  ul{
+    padding: 10px 0px;
+    
   }
 }
 
@@ -55,13 +63,3 @@ ion-toolbar {
   overflow-y: auto;
 }
 
-.copy {
-  position: absolute;
-  bottom: 10px;
-  width: 100vw;
-
-  p {
-    align-items: center;
-    font-size: 3vw;
-  }
-}

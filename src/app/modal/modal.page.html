@@ -1,14 +1,8 @@
 <ion-toolbar color="transparent">
   <ion-icon name="arrow-round-back" style="font-size: 200%; color: white;padding: 10px;" (click)="back()"></ion-icon>
-  <!-- <button ion-button style="float:right; 
-       width: 3vh; height: 3vh; border-radius: 50%; background: green; padding: 10px" color="transparent">
-         <ion-icon name="call" (click)="call()" style="color: white"></ion-icon>
-       </button> -->
 </ion-toolbar>
 
 <ion-content fullscreen>
-
-
 
   <div class="container" *ngFor="let x of bookingdetails">
 
@@ -72,50 +66,5 @@
 
   </div>
 
-  <!-- <div class="container">
-    <div class="flex-container">
-      <div *ngFor="let x of bookingdetails">
-
-        <img src="{{x.hairstyleimage}}"/>
-        <div class="flex-container2">
-          <div>
-            <p style="font-size:18px;color:white;font-family: sans-serif">Client Info </p>
-            <p style="font-size:15px;color:rgb(206, 206, 206)">
-              Name: {{x.name}}<br>
-              Surname: {{x.surname}}<br>
-              You:{{x.status}}
-            </p>
-
-          </div>
-
-          <div>
-            <p style="font-size:18px;color:white;font-family: sans-serif">Time Info </p>
-            <p style="font-size:15px;color:rgb(206, 206, 206)"> Start Time:{{x.sessiontime}}<br>
-              End Time: {{x.sessionendtime}}<br>
-              Duration: {{x.estimatedtime}}<br>
-              Date: {{x.userdate}}</p>
-          </div>
-
-          <div>
-
-
-            <p style="font-size:18px;color:white;font-family: sans-serif">Salon Info </p>
-            <p style="font-size:15px;color:rgb(206, 206, 206);font-family: sans-serif"> Salon: {{x.salonname}}<br>
-              Stylist: {{x.hairdresser}}<br>
-              Location {{x.salonlocation}}<br>
-          </div>
-
-
-        </div>
-        <div >
-         
-          <p style="font-size:15px;color:rgb(206, 206, 206);font-family: sans-serif">
-            Hairstyle: {{x.hairstyletype}}<br>
-            Price: R{{x.hairstyleprice}}.00<br>
-            Stylist: {{x.status2}}
-          </p>
-        </div>
-
-      </div>
-    </div> -->
+  
 </ion-content>
