@@ -44,7 +44,7 @@ export class ModalPage implements OnInit {
   }
 
   ngOnInit() {
-
+  
   }
 
 
@@ -73,8 +73,7 @@ this.SalonNumber = x.cell
 
     this.haidressername = x.hairdresser;
     this.hairsalon = x.salonname;
-    x.status = "cancelled";
-    firebase.firestore().collection('Bookings').doc(x.id).delete();
+ 
 
   }
   async cancelbookingConfirm() {
@@ -96,8 +95,12 @@ this.SalonNumber = x.cell
 
             this.control.cancelbookingToast();
             console.log('Confirm Okay');
-            firebase.firestore().collection('Bookings').doc(this.alldata.id).delete();
 
+          
+            firebase.firestore().collection('Bookings').doc(this.alldata.id).update("status","==","cancelled");
+            firebase.firestore().collection('Bookings').doc(this.alldata.id).delete();
+            firebase.firestore().collection('Cancellations').add(this.alldata);
+     
             if (this.alldata.TokenID) {
               var notificationObj = {
                 headings: { en: "APPOINTMENT CANCELLATION! " },
@@ -204,7 +207,7 @@ cdate() {
  
 
 
-
+   
 
 
 }

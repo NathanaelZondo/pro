@@ -74,7 +74,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
     console.log("poppy")
     this.presentPopover({value:500})
   }
-
+popover;
   async presentPopover(ev: any) {
     const popover = await this.popoverController.create({
       component: ZeroPage,
@@ -85,7 +85,7 @@ console.log(this.backend.salonsDisply[0].TokenID)
       
       
     });
-
+this.popover =popover;
     popover.onDidDismiss().then(val=>{
       console.log(val)
       this.hairdresser =val.data.name;
@@ -96,6 +96,16 @@ console.log(this.backend.salonsDisply[0].TokenID)
 
 
   }
+
+
+  async ionViewDidLeave()
+  {
+    console.log(await this.popover.dismiss())
+    await this.popover.dismiss()
+  }
+
+
+
 
   markDisabled = (date: Date) => {
     var current = new Date(this.cdate());
@@ -1194,7 +1204,7 @@ val2 =false;
    
 findtime(booking) {
   
-this.text ="Time:"+booking.sessiontime+"-"+booking.sessionendtime+", Date:"+booking.userdate+"\nStylist:"+this.hairdresser; 
+this.text ="Names:"+this.booking.name+" "+this.booking.surname+"\nTime:"+booking.sessiontime+"-"+booking.sessionendtime+", Date:"+booking.userdate+"\nStylist:"+this.hairdresser; 
   for (let i = 0; i < this.events.length; i++) {
 
 
