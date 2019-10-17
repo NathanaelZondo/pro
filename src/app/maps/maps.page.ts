@@ -96,6 +96,7 @@ export class MapsPage implements OnInit {
   }
   searchbyLocation = false;
   unlike = false
+  hide='';
   constructor(private device: Device, private androidPermissions: AndroidPermissions, 
     public store: Storage, private ngZone: NgZone, private geolocation: Geolocation, 
     public alertController: AlertController, public elementref: ElementRef, public router: Router, 
@@ -106,7 +107,17 @@ export class MapsPage implements OnInit {
     this.versionType = device.version;
 
   }
+  inputEvent(data){
 
+    if(data=='open'){
+      console.log('event close',data);
+      
+       this.hide='value'
+    } else if(data=='close') {
+      this.hide='';
+    }
+    
+  }
   showDistance() {
     this.cardIndex = !this.cardIndex;
   }
@@ -495,7 +506,7 @@ export class MapsPage implements OnInit {
       map: this.map,
       animation: google.maps.Animation.DROP,
       position: this.map.getCenter(),
-      icon: 'https://img.icons8.com/color/48/000000/map-pin.png'
+      icon: '../../assets/icon/icons8-user-location-48.png'
     });
 
     let content = "<p>Your current location!</p>";

@@ -16,7 +16,8 @@
 <ion-content fullscreen>
   <div class="container">
     <div class="salonimage" *ngFor="let x of salond">
-      <img src="{{x.salonImage}}">
+        <img *ngIf="!x.salonImage" src="../../assets/defaultSalon.jpg">
+      <img *ngIf="x.salonImage" src="{{x.salonImage}}">
     </div>
 
 
@@ -86,7 +87,8 @@
     <div class="stylez">
       <ion-slides [options]="sliderConfig">
         <ion-slide (click)="choosehair(x)" style="display: flex; flex-flow: column"   (press) ="press(x)" *ngFor="let x of hair" >
-          <img src="{{x.hairStyleImage}}">
+          <img *ngIf="!x.hairStyleImage" src="../../assets/defaultSalon.jpg">
+          <img *ngIf='x.hairStyleImage' src="{{x.hairStyleImage}}">
           <p>{{x.hairstyleName}}<br><span>{{x.hairstylePrice | currency:'&#82;'}}</span><br><span>{{x.duration}}Mins</span></p>
         </ion-slide>
       </ion-slides>
