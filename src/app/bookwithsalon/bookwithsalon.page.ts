@@ -87,7 +87,7 @@ popover;
     });
 this.popover =popover;
     popover.onDidDismiss().then(val=>{
-      console.log(val)
+      console.log("POPOVER DISMISSED")
       this.hairdresser =val.data.name;
        this.dresserLoading();
     })
@@ -707,40 +707,27 @@ loadEvents() {
 }
 
 ev;
+eventfound:boolean;
 lastpopup:boolean =false;
-async smallLoading() {
-  this.loaderAnimate = true
-  const loading = await this.loadingController.create({
-    spinner: null,
-    cssClass:null,
-    duration: 100
-  });
-  await loading.present();
-
-  const { role, data } = await loading.onDidDismiss();
-  if(this.lastpopup ==true)
-  {
-   console.log("lastpopup") 
-  }
-  else
-  {
-   console.log("Nopopup") 
-  }
-  this.loaderAnimate = false
-  
-  console.log('Loading dismissed!');
-}
-
+pdating:boolean =false; 
+fdating:boolean =false; 
 
 
  onTimeSelected = (ev: { selectedTime: Date, events: any[] }) => {
  
+this.pdating =false;
+this.fdating =false; 
+
+
   console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' + (ev.events !== undefined && ev.events.length !== 0));
 console.log("EVents clicked =",ev)
   console.log("this is the time =" , ev.selectedTime.toString().slice(16,21));
   console.log("this is the date =" , ev.selectedTime.toLocaleDateString());
+ this.lastpopup=false;
+  this.lastpopup =false;
 
-  this.smallLoading();
+  
+ 
  
   if(this.calendar.mode== 'month')
   {
@@ -748,6 +735,14 @@ console.log("EVents clicked =",ev)
   }
 else
 {
+
+
+
+  
+
+
+
+
   this.loaderAnimate = true;
  this.ev =ev;
   this.booking.sessiontime=ev.selectedTime.toString().slice(16,21);
@@ -775,35 +770,43 @@ if ((new Date(ev.selectedTime).getDate()) < 10) {
 
 
 
-
-  if (this.todate> this.futuredate) {
-
-
-    console.log("futureDate =", this.futuredate)
-    this.booking.userdate=undefined;
-    this.FutureDateToast();
-    this.isvalidated = true;
-
-  
-  }
-  else
-  if (this.cdate() > this.todate) {
-  
-    this.booking.userdate=undefined;
-  
-    this.PastDateToast();
-    this.isvalidated = true;
-     console.log("pastdate")
-  
-  
-  
-  
-  }
+ 
 
 }
 
+
+if (this.todate> this.futuredate) {
+
+
+  console.log("futureDate =", this.futuredate)
+  this.booking.userdate=undefined;
+this.fdating =true;
+  this.isvalidated = true;
+
+
+}
+else
+if (this.cdate() > this.todate) {
+
+  this.booking.userdate=undefined;
+
+
+  this.isvalidated = true;
+   console.log("pastdate")
+
+this.pdating =true;
+
+
+}
+else{
+  this.smallLoading();
 }
 
+
+}
+
+
+  
 
 
 
@@ -986,7 +989,7 @@ booking.userdate=this.todate;
       val.forEach(doc => {
         this.testarray.push(doc.data());
 
-        //console.log(doc.data())
+       
       
 
       });
@@ -1154,34 +1157,16 @@ else if ((new Date().getMonth() + 1) >= 10)
 //console.log(this.ev.events[0].endTime)
 this.setbooking(this.booking);
 this.findtime(this.booking);
-this.isvalidated =false;
+
 
 
 
    if( (this.ev.events !== undefined && this.ev.events.length !== 0))
    {
-this.isvalidated=true;
-    const alert = await this.alertController.create({
-      header: 'Oops!',
-      cssClass: 'secondary',
-      message: 'There is already a booking at '+this.booking.sessiontime+'. Choose another date or time.',
-      buttons: [
-      
-         {
-          text: 'Okay',
-      
-          handler: () => {
-            console.log('Confirm Okay');
-            this.isvalidated =true;
-          }
-        }
-      ]
-    });
+this.eventfound =true;
     
-    await alert.present();
-
-
-
+this.isvalidated=true;
+   
     this.booking.sessiontime=undefined;
     this.booking.sessionendtime=undefined;
   console.log("1141",this.booking)
@@ -1217,9 +1202,9 @@ this.text ="Names:"+this.booking.name+" "+this.booking.surname+"\nTime:"+booking
 
     if (this.d2 < this.d1 && this.d1 < this.d3 ) {
 
-     this.presentToastWithOptions();
+    
    
-
+     this.lastpopup =true;
      console.log("Booking Error slot overlap ")
   
    
@@ -1257,9 +1242,9 @@ console.log("findtime2")
 
     if (this.d2 < this.d1 && this.d1 < this.d3 ) {
 
-    this.presentToastWithOptions2();
     
-
+    this.isvalidated =true;
+    this.lastpopup =true;
      console.log("Booking Error slot between ")
   
      return  0;
@@ -1280,8 +1265,7 @@ console.log("findtime2")
 async presentToastWithOptions() {
   const alert = await this.alertController.create({
     header: 'Oops!',
-    cssClass: 'secondary',
-    message: 'The time you selected overlaps into another booking. Choose another time or date.',
+    message: 'The time you selected clashes with another booking. Choose another time or date.',
     buttons: [
     
        {
@@ -1451,6 +1435,87 @@ closebutton()
 {
   this.isvalidated=true;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async smallLoading() {
+  this.loaderAnimate = true
+  const loading = await this.loadingController.create({
+    message:"Checking events...",
+    duration: 100,
+    cssClass:null
+  });
+  await loading.present();
+
+  const { role, data } = await loading.onDidDismiss();
+  if(this.lastpopup ==true)
+  {
+
+    this.presentToastWithOptions();
+   console.log("Bookingfound") 
+  }
+  else if(this.eventfound == true)
+  {
+
+    this.presentToastWithOptions2();
+    const alert = await this.alertController.create({
+      header: 'Oops!',
+      message: 'There is already a booking. Choose another date or time.',
+      buttons: [
+      
+         {
+          text: 'Okay',
+      
+          handler: () => {
+            console.log('Confirm Okay');
+            
+          }
+        }
+      ]
+    });
+    
+    await alert.present();
+
+
+
+   console.log("eventfound") 
+  }
+else
+if(this.pdating ==true)
+{
+  this.PastDateToast();
+}
+
+else if(this.fdating ==true)
+{
+  this.FutureDateToast();
+}
+  else{
+    this.isvalidated =false;
+  }
+
+
+
+
+  this.loaderAnimate = false
+  
+  console.log('Loading dismissed!');
+}
+
 }
 
 
