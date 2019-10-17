@@ -94,19 +94,65 @@ setTimeout(()=>{
     
   }
 }, 1000)
-    
-    firebase.firestore().collection('Bookings').where("useruid", "==", firebase.auth().currentUser.uid).orderBy("userdate", "desc").limit(15).get().then(val => {
-      val.forEach(doc => {
-        console.log(doc.id)
-        this.ob = { id: doc.id };
-        this.userbooking.push({ ...this.ob, ...doc.data() })
-
-        console.log(this.userbooking)
-
-
-      });
-    });
+this.getbookings();
   }
+
+
+
+
+getbookings()
+{
+
+  this.userbooking =[];
+  firebase.firestore().collection('Cancellations').where("useruid", "==", firebase.auth().currentUser.uid).orderBy("userdate", "desc").limit(15).get().then(val => {
+    val.forEach(doc => {
+      console.log(doc.id)
+      this.ob = { id: doc.id };
+      this.userbooking.push({ ...this.ob, ...doc.data() })
+  
+      console.log(this.userbooking)
+  
+  
+    });
+  });
+  
+  
+  
+      firebase.firestore().collection('Bookings').where("useruid", "==", firebase.auth().currentUser.uid).orderBy("userdate", "desc").limit(15).get().then(val => {
+        val.forEach(doc => {
+          console.log(doc.id)
+          this.ob = { id: doc.id };
+          this.userbooking.push({ ...this.ob, ...doc.data() })
+  
+          console.log(this.userbooking)
+  
+  
+        });
+      });
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   alldata;
   forthealert(x) {
     this.alldata = x;
@@ -129,7 +175,15 @@ setTimeout(()=>{
     this.haidressername = x.hairdresser;
     this.hairsalon = x.salonname;
     x.status = "cancelled";
+   
+
+
+    firebase.firestore().collection('Bookings').doc(x.id).update("status","==",x.status);
     firebase.firestore().collection('Bookings').doc(x.id).delete();
+    firebase.firestore().collection('Cancellations').add(x);
+
+
+    this.getbookings();
 
   }
 
