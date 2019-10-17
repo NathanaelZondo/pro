@@ -717,7 +717,7 @@ fdating:boolean =false;
  
 this.pdating =false;
 this.fdating =false; 
-
+this.eventfound=false;
 
   console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' + (ev.events !== undefined && ev.events.length !== 0));
 console.log("EVents clicked =",ev)
@@ -782,7 +782,7 @@ if (this.todate> this.futuredate) {
   this.booking.userdate=undefined;
 this.fdating =true;
   this.isvalidated = true;
-
+  this.smallLoading();
 
 }
 else
@@ -795,7 +795,7 @@ if (this.cdate() > this.todate) {
    console.log("pastdate")
 
 this.pdating =true;
-
+this.smallLoading();
 
 }
 else{
@@ -1498,11 +1498,13 @@ else
 if(this.pdating ==true)
 {
   this.PastDateToast();
+  console.log("Pastdatefound") 
 }
 
 else if(this.fdating ==true)
 {
   this.FutureDateToast();
+  console.log("Futuredatefound") 
 }
   else{
     this.isvalidated =false;
