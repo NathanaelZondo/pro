@@ -1,14 +1,14 @@
 <ion-toolbar color="transparent">
-        <ion-icon name="arrow-round-back" style="font-size: 200%; color: white;padding: 10px;" (click)="back()"></ion-icon>
-       <!-- <button ion-button style="float:right; 
+  <ion-icon name="arrow-round-back" style="font-size: 200%; color: white;padding: 10px;" (click)="back()"></ion-icon>
+  <!-- <button ion-button style="float:right; 
        width: 3vh; height: 3vh; border-radius: 50%; background: green; padding: 10px" color="transparent">
          <ion-icon name="call" (click)="call()" style="color: white"></ion-icon>
        </button> -->
-      </ion-toolbar>
-  
+</ion-toolbar>
+
 <ion-content fullscreen>
 
-    
+
 
   <div class="container" *ngFor="let x of bookingdetails">
 
@@ -29,38 +29,44 @@
     </div>
 
     <div class="bottom" *ngFor="let x of bookingdetails">
-      <div class="name" *ngFor="let x of bookingdetails">
-        <h3> {{x.salonname}}</h3>
-        <p>{{x.salonlocation}}</p>
+      <div class='buttonz'>
+        <ion-fab-button (click)="call()" size="small" color="transparent">
+          <ion-icon name="call"></ion-icon>
+        </ion-fab-button>
       </div>
-      <br>
-      <div class="stylist" *ngFor="let x of bookingdetails">
-        <p>Stylist</p>
-        <h4>{{x.hairdresser}}</h4>
-      </div>
+      <div class="left">
+        <div class="name" *ngFor="let x of bookingdetails">
 
-      <div class="appdets" *ngFor="let x of bookingdetails">
+          <h3> {{x.salonname}}</h3>
+          <p>{{x.salonlocation}}</p>
+        </div>
+        <br>
+        <div class="stylist" *ngFor="let x of bookingdetails">
+          <p>Stylist</p>
+          <h4>{{x.hairdresser}}</h4>
+        </div>
+
+        <div class="appdets" *ngFor="let x of bookingdetails">
           <p>Hairstyle Info</p>
           <h4>{{x.estimatedtime}} Minutes <br>
             From {{x.sessiontime}} to {{x.sessionendtime}} on {{x.userdate}}<br>
             Cost: {{x.hairstyleprice | currency:'&#82;'}}
           </h4>
-          
+
         </div>
+      </div>
 
-        <div class="btnz" *ngFor="let x of bookingdetails">
-          <ion-button (click)="late(x)" color="transparent" style="background:#BF6B7A  ">
-            I am late
-          </ion-button>
+    </div>
+    <div class="btnz" *ngFor="let x of bookingdetails">
+      <ion-button (click)="late(x)" color="transparent" style="background:#BF6B7A  ">
+        I am late
+      </ion-button>
 
-            <ion-button   *ngIf="x.userdate == currentdate && x.payment!='Paid' " (click)="forthealert(x)" color="transparent" style="background: #BF967E" >
-              Cancel Booking
-             </ion-button>
+      <ion-button *ngIf="x.userdate == currentdate && x.payment!='Paid' " (click)="forthealert(x)" color="transparent"
+        style="background: #BF967E">
+        Cancel Booking
+      </ion-button>
 
-             <ion-button  (click)="call()" color="transparent" style="background: green" >
-                Call Salon
-               </ion-button>
-        </div>
     </div>
 
 

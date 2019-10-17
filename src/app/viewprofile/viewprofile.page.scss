@@ -42,11 +42,12 @@ img {
     display: flex;
     flex-flow: column;
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
     // left: 20%;
     z-index: 5;
     background: white;
     width: 100%;
+    height: 30vh;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 
@@ -97,17 +98,16 @@ img {
 }
 
 .bookings-inactive {
+    transition: 0.7s;
     display: flex;
     flex-flow: column;
     position: absolute;
-    bottom: 5px;
-    // left: 20%;
+    bottom: 0;
     z-index: 5;
     background: white;
-
     box-shadow: 5px 5px 10px lightgray;
-    width: 100%;
-    // height: 25vh;
+    width: 100vw;
+    height: 35vh;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 
@@ -238,17 +238,33 @@ img {
             }
         }
     }
+
+
+    .bookings {
+        position: absolute;
+        bottom: 6vh;
+        left: 20vw;
+        z-index: 5;
+        text-align: center;
+
+        ion-button {
+            background: #BF967E;
+            width: 60vw;
+            font-family: 'Poiret One';
+            letter-spacing: 3px;
+            border-radius: 5px;
+        }
+    }
 }
 
 .bookings-active {
+    transition: 0.7s;
     display: flex;
     flex-flow: column;
     position: absolute;
     bottom: 0;
-    // left: 20%;
     z-index: 5;
     background: white;
-
     box-shadow: 5px 5px 10px grey;
     width: 100%;
     height: 50vh;
@@ -279,14 +295,14 @@ img {
     .line {
         // position: absolute;
         z-index: 5;
-        // top: 45%;
+        margin-bottom: 40px;
         width: 90vw;
         left: 5%;
         right: 5%;
         height: 2px;
         background: grey;
         text-align: center;
-        margin: 10px auto;
+        margin: 5px auto;
 
     }
 
@@ -394,12 +410,8 @@ img {
 }
 
 .bookings {
-    // position: absolute;
     z-index: 5;
-    left: 20%;
     text-align: center;
-    bottom: 20px;
-    margin-top: 40px;
 
     ion-button {
         background: #BF967E;
@@ -413,7 +425,7 @@ img {
 .edit {
     position: absolute;
     bottom: 5px;
-    right: 5px;
+    right: 8px;
     z-index: 8;
     width: 150px;
 
