@@ -282,6 +282,12 @@ export class MapsPage implements OnInit {
         lng: pos.coords.longitude
       }
 
+      // let marker = new google.maps.Marker({
+      //   map: this.map,
+      //   animation: google.maps.Animation.DROP,
+      //   position: geoData,
+      //   icon: icon
+      // });
       // get the address from the current position's coords
       this.geocoder.geocode({ 'location': geoData }, (results, status) => {
         console.log('Geocode responded with', results, 'and status of', status)
@@ -321,7 +327,7 @@ export class MapsPage implements OnInit {
         let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().Address.fullAddress
         //  this.addMarkersOnTheCustomersCurrentLocation(doc.data().lat, doc.data().lng, content);
         const icon = {
-          url: '../../assets/icon/Hair_Dresser_7.svg', // image url
+          url: '../../assets/icon/Hair_Dresser_3.svg', // image url
           scaledSize: new google.maps.Size(55, 55), // scaled size
           size: new google.maps.Size(71, 71),
           origin: new google.maps.Point(0, 0),
@@ -396,7 +402,7 @@ export class MapsPage implements OnInit {
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
     searchBox.addListener('places_changed', (res) => {
-      let places = searchBox.getPlaces();
+      let places
 
       if (places.length == 0) {
         return;
@@ -488,7 +494,8 @@ export class MapsPage implements OnInit {
     let marker = new google.maps.Marker({
       map: this.map,
       animation: google.maps.Animation.DROP,
-      position: this.map.getCenter()
+      position: this.map.getCenter(),
+      icon: 'https://img.icons8.com/color/48/000000/map-pin.png'
     });
 
     let content = "<p>Your current location!</p>";
@@ -691,22 +698,8 @@ export class MapsPage implements OnInit {
       let geoData = {
         lat: resp.coords.latitude,
         lng: resp.coords.longitude
-      }
-      const icon = {
-        url: '../../assets/icon/pin.svg', // image url
-        scaledSize: new google.maps.Size(55, 55), // scaled size
-        size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
-
-      };
-      let marker = new google.maps.Marker({
-        map: this.map,
-        animation: google.maps.Animation.DROP,
-        position: geoData,
-        icon: icon
-      });
-
+      } 
+    
       // get the address from the current position's coords
       this.geocoder.geocode({ 'location': geoData }, (results, status) => {
         console.log('Geocode responded with', results, 'and status of', status)
