@@ -7,28 +7,32 @@
   z-index: 10;
 }
 
-
 ion-toolbar {
   --background: white;
   position: absolute;
   z-index: 9;
 }
-
+.s-location :focus{
+  outline: none;
+}
 .s-location {
-  width: 95vw;
+  width: 90vw;
   height: 10vw;
   border-radius: 20px;
   display: grid;
   align-items: center;
-  background: rgb(34, 108, 168);
-  // position: absolute;
-  // top: 0;
+  background: #343A3F;
+  position: absolute;
+  top: 15px;
+  left: 12px;
+  right: 10px;
+  overflow: hidden;
 
   #locater {
-    position: absolute;
+    position: relative;
     padding: 5px;
-    top: 5vw;
-    left: 87vw;
+    // top: -2.5vw;
+    left: 77vw;
     z-index: 10;
     font-size: 7.5vw;
     color: rgb(207, 207, 207);
@@ -36,18 +40,17 @@ ion-toolbar {
   }
 
   #pac-input {
-    width: 95vw;
-    height: 10vw;
-    margin: 10px;
-    background: #343A3F;
-    box-shadow: 0.5px 0.5px 10px rgb(255, 255, 255);
+    width: 75vw;
+    // height: 10vw;
+    background: transparent;
     font-size: 3.5vw;
     border: none;
     color: #BF6B7A;
+  
     border-radius: 20px;
-    padding: 7px;
+    padding: 10px;
     position: absolute !important;
-    top: 10px;
+    // // top: 10px;
   }
 }
 
