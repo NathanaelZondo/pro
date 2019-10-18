@@ -177,8 +177,6 @@ getbookings()
     x.status = "cancelled";
    
 
-
-    firebase.firestore().collection('Bookings').doc(x.id).update("status","==",x.status);
     firebase.firestore().collection('Bookings').doc(x.id).delete();
     firebase.firestore().collection('Cancellations').add(x);
 

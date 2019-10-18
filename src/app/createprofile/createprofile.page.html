@@ -1,6 +1,6 @@
 <ion-content>
   <div class="container">
-    <div class="title">
+    <div class="title" *ngIf="!hide">
       <h1> Create Profile </h1>
     </div>
     
@@ -9,35 +9,31 @@
         <img src="{{styleImage}}" placeholder="Choose Image" width="100px" height="100px">
       </div>
 
-      <!-- <div class="chooseimg" (click)="takePhoto()">
-        <ion-icon name ="camera" style="font-size: 30px;"></ion-icon>
-      </div>   -->
     </div>
     <div class="inputs">
       <br>
       <ion-item style="color: white" color="transparent">
-        <!-- <ion-label><p>Name</p></ion-label> -->
+   
         <ion-input type="text" [(ngModel)]="profile.name" placeholder="Enter your name" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
           style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-input>
       </ion-item>
 
       <ion-item style="color: white" color="transparent">
-        <!-- <ion-label><p>Surname</p></ion-label> -->
+     
         <ion-input style="border-bottom: 2px solid white;" type="text" [(ngModel)]="profile.surname" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
           placeholder="Enter your surname"
           style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-input>
       </ion-item>
       <ion-item style="color: white" color="transparent">
-        <!-- <ion-label><p>Phone</p></ion-label> -->
+   
         <ion-input type="text" [(ngModel)]="profile.cell" placeholder="Enter your cell number" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
           style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-input>
       </ion-item>
       <ion-item style="color: white" color="transparent">
-        <!-- <ion-label ><p>Bio</p></ion-label> -->
+       
         <ion-textarea rows="1" cols="20" [(ngModel)]="profile.about" placeholder="Tell us about yourself" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
           style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-textarea>
-        <!-- <ion-input [(ngModel)]="profile.about" placeholder="Tell us about yourself"
-          style="color: rgb(255, 255, 255); font-size: 4vw"></ion-input> -->
+      
       </ion-item>
       <br><br>
       <div class="btn" *ngIf="!hide">
@@ -54,7 +50,5 @@
 
     </div>
     <br><br>
-
-    <!-- <ion-button (click)="signout()" clear style="color: black">Cancel</ion-button> -->
   </div>
 </ion-content>
