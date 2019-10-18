@@ -1,52 +1,55 @@
-
 <ion-content>
 
 
-    <div class="container">
-        <div class="title" >
-          <h1> Update <br> Profile </h1>
-        </div>
-        <pre></pre>
-        <div class="userimage"*ngIf="!hide">
-            <div class="img" (click)="takePhoto()" *ngFor = "let x of profiles">
-                <img src="{{x.image}}" placeholder="Choose Image" width="100px" height="100px">
-              </div>
-    
-        </div>
-        <div class="inputs">
-          <br>
-            <ion-item color= "transparent">
-        
-                <ion-input type = "text" [(ngModel)] ="profile.name" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')" placeholder ="Enter your name" style="color: rgb(255, 255, 255); font-family: 'Poiret One';"></ion-input>
-            </ion-item>
-            <ion-item color= "transparent">
-          
-              <ion-input type = "text" [(ngModel)] ="profile.surname" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')" placeholder ="Enter your surnamename" style="color: rgb(255, 255, 255); font-family: 'Poiret One';"></ion-input>
-            </ion-item>
-             <ion-item color= "transparent">
-            
-                <ion-input type = "text" [(ngModel)] ="profile.cell" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')" placeholder ="Your cell number" style="color: rgb(255, 255, 255); font-family: 'Poiret One';"></ion-input>
-             </ion-item>
-             <ion-item color= "transparent">
-              
-                <ion-textarea rows="4" cols="20" [(ngModel)]="profile.about" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')" placeholder="Tell us about yourself"
-             
-                style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-textarea>
-              </ion-item>
-              <br>
-      
-              <div class="btn" *ngIf="!hide" >
-                  <ion-button
-                  style="background: #BF6B7A; width:40vw; height: 10vw; border-radius: 6px; font-family: 'Poiret One'; letter-spacing: 4px;"
-                  color="transparent"
-                [disabled] ="sub" (click) ="updateprofile(profile)">SUBMIT</ion-button>
-                  
-              </div>
-    
-        </div>
-        <br><br>
+  <div class="container">
+    <div class="title">
+      <h1> Update Profile </h1>
+    </div>
+
+    <div class="userimage" *ngIf="!hide">
+      <div class="img" (click)="takePhoto()" *ngFor="let x of profiles">
+        <img src="{{x.image}}" placeholder="Choose Image" width="100px" height="100px">
       </div>
- 
+    </div>
+    <div class="inputs">
+      <br>
+      <ion-item color="transparent">
+
+        <ion-input type="text" [(ngModel)]="profile.name" (ionFocus)="inputEvent('open')"
+          (ionBlur)="inputEvent('close')" placeholder="Enter your name"
+          style="color: rgb(255, 255, 255); font-family: 'Poiret One';"></ion-input>
+      </ion-item>
+      <ion-item color="transparent">
+
+        <ion-input type="text" [(ngModel)]="profile.surname" (ionFocus)="inputEvent('open')"
+          (ionBlur)="inputEvent('close')" placeholder="Enter your surnamename"
+          style="color: rgb(255, 255, 255); font-family: 'Poiret One';"></ion-input>
+      </ion-item>
+      <ion-item color="transparent">
+
+        <ion-input type="text" [(ngModel)]="profile.cell" (ionFocus)="inputEvent('open')"
+          (ionBlur)="inputEvent('close')" placeholder="Your cell number"
+          style="color: rgb(255, 255, 255); font-family: 'Poiret One';"></ion-input>
+      </ion-item>
+      <ion-item color="transparent">
+
+        <ion-textarea rows="4" cols="20" [(ngModel)]="profile.about" (ionFocus)="inputEvent('open')"
+          (ionBlur)="inputEvent('close')" placeholder="Tell us about yourself"
+          style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-textarea>
+      </ion-item>
+      <br>
+
+      <div class="btn" *ngIf="!hide">
+        <ion-button
+          style="background: #BF6B7A; width:40vw; height: 10vw; border-radius: 6px; font-family: 'Poiret One'; letter-spacing: 4px;"
+          color="transparent" [disabled]="sub" (click)="updateprofile(profile)">SUBMIT</ion-button>
+
+      </div>
+
+    </div>
+    <br><br>
+  </div>
+
   <!-- <div class="container">
 
     <div class="title">
@@ -90,8 +93,6 @@
     </div>
    
   </div> -->
-  
+
 
 </ion-content>
-
-
