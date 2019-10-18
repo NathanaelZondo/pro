@@ -74,7 +74,6 @@ ion-toolbar {
   right: 12vw;
   width: 100vw;
   height: 40vh;
-  padding: 10px 0px;
 
   .left {
     display: flex;
@@ -83,6 +82,8 @@ ion-toolbar {
 
   .name {
     padding: 0px 10px;
+    position: relative;
+    bottom: 10px;
     h3 {
       font-family: 'Poiret One';
       letter-spacing: 6px;
@@ -131,7 +132,7 @@ ion-toolbar {
 
   .buttonz {
     position: relative;
-    bottom: 50px;
+    bottom: 22vh;
     left: 95vw;
 
     ion-fab-button {

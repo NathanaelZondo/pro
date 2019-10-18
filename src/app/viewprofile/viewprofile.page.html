@@ -23,7 +23,7 @@
     <img *ngIf="profile.image" src="{{profile.image}}">
     <div class="flex-container">
       <div style="width:100vw;padding-left:0px">
-
+        <!-- <div class="bookings-active"> -->
         <div class="info-open"  [ngClass]="{'bookings-inactive': !seeBookings, 'bookings-active': seeBookings}">
           <div class="edit">
             <ion-icon name="create" (click)="update()"></ion-icon>
@@ -31,9 +31,7 @@
           <p id="name" style="color: black; font-family: Poiret One;">{{profile.name}} {{profile.surname}}</p>
           <br>
           <p id="cell" style="color: black">{{profile.cell}}</p>
-          <br><br>
           <div class="line"></div>
-          <br>
           <div class="bookings">
             <ion-button *ngIf="!seeBookings" (click)=" bookings()" color="transparent" style=" color: white;">
               VIEW BOOKINGS
