@@ -3,7 +3,7 @@
 
       <div class="maploader">
           <div class="lds-facebook"><div></div><div></div><div></div></div>
-      </div>
+        PLEASE WAIT      </div>
       <div class="loading-text">
         <p>Loading Map</p>
       </div>
@@ -23,13 +23,11 @@
       searchFailText="Nothing Found :(" (onChange)="portChange($event)">
     </ionic-selectable>
   </ion-item> -->
-  
   <br><br><br>
-  <div  class="salonlist"  >
+  <div  class="salonlist" >
     <ion-slides  [options]="sliderConfig" #sliderRef (ionSlideDidChange)="moveMapEvent($event)"   >
       <ion-slide class="magic" *ngFor="let b of salons; let i = index" (click)="selectsalon(b)" >
         <div class="card" >
-
           <div class="top">
             <div class="image">
                 <img *ngIf="!b.salonImage" src="../../assets/defaultSalon.jpg" alt="tough">

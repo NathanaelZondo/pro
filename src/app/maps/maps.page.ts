@@ -109,33 +109,36 @@ export class MapsPage implements OnInit {
     console.log('element Slideers: ', this.mapCenter);
     console.log('salond: ', this.salond);
     this.versionType = device.version;
+
     setTimeout(() => {
-      this.AutoComplete()
-      //console.log('search',this.autoCompSearch)
+      this.ngZone.run(()=>{
+        this.AutoComplete();
+      })
     }, 500);
 
   }
 AutoComplete(){
-this.autocom = new google.maps.places.Autocomplete(this.autoCompSearch[0], {types: ['geocode']});
-this.autocom.addListener('place_changed', ()=>{
-  let place = this.autocom.getPlace();
-  console.log(place);
-  let latLng = {
-    lat: place.geometry.location.lat(),
-    lng: place.geometry.location.lng(),
-  }
- this.map.panTo(latLng);
-});
-
+  this.ngZone.run(()=>{
+    this.autocom = new google.maps.places.Autocomplete(this.autoCompSearch[0], {types: ['geocode']});
+    this.autocom.addListener('place_changed', ()=>{
+      let place = this.autocom.getPlace();
+      console.log(place);
+      let latLng = {
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng(),
+      }
+     this.map.panTo(latLng);
+    });
+  })
 }
 inputEvent(data){
-
+this.ngZone.run(()=>{
   if(data=='open'){
-     this.hide='value'
-  } else if(data=='close') {
-    this.hide='';
-  }
-  
+    this.hide='value'
+ } else if(data=='close') {
+   this.hide='';
+ }
+})
 }
   showDistance() {
     this.cardIndex = !this.cardIndex;
@@ -271,35 +274,38 @@ else{
 
   }
   getHairSalon() {
-    this.hairstyledata = [];
-    this.ports = [];
-    this.db.collection('Salons').onSnapshot(snap => {
-      if (snap.empty !== true) {
-        snap.forEach(doc => {
-
-          // this.name = doc.data().salonName;
-          this.db.collection('Salons').doc(doc.id).collection('staff').get().then(res => {
-            if (!res.empty) {
-                this.salons.push(doc.data())
-            }
-          })
-          
-
-          this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles').onSnapshot(qu => {
-            qu.forEach(doc => {
-              this.hairstyledata.push(doc.data());
-
-              this.hairstyledata.splice(1, 1);
-              console.log(this.hairstyledata.length)
+    this.ngZone.run(()=>{
+      this.hairstyledata = [];
+      this.ports = [];
+      this.db.collection('Salons').onSnapshot(snap => {
+        if (snap.empty !== true) {
+          snap.forEach(doc => {
+  
+            // this.name = doc.data().salonName;
+            this.db.collection('Salons').doc(doc.id).collection('staff').get().then(res => {
+              if (!res.empty) {
+                  this.salons.push(doc.data())
+              }
             })
-
+            
+  
+            this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles').onSnapshot(qu => {
+              qu.forEach(doc => {
+                this.hairstyledata.push(doc.data());
+  
+                this.hairstyledata.splice(1, 1);
+                console.log(this.hairstyledata.length)
+              })
+  
+            })
+            this.ports.push({ names: doc.data().salonName })
           })
-          this.ports.push({ names: doc.data().salonName })
-        })
-      } else {
-        console.log('No data')
-      }
+        } else {
+          console.log('No data')
+        }
+      })
     })
+
   }
   portChange(event: { component: IonicSelectableComponent, value: any }) {
     this.ngZone.run(() => {
@@ -314,93 +320,99 @@ else{
     })
   }
   getUserPosition() {
-    this.options = {
-      enableHighAccuracy: true,
-    };
-    this.geolocation.getCurrentPosition(this.options).then((pos: Geoposition) => {
-      let geoData = {
-        lat: pos.coords.latitude,
-        lng: pos.coords.longitude
-      }
-
-      // let marker = new google.maps.Marker({
-      //   map: this.map,
-      //   animation: google.maps.Animation.DROP,
-      //   position: geoData,
-      //   icon: icon
-      // });
-      // get the address from the current position's coords
-      this.geocoder.geocode({ 'location': geoData }, (results, status) => {
-        console.log('Geocode responded with', results, 'and status of', status)
-        if (status) {
-          if (results[0]) {
-            // get the city from the address components
-            this.fiter = results[1].address_components[4].short_name;
-            console.log('filterd by', results);
-            console.log('match', this.fiter);
-            this.getFilteredSalonMarkers();
-          } else {
-            console.log('No results found');
-          }
-        } else {
-          console.log('Geocoder failed due to: ' + status);
+    this.ngZone.run(()=>{
+      this.options = {
+        enableHighAccuracy: true,
+      };
+      this.geolocation.getCurrentPosition(this.options).then((pos: Geoposition) => {
+        let geoData = {
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude
         }
-      }, err => {
-        console.log('Geocoder failed with', err)
+  
+        // let marker = new google.maps.Marker({
+        //   map: this.map,
+        //   animation: google.maps.Animation.DROP,
+        //   position: geoData,
+        //   icon: icon
+        // });
+        // get the address from the current position's coords
+        this.geocoder.geocode({ 'location': geoData }, (results, status) => {
+          console.log('Geocode responded with', results, 'and status of', status)
+          if (status) {
+            if (results[0]) {
+              // get the city from the address components
+              this.fiter = results[1].address_components[4].short_name;
+              console.log('filterd by', results);
+              console.log('match', this.fiter);
+              this.getFilteredSalonMarkers();
+            } else {
+              console.log('No results found');
+            }
+          } else {
+            console.log('Geocoder failed due to: ' + status);
+          }
+        }, err => {
+          console.log('Geocoder failed with', err)
+        });
+        this.currentPos = pos;
+        console.log(pos);
+        this.addMap(pos.coords.latitude, pos.coords.longitude);
+        console.log('Current Location', pos);
+        this.addMarker();
+      }, (err: PositionError) => {
+        console.log("error : " + err.message);
       });
-      this.currentPos = pos;
-      console.log(pos);
-      this.addMap(pos.coords.latitude, pos.coords.longitude);
-      console.log('Current Location', pos);
-      this.addMarker();
-    }, (err: PositionError) => {
-      console.log("error : " + err.message);
-    });
-
+  
+    })
+    
   }
 
   getSalonmarkrs() {
-    this.loaderAnimate = true;
-    this.db.collection('Salons').get().then(snapshot => {
-      snapshot.forEach(doc => {
-
-        // content = `<h1>${doc.data().salonName}</h1> <br> <p>`
-        let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().Address.fullAddress
-        //  this.addMarkersOnTheCustomersCurrentLocation(doc.data().lat, doc.data().lng, content);
-        const icon = {
-          url: '../../assets/icon/Hair_Dresser_3.svg', // image url
-          scaledSize: new google.maps.Size(55, 55), // scaled size
-          size: new google.maps.Size(71, 71),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(17, 34),
-
-        };
-
-        let marker = new google.maps.Marker({
-          map: this.map,
-          animation: google.maps.Animation.DROP,
-          position: new google.maps.LatLng(doc.data().Address.lat, doc.data().Address.lng),
-          icon: icon
-        });
-        // this.addInfoWindow(marker, content);
-        marker.setMap(this.map);
-        let infoWindow = new google.maps.InfoWindow({
-          content: content
-        });
-
-        google.maps.event.addListener(marker, 'click', () => {
-          infoWindow.open(this.map, marker);
-        });
-        google.maps.event.addListener(marker, 'click', () => {
-          this.selectsalon(doc.data());
-        });
-
-        console.log('cords', doc.data().lat, doc.data().lng);
-
-
-      })
-      this.loaderAnimate = false;
-    });
+    this.ngZone.run(()=>{
+      this.loaderAnimate = true;
+      this.db.collection('Salons').get().then(snapshot => {
+        snapshot.forEach(doc => {
+  
+          // content = `<h1>${doc.data().salonName}</h1> <br> <p>`
+          let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().Address.fullAddress
+          //  this.addMarkersOnTheCustomersCurrentLocation(doc.data().lat, doc.data().lng, content);
+          const icon = {
+            url: '../../assets/icon/Hair_Dresser_3.svg', // image url
+            scaledSize: new google.maps.Size(55, 55), // scaled size
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+  
+          };
+  
+          let marker = new google.maps.Marker({
+            map: this.map,
+            animation: google.maps.Animation.DROP,
+            position: new google.maps.LatLng(doc.data().Address.lat, doc.data().Address.lng),
+            icon: icon
+          });
+          // this.addInfoWindow(marker, content);
+          marker.setMap(this.map);
+          let infoWindow = new google.maps.InfoWindow({
+            content: content
+          });
+  
+          google.maps.event.addListener(marker, 'click', () => {
+            infoWindow.open(this.map, marker);
+          });
+          google.maps.event.addListener(marker, 'click', () => {
+            this.selectsalon(doc.data());
+          });
+  
+          console.log('cords', doc.data().lat, doc.data().lng);
+  
+  
+        })
+        this.loaderAnimate = false;
+      });
+    })
+   
   }
   function() {
     console.log('Dont pull');
@@ -553,7 +565,7 @@ else{
   }
 
   async requestPrompt() {
-    
+
     console.log('Requested Prompt')
     await this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(async res => {
       console.log('Accepted', res);

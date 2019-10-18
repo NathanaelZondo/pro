@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewController } from '@ionic/core';
+import { ViewController, toastController } from '@ionic/core';
 import * as firebase from 'firebase';
 import { BackendService } from '../backend.service';
 import { ControlsService } from '../controls.service';
@@ -156,17 +156,25 @@ this.SalonNumber = x.cell
           }
         }, {
           text: 'Send',
-          handler: (name1) => {
+          handler:async (name1) => {
             console.log(name1.name1);
 
-if(name1.name1 =="")
+ if(name1.name1 =="")
 {
-  name1.name1="unkown reason";
-}
+alert.dismiss();
+
+    const toast = await this.control.toastController.create({
+      message: 'Message cannot be empty,Please give a reason for being late.',
+      duration: 3000
+    });
+    toast.present();
+    
+  }
+  else{
 
             if (this.alldata.TokenID) {
               var notificationObj = {
-                headings: { en: " APPOINTMENT ALERT for:" + this.alldata.haidressername },
+                headings: { en: " APPOINTMENT ALERT for:"  },
                 small_icon: '../src/assets/Untitled-1.jpg',
                 contents: { en: "Hey! " + this.alldata.name + " will be late  on " + this.alldata.userdate + " at " + this.alldata.sessiontime + " their reason is: \"" + name1.name1 + "\"" },
                 include_player_ids: [this.alldata.TokenID],
@@ -181,6 +189,7 @@ if(name1.name1 =="")
               console.log(res)
             });
           }
+        }
         }
       ]
     });
