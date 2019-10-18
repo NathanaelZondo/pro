@@ -158,6 +158,12 @@ this.SalonNumber = x.cell
           text: 'Send',
           handler: (name1) => {
             console.log(name1.name1);
+
+if(name1.name1 =="")
+{
+  name1.name1="unkown reason";
+}
+
             if (this.alldata.TokenID) {
               var notificationObj = {
                 headings: { en: " APPOINTMENT ALERT for:" + this.alldata.haidressername },

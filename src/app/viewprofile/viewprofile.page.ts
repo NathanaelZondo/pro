@@ -117,7 +117,7 @@ export class ViewprofilePage implements OnInit {
   {
   
     this.userbooking =[];
-    firebase.firestore().collection('Cancellations').where("useruid", "==", firebase.auth().currentUser.uid).orderBy("userdate", "desc").limit(15).get().then(val => {
+    firebase.firestore().collection('Cancellations').where("useruid", "==", firebase.auth().currentUser.uid).orderBy("userdate", "desc").limit(10).get().then(val => {
       val.forEach(doc => {
         console.log(doc.id)
         this.ob = { id: doc.id };
