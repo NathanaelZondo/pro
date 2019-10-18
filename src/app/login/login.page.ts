@@ -50,12 +50,24 @@ export class LoginPage implements OnInit {
       const email = loginForm.value.email;
       const password = loginForm.value.password;
 
+    
+    
+
+      
+
+
       this.authService.loginUser(email, password).then(
         () => {
             this.control.router.navigateByUrl('/navigation',{ replaceUrl: true });
         }).catch(async err=>{
           console.log()
          
+
+
+
+
+
+
       
             const alert = await this.alertCtrl.create({
               subHeader:"Login error",

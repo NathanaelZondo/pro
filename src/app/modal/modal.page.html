@@ -51,6 +51,7 @@
       </div>
 
     </div>
+    <pre></pre>
     <div class="btnz" *ngFor="let x of bookingdetails">
       <ion-button (click)="late(x)" color="transparent" style="background:#BF6B7A" *ngIf="x.userdate == currentdate && x.payment!='Paid' || x.status !='cancelled' " >
         I am late

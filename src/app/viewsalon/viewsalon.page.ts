@@ -172,14 +172,14 @@ console.log('limit = ',limit)
   }
   async presentToast() {
     const toast = await this.toastController.create({
-      message: 'Thank You for liking our salon.',
+      message: 'Salon liked.',
       duration: 2000
     });
     toast.present();
   }
   async presentToasta() {
     const toast = await this.toastController.create({
-      message: 'Thank You for unliking our salon.',
+      message: 'Salon unliked.',
       duration: 2000
     });
     toast.present();

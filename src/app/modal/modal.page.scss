@@ -69,8 +69,8 @@ ion-toolbar {
   display: flex;
   flex-flow: row;
   position: relative;
-  align-items: centre;
-  bottom: 10px;
+  align-items: center;
+  bottom: 30px;
   right: 12vw;
   width: 100vw;
   height: 40vh;
@@ -131,7 +131,7 @@ ion-toolbar {
 
   .buttonz {
     position: relative;
-    top: 5px;
+    bottom: 50px;
     left: 95vw;
 
     ion-fab-button {
