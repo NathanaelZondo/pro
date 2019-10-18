@@ -3,39 +3,36 @@
  
   <div class="container">
 
-    <div class="title">
+    <div class="title" *ngIf="!hide">
       <h1> Update Profile </h1>
     </div>
-    <div class="userimage">
+    <div class="userimage" >
         <div class="img" (click)="takePhoto()" *ngFor = "let x of profiles">
             <img src="{{x.image}}" placeholder="Choose Image" width="100px" height="100px">
           </div>
-      <!-- <div class="chooseimg" (click)="takePhoto()">
-        <ion-icon name ="camera" style="font-size: 30px;"></ion-icon>
-      </div>   -->
     </div>
     <div class="inputs">
       <br>
       <ion-item color= "transparent">
-        <!-- <ion-label><p>Name</p></ion-label> --> 
+        
           <ion-input type = "text" [(ngModel)] ="profile.name" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')" placeholder ="Enter your name" style="color: rgb(255, 255, 255); font-family: 'Poiret One';"></ion-input>
       </ion-item>
       <ion-item color= "transparent">
-          <!-- <ion-label><p>Surname</p></ion-label> -->
+    
         <ion-input type = "text" [(ngModel)] ="profile.surname" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')" placeholder ="Enter your surnamename" style="color: rgb(255, 255, 255); font-family: 'Poiret One';"></ion-input>
       </ion-item>
        <ion-item color= "transparent">
-          <!-- <ion-label><p>Phone</p></ion-label> -->
+      
           <ion-input type = "text" [(ngModel)] ="profile.cell" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')" placeholder ="Your cell number" style="color: rgb(255, 255, 255); font-family: 'Poiret One';"></ion-input>
        </ion-item>
        <ion-item color= "transparent">
-          <!-- <ion-label ><p>Bio</p></ion-label> -->
+        
           <ion-textarea rows="4" cols="20" [(ngModel)]="profile.about" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')" placeholder="Tell us about yourself"
        
           style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-textarea>
         </ion-item>
         <br>
-         <!-- <p  style="color: rgb(255, 255, 255);" >{{message}}</p> -->
+   
     </div>
     <div class="btn" *ngIf="!hide" >
         <ion-button

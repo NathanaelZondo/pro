@@ -13,7 +13,7 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 })
 export class UpdateprofilePage implements OnInit {
   profiles = [];
-  hide =''
+  hide ='';
   name;
   surname;
   image;
@@ -129,27 +129,15 @@ else{
     else
     {
 
-
-
       firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).update(profile).then(val => {
         console.log(val);
       });
       this.control.ProfileupdateToast();
-  
       this.control.navCtrl.setDirection('root');
       this.control.navCtrl.navigateRoot('/navigation'); 
     
-    }
-
-
-
-
-
-    
+    } 
   }
-
-
-
   async nameToast() {
     const toast = await this.toastController.create({
       message: 'Enter your name.',

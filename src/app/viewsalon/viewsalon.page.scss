@@ -401,26 +401,25 @@ ion-toolbar {
         width: 100%;
         text-align: center;
 
-        ion-button {
-            border: none !important;
-            box-shadow: none !important;
-            background: transparent;
+     
 
             ion-icon {
-                color: black;
+                color: white;
                 position: relative;
-                // left: 5vw;
+                right: 5vw;
+                top: 2.2vh;
+                font-size: 6vw;
+                background: black;
+                border-radius: 50%;
             }
-        }
-
-
+    
 
         h2 {
             font-family: 'Poiret One';
             letter-spacing: 5px;
             margin: 10px 5px;
             position: relative;
-            left: 6vw;
+            left: 7vw;
         }
     }
 
