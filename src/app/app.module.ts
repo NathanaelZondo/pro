@@ -29,6 +29,7 @@ import {CustomerPage} from '../app/customer/customer.page';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import {PicturePage} from '../app/picture/picture.page';
 import { ZeroPage } from './zero/zero.page';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @NgModule({
   declarations: [AppComponent, ViewhairstylePipe,ModalPage,CustomerPage,PicturePage,ZeroPage],
@@ -44,6 +45,7 @@ import { ZeroPage } from './zero/zero.page';
     SplashScreen,
     Camera,
     OneSignal,
+    Keyboard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
    ,
    Geolocation,

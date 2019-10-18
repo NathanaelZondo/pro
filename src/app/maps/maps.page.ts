@@ -14,7 +14,7 @@ import { AlertController, LoadingController, Platform } from '@ionic/angular';
 import { BackendService } from '../backend.service';
 import { Profile } from '../profile';
 import { ControlsService } from '../controls.service';
-
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { IonSlides } from '@ionic/angular';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { IonicSelectableComponent } from 'ionic-selectable';
@@ -83,6 +83,8 @@ export class MapsPage implements OnInit {
   cover;
   desc;
   location;
+  
+  isChecked = true
   salonname;
   salons = []
   salond = this.backend.salonsDisply;
@@ -97,27 +99,44 @@ export class MapsPage implements OnInit {
   searchbyLocation = false;
   unlike = false
   hide='';
+  autocom
+  autoCompSearch = document.getElementsByClassName('searchbar-input');
   constructor(private device: Device, private androidPermissions: AndroidPermissions, 
     public store: Storage, private ngZone: NgZone, private geolocation: Geolocation, 
     public alertController: AlertController, public elementref: ElementRef, public router: Router, 
     private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, 
-    public backend: BackendService, public control: ControlsService, private platform: Platform) {
+    public backend: BackendService, public control: ControlsService, private platform: Platform,private keyboard: Keyboard) {
     console.log('element Slideers: ', this.mapCenter);
     console.log('salond: ', this.salond);
     this.versionType = device.version;
+    setTimeout(() => {
+      this.AutoComplete()
+      //console.log('search',this.autoCompSearch)
+    }, 500);
 
   }
-  inputEvent(data){
-
-    if(data=='open'){
-      console.log('event close',data);
-      
-       this.hide='value'
-    } else if(data=='close') {
-      this.hide='';
-    }
-    
+AutoComplete(){
+this.autocom = new google.maps.places.Autocomplete(this.autoCompSearch[0], {types: ['geocode']});
+this.autocom.addListener('place_changed', ()=>{
+  let place = this.autocom.getPlace();
+  console.log(place);
+  let latLng = {
+    lat: place.geometry.location.lat(),
+    lng: place.geometry.location.lng(),
   }
+ this.map.panTo(latLng);
+});
+
+}
+inputEvent(data){
+
+  if(data=='open'){
+     this.hide='value'
+  } else if(data=='close') {
+    this.hide='';
+  }
+  
+}
   showDistance() {
     this.cardIndex = !this.cardIndex;
   }
@@ -134,7 +153,18 @@ export class MapsPage implements OnInit {
   searchByLocation() {
     this.searchbyLocation = true;
   }
-
+  checkhide(){
+    console.log('keyboards',this.keyboard.isVisible);
+    
+if(this.keyboard.isVisible){
+  this.isChecked = true ;
+  this.keyboard.show() ;
+}
+else{
+  this.isChecked = false ;
+  this.keyboard.hide();
+}
+  }
   async  moveMapEvent(): Promise<void> {
     this.ngZone.run(() => {
       this.slides.getActiveIndex().then(index => {
