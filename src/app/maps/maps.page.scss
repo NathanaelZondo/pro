@@ -43,19 +43,24 @@ ion-toolbar {
     align-items: center;
   }
 
+ #pac-input :focus {
+    outline: none;
+  }
+
   #pac-input {
-    width: 75vw;
-    // height: 10vw;
+    width: 80vw;
+    height: 10vw;
     background: transparent;
     font-size: 3.5vw;
     border: none;
     color: #BF6B7A;
-
+    box-shadow: none !important;
     border-radius: 20px;
     padding: 10px;
     position: absolute !important;
     // // top: 10px;
   }
+
 }
 
 
