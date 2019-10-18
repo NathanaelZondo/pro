@@ -52,11 +52,11 @@
 
     </div>
     <div class="btnz" *ngFor="let x of bookingdetails">
-      <ion-button (click)="late(x)" color="transparent" style="background:#BF6B7A  ">
+      <ion-button (click)="late(x)" color="transparent" style="background:#BF6B7A" *ngIf="x.userdate == currentdate && x.payment!='Paid' || x.status !='cancelled' " >
         I am late
       </ion-button>
 
-      <ion-button *ngIf="x.userdate == currentdate && x.payment!='Paid' " (click)="forthealert(x)" color="transparent"
+      <ion-button *ngIf="x.userdate == currentdate && x.payment!='Paid' || x.status !='cancelled' " (click)="forthealert(x)" color="transparent"
         style="background: #BF967E">
         Cancel Booking
       </ion-button>
