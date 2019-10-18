@@ -6,6 +6,7 @@ import { ControlsService } from '../controls.service';
 import { ModalController, AlertController } from '@ionic/angular';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.page.html',
@@ -97,7 +98,8 @@ this.SalonNumber = x.cell
             console.log('Confirm Okay');
 
           
-            firebase.firestore().collection('Bookings').doc(this.alldata.id).update("status","==","cancelled");
+            this.alldata.status ="cancelled";
+            this.alldata.status2 ="cancelled";
             firebase.firestore().collection('Bookings').doc(this.alldata.id).delete();
             firebase.firestore().collection('Cancellations').add(this.alldata);
      
