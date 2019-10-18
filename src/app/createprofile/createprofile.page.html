@@ -1,10 +1,10 @@
 <ion-content>
   <div class="container">
-    <div class="title" *ngIf="!hide">
+    <div class="title" >
       <h1> Create Profile </h1>
     </div>
     
-    <div class="userimage">
+    <div class="userimage"*ngIf="!hide">
       <div class="img" (click)="takePhoto()">
         <img src="{{styleImage}}" placeholder="Choose Image" width="100px" height="100px">
       </div>
