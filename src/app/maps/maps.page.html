@@ -12,7 +12,7 @@
   <div #map id="map"></div>
   <div class="s-location" >
       <!-- <input id="pac-input" name="pac-input" class="controls" type="text" placeholder="Search Location " (click)="checkhide()"> -->
-      <ion-searchbar placeholder="Search Location " (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"></ion-searchbar>
+      <ion-searchbar placeholder="Search Location " (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')" ></ion-searchbar>
        <ion-icon name="locate" id="locater" (click)="requestPrompt()"></ion-icon>
     </div>
 
@@ -24,10 +24,10 @@
   </ion-item> -->
   
   <br><br><br>
-  <div class="salonlist" *ngIf="!hide"  >
-    <ion-slides [options]="sliderConfig" #sliderRef (ionSlideDidChange)="moveMapEvent($event)"  >
-      <ion-slide class="magic" *ngFor="let b of salons; let i = index" (click)="selectsalon(b)">
-        <div class="card">
+  <div  class="salonlist"  >
+    <ion-slides  [options]="sliderConfig" #sliderRef (ionSlideDidChange)="moveMapEvent($event)"   >
+      <ion-slide class="magic" *ngFor="let b of salons; let i = index" (click)="selectsalon(b)" >
+        <div class="card" >
 
           <div class="top">
             <div class="image">

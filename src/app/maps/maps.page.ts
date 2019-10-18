@@ -84,7 +84,7 @@ export class MapsPage implements OnInit {
   desc;
   location;
   
-  isChecked = true
+  isChecked = false
   salonname;
   salons = []
   salond = this.backend.salonsDisply;
@@ -158,11 +158,11 @@ inputEvent(data){
     
 if(this.keyboard.isVisible){
   this.isChecked = true ;
-  this.keyboard.show() ;
+
 }
 else{
   this.isChecked = false ;
-  this.keyboard.hide();
+  // this.keyboard.hide();
 }
   }
   async  moveMapEvent(): Promise<void> {
