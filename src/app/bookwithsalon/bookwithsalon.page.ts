@@ -34,11 +34,11 @@ d1: Date;
 d2: Date;
 d3: Date;
 testarray2 = [];
-
+loadm;
   constructor(public popoverController:PopoverController,private oneSignal: OneSignal,public loadingController:LoadingController,public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
    {
 
-    
+    this.loadm ="Please wait...";
    console.log(this.openTime,"+",this.closeTime)
 console.log("Gender = ",this.backend.genderOptions)
 
@@ -718,6 +718,7 @@ fdating:boolean =false;
 this.pdating =false;
 this.fdating =false; 
 this.eventfound=false;
+this.loadm ="Validating time...";
 
   console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' + (ev.events !== undefined && ev.events.length !== 0));
 console.log("EVents clicked =",ev)

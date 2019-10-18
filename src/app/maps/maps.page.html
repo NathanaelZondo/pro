@@ -1,11 +1,11 @@
 <ion-content fullscreen>
   <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
 
-    <div class="maploader">
-      <div class="lds-facebook">
-        <div></div>
-        <div></div>
-        <div></div>
+      <div class="maploader">
+          <div class="lds-facebook"><div></div><div></div><div></div></div>
+          </div>
+      <div class="loading-text">
+        <p>Loading Map</p>
       </div>
     </div>
     <div class="loading-text">
@@ -27,13 +27,11 @@
       searchFailText="Nothing Found :(" (onChange)="portChange($event)">
     </ionic-selectable>
   </ion-item> -->
-
   <br><br><br>
-  <div class="salonlist">
-    <ion-slides [options]="sliderConfig" #sliderRef (ionSlideDidChange)="moveMapEvent($event)">
-      <ion-slide class="magic" *ngFor="let b of salons; let i = index" (click)="selectsalon(b)">
-        <div class="card">
-
+  <div  class="salonlist" >
+    <ion-slides  [options]="sliderConfig" #sliderRef (ionSlideDidChange)="moveMapEvent($event)"   >
+      <ion-slide class="magic" *ngFor="let b of salons; let i = index" (click)="selectsalon(b)" >
+        <div class="card" >
           <div class="top">
             <div class="image">
               <img *ngIf="!b.salonImage" src="../../assets/defaultSalon.jpg" alt="tough">
