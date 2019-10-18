@@ -43,19 +43,35 @@ ion-toolbar {
     align-items: center;
   }
 
+ #pac-input :focus {
+    outline: none;
+  }
+
   #pac-input {
-    width: 75vw;
+    width: 80vw;
     // height: 10vw;
     background: transparent;
     font-size: 3.5vw;
     border: none;
     color: #BF6B7A;
-
+    box-shadow: none !important;
     border-radius: 20px;
     padding: 10px;
     position: absolute !important;
     // // top: 10px;
   }
+  .searchbar-input-container {
+    box-shadow: none !important;
+    .searchbar-input-container .sc-ion-searchbar-ios {
+      box-shadow: none !important;
+      .searchbar-input-container {
+        box-shadow: none !important;
+      }
+    }
+  }
+ .searchbar-input.sc-ion-searchbar-md{
+  box-shadow: none !important;
+ }
 }
 
 
