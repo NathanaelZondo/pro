@@ -20,9 +20,9 @@ export class BookwithsalonPage implements OnInit {
   unit: string;
   unit1: string;
   staff = [];
-  userToken
+  userToken;
 timeinterval;
-loaderAnimate = true
+loaderAnimate = true;
 openTime =parseInt(this.backend.selectedsalon[0].openTime[0]+this.backend.selectedsalon[0].openTime[1]);
 closeTime =parseInt(this.backend.selectedsalon[0].closeTime[0]+this.backend.selectedsalon[0].closeTime[1]);
 staffnames =[];
@@ -38,7 +38,7 @@ loadm;
   constructor(public popoverController:PopoverController,private oneSignal: OneSignal,public loadingController:LoadingController,public backend: BackendService, public control: ControlsService, public alertController: AlertController, public modalController: ModalController)
    {
 
-    this.loadm ="Please wait...";
+    this.loadm ="Loading\nStylists...";
    console.log(this.openTime,"+",this.closeTime)
 console.log("Gender = ",this.backend.genderOptions)
 
@@ -89,6 +89,7 @@ this.popover =popover;
     popover.onDidDismiss().then(val=>{
       console.log("POPOVER DISMISSED")
       this.hairdresser =val.data.name;
+      this.loadm ="Loading\nEvents...";
        this.dresserLoading();
     })
     return await popover.present();
@@ -120,44 +121,7 @@ this.popover =popover;
 
   }
 
-  // async presentAlertRadio() {
-  //   let input=this.input;
-   
-  //   console.log(input);
-  //   const alert = await this.alertController.create({
-  //     header: 'Pick any hairdresser.',
-  //     inputs: input.data,
-  //     buttons: [
-  //       {
-  //         text: 'Cancel',
-  //         role: 'cancel',
-  //         cssClass: 'secondary',
-  //         handler: () => {
-  //           console.log('Confirm Cancel');
-  //           this.control.router.navigate(['viewsalon']);
-  //         }
-  //       }, {
-  //         text: 'Ok',
-  //         handler: (data) => {
-  //           console.log(data);
-
-  //           if(data==undefined)
-  //           {
-  //             this.presentToast();
-  //             this.control.navCtrl.navigateRoot('viewsalon');
-  //           }
-  //           else{
-  //           this.hairdresser =data;
-  //           this.dresserLoading();
-  //           }
-  //         }
-  //       }
-  //     ]
-  //   });
-  //   await alert.present();
-  // }
-
-
+ 
 
 
 async presentToast() {
@@ -718,7 +682,7 @@ fdating:boolean =false;
 this.pdating =false;
 this.fdating =false; 
 this.eventfound=false;
-this.loadm ="Validating time...";
+this.loadm ="Checking\nTime...";
 
   console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' + (ev.events !== undefined && ev.events.length !== 0));
 console.log("EVents clicked =",ev)
