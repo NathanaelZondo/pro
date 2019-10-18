@@ -15,16 +15,24 @@ export class OnboardingPage implements OnInit {
 
   ngOnInit() {
   }
-  async  signin() {
-    // await this.storage.set('tutorialComplete', true);
-    this.control.router.navigate(['./']);
-  }
+   async signin() {
+     await this.storage.set('tutorialComplete', true);
+    this.control.navCtrl.setDirection('root');
+    this.control.navCtrl.navigateRoot('/login'); 
+}
+  
 
   nextslides(){
     this.slides.slideNext();
   }
  
+   async signup() {
+     await this.storage.set('tutorialComplete', true);
+    this.control.navCtrl.setDirection('root');
+    this.control.navCtrl.navigateRoot('/signup'); 
+}
+  
 
- 
+
 
 }

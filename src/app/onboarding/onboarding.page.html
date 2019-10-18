@@ -1,6 +1,6 @@
 <ion-content>
   <div class="container">
-    <div class="skip" (click)="signin()">
+    <div class="skip" (click) ="signin()">
       <p style="color: white; font-family: 'Raleway'; padding: 20px; float: right">SKIP</p>
     </div>
 
@@ -13,7 +13,6 @@
         </div>
       </div>
 
-
     <ion-slides #slides pager="true">
       <ion-slide>
     
@@ -23,9 +22,7 @@
           </div>
           <br>
           <div class="desc">
-            <p>Lorem ipsum dolor sit amet, at felis morbi,
-              mauris semper ut et, tristique felis quis vitae sollicitudin,
-              velit tellus leo.</p>
+            <p>Locate salons that are close to your location at any given moment.</p>
           </div>
           <br>
           <div class="btnz">
@@ -46,9 +43,8 @@
           </div>
           <br>
           <div class="desc">
-            <p>Lorem ipsum dolor sit amet, at felis morbi,
-              mauris semper ut et, tristique felis quis vitae sollicitudin,
-              velit tellus leo.</p>
+            <p>Go through different hairstyles to find
+               the one that is just right for you.</p>
           </div>
           <br><br>
           <div class="btnz">
@@ -70,17 +66,18 @@
           </div>
           <br>
           <div class="desc">
-            <p>Lorem ipsum dolor sit amet, at felis morbi,
-              mauris semper ut et, tristique felis quis vitae sollicitudin,
-              velit tellus leo.</p>
+            <p> Book on the go.
+              (Book a slot with your favourite salon from anywhere anytime.)
+             
+            </p>
           </div>
           <br>
           <div class="btnz" style="position: relative; bottom: 15%">
-            <ion-button large (click)="signin()" color="transparent">
+            <ion-button large (click)="signup()" color="transparent">
               SignUp
             </ion-button>
             <br><br>
-            <ion-button large (click)="signin()" color="transparent" style="position: relative; bottom: 15px;">
+            <ion-button large (click) ="signin()"  routerLink="./login" color="transparent" style="position: relative; bottom: 15px;">
               Sign-In
             </ion-button>
           </div>
