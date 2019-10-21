@@ -17,9 +17,8 @@
 
   <body *ngFor="let profile of profiles">
 
-    <img  *ngIf="!profile.image" src="../../assets/icon/user.svg" height="100%" width="100%">
+    <img  *ngIf="!profile.image" src="../../assets/icon/avatar.svg">
 
-  
     <img *ngIf="profile.image" src="{{profile.image}}">
     <div class="flex-container">
       <div style="width:100vw;padding-left:0px">

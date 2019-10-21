@@ -1,21 +1,30 @@
-<ion-content>
+<ion-toolbar color="transparent">
+
+  <ion-buttons slot="primary">
+    <ion-button style="color: white; font-family: Poiret One; letter-spacing: 3px;" (click)="signin()">
+      SKIP
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content fullscreen>
+
   <div class="container">
-    <div class="skip" (click) ="signin()">
-      <p style="color: white; font-family: 'Raleway'; padding: 20px; float: right">SKIP</p>
-    </div>
 
     <div class="group">
-        <div class="air">
-          <img src="../../assets/Airskedge.svg">
-        </div>
-        <div class="skedge">
-          <p>AIRSKEDGE</p>
-        </div>
+      <div class="air">
+        <img src="../../assets/Airskedge.svg">
       </div>
+      <div class="skedge">
+        <p>AIRSKEDGE</p>
+      </div>
+    </div>
 
     <ion-slides #slides pager="true">
+
+
       <ion-slide>
-    
+
         <div class="data">
           <div class="title">
             <h1>Find <br> Salons</h1>
@@ -44,7 +53,7 @@
           <br>
           <div class="desc">
             <p>Go through different hairstyles to find
-               the one that is just right for you.</p>
+              the one that is just right for you.</p>
           </div>
           <br><br>
           <div class="btnz">
@@ -58,7 +67,7 @@
       </ion-slide>
       <br><br>
       <ion-slide>
-      
+
 
         <div class="data">
           <div class="title">
@@ -68,7 +77,7 @@
           <div class="desc">
             <p> Book on the go.
               (Book a slot with your favourite salon from anywhere anytime.)
-             
+
             </p>
           </div>
           <br>
@@ -77,7 +86,8 @@
               SignUp
             </ion-button>
             <br><br>
-            <ion-button large (click) ="signin()"  routerLink="./login" color="transparent" style="position: relative; bottom: 15px;">
+            <ion-button large (click)="signin()" routerLink="./login" color="transparent"
+              style="position: relative; bottom: 15px;">
               Sign-In
             </ion-button>
           </div>
