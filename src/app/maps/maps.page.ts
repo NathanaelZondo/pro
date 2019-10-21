@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, Renderer2 } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { GeolocationOptions, Geoposition, PositionError } from '@ionic-native/geolocation';
 import { ViewChild, ElementRef } from '@angular/core';
@@ -100,12 +100,13 @@ export class MapsPage implements OnInit {
   unlike = false
   hide='';
   autocom
+  salonContainer = document.getElementsByClassName('salonlist')
   autoCompSearch = document.getElementsByClassName('searchbar-input');
   constructor(private device: Device, private androidPermissions: AndroidPermissions, 
     public store: Storage, private ngZone: NgZone, private geolocation: Geolocation, 
     public alertController: AlertController, public elementref: ElementRef, public router: Router, 
     private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, 
-    public backend: BackendService, public control: ControlsService, private platform: Platform,private keyboard: Keyboard) {
+    public backend: BackendService, public control: ControlsService, private platform: Platform,private keyboard: Keyboard, public rendere: Renderer2) {
     console.log('element Slideers: ', this.mapCenter);
     console.log('salond: ', this.salond);
     this.versionType = device.version;
@@ -134,9 +135,9 @@ AutoComplete(){
 inputEvent(data){
 this.ngZone.run(()=>{
   if(data=='open'){
-    this.hide='value'
+    this.rendere.setStyle(this.salonContainer[0], 'transform', 'translateY(30vh)')
  } else if(data=='close') {
-   this.hide='';
+  this.rendere.setStyle(this.salonContainer[0], 'transform', 'translateY(0)')
  }
 })
 }
