@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, Renderer2 } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { GeolocationOptions, Geoposition, PositionError } from '@ionic-native/geolocation';
 import { ViewChild, ElementRef } from '@angular/core';
@@ -100,12 +100,13 @@ export class MapsPage implements OnInit {
   unlike = false
   hide='';
   autocom
+  salonContainer = document.getElementsByClassName('salonlist')
   autoCompSearch = document.getElementsByClassName('searchbar-input');
   constructor(private device: Device, private androidPermissions: AndroidPermissions, 
     public store: Storage, private ngZone: NgZone, private geolocation: Geolocation, 
     public alertController: AlertController, public elementref: ElementRef, public router: Router, 
     private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, 
-    public backend: BackendService, public control: ControlsService, private platform: Platform,private keyboard: Keyboard) {
+    public backend: BackendService, public control: ControlsService, private platform: Platform,private keyboard: Keyboard, public rendere: Renderer2) {
     console.log('element Slideers: ', this.mapCenter);
     console.log('salond: ', this.salond);
     this.versionType = device.version;
@@ -134,9 +135,9 @@ AutoComplete(){
 inputEvent(data){
 this.ngZone.run(()=>{
   if(data=='open'){
-    this.hide='value'
+    this.rendere.setStyle(this.salonContainer[0], 'transform', 'translateY(30vh)')
  } else if(data=='close') {
-   this.hide='';
+  this.rendere.setStyle(this.salonContainer[0], 'transform', 'translateY(0)')
  }
 })
 }
@@ -440,75 +441,9 @@ else{
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
     this.getSalonmarkrs();
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    let input = document.getElementById('pac-input');
-
-
-    let searchBox = new google.maps.places.SearchBox(input);
-    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-    // Bias the SearchBox results towards current map's viewport.
-    this.map.addListener('bounds_changed', (res) => {
-      searchBox.setBounds(this.map.getBounds());
-    });
-    let markers = [];
-    // Listen for the event fired when the user selects a prediction and retrieve
-    // more details for that place.
-    searchBox.addListener('places_changed', (res) => {
-      let places
-
-      if (places.length == 0) {
-        return;
-      }
-
-      // Clear out the old markers.
-      markers.forEach((marker) => {
-        marker.setMap(null);
-      });
-      markers = [];
-
-      // For each place, get the icon, name and location.
-      let bounds = new google.maps.LatLngBounds();
-      places.forEach((place) => {
-        if (!place.geometry) {
-          console.log("Returned place contains no geometry");
-          return;
-        }
-        console.log('bafo ', place);
-
-        let icon = {
-          url: place.icon,
-          size: new google.maps.Size(71, 71),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(17, 34),
-          scaledSize: new google.maps.Size(25, 25)
-        };
-
-        // Create a marker for each place.
-        markers.push(new google.maps.Marker({
-          map: this.map,
-          icon: icon,
-          title: place.name,
-          position: place.geometry.location
-        }));
-
-        if (place.geometry.viewport) {
-          // Only geocodes have viewport.
-          bounds.union(place.geometry.viewport);
-        } else {
-          bounds.extend(place.geometry.location);
-        }
-      });
-      this.map.fitBounds(bounds);
-    });
+  
   }
 
-  //=====================
-
-
-
-  //==============================
-  //addMarkers method adds the customer's location 
   addMarkersOnTheCustomersCurrentLocation(lat, lng, content) {
     console.log('Called ');
     const icon = {
@@ -655,8 +590,6 @@ else{
   async loadMap(zoomlevel: number) {
 
     console.log('Loaded map with soom of', zoomlevel);
-
-
     let location;
     var ref = this;
     let watch = this.geolocation.watchPosition();
@@ -666,7 +599,60 @@ else{
       zoom: zoomlevel,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       disableDefaultUI: true,
-
+      styles: [
+        {
+          "featureType": "administrative",
+          "elementType": "geometry",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "administrative.land_parcel",
+          "elementType": "labels",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "poi",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "road",
+          "elementType": "labels.icon",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "road.local",
+          "elementType": "labels",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "transit",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        }
+      ],
       restriction: {
         latLngBounds: this.SOUTH_AFRICAN_BOUNDS,
         strictBounds: true
@@ -675,69 +661,6 @@ else{
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
     this.getSalonmarkrs();
-
-    // this.loaderAnimate = false;
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    let input = document.getElementsByName('pac-input')
-    setTimeout(() => {
-      console.log('in', input[0]);
-    }, 1000);
-    let searchBox = new google.maps.places.SearchBox(input[0]);
-   // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-    console.log('bafo', input);
-
-    // Bias the SearchBox results towards current map's viewport.
-    this.map.addListener('bounds_changed', (res) => {
-      searchBox.setBounds(this.map.getBounds());
-    });
-    let markers = [];
-    // Listen for the event fired when the user selects a prediction and retrieve
-    // more details for that place.
-    searchBox.addListener('places_changed', (res) => {
-      let places = searchBox.getPlaces();
-
-      if (places.length == 0) {
-        return;
-      }
-      console.log('check if it shows', places);
-      // Clear out the old markers.
-      markers.forEach((marker) => {
-        marker.setMap(null);
-      });
-      markers = [];
-
-      // For each place, get the icon, name and location.
-      let bounds = new google.maps.LatLngBounds();
-      places.forEach((place) => {
-        if (!place.geometry) {
-          console.log("Returned place contains no geometry");
-          return;
-        }
-        let icon = {
-          url: place.icon,
-          size: new google.maps.Size(71, 71),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(17, 34),
-          scaledSize: new google.maps.Size(25, 25)
-        };
-
-        // Create a marker for each place.
-        markers.push(new google.maps.Marker({
-          map: this.map,
-          icon: icon,
-          title: place.name,
-          position: place.geometry.location
-        }));
-
-        if (place.geometry.viewport) {
-          // Only geocodes have viewport.
-          bounds.union(place.geometry.viewport);
-        } else {
-          bounds.extend(place.geometry.location);
-        }
-      });
-      this.map.fitBounds(bounds);
-    });
   }
   async getlocation() {
 
@@ -837,7 +760,5 @@ else{
 
 
   }
-  styles(){
 
-  }
 }
