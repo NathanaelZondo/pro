@@ -38,6 +38,7 @@ export class ModalPage implements OnInit {
     private alertController: AlertController,
     private callNumber: CallNumber) {
     this.bookingdetails = this.backend.bookingdetails;
+console.log('number');
 
     console.log(this.bookingdetails)
   this.cdate() ;

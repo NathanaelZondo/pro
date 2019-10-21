@@ -32,6 +32,8 @@ export class BackendService {
   salonplaceholder = [];
   salondisp = [];
   profiles = [];
+  ratingSalonName;
+  ratingSalonUID
   constructor(public toastController:ToastController,public navCtrl:NavController,public afs: AngularFirestore, public control: ControlsService, public loadingController: LoadingController, ) {
   
  

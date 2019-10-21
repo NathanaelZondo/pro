@@ -115,7 +115,7 @@
 
         <div class="reviewdets">
           <h4>{{x.name}}&nbsp;{{x.surname}}</h4>
-          <p>12/11/2000</p>
+          <p>{{ x.date}}</p>
           <p>{{x.review}} </p>
           <ionic4-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#db981a"
             defaultColor="#A9A9A9" readonly="true" rating={{x.rating}} fontSize="12px">

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="48.252" viewBox="0 0 55 48.252">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="55" height="48.252" fill="none"/>
+    </clipPath>
+    <filter id="Rectangle_263" x="-8" y="2" width="67" height="56" filterUnits="userSpaceOnUse">
+      <feOffset dy="11" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Repeat_Grid_1" data-name="Repeat Grid 1" clip-path="url(#clip-path)">
+    <g transform="translate(-62 -236)">
+      <g transform="matrix(1, 0, 0, 1, 62, 236)" filter="url(#Rectangle_263)">
+        <rect id="Rectangle_263-2" data-name="Rectangle 263" width="49" height="36" rx="9" transform="translate(1 2)" fill="#422d39"/>
+      </g>
+      <path id="Path_440" data-name="Path 440" d="M3718.013-469l9.226,32.252L3742-469Z" transform="translate(-3640 719)" fill="#422d39"/>
+      <path id="_ionicons_svg_ios-person" d="M82.027,81.249c-.338-1.465-2.268-2.18-2.934-2.41a22.244,22.244,0,0,0-2.446-.461,2.506,2.506,0,0,1-1.131-.512,9.529,9.529,0,0,1-.075-2.272,6.8,6.8,0,0,0,.535-1,12.7,12.7,0,0,0,.394-1.747s.385,0,.521-.664a6.426,6.426,0,0,0,.347-1.544c-.028-.53-.324-.516-.324-.516a7.944,7.944,0,0,0,.319-2.364C77.276,65.866,75.764,64,73.027,64c-2.775,0-4.253,1.866-4.211,3.761a8.286,8.286,0,0,0,.315,2.364s-.3-.014-.324.516a6.426,6.426,0,0,0,.347,1.544c.131.664.521.664.521.664a12.7,12.7,0,0,0,.394,1.747,6.8,6.8,0,0,0,.535,1,9.53,9.53,0,0,1-.075,2.272,2.506,2.506,0,0,1-1.131.512,22.245,22.245,0,0,0-2.446.461c-.667.23-2.6.945-2.934,2.41a.37.37,0,0,0,.371.447H81.661A.369.369,0,0,0,82.027,81.249Z" transform="translate(14.097 183.113)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

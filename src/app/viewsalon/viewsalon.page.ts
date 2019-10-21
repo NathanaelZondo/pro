@@ -41,6 +41,7 @@ isRated = false
   position: number;
   cardIndex = false
   starRating = document.getElementsByClassName('ionic4-star-rating')
+  ratingDate: any;
   constructor(public control: ControlsService, public backend: BackendService, public modalController: ModalController, private ngZone: NgZone,public toastController: ToastController, public renderer: Renderer2) {
     this.backend.getHairSalon();
 
@@ -54,6 +55,7 @@ isRated = false
         this.db.collection('Salons').doc(res.id).collection('ratings').onSnapshot(snap => {
           snap.forEach(doc => {
             this.rating.push(doc.data())
+            this.ratingDate  = doc.data().date
             this.userRating.push(doc.data().rating)
             console.log('users', doc.data().rating);
             this.total += doc.data().rating;
