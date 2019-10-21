@@ -69,11 +69,12 @@ firebase.firestore().collection('userAnalytics').doc(firebase.auth().currentUser
     }
   }
 
- signin()
+  signin()
   {
 
 this.control.router.navigate(['login']);
   }
+  
   inputEvent(data){
 
     if(data=='open'){
