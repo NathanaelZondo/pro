@@ -2,7 +2,8 @@ import { Component, HostListener } from '@angular/core';
 import * as firebase from 'firebase';
 import { Platform, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-// import { StatusBar } from '@ionic-native/status-bar';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { config } from './cred';
 import { Router } from '@angular/router';
 import { AngularFireModule } from '@angular/fire';
@@ -19,10 +20,11 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 })
 export class AppComponent {
   constructor(
+    private screenOrientation: ScreenOrientation,
     private afAuth: AngularFireAuth,
     private platform: Platform,
     private splashScreen: SplashScreen,
-    // private statusBar: StatusBar,
+    private statusBar: StatusBar,
     private router: Router,
     private backend: BackendService,
     private control: ControlsService,
@@ -65,7 +67,7 @@ export class AppComponent {
     // });
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (!user) {
-        this.router.navigateByUrl("/onboarding");
+        this.router.navigateByUrl("/login");
         unsubscribe();
       } else {
         this.router.navigateByUrl("/navigation");
@@ -76,8 +78,10 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // this.statusBar.backgroundColorByHexString('#1E1E1E');
-      // this.statusBar.styleLightContent();
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      this.statusBar.backgroundColorByHexString('#343A3F');
+      this.statusBar.styleLightContent();
+
       // this.splashScreen.hide();
       if (this.platform.is('cordova')) {
        this.setupPush();

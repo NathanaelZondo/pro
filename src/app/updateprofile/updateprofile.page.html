@@ -1,109 +1,70 @@
-<ion-toolbar color="transparent">
-    <ion-buttons slot="start">
-      <ion-button style="color: black" routerLink="/viewprofile">
-        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-
+<!-- <ion-toolbar color="transparent">
+  <ion-buttons slot="start">
+    <ion-button style="color: black" routerLink="/viewprofile">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar> -->
 <ion-content>
 
-    <div class="container">
-        <div class="title" >
-          <h1> Update Profile </h1>
-        </div>
-        
-        <div class="userimage"*ngIf="!hide">
-            <div class="img" (click)="takePhoto()" *ngFor = "let x of profiles">
-                <img src="{{x.image}}" placeholder="Choose Image" width="100px" height="100px">
-              </div>
-    
-        </div>
-      <pre>
-        
-      </pre>
-        <div class="inputs">
-          <br>
-          <ion-item style="color: white" color="transparent">
-       
-            <ion-input type="text" [(ngModel)]="profile.name" placeholder="Enter your name" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
-              style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-input>
-          </ion-item>
-    
-          <ion-item style="color: white" color="transparent">
-         
-            <ion-input style="border-bottom: 2px solid white;" type="text" [(ngModel)]="profile.surname" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
-              placeholder="Enter your surname"
-              style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-input>
-          </ion-item>
-          <ion-item style="color: white" color="transparent">
-       
-            <ion-input type="text" [(ngModel)]="profile.cell" placeholder="Enter your cell number" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
-              style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-input>
-          </ion-item>
-          <ion-item style="color: white" color="transparent">
-           
-            <ion-textarea rows="1" cols="20" [(ngModel)]="profile.about"  placeholder="Tell us about yourself" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
-              style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-textarea>
-          
-          </ion-item>
-          <br><br>
-          <div class="btn" *ngIf="!hide">
-              <ion-button
-              style="background: #BF6B7A; width:40vw; height: 10vw; border-radius: 6px; font-family: 'Poiret One'; letter-spacing: 4px;"
-              color="transparent"
-            [disabled] ="sub" (click) ="updateprofile(profile)">SUBMIT</ion-button>
-            <br>
-        
-          </div>
-    
-        </div>
-        <br><br>
-      </div>
-
-  <!-- <div class="container">
-
+  <div class="container">
     <div class="title">
       <h1> Update Profile </h1>
     </div>
-    <div class="userimage"  *ngIf="!hide"  >
-        <div class="img" (click)="takePhoto()" *ngFor = "let x of profiles">
-            <img src="{{x.image}}" placeholder="Choose Image" width="100px" height="100px">
-          </div>
+
+    <div class="userimage" *ngIf="!hide">
+      <div class="img" (click)="takePhoto()" *ngFor="let x of profiles">
+        <img src="{{x.image}}" placeholder="Choose Image" width="100px" height="100px">
+      </div>
+
     </div>
+    <pre>
+
+      </pre>
     <div class="inputs">
       <br>
-      <ion-item color= "transparent">
-        
-          <ion-input type = "text" [(ngModel)] ="profile.name" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')" placeholder ="Enter your name" style="color: rgb(255, 255, 255); font-family: 'Poiret One';"></ion-input>
+      <ion-item style="color: white" color="transparent">
+
+        <ion-input type="text" [(ngModel)]="profile.name" placeholder="Enter your name" (ionFocus)="inputEvent('open')"
+          (ionBlur)="inputEvent('close')" style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';">
+        </ion-input>
       </ion-item>
-      <ion-item color= "transparent">
-    
-        <ion-input type = "text" [(ngModel)] ="profile.surname" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')" placeholder ="Enter your surnamename" style="color: rgb(255, 255, 255); font-family: 'Poiret One';"></ion-input>
+
+      <ion-item style="color: white" color="transparent">
+
+        <ion-input style="border-bottom: 2px solid white;" type="text" [(ngModel)]="profile.surname"
+          (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')" placeholder="Enter your surname"
+          style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-input>
       </ion-item>
-       <ion-item color= "transparent">
-      
-          <ion-input type = "text" [(ngModel)] ="profile.cell" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')" placeholder ="Your cell number" style="color: rgb(255, 255, 255); font-family: 'Poiret One';"></ion-input>
-       </ion-item>
-       <ion-item color= "transparent">
-        
-          <ion-textarea rows="4" cols="20" [(ngModel)]="profile.about" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')" placeholder="Tell us about yourself"
-       
+      <ion-item style="color: white" color="transparent">
+
+        <ion-input type="text" [(ngModel)]="profile.cell" placeholder="Enter your cell number"
+          (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
+          style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-input>
+      </ion-item>
+      <ion-item style="color: white" color="transparent">
+
+        <ion-textarea rows="1" cols="20" [(ngModel)]="profile.about" placeholder="Tell us about yourself"
+          (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
           style="color: rgb(255, 255, 255); font-size: 4vw; font-family: 'Poiret One';"></ion-textarea>
-        </ion-item>
+
+      </ion-item>
+      <pre>
+
+        </pre>
+      <div class="btn" *ngIf="!hide">
+        <ion-button
+          style="background: #BF6B7A; width:40vw; height: 10vw; border-radius: 6px; font-family: 'Poiret One'; letter-spacing: 4px;"
+          color="transparent" [disabled]="sub" (click)="updateprofile(profile)">SUBMIT</ion-button>
         <br>
+        <ion-button
+          style="color: white; width:40vw; height: 10vw; border-radius: 6px; font-family: 'Poiret One'; letter-spacing: 4px;"
+          color="transparent" routerLink="/viewprofile">CANCEL</ion-button>
 
-        <div class="btn" *ngIf="!hide" >
-            <ion-button
-            style="background: #BF6B7A; width:40vw; height: 10vw; border-radius: 6px; font-family: 'Poiret One'; letter-spacing: 4px;"
-            color="transparent"
-          [disabled] ="sub" (click) ="updateprofile(profile)">SUBMIT</ion-button>
-            
-        </div>
-   
+      </div>
+
     </div>
-   
-  </div> -->
-
+    <br><br>
+  </div>
 
 </ion-content>
