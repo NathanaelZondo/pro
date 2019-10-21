@@ -32,15 +32,13 @@ export class UpdateprofilePage implements OnInit {
   
       this.profile.TokenID = res.userId;
       })
-  
+    
   
       //  res.data()
+      
+      this.profiles=[];
       this.profiles =this.backend.profiles;
-    
-
-
-    
-   
+ 
       this.profile.name = this.profiles[0].name;
       this.profile.surname = this.profiles[0].surname;
       this.profile.cell = this.profiles[0].cell;
@@ -202,4 +200,6 @@ else{
     }
     
   }
+
+
 }
