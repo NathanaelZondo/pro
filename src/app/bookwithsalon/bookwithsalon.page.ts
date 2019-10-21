@@ -1403,20 +1403,6 @@ closebutton()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 async smallLoading() {
   this.loaderAnimate = true
   const loading = await this.loadingController.create({

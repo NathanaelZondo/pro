@@ -4,7 +4,7 @@
       <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
     </ion-buttons>
 
-    <ion-title align="center" style="font-family: 'Quicksand', sans-serif;" size="large">{{viewTitle}}</ion-title>
+    <ion-title align="center" style="font-family: Poiret One;" size="large">{{viewTitle}}</ion-title>
     <ion-buttons collapse="true" slot="end">
       <ion-button class="buttonz" (click)="changeMode('day')" [style.background]="daycolor">D</ion-button>
       <ion-button class="buttonz" (click)="changeMode('week')" [style.background]="weekcolor">W</ion-button>
@@ -12,7 +12,6 @@
     </ion-buttons>
 
   </ion-toolbar>
-
 
 </ion-header>
 
@@ -32,7 +31,9 @@
   <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
     (onCurrentDateChanged)="onCurrentDateChanged($event)" (onTitleChanged)="onViewTitleChanged($event)" step="30"
     [startHour]="openTime" [endHour]="closeTime" [markDisabled]="markDisabled" (onTimeSelected)="onTimeSelected($event)"
-    (click)="timeAlertConfirm()" [markDisabled]="markDisabled" [timeInterval]="timeinterval">
+    (click)="timeAlertConfirm()" [markDisabled]="markDisabled" [timeInterval]="timeinterval"
+    
+    style="font-size: 3vw;">
 
   </calendar>
 
@@ -43,25 +44,22 @@
 
     </pre>
     <div
-      style="width:100%;height:160px;background: linear-gradient(rgba(179, 125, 93, 0.342),rgba(179, 125, 93, 0.384),rgba(179, 125, 93, 0.363));position:fixed"
+      style="margin: 0 !important; background: linear-gradient(rgba(179, 125, 93, 0.342),rgba(179, 125, 93, 0.384),rgba(179, 125, 93, 0.363));position:fixed"
       [hidden]="isvalidated" align="center">
-      <div align="right" style="width:30px;float:right;margin-right:15px;"><button
-          style="background:transparent;background-color:rgba(255, 192, 203, 0);color:black" width="25px" (click)="closebutton()">
-          <ion-icon name="close" style="color:black; font-size: 25px;"></ion-icon>
-        </button></div>
+      <div align="right" style="width:30px;float:right;margin-right:15px;">
+        
+        <ion-buttons end (click)="closebutton()">
+            <ion-icon name="close" style="font-size: 200%"></ion-icon>
+        </ion-buttons>
+      </div>
       <br>
-      <pre>{{text}}
+      <pre><p style="font-family: Raleway; text-align: center; font-size: 4vw; margin-left: 20px;" >{{text}}</p>
       </pre>
-      <button  [style.background]="pink" style="width: 300px; width: 27%;
-              height: 40px;color:white;border-radius: 100px;background-color:rgb(179, 125, 93);"
+      <button  [style.background]="pink" style="width: 50vw;
+              height: 40px;color:white; background-color:rgb(179, 125, 93); border-radius: 10px;"
         (click)="submit()">Book Now!</button>
+        <br><br>
     </div>
-
-
-
-
-
-
 
 
   </div>

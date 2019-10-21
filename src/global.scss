@@ -26,30 +26,82 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 .searchbar-input-container {
-            //    box-shadow: none !important;
-            //    outline: none !important;
-               .searchbar-input{
-                              border-radius: 20px !important;
-               }
-}
-.secondary{
-               color: black !important
+
+    //    box-shadow: none !important;
+    //    outline: none !important;
+    .searchbar-input {
+        border-radius: 20px !important;
+    }
 }
 
-*{
+.secondary {
+    color: black !important
+}
+
+* {
     margin: 0;
     padding: 0;
 }
 
-.ion-page{
+.ion-page {
     height: 100% !important;
 }
 
 
-.modal-wrapper{
+.modal-wrapper {
     background: rgba(0, 0, 0, 0.801) !important;
 }
 
-.secondary{
+.secondary {
     color: red;
+}
+
+.calendar-hour-column {
+    width: 11vw !important;
+    font-size: 3vw !important;
+    font-family: 'Poiret One' !important;
+    font-weight: bold !important;
+    letter-spacing: 1px;
+    margin: 5px !important;
+}
+
+div.dayview-allday-label {
+    width: 11vw !important;
+    font-size: 3vw !important;
+    font-family: 'Poiret One' !important;
+    font-weight: bolder !important;
+    letter-spacing: 1px;
+    text-transform: uppercase !important;
+}
+
+div.weekview-allday-label {
+    width: 11vw !important;
+    font-size: 3vw !important;
+    font-family: 'Poiret One' !important;
+    font-weight: bolder !important;
+    letter-spacing: 1px;
+    text-transform: uppercase !important;
+}
+
+th.weekview-header.text-center {
+    font-family: 'Raleway' !important;
+}
+
+div.calendar-event-inner {
+    background: #BF967E !important;
+    font-family: 'Poiret One' !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+}
+
+td {
+    font-family: 'Poiret One' !important;
+    font-weight: bolder !important;
+    font-size: 3.5vw !important;
+}
+
+th {
+    font-family: 'Raleway' !important;
+    font-weight: bolder !important;
+    font-size: 4vw !important;
 }
