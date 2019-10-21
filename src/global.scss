@@ -85,13 +85,20 @@ div.weekview-allday-label {
 
 th.weekview-header.text-center {
     font-family: 'Raleway' !important;
+    font-size: 3vw !important;
+    margin: 3px;
 }
 
 div.calendar-event-inner {
     background: #BF967E !important;
     font-family: 'Poiret One' !important;
+    font-size: 12px;
     letter-spacing: 2px !important;
     text-transform: uppercase !important;
+}
+
+td.calender-cell{
+width: 10vw !important;
 }
 
 td {
