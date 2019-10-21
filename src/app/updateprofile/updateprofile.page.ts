@@ -24,10 +24,10 @@ export class UpdateprofilePage implements OnInit {
   uploadprogress;
   isuploading: false;
   constructor(private camera: Camera, public control: ControlsService, public backend: BackendService) {
-    
+    this.profiles=[];
       
       this.profiles =this.backend.profiles;
-    
+      
 
 
       this.profile.name = this.profiles[0].name;

@@ -31,11 +31,12 @@ export class BackendService {
   selectedsalon = [];
   salonplaceholder = [];
   salondisp = [];
+  profiles = [];
   constructor(public toastController:ToastController,public navCtrl:NavController,public afs: AngularFirestore, public control: ControlsService, public loadingController: LoadingController, ) {
   
  
     this.getsalons(); 
-  
+    
 
 
   }
@@ -46,9 +47,13 @@ export class BackendService {
   uid;
   gend;
   type = 'chiskop;'
-  profiles = [];
+ 
 
   bookingdata:bookings;
+  refresh()
+  {
+    this.profiles=[];
+  }
 getbookingdata(booking:bookings)
 {
   this.bookingdata =booking;

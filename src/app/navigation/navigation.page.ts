@@ -23,8 +23,10 @@ console.log('version', this.versionType)
 profiles =[];
   ngOnInit() {
     console.log("id of the id",this.backend.userId);
-    this.getReviews()
+    this.getReviews();
+  
     this.profiles =[];
+    this.backend.profiles=[];
     firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot(val=>{
      console.log(val.data())
       if(val.data()==undefined)
@@ -34,6 +36,8 @@ profiles =[];
         this.control.navCtrl.navigateRoot('/createprofile');
       }
       else{
+        this.profiles =[];
+        this.backend.profiles =[];
        this.profiles.push(val.data());
        this.backend.profiles =this.profiles;
        console.log("Profile data =",this.profiles)
