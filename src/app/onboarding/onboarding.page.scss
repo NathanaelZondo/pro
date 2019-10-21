@@ -4,13 +4,17 @@
     background-image: linear-gradient(30deg, #BF967E 50%, #343A3F 40%);
     width: 100%;
     height: 100%;
-    padding: 0;
-    margin: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: absolute;
+    top: 0;
 }
 
 ion-slides {
     width: 100vw;
     height: 100vh;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .msg {
@@ -22,23 +26,29 @@ ion-slides {
 
 .group {
     position: absolute;
-    bottom: 0;
+    bottom: 10%;
+    left: 0;
     color: white;
+    display: grid;
+    align-items: center;
 
     .air {
-      height: 70%;
-
+        // height: 70vh;
+        position: relative;
+        top: 40px;
     }
 
     .skedge {
-        position: relative;
+        position: absolute;
         transform: rotate(-90deg);
-        bottom: 20vh;
+        bottom: 10vh;
         left: -12vw;
+        display: grid;
+        align-items: center;
 
         p {
             font-family: 'Poiret One';
-            font-size:8vw;
+            font-size: 8vw;
             font-weight: bold;
             height: 20px;
             letter-spacing: 1.5vw;

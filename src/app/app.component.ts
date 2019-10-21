@@ -65,7 +65,7 @@ export class AppComponent {
     // });
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (!user) {
-        this.router.navigateByUrl("/login");
+        this.router.navigateByUrl("/onboarding");
         unsubscribe();
       } else {
         this.router.navigateByUrl("/navigation");
