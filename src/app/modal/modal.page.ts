@@ -65,9 +65,9 @@ this.SalonNumber = x.cell
 
   }
   call(x){
-    console.log('number', this.alldata );
+    console.log('number', x.cell );
     
-    this.callNumber.callNumber( this.SalonNumber, true)
+    this.callNumber.callNumber( x.cell, true)
   .then(res => console.log('Launched dialer!', res))
   .catch(err => console.log('Error launching dialer', err));
   }
