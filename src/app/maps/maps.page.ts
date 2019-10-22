@@ -83,7 +83,7 @@ export class MapsPage implements OnInit {
   cover;
   desc;
   location;
-  
+
   isChecked = false
   salonname;
   salons = []
@@ -98,49 +98,49 @@ export class MapsPage implements OnInit {
   }
   searchbyLocation = false;
   unlike = false
-  hide='';
+  hide = '';
   autocom
   salonContainer = document.getElementsByClassName('salonlist')
   autoCompSearch = document.getElementsByClassName('searchbar-input');
-  constructor(private device: Device, private androidPermissions: AndroidPermissions, 
-    public store: Storage, private ngZone: NgZone, private geolocation: Geolocation, 
-    public alertController: AlertController, public elementref: ElementRef, public router: Router, 
-    private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController, 
-    public backend: BackendService, public control: ControlsService, private platform: Platform,private keyboard: Keyboard, public rendere: Renderer2) {
+  constructor(private device: Device, private androidPermissions: AndroidPermissions,
+    public store: Storage, private ngZone: NgZone, private geolocation: Geolocation,
+    public alertController: AlertController, public elementref: ElementRef, public router: Router,
+    private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController,
+    public backend: BackendService, public control: ControlsService, private platform: Platform, private keyboard: Keyboard, public rendere: Renderer2) {
     console.log('element Slideers: ', this.mapCenter);
     console.log('salond: ', this.salond);
     this.versionType = device.version;
 
     setTimeout(() => {
-      this.ngZone.run(()=>{
+      this.ngZone.run(() => {
         this.AutoComplete();
       })
     }, 500);
 
   }
-AutoComplete(){
-  this.ngZone.run(()=>{
-    this.autocom = new google.maps.places.Autocomplete(this.autoCompSearch[0], {types: ['geocode']});
-    this.autocom.addListener('place_changed', ()=>{
-      let place = this.autocom.getPlace();
-      console.log(place);
-      let latLng = {
-        lat: place.geometry.location.lat(),
-        lng: place.geometry.location.lng(),
+  AutoComplete() {
+    this.ngZone.run(() => {
+      this.autocom = new google.maps.places.Autocomplete(this.autoCompSearch[0], { types: ['geocode'] });
+      this.autocom.addListener('place_changed', () => {
+        let place = this.autocom.getPlace();
+        console.log(place);
+        let latLng = {
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng(),
+        }
+        this.map.panTo(latLng);
+      });
+    })
+  }
+  inputEvent(data) {
+    this.ngZone.run(() => {
+      if (data == 'open') {
+        this.rendere.setStyle(this.salonContainer[0], 'transform', 'translateY(30vh)')
+      } else if (data == 'close') {
+        this.rendere.setStyle(this.salonContainer[0], 'transform', 'translateY(0)')
       }
-     this.map.panTo(latLng);
-    });
-  })
-}
-inputEvent(data){
-this.ngZone.run(()=>{
-  if(data=='open'){
-    this.rendere.setStyle(this.salonContainer[0], 'transform', 'translateY(30vh)')
- } else if(data=='close') {
-  this.rendere.setStyle(this.salonContainer[0], 'transform', 'translateY(0)')
- }
-})
-}
+    })
+  }
   showDistance() {
     this.cardIndex = !this.cardIndex;
   }
@@ -157,17 +157,17 @@ this.ngZone.run(()=>{
   searchByLocation() {
     this.searchbyLocation = true;
   }
-  checkhide(){
-    console.log('keyboards',this.keyboard.isVisible);
-    
-if(this.keyboard.isVisible){
-  this.isChecked = true ;
+  checkhide() {
+    console.log('keyboards', this.keyboard.isVisible);
 
-}
-else{
-  this.isChecked = false ;
-  // this.keyboard.hide();
-}
+    if (this.keyboard.isVisible) {
+      this.isChecked = true;
+
+    }
+    else {
+      this.isChecked = false;
+      // this.keyboard.hide();
+    }
   }
   async  moveMapEvent(): Promise<void> {
     this.ngZone.run(() => {
@@ -278,7 +278,7 @@ else{
     this.ngZone.run(()=>{
       this.ports = [];
       this.db.collection('Salons').onSnapshot(snap => {
-       if (snap.empty !== true) {
+        if (snap.empty !== true) {
           snap.forEach(doc => {
             // this.name = doc.data().salonName;
             this.db.collection('Salons').doc(doc.id).collection('staff').onSnapshot(res => {
@@ -292,10 +292,10 @@ else{
               this.hairstyledata = []
               qu.forEach(doc => {
                 this.hairstyledata.push(doc.data());
-               this.hairstyledata.splice(1, 1);
+                this.hairstyledata.splice(1, 1);
                 console.log(this.hairstyledata.length)
               })
-  
+
             })
             this.ports.push({ names: doc.data().salonName })
           })
@@ -319,7 +319,7 @@ else{
     })
   }
   getUserPosition() {
-    this.ngZone.run(()=>{
+    this.ngZone.run(() => {
       this.options = {
         enableHighAccuracy: true,
       };
@@ -328,7 +328,7 @@ else{
           lat: pos.coords.latitude,
           lng: pos.coords.longitude
         }
-  
+
         // let marker = new google.maps.Marker({
         //   map: this.map,
         //   animation: google.maps.Animation.DROP,
@@ -362,19 +362,19 @@ else{
       }, (err: PositionError) => {
         console.log("error : " + err.message);
       });
-  
+
     })
-    
+
   }
 
   getSalonmarkrs() {
-    this.ngZone.run(()=>{
+    this.ngZone.run(() => {
       this.loaderAnimate = true;
       this.db.collection('Salons').get().then(snapshot => {
         snapshot.forEach(doc => {
-  
+
           // content = `<h1>${doc.data().salonName}</h1> <br> <p>`
-          let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().Address.fullAddress
+          let content = `<h5> ${doc.data().salonName} </h5> <p>${doc.data().SalonContactNo}</p> <p>${doc.data().Address.fullAddress}</p>`; 
           //  this.addMarkersOnTheCustomersCurrentLocation(doc.data().lat, doc.data().lng, content);
           const icon = {
             url: '../../assets/icon/Hair_Dresser_3.svg', // image url
@@ -382,9 +382,9 @@ else{
             size: new google.maps.Size(71, 71),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(17, 34),
-  
+
           };
-  
+
           let marker = new google.maps.Marker({
             map: this.map,
             animation: google.maps.Animation.DROP,
@@ -396,22 +396,22 @@ else{
           let infoWindow = new google.maps.InfoWindow({
             content: content
           });
-  
+
           google.maps.event.addListener(marker, 'click', () => {
             infoWindow.open(this.map, marker);
           });
           google.maps.event.addListener(marker, 'click', () => {
             this.selectsalon(doc.data());
           });
-  
+
           console.log('cords', doc.data().lat, doc.data().lng);
-  
-  
+
+
         })
         this.loaderAnimate = false;
       });
     })
-   
+
   }
   function() {
     console.log('Dont pull');
@@ -439,7 +439,7 @@ else{
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
     this.getSalonmarkrs();
-  
+
   }
 
   addMarkersOnTheCustomersCurrentLocation(lat, lng, content) {
@@ -575,7 +575,7 @@ else{
       } else if (res == 'yes') {
         this.getlocation()
       } else if (res == 'no') {
-        this.ngZone.run(()=>{
+        this.ngZone.run(() => {
           this.mapCenter.lat = -29.465306;
           this.mapCenter.lng = 24.741967;
           this.loadMap(2);
@@ -583,7 +583,7 @@ else{
           this.getHairSalon();
           this.loaderAnimate = false;
         })
-    
+
       }
     })
   }
@@ -677,8 +677,8 @@ else{
       let geoData = {
         lat: resp.coords.latitude,
         lng: resp.coords.longitude
-      } 
-    
+      }
+
       // get the address from the current position's coords
       this.geocoder.geocode({ 'location': geoData }, (results, status) => {
         console.log('Geocode responded with', results, 'and status of', status)
