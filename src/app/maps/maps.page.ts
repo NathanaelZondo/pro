@@ -276,7 +276,6 @@ else{
   }
   getHairSalon() {
     this.ngZone.run(()=>{
-    
       this.ports = [];
       this.db.collection('Salons').onSnapshot(snap => {
        if (snap.empty !== true) {
@@ -284,8 +283,10 @@ else{
             // this.name = doc.data().salonName;
             this.db.collection('Salons').doc(doc.id).collection('staff').onSnapshot(res => {
               if (!res.empty) {
+                this.ngZone.run(()=>{
                   this.salons.push(doc.data())
-              }
+                })
+                 }
             })
             this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles').onSnapshot(qu => {
               this.hairstyledata = []
