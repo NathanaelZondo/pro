@@ -61,10 +61,12 @@ console.log('number');
 this.SalonNumber = x.cell
     this.cancelbookingConfirm();
 
-    console.log(this.alldata)
+  
 
   }
-  call(){
+  call(x){
+    console.log('number', this.alldata );
+    
     this.callNumber.callNumber( this.SalonNumber, true)
   .then(res => console.log('Launched dialer!', res))
   .catch(err => console.log('Error launching dialer', err));

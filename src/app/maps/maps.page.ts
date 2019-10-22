@@ -483,7 +483,7 @@ else{
       map: this.map,
       animation: google.maps.Animation.DROP,
       position: this.map.getCenter(),
-      icon: '../../assets/icon/icons8-user-location-48.png'
+      icon: '../../assets/icon/usermark.svg'
     });
 
     let content = "<p>Your current location!</p>";
