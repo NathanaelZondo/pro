@@ -276,25 +276,22 @@ else{
   }
   getHairSalon() {
     this.ngZone.run(()=>{
-      this.hairstyledata = [];
+    
       this.ports = [];
       this.db.collection('Salons').onSnapshot(snap => {
-        if (snap.empty !== true) {
+       if (snap.empty !== true) {
           snap.forEach(doc => {
-  
             // this.name = doc.data().salonName;
-            this.db.collection('Salons').doc(doc.id).collection('staff').get().then(res => {
+            this.db.collection('Salons').doc(doc.id).collection('staff').onSnapshot(res => {
               if (!res.empty) {
                   this.salons.push(doc.data())
               }
             })
-            
-  
             this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles').onSnapshot(qu => {
+              this.hairstyledata = []
               qu.forEach(doc => {
                 this.hairstyledata.push(doc.data());
-  
-                this.hairstyledata.splice(1, 1);
+               this.hairstyledata.splice(1, 1);
                 console.log(this.hairstyledata.length)
               })
   
@@ -477,7 +474,6 @@ else{
 
   //addMarker method adds the marker on the on the current location of the device
   addMarker() {
-
     //here
     let marker = new google.maps.Marker({
       map: this.map,
@@ -578,12 +574,15 @@ else{
       } else if (res == 'yes') {
         this.getlocation()
       } else if (res == 'no') {
-        this.mapCenter.lat = -29.465306;
-        this.mapCenter.lng = 24.741967;
-        this.loadMap(2);
-        this.getSalonmarkrs();
-        this.getHairSalon();
-        this.loaderAnimate = false;
+        this.ngZone.run(()=>{
+          this.mapCenter.lat = -29.465306;
+          this.mapCenter.lng = 24.741967;
+          this.loadMap(2);
+          this.getSalonmarkrs();
+          this.getHairSalon();
+          this.loaderAnimate = false;
+        })
+    
       }
     })
   }
@@ -660,6 +659,9 @@ else{
     }
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    google.maps.event.addDomListener(this.map, 'click', () => {
+      this.rendere.setStyle(this.salonContainer[0], 'transform', 'translateY(0)')
+    });
     this.getSalonmarkrs();
   }
   async getlocation() {
