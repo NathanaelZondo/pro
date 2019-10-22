@@ -92,10 +92,13 @@ message:String ="No image uploaded.";
   async takePhoto()
   {
 const options:CameraOptions ={
-  quality: 100,
+
   destinationType: this.camera.DestinationType.DATA_URL,
   encodingType: this.camera.EncodingType.JPEG,
   mediaType: this.camera.MediaType.PICTURE,
+  quality: 90,
+  targetHeight : 600,
+  targetWidth : 600,
   correctOrientation: true,
   sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM
 }
