@@ -46,38 +46,30 @@ export class LoginPage implements OnInit {
     } else {
       // this.loading = await this.loadingCtrl.create();
       // await this.loading.present();
+      const loading = await this.loadingCtrl.create({
+        message: 'Please wait..',
+        duration: 2000
+      });
+      await loading.present();
+    
+      setTimeout(() => {
+        loading.dismiss();
+      }, 1000);
+
 
       const email = loginForm.value.email;
       const password = loginForm.value.password;
-
-    
-    
-
-      
-
-
       this.authService.loginUser(email, password).then(
         () => {
             this.control.router.navigateByUrl('/navigation',{ replaceUrl: true });
         }).catch(async err=>{
           console.log()
-         
-
-
-
-
-
-
-      
             const alert = await this.alertCtrl.create({
               subHeader:"Login error",
               message: err.message,
               buttons: [{ text: 'Ok', role: 'cancel' }]
             });
             await alert.present();
-
-
-
         })
     }
   }

@@ -36,8 +36,6 @@ export class OnboardingPage implements OnInit {
           this.show = true;
         }
       })
-    
-
       this.slides.lockSwipes(true)
     } else {
       this.slides.slideNext();
