@@ -716,10 +716,11 @@ this.loaderAnimate = true
       console.log('Salon filtered');
       this.users = [];
       this.ports = []
+      this.salons = []
       snapshot.forEach(async doc => {
 
         this.db.collection('Salons').doc(doc.id).collection('staff').onSnapshot(res => {
-          this.salons = []
+ 
           if (!res.empty) {
             let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().Address.fullAddress
             this.ports.push({ names: doc.data().salonName })
