@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { ControlsService } from '../controls.service';
 import { Storage } from '@ionic/storage';
 import { IonSlides } from '@ionic/angular';
@@ -11,7 +11,7 @@ import { IonSlides } from '@ionic/angular';
 export class OnboardingPage implements OnInit {
   @ViewChild('slides', { static: true }) slides: IonSlides;
   show = false;
-  constructor(public control: ControlsService, private storage: Storage) { }
+  constructor(public control: ControlsService, private storage: Storage, public ngZone: NgZone) { }
 
   ngOnInit() {
     this.slides.lockSwipes(true)
@@ -29,13 +29,15 @@ export class OnboardingPage implements OnInit {
       // this.show = false
       this.slides.lockSwipes(false)
       this.slides.slideNext(); 
-   
-      this.slides.getActiveIndex().then(index =>{
-        console.log('slid', index );
-        if(index == 2){
-          this.show = true;
-        }
-      })
+   this.ngZone.run(()=>{
+    this.slides.getActiveIndex().then(index =>{
+      console.log('slid', index );
+      if(index == 2){
+        this.show = true;
+      }
+    })
+   })
+    
       this.slides.lockSwipes(true)
     } else {
       this.slides.slideNext();

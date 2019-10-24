@@ -103,7 +103,7 @@ export class MapsPage implements OnInit {
   salonContainer = document.getElementsByClassName('salonlist')
   autoCompSearch = document.getElementsByClassName('searchbar-input');
   constructor(private device: Device, private androidPermissions: AndroidPermissions,
-    public store: Storage, private ngZone: NgZone, private geolocation: Geolocation,
+    public store: Storage, public ngZone: NgZone, private geolocation: Geolocation,
     public alertController: AlertController, public elementref: ElementRef, public router: Router,
     private nativeGeocoder: NativeGeocoder, public loadingController: LoadingController,
     public backend: BackendService, public control: ControlsService, private platform: Platform, private keyboard: Keyboard, public rendere: Renderer2) {
