@@ -276,6 +276,7 @@ export class MapsPage implements OnInit {
   }
   getHairSalon() {
     this.ngZone.run(()=>{
+    this.  loaderAnimate = true
       this.ports = [];
       this.db.collection('Salons').onSnapshot(snap => {
         if (snap.empty !== true) {
@@ -283,10 +284,11 @@ export class MapsPage implements OnInit {
             // this.name = doc.data().salonName;
             this.db.collection('Salons').doc(doc.id).collection('staff').onSnapshot(res => {
               if (!res.empty) {
-                this.ngZone.run(()=>{
+ 
                   this.salons.push(doc.data())
-                })
+             
                  }
+                 this.  loaderAnimate = false
             })
             this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles').onSnapshot(qu => {
               this.hairstyledata = []
@@ -328,14 +330,6 @@ export class MapsPage implements OnInit {
           lat: pos.coords.latitude,
           lng: pos.coords.longitude
         }
-
-        // let marker = new google.maps.Marker({
-        //   map: this.map,
-        //   animation: google.maps.Animation.DROP,
-        //   position: geoData,
-        //   icon: icon
-        // });
-        // get the address from the current position's coords
         this.geocoder.geocode({ 'location': geoData }, (results, status) => {
           console.log('Geocode responded with', results, 'and status of', status)
           if (status) {
@@ -369,7 +363,7 @@ export class MapsPage implements OnInit {
 
   getSalonmarkrs() {
     this.ngZone.run(() => {
-      this.loaderAnimate = true;
+    
       this.db.collection('Salons').get().then(snapshot => {
         snapshot.forEach(doc => {
 
@@ -564,13 +558,14 @@ export class MapsPage implements OnInit {
           }
         }).catch(err => {
           console.log('RESPONSE', err);
-          this.loaderAnimate = false;
+        
           // if the user denies the location then set the value to no
           this.store.set('acceptedPermission', 'no')
           this.mapCenter.lat = -29.465306;
           this.mapCenter.lng = 24.741967;
           this.loadMap(2);
           this.getSalonmarkrs();
+         
         })
       } else if (res == 'yes') {
         this.getlocation()
@@ -588,7 +583,6 @@ export class MapsPage implements OnInit {
     })
   }
   async loadMap(zoomlevel: number) {
-
     console.log('Loaded map with soom of', zoomlevel);
     let location;
     var ref = this;
@@ -666,7 +660,6 @@ export class MapsPage implements OnInit {
     this.getSalonmarkrs();
   }
   async getlocation() {
-
     // get the current position
     await this.geolocation.getCurrentPosition().then((resp) => {
       console.log('Location responded with', resp);
@@ -678,7 +671,6 @@ export class MapsPage implements OnInit {
         lat: resp.coords.latitude,
         lng: resp.coords.longitude
       }
-
       // get the address from the current position's coords
       this.geocoder.geocode({ 'location': geoData }, (results, status) => {
         console.log('Geocode responded with', results, 'and status of', status)
