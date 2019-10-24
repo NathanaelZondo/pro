@@ -276,19 +276,17 @@ export class MapsPage implements OnInit {
   }
   getHairSalon() {
     this.ngZone.run(()=>{
-    this.  loaderAnimate = true
+ 
       this.ports = [];
       this.db.collection('Salons').onSnapshot(snap => {
         if (snap.empty !== true) {
+          this.salons = []
           snap.forEach(doc => {
-            // this.name = doc.data().salonName;
             this.db.collection('Salons').doc(doc.id).collection('staff').onSnapshot(res => {
               if (!res.empty) {
- 
                   this.salons.push(doc.data())
-             
                  }
-                 this.  loaderAnimate = false
+             
             })
             this.db.collection('Salons').doc(firebase.auth().currentUser.uid).collection('Styles').onSnapshot(qu => {
               this.hairstyledata = []
@@ -366,10 +364,10 @@ export class MapsPage implements OnInit {
     
       this.db.collection('Salons').get().then(snapshot => {
         snapshot.forEach(doc => {
-
-          // content = `<h1>${doc.data().salonName}</h1> <br> <p>`
-          let content = `<h5> ${doc.data().salonName} </h5> <p>${doc.data().SalonContactNo}</p> <p>${doc.data().Address.fullAddress}</p>`; 
-          //  this.addMarkersOnTheCustomersCurrentLocation(doc.data().lat, doc.data().lng, content);
+          this.db.collection('Salons').doc(doc.id).collection('staff').onSnapshot(res => {
+            if (!res.empty) {
+              let content = `<h5> ${doc.data().salonName} </h5> <p>${doc.data().SalonContactNo}</p> <p>${doc.data().Address.fullAddress}</p>`; 
+                        //  this.addMarkersOnTheCustomersCurrentLocation(doc.data().lat, doc.data().lng, content);
           const icon = {
             url: '../../assets/icon/Hair_Dresser_3.svg', // image url
             scaledSize: new google.maps.Size(55, 55), // scaled size
@@ -400,7 +398,9 @@ export class MapsPage implements OnInit {
 
           console.log('cords', doc.data().lat, doc.data().lng);
 
-
+            }
+          })
+          // content = `<h1>${doc.data().salonName}</h1> <br> <p>`
         })
         this.loaderAnimate = false;
       });
@@ -491,7 +491,7 @@ export class MapsPage implements OnInit {
   }
 
   async requestPrompt() {
-
+this.loaderAnimate = true
     console.log('Requested Prompt')
     await this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(async res => {
       console.log('Accepted', res);
@@ -499,19 +499,20 @@ export class MapsPage implements OnInit {
         await this.store.set('acceptedPermission', 'yes').then(res => {
           this.getlocation();
         })
-
-      } else {
-        await this.store.set('acceptedPermission', 'no')
-        this.mapCenter.lat = -29.465306;
-        this.mapCenter.lng = 24.741967;
-        // this.initMap()
-        // load the map with the zoom of 2
-        this.loadMap(2);
-        this.getSalonmarkrs();
-
-        this.loaderAnimate = false;
       }
+      //  } else {
+      //   await this.store.set('acceptedPermission', 'no')
+      //   this.mapCenter.lat = -29.465306;
+      //   this.mapCenter.lng = 24.741967;
+      //   // this.initMap()
+      //   // load the map with the zoom of 2
+      //   this.loadMap(2);
+      //   this.getSalonmarkrs();
+
+      //   this.loaderAnimate = false;
+      // }
     })
+    this.loaderAnimate = false
   }
   async promptLocation() {
 
@@ -542,7 +543,7 @@ export class MapsPage implements OnInit {
                 // load the map with the zoom of 2
                 this.loadMap(2);
                 this.getSalonmarkrs();
-
+                this.getHairSalon();
               }
             }).catch(err => {
               console.log('Rejected', err);
@@ -554,6 +555,7 @@ export class MapsPage implements OnInit {
               // load the map with the zoom of 2
               this.loadMap(2);
               this.getSalonmarkrs();
+              this.getHairSalon();
             })
           }
         }).catch(err => {
@@ -565,7 +567,7 @@ export class MapsPage implements OnInit {
           this.mapCenter.lng = 24.741967;
           this.loadMap(2);
           this.getSalonmarkrs();
-         
+          this.getHairSalon();
         })
       } else if (res == 'yes') {
         this.getlocation()
@@ -657,7 +659,7 @@ export class MapsPage implements OnInit {
     google.maps.event.addDomListener(this.map, 'click', () => {
       this.rendere.setStyle(this.salonContainer[0], 'transform', 'translateY(0)')
     });
-    this.getSalonmarkrs();
+   
   }
   async getlocation() {
     // get the current position
@@ -705,7 +707,8 @@ export class MapsPage implements OnInit {
 
       this.loadMap(2);
       //  get all of the hair Salons
-      this.getSalonmarkrs()
+      this.getSalonmarkrs();
+      this.getHairSalon()
     })
   }
   async getFilteredSalonMarkers() {
@@ -714,38 +717,46 @@ export class MapsPage implements OnInit {
       this.users = [];
       this.ports = []
       snapshot.forEach(async doc => {
-        let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().Address.fullAddress
-        this.ports.push({ names: doc.data().salonName })
-        this.salons.push(doc.data())
-        const icon = {
-          url: '../../assets/icon/Hair_Dresser_7.svg', // image url
-          scaledSize: new google.maps.Size(35, 35), // scaled size
-          size: new google.maps.Size(71, 71),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(17, 34),
 
-        };
-
-        let marker = new google.maps.Marker({
-          map: this.map,
-          animation: google.maps.Animation.DROP,
-          position: new google.maps.LatLng(doc.data().Address.lat, doc.data().Address.lng),
-          icon: icon
-        });
-        // this.addInfoWindow(marker, content);
-        marker.setMap(this.map);
-        let infoWindow = new google.maps.InfoWindow({
-          content: content
-        });
-
-        google.maps.event.addListener(marker, 'click', () => {
-          infoWindow.open(this.map, marker);
-        });
-        google.maps.event.addListener(marker, 'click', () => {
-          this.selectsalon(doc.data());
-        });
-        //  this.addMarker(doc.data());
-        console.log('run through', this.salons);
+        this.db.collection('Salons').doc(doc.id).collection('staff').onSnapshot(res => {
+          this.salons = []
+          if (!res.empty) {
+            let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().Address.fullAddress
+            this.ports.push({ names: doc.data().salonName })
+            this.salons.push(doc.data())
+            const icon = {
+              url: '../../assets/icon/Hair_Dresser_7.svg', // image url
+              scaledSize: new google.maps.Size(35, 35), // scaled size
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+    
+            };
+    
+            let marker = new google.maps.Marker({
+              map: this.map,
+              animation: google.maps.Animation.DROP,
+              position: new google.maps.LatLng(doc.data().Address.lat, doc.data().Address.lng),
+              icon: icon
+            });
+            // this.addInfoWindow(marker, content);
+            marker.setMap(this.map);
+            let infoWindow = new google.maps.InfoWindow({
+              content: content
+            });
+    
+            google.maps.event.addListener(marker, 'click', () => {
+              infoWindow.open(this.map, marker);
+            });
+            google.maps.event.addListener(marker, 'click', () => {
+              this.selectsalon(doc.data());
+            });
+            //  this.addMarker(doc.data());
+            console.log('run through', this.salons);
+             }
+         
+        })
+      
 
 
       })
