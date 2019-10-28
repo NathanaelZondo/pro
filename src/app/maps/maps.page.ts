@@ -128,7 +128,31 @@ export class MapsPage implements OnInit {
           lat: place.geometry.location.lat(),
           lng: place.geometry.location.lng(),
         }
-        this.map.panTo(latLng);
+       
+        
+      let geoData = {
+        lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng(),
+      }
+      // get the address from the current position's coords
+      this.geocoder.geocode({ 'location': geoData }, (results, status) => {
+        console.log('Geocode responded with', results, 'and status of', status)
+        if (status) {
+          if (results[0]) {
+            // get the city from the address components
+            this.fiter = results[1].address_components[4].short_name;
+         
+      
+           this.getFilteredSalonMarkers();
+          } else {
+            console.log('No results found');
+          }
+        } else {
+          console.log('Geocoder failed due to: ' + status);
+        }
+      })
+      this.map.panTo(latLng);
+
       });
     })
   }
@@ -712,7 +736,7 @@ this.loaderAnimate = true
     })
   }
   async getFilteredSalonMarkers() {
-    await this.db.collection('Salons').where('Metro', '==', this.fiter).get().then(async snapshot => {
+    await this.db.collection('Salons').where('Metro', '==', this.fiter).onSnapshot(async snapshot => {
       console.log('Salon filtered');
       this.users = [];
       this.ports = []
@@ -725,33 +749,33 @@ this.loaderAnimate = true
             let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().Address.fullAddress
             this.ports.push({ names: doc.data().salonName })
             this.salons.push(doc.data())
-            const icon = {
-              url: '../../assets/icon/Hair_Dresser_7.svg', // image url
-              scaledSize: new google.maps.Size(35, 35), // scaled size
-              size: new google.maps.Size(71, 71),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(17, 34),
+            // const icon = {
+            //   url: '../../assets/icon/Hair_Dresser_3.svg', // image url
+            //   scaledSize: new google.maps.Size(35, 35), // scaled size
+            //   size: new google.maps.Size(71, 71),
+            //   origin: new google.maps.Point(0, 0),
+            //   anchor: new google.maps.Point(17, 34),
     
-            };
+            // };
     
-            let marker = new google.maps.Marker({
-              map: this.map,
-              animation: google.maps.Animation.DROP,
-              position: new google.maps.LatLng(doc.data().Address.lat, doc.data().Address.lng),
-              icon: icon
-            });
+            // let marker = new google.maps.Marker({
+            //   map: this.map,
+            //   animation: google.maps.Animation.DROP,
+            //   position: new google.maps.LatLng(doc.data().Address.lat, doc.data().Address.lng),
+            //   icon: icon
+            // });
             // this.addInfoWindow(marker, content);
-            marker.setMap(this.map);
-            let infoWindow = new google.maps.InfoWindow({
-              content: content
-            });
+            // marker.setMap(this.map);
+            // let infoWindow = new google.maps.InfoWindow({
+            //   content: content
+            // });
     
-            google.maps.event.addListener(marker, 'click', () => {
-              infoWindow.open(this.map, marker);
-            });
-            google.maps.event.addListener(marker, 'click', () => {
-              this.selectsalon(doc.data());
-            });
+            // google.maps.event.addListener(marker, 'click', () => {
+            //   infoWindow.open(this.map, marker);
+            // });
+            // google.maps.event.addListener(marker, 'click', () => {
+            //   this.selectsalon(doc.data());
+            // });
             //  this.addMarker(doc.data());
             console.log('run through', this.salons);
              }
