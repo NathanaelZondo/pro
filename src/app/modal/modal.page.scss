@@ -151,7 +151,7 @@ ion-toolbar {
   justify-content: space-around;
   position: relative;
   top: 15px;
-  height: 10vh;
+
 
   ion-button {
     width: 35vw;
@@ -160,4 +160,8 @@ ion-toolbar {
     font-size: 3vw;
     border-radius: 5px;
   }
+}
+
+.container{
+  height: 100vh;
 }

@@ -42,8 +42,7 @@
         
           <div class="cards">
               <div class="isbooking" *ngIf="!isBooking">
-                  <p> YOU DO NOT HAVE <br>
-                    A BOOKING HISTORY YET
+                  <p> You do not have any bookings yet
                   </p>
                 </div>
             <div class="card" *ngFor="let x of userbooking" (click)="viewdetails(x)"
