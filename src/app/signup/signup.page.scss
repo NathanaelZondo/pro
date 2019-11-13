@@ -8,12 +8,12 @@ ion-toolbar {
 }  
 .form{
   position: absolute;
-
   z-index: 5;
   background: white;
   bottom:0;
-  width: 100%;
+  overflow-y: auto;
   // height: 50vh;
+  width: 100%;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -22,6 +22,7 @@ ion-toolbar {
   border-top-right-radius: 20px;
   text-align: center;
   padding-bottom: 0 !important;
+
 }
 .login{
   width: 100%;
@@ -43,7 +44,6 @@ ion-toolbar {
 
 .item{
   width: 90vw;
-  margin: 10px;
 }
 
 .btn{

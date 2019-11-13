@@ -19,7 +19,7 @@
 
         <ion-item>
 
-          <ion-input formControlName="email" type="email" placeholder="Your email address" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
+          <ion-input formControlName="email" type="email" placeholder="Your email address"
             [class.invalid]="!signupForm.controls['email'].valid && signupForm.controls['email'].touched"
             style="font-family: Poiret One;">
           </ion-input>
@@ -32,7 +32,7 @@
 
         <ion-item>
 
-          <ion-input formControlName="password" type="password" placeholder="Your password" (ionFocus)="inputEvent('open')" (ionBlur)="inputEvent('close')"
+          <ion-input formControlName="password" type="password" placeholder="Your password"
             [class.invalid]="!signupForm.controls['password'].valid && signupForm.controls['password'].touched"
             style="font-family: Poiret One;">
           </ion-input>
@@ -44,7 +44,7 @@
         <br>
 
         <br>
-        <div class="btn" *ngIf="!hide">
+        <div class="btn" >
           <button ion-button  color="light" (click)="signupUser(signupForm)"
             [disabled]="!signupForm.valid"
             style="height: 10vw; width: 10vw; font-size: 4vw; font-family: Poiret One; font-weight: bold;border-radius: 5px ;background: #BF6B7A; color: white; width: 25vh; text-transform: uppercase">
@@ -56,8 +56,6 @@
           color: black; font-family: Poiret One; font-weight: bold; text-transform: uppercase">
             Sign In
           </button>
-
-          
 
         </div>
       

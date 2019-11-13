@@ -24,7 +24,7 @@
 
     <div class="bottom" *ngFor="let x of bookingdetails">
       <div class='buttonz'>
-        <ion-fab-button (click)="call()" size="small" color="transparent">
+        <ion-fab-button (click)="call(x)" size="small" color="transparent">
           <ion-icon name="call"></ion-icon>
         </ion-fab-button>
       </div>
@@ -67,5 +67,4 @@
 
   </div>
 
-  
 </ion-content>

@@ -16,7 +16,8 @@ const routes: Routes = [
     path: 'navigation',
     loadChildren: () => import('./navigation/navigation.module').then(m => m.NavigationPageModule)
   },
-  { path: 'login', loadChildren: './login/login.module#LoginPageModule',canActivate:[GuardsGuard]},
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule'},
+  //{ path: 'login', loadChildren: './login/login.module#LoginPageModule',canActivate:[GuardsGuard]},
   { path: 'home',  loadChildren: './home/home.module#HomePageModule'},
   { path: 'createprofile', loadChildren: './createprofile/createprofile.module#CreateprofilePageModule' },
   { path: 'updateprofile', loadChildren: './updateprofile/updateprofile.module#UpdateprofilePageModule' },

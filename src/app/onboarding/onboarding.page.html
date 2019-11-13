@@ -1,7 +1,7 @@
 <ion-toolbar color="transparent">
 
   <ion-buttons slot="primary">
-    <ion-button style="color: white; font-family: Poiret One; letter-spacing: 3px;" (click)="signin()">
+    <ion-button style="color: white; font-family: Poiret One; letter-spacing: 3px;" (click)="signin()" *ngIf="!show">
       SKIP
     </ion-button>
   </ion-buttons>
@@ -21,10 +21,10 @@
     </div>
 
     <ion-slides #slides pager="true">
-
+     
 
       <ion-slide>
-
+        
         <div class="data">
           <div class="title">
             <h1>Find <br> Salons</h1>

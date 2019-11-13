@@ -93,12 +93,13 @@ ion-slides {
         position: relative;
         top: 25%;
         overflow: hidden;
-
+        border-radius: 7px;
         ion-button {
             width: 34vw;
             background: #343A3F;
             border-radius: 7px;
             font-family: 'Poiret one';
+            outline: none;
         }
     }
 }

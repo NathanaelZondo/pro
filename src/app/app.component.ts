@@ -67,7 +67,7 @@ export class AppComponent {
     // });
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (!user) {
-        this.router.navigateByUrl("/login");
+        this.router.navigateByUrl("/onboarding");
         unsubscribe();
       } else {
         this.router.navigateByUrl("/navigation");
@@ -79,7 +79,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
-      this.statusBar.backgroundColorByHexString('#343A3F');
+      this.statusBar.backgroundColorByHexString('#1E1E1E');
       this.statusBar.styleLightContent();
 
       // this.splashScreen.hide();

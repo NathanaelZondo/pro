@@ -3,6 +3,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { async } from '@angular/core/testing';
 import { BackendService } from '../backend.service';
+import { ControlsService } from '../controls.service';
 
 
 @Component({
@@ -30,11 +31,14 @@ export class ReviewsPage implements OnInit {
   }
   reviews = [];
   db = firebase.firestore();
-  constructor(public alertController: AlertController,public loadingController: LoadingController,public backend:BackendService) { this.getSalon();  this.getProfile(); console.log('i think so');
+  constructor(public alertController: AlertController,
+    public loadingController: LoadingController,
+    public backend:BackendService,
+    public control:ControlsService) {   this.getProfile(); console.log('i think so');
    }
 
   ionViewDidLoad() {
-    this.getSalon();
+    // this.getSalon();
     this.getProfile();
     console.log('user uid', firebase.auth().currentUser.uid);
   }
@@ -45,7 +49,7 @@ ngOnInit(){}
   async logRatingChange(rating){
     console.log("changed rating: ",rating);
       const alert = await this.alertController.create({
-      header: 'What is your comment about '+this.backend.salonname+'?',
+      header: 'What is your comment about '+ this.backend.ratingSalonName+'?',
       inputs: [
         {
           name: 'comment',
@@ -65,18 +69,24 @@ ngOnInit(){}
           text: 'Ok',
           handler: async data => {
             console.log('Confirm Ok');
-            this.db.collection('Salons').where("salonName", "==",this.backend.salonname).get().then(res =>{
+            this.db.collection('Salons').where("salonName", "==", this.backend.ratingSalonName).get().then(res =>{
               res.forEach(doc =>{
+                this.db.collection('Payments').doc(firebase.auth().currentUser.uid).update({
+                  rated : true
+                })
                 this.db.collection('Salons').doc(doc.id).collection('ratings').doc(firebase.auth().currentUser.uid).set({
                   rating: rating,
                   review : data.comment,
                   name: this.Profile.name,
                   image : this.Profile.image,
-                  date : Date.now()
+                  date : new Date().toLocaleString(),
+              
                 })
+                this.control.navCtrl.setDirection('root');
+                this.control.navCtrl.navigateRoot('/navigation'); 
               })
             })
-          this.getSalon();
+          // this.getSalon();
             const loading = await this.loadingController.create({
               message: 'Thank You ',
               duration: 1000
@@ -90,54 +100,34 @@ ngOnInit(){}
    await  alert.present();
   }
 
-getSalon(){
+// getSalon(){
 
-  this.db.collection('Salons').where("salonName", "==",this.backend.salonname).onSnapshot(res =>{
-    res.forEach(doc =>{
-      this.db.collection('Salons').doc(doc.id).collection('ratings').onSnapshot(doc =>{
-       doc.forEach(doc =>{
+//   this.db.collection('Salons').where("salonName", "==",this.backend.ratingSalonName).onSnapshot(res =>{
+//     res.forEach(doc =>{
+//       this.db.collection('Salons').doc(doc.id).collection('ratings').onSnapshot(doc =>{
+//        doc.forEach(doc =>{
           
-        this.reviews = []
-        this.reviews.push(doc.data())
-       })
-      })
-    })
-  })
-  // this.db.collection('Salons').where("salonName" , "==",this.backend.salonname).onSnapshot(res =>{
-  //   if (res.empty !== true){
-  //     console.log('Got data', res);
-  //     res.forEach(doc => {
-  //       console.log('data for salon ', doc.data())
-       
-  //       this.SalonNode.salonName = doc.data().salonName;
-  //       let query =  this.db.collection('Salons').doc().collection('ratings');
-  //       query.get().then( res =>{
-  //         res.forEach(DOC =>{
-  //           this.reviews = []
-  //           this.reviews.push(DOC.data());
-
-  //         })
-  //       })
-      
-  //     })
-  //   }
-  // })
-}
+//         this.reviews = []
+//         this.reviews.push(doc.data())
+//        })
+//       })
+//     })
+//   })
+// }
 async getProfile(){
   const loading = await this.loadingController.create({
     message: 'getting you ready ',
     duration: 2000
   });
   await loading.present();
-  this.db.collection('Users').where("uid","==", firebase.auth().currentUser.uid).get().then(res =>{
-   res.forEach(doc =>{
-    console.log('user profile',doc.data());
-    
-     this.db.collection('Users').doc(doc.id).onSnapshot(doc =>{
-       this.Profile.image = doc.data().image;
-       this.Profile.name = doc.data().name
-     })
-   })
-  })
+  this.db.collection('Users').doc(firebase.auth().currentUser.uid).get().then(res =>{
+    if(res.exists){
+        this.Profile.image = res.data().image;
+        this.Profile.name = res.data().name
+        
+       }
+    })
+
+
 }
 }

@@ -1,13 +1,13 @@
 <ion-toolbar color="transparent">
   <ion-buttons slot="start">
-    <ion-button style="color: white" (click)="back()">
+    <ion-button style="color: #343A3F" (click)="back()">
       <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
     </ion-button>
 
   </ion-buttons>
 
   <ion-buttons slot="primary">
-    <ion-button style="color: white" (click)="signout()">
+    <ion-button style="color: #343A3F" (click)="signout()">
       <ion-icon slot="icon-only" name="exit"></ion-icon>
     </ion-button>
   </ion-buttons>
@@ -42,8 +42,7 @@
         
           <div class="cards">
               <div class="isbooking" *ngIf="!isBooking">
-                  <p> YOU DO NOT HAVE <br>
-                    A BOOKING HISTORY YET
+                  <p> You do not have any bookings yet
                   </p>
                 </div>
             <div class="card" *ngFor="let x of userbooking" (click)="viewdetails(x)"

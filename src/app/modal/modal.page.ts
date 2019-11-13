@@ -38,6 +38,7 @@ export class ModalPage implements OnInit {
     private alertController: AlertController,
     private callNumber: CallNumber) {
     this.bookingdetails = this.backend.bookingdetails;
+console.log('number');
 
     console.log(this.bookingdetails)
   this.cdate() ;
@@ -60,11 +61,13 @@ export class ModalPage implements OnInit {
 this.SalonNumber = x.cell
     this.cancelbookingConfirm();
 
-    console.log(this.alldata)
+  
 
   }
-  call(){
-    this.callNumber.callNumber( this.SalonNumber, true)
+  call(x){
+    console.log('number', x.cell );
+    
+    this.callNumber.callNumber( x.cell, true)
   .then(res => console.log('Launched dialer!', res))
   .catch(err => console.log('Error launching dialer', err));
   }

@@ -369,15 +369,8 @@ async presentToast() {
           console.log("Time 22 =", booking.sessionendtime)
           this.booking=booking;
         }
-
-
-
-
-
-
-    
+  
   this.booking=booking;
- 
     
   }
 
@@ -1400,20 +1393,6 @@ closebutton()
 {
   this.isvalidated=true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -25,31 +25,105 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+
+
 .searchbar-input-container {
-            //    box-shadow: none !important;
-            //    outline: none !important;
-               .searchbar-input{
-                              border-radius: 20px !important;
-               }
-}
-.secondary{
-               color: black !important
+
+    //    box-shadow: none !important;
+    //    outline: none !important;
+    .searchbar-input {
+        border-radius: 20px !important;
+    }
 }
 
-*{
+button .secondary{
+    background: #343A3F !important;
+}
+
+.secondary {
+    color: red !important;
+    font-family: 'Raleway' !important;
+    font-weight: bold !important;
+    
+    font-size: 4vw !important;
+   
+    // --height: 100%;
+    // --max-height: 40%;
+    // --max-width: 80%;
+    // --min-height: 20%;
+    // --min-width:30%;
+    // --width: 100%;
+}
+
+* {
     margin: 0;
     padding: 0;
 }
 
-.ion-page{
+.ion-page {
     height: 100% !important;
 }
 
 
-.modal-wrapper{
+.modal-wrapper {
     background: rgba(0, 0, 0, 0.801) !important;
 }
 
-.secondary{
-    color: red;
+
+
+.calendar-hour-column {
+    width: 11vw !important;
+    font-size: 3vw !important;
+    font-family: 'Poiret One' !important;
+    font-weight: bold !important;
+    letter-spacing: 1px;
+    margin: 5px !important;
+}
+
+div.dayview-allday-label {
+    width: 11vw !important;
+    font-size: 3vw !important;
+    font-family: 'Poiret One' !important;
+    font-weight: bolder !important;
+    letter-spacing: 1px;
+    text-transform: uppercase !important;
+}
+
+div.weekview-allday-label {
+    width: 11vw !important;
+    font-size: 3vw !important;
+    font-family: 'Poiret One' !important;
+    font-weight: bolder !important;
+    letter-spacing: 1px;
+    text-transform: uppercase !important;
+}
+
+th.weekview-header.text-center {
+    font-family: 'Raleway' !important;
+    font-size: 3vw !important;
+    margin: 3px;
+}
+
+div.calendar-event-inner {
+    background: #BF967E !important;
+    font-family: 'Poiret One' !important;
+    font-size: 12px;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+}
+
+td.calender-cell{
+width: 10vw !important;
+}
+
+td {
+    font-family: 'Poiret One' !important;
+    font-weight: bolder !important;
+    font-size: 3.5vw !important;
+}
+
+th {
+    font-family: 'Raleway' !important;
+    font-weight: bolder !important;
+    font-size: 4vw !important;
 }
