@@ -57,7 +57,6 @@ export class ViewprofilePage implements OnInit {
       this.getbookings();
     })
      await modal.present();
-
   }
 
   bookings(){
@@ -78,7 +77,7 @@ export class ViewprofilePage implements OnInit {
 
   back() {
     this.navCtrl.setDirection('root');
-    this.navCtrl.navigateRoot('/navigation');
+    this.navCtrl.navigateRoot('/viewprofile');
   }
 
 

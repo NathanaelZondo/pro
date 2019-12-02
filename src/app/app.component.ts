@@ -70,7 +70,7 @@ export class AppComponent {
         this.router.navigateByUrl("/onboarding");
         unsubscribe();
       } else {
-        this.router.navigateByUrl("/navigation");
+        this.router.navigateByUrl("/maps"); // ###
         unsubscribe();
       }
     });

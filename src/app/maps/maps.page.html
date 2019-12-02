@@ -1,5 +1,114 @@
 <ion-content fullscreen>
-  <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
+
+  <div class="container">
+
+<div class="top">
+    <div class="header">
+      <div class="propic" routerLink="/viewprofile">
+        <img src="../../assets/danai.jpg">
+      </div>
+      <div class="name">
+      <div>
+          <h3>Zanele Nkosi</h3>
+        <p>1655b Rabothata Avenue, Soweto, Johannesburg</p>
+      </div>
+      </div>
+
+    </div>
+    <div class="line"></div>
+
+    <div class="mylocation">
+      <p>Around:<span>Soweto</span></p>
+    </div>
+
+    <div class="mysalons">
+      <div class="cards">
+        <div class="card">
+          <div class="image">
+            <img src="../../assets/danai.jpg">
+          </div>
+          <div class="title">
+            <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; padding-left: 10px;">
+              Beauty Hair Salon
+              <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway">
+                100 Acre Woods, Sandton, Johannesburg</p>
+
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="image">
+            <img src="../../assets/danai.jpg">
+          </div>
+          <div class="title">
+            <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; padding-left: 10px;">
+              Keke's Barber Shop
+              <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway">
+                100 Acre Woods, Sandton, Johannesburg</p>
+
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="image">
+            <img src="../../assets/danai.jpg">
+          </div>
+          <div class="title">
+            <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; padding-left: 10px;">
+              Ebuhleni hair Salon
+              <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway">
+                100 Acre Woods, Sandton, Johannesburg</p>
+
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="image">
+            <img src="../../assets/danai.jpg">
+          </div>
+          <div class="title">
+            <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; padding-left: 10px;">
+              Combs Hair Salon
+              <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway">
+                100 Acre Woods, Sandton, Johannesburg</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="line"></div>
+
+   
+  </div> 
+    <div class="allsalons">
+        <div class="othersalons">
+
+            <p>Others: {{salons}} results</p>
+          </div>
+      
+          <div class="search">
+            <ion-searchbar placeholder="Search Salons" id="search"></ion-searchbar>
+          </div>
+      <!-- <div class="sidetitle">
+        <p>AIRSKEDGE</p>
+      </div> -->
+      <div class='List'>
+        <ion-slides #slides [options]="slideOpts" (ionSlideWillChange)="change()"
+          style="height: 100%; width: 90%; overflow: visible;">
+          <ion-slide style="width: 90vw !important; border-radius: 20px !
+                ; overflow: hidden;" *ngFor="let b of salons">
+            <img src="{{b.salonImage}}" (click)="selectsalon(b)"
+              >
+            <div class="salonName">
+                <p>{{b.salonName}}<br> {{b.Address.streetName}}</p>
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </div>
+    </div>
+  </div>
+  <!-- <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
     <div class="maploader">
       <div class="lds-facebook">
         <div></div>
@@ -11,19 +120,29 @@
       <p>Loading Map</p>
     </div>
   </div>
+
+  <div class="container">
+    <div class="header">
+
+    </div>
+  </div>
   <div #map id="map"></div>
   <div class="s-location">
-    <!-- <input id="pac-input" name="pac-input" class="controls" type="text" placeholder="Search Location " (click)="checkhide()"> -->
+    //
+    <input id="pac-input" name="pac-input" class="controls" type="text" placeholder="Search Location " (click)="checkhide()">
+    //
     <ion-searchbar placeholder="Search Location " id="pac-input" (ionFocus)="inputEvent('open')"
       (ionBlur)="inputEvent('close')" color='transparent'></ion-searchbar>
     <ion-icon name="locate" id="locater" (click)="requestPrompt()"></ion-icon>
   </div>
-  <!-- <ion-item *ngIf="searchby.salon" id="salonlocate">
+  //
+  <ion-item *ngIf="searchby.salon" id="salonlocate">
       <ion-label position="floating" style="margin: 5px; ">Search by salon name</ion-label>
       <ionic-selectable item-content [(ngModel)]="port" [items]="ports" itemTextField="names" [canSearch]="true"
         searchFailText="Nothing Found :(" (onChange)="portChange($event)">
       </ionic-selectable>
-    </ion-item> -->
+    </ion-item>
+    //
   <br><br><br>
   <div class="salonlist">
     <ion-slides [options]="sliderConfig" #sliderRef (ionSlideDidChange)="moveMapEvent($event)">
@@ -55,10 +174,10 @@
           </div>
         </div>
       </ion-slide>
-      <ion-slide class="magic" *ngIf="salons.length == 0">
+      <ion-slide class="magic">
         <p id="nosalon">No salons in this area</p>
       </ion-slide>
     </ion-slides>
-  </div>
+  </div> -->
 
 </ion-content>
