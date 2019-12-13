@@ -85,10 +85,11 @@ export class MapsPage implements OnInit {
   cover;
   desc;
   location;
-
+  profile = {}
   isChecked = false
   salonname;
   salons = []
+  filteredSalons = []
   salond = this.backend.salonsDisply;
   private versionType: any;
   cardIndex = true;
@@ -102,6 +103,9 @@ export class MapsPage implements OnInit {
   unlike = false
   hide = '';
   autocom
+newSalon = [];
+salonFiltered = []
+myFilter = ''
   salonContainer = document.getElementsByClassName('salonlist')
   autoCompSearch = document.getElementsByClassName('searchbar-input');
   constructor(private device: Device, private androidPermissions: AndroidPermissions,
@@ -112,7 +116,7 @@ export class MapsPage implements OnInit {
     console.log('element Slideers: ', this.mapCenter);
     console.log('salond: ', this.salond);
     this.versionType = device.version;
-
+    // this.profile =this.backend.profiles;
     setTimeout(() => {
       this.ngZone.run(() => {
         this.AutoComplete();
@@ -287,18 +291,73 @@ export class MapsPage implements OnInit {
   }
 
   ngOnInit() {
-
+this.db.collection('Users').doc(firebase.auth().currentUser.uid).get().then(res =>{
+  if(res.exists){
+    this.profile = res.data()
+    console.log('userInfo',this.profile);
+    
+  }
+})
     this.ngZone.run(() => {
       let versionNumber = '5.1.1'
       if (this.versionType === versionNumber) {
         this.getUserPosition()
         console.log('its got it')
       } else {
-        this.promptLocation();
+     this.getSalons();
+     this.geolocation.getCurrentPosition().then(res =>{
+      let geoData = {
+        lat: res.coords.latitude,
+        lng: res.coords.longitude
+      }
+      this.geocoder.geocode({ 'location': geoData }, (results, status) => {
+        console.log('Geocode responded with', results, 'and status of', status)
+        if (status) {
+          if (results[0]) {
+            // get the city from the address components
+            this.myFilter = results[1].address_components[4].short_name;
+            console.log('filterd by', results);
+            console.log('match', this.myFilter);
+            this.getFilteredSalons();
+          } else {
+            console.log('No results found');
+          }
+        } else {
+          console.log('Geocoder failed due to: ' + status);
+        }
+      }, err => {
+        console.log('Geocoder failed with', err)
+      });
+      console.log('myLocation',geoData);
+      
+     })
         console.log('masbone')
       }
     })
 
+  }
+
+ async getFilteredSalons(){
+ await this.db.collection('Salons').where('Metro', '==', this.myFilter).onSnapshot(res =>{
+this.salonFiltered = []
+if(!res.empty){
+  res.forEach(doc =>{
+    this.salonFiltered.push(doc.data())
+  })
+}
+ })
+  }
+  getSalons(){
+    this.db.collection('Salons').get().then(res =>{
+      this.newSalon = []
+      if(!res.empty){
+        res.forEach(doc =>{
+this.newSalon.push(doc.data());
+console.log('new array',this.newSalon);
+
+        })
+      }
+    })
   }
   getHairSalon() {
     this.ngZone.run(()=>{
@@ -325,6 +384,7 @@ export class MapsPage implements OnInit {
             })
             this.ports.push({ names: doc.data().salonName })
           })
+
         } else {
           console.log('No data')
         }
@@ -375,7 +435,7 @@ export class MapsPage implements OnInit {
         this.currentPos = pos;
         console.log(pos);
         this.addMap(pos.coords.latitude, pos.coords.longitude);
-        console.log('Current Location', pos);
+        console.log('Current Location', geoData);
         this.addMarker();
       }, (err: PositionError) => {
         console.log("error : " + err.message);
@@ -750,7 +810,7 @@ this.loaderAnimate = true
           if (!res.empty) {
             let content = '<b>Salon Name : ' + doc.data().salonName + '<br>' + 'SALON CONTACT NO:' + doc.data().SalonContactNo + '<br>' + 'SALON ADDRESS: ' + doc.data().Address.fullAddress
             this.ports.push({ names: doc.data().salonName })
-            this.salons.push(doc.data())
+            this.filteredSalons.push(doc.data())
             // const icon = {
             //   url: '../../assets/icon/Hair_Dresser_3.svg', // image url
             //   scaledSize: new google.maps.Size(35, 35), // scaled size

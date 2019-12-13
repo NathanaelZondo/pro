@@ -3,14 +3,17 @@
   <div class="container">
 
     <div class="top">
-      <div class="header">
+      <div class="header" >
         <div class="propic" routerLink="/viewprofile">
-          <img src="../../assets/danai.jpg">
+          
+    <img  *ngIf="!profile.image" src="../../assets/danai.jpg">
+
+    <img *ngIf="profile.image" src="{{profile.image}}">
         </div>
         <div class="name">
           <div>
-            <h3>Zanele Nkosi</h3>
-            <p>1655b Rabothata Avenue, Soweto, Johannesburg</p>
+            <h3>{{profile.name}} &nbsp; {{profile.surname}}</h3>
+            <!-- <p>1655b Rabothata Avenue, Soweto, Johannesburg</p> -->
           </div>
         </div>
 
@@ -18,62 +21,26 @@
       <div class="line"></div>
 
       <div class="mylocation">
-        <p>Around:<span>Soweto</span></p>
+        <p>Around:<span>{{myFilter}}</span></p>
       </div>
 
-      <div class="mysalons">
-        <div class="cards">
-          <div class="card">
-            <div class="image">
-              <img src="../../assets/danai.jpg">
+      <div class="mysalons"   >
+        <div class="cards"  >
+    
+
+          <div class="card " *ngFor="let b of salonFiltered"  (click)="selectsalon(b)">
+            <div class="image" >
+              <img src="{{b.salonImage}}">
             </div>
             <div class="title">
               <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; padding-left: 10px;">
-                Beauty Hair Salon
+                {{b.salonName}}
                 <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway">
-                  100 Acre Woods, Sandton, Johannesburg</p>
-
+                  {{b.Address.streetName}}</p>
+                  <!-- <p>{{b.salonName}}<br> {{b.Address.streetName}}</p> -->
             </div>
           </div>
 
-          <div class="card">
-            <div class="image">
-              <img src="../../assets/danai.jpg">
-            </div>
-            <div class="title">
-              <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; padding-left: 10px;">
-                Keke's Barber Shop
-                <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway">
-                  100 Acre Woods, Sandton, Johannesburg</p>
-
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="image">
-              <img src="../../assets/danai.jpg">
-            </div>
-            <div class="title">
-              <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; padding-left: 10px;">
-                Ebuhleni hair Salon
-                <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway">
-                  100 Acre Woods, Sandton, Johannesburg</p>
-
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="image">
-              <img src="../../assets/danai.jpg">
-            </div>
-            <div class="title">
-              <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; padding-left: 10px;">
-                Combs Hair Salon
-                <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway">
-                  100 Acre Woods, Sandton, Johannesburg</p>
-
-            </div>
-          </div>
         </div>
       </div>
 
@@ -95,7 +62,7 @@
         <ion-slides #slides [options]="slideOpts" (ionSlideWillChange)="change()"
           style="height: 100%; width: 80%; overflow: visible;">
           <ion-slide style="width: 80vw !important; border-radius: 20px !
-                ; overflow: hidden;" *ngFor="let b of salons">
+                ; overflow: hidden;" *ngFor="let b of newSalon">
             <img src="{{b.salonImage}}" (click)="selectsalon(b)">
             <div class="salonName">
               <p>{{b.salonName}}<br> {{b.Address.streetName}}</p>
@@ -106,11 +73,11 @@
     </div>
   </div>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" size="small" color="transparent" >
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed" size="small" color="transparent" >
     <ion-fab-button >
       <ion-icon name="map" class="cart-icon"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
  
 </ion-content>
 
