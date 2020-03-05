@@ -217,413 +217,413 @@ background: black;
 }
 }
 
-// .g-search {
-//   position: absolute;
-//   top: 10px;
-//   right: 10px;
-//   z-index: 10;
-// }
+.g-search {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
 
-// ion-toolbar {
-//   --background: white;
-//   position: absolute;
-//   z-index: 9;
-// }
+ion-toolbar {
+  --background: white;
+  position: absolute;
+  z-index: 9;
+}
 
-// .s-location :focus {
-//   outline: none;
-// }
+.s-location :focus {
+  outline: none;
+}
 
-// .s-location {
-//   width: 90vw;
-//   height: 10vw;
-//   border-radius: 20px;
-//   display: grid;
-//   align-items: center;
-//   background: #343A3F;
-//   position: absolute;
-//   top: 15px;
-//   left: 13px;
-//   right: 10px;
-//   overflow: hidden;
-//   margin: 5px;
+.s-location {
+  width: 90vw;
+  height: 10vw;
+  border-radius: 20px;
+  display: grid;
+  align-items: center;
+  background: #343A3F;
+  position: absolute;
+  top: 15px;
+  left: 13px;
+  right: 10px;
+  overflow: hidden;
+  margin: 5px;
 
-//   #locater {
-//     position: relative;
-//     padding: 5px;
-//     // top: -2.5vw;
-//     left: 80vw;
-//     z-index: 10;
-//     font-size: 6.5vw;
-//     color: rgb(207, 207, 207);
-//     align-items: center;
-//   }
+  #locater {
+    position: relative;
+    padding: 5px;
+    // top: -2.5vw;
+    left: 80vw;
+    z-index: 10;
+    font-size: 6.5vw;
+    color: rgb(207, 207, 207);
+    align-items: center;
+  }
 
-//  #pac-input :focus {
-//     outline: none;
-//   }
+ #pac-input :focus {
+    outline: none;
+  }
 
-//   #pac-input {
-//     width: 80vw;
-//     height: 10vw;
-//     font-size: 3.5vw;
-//     border: none;
-//     color: #BF6B7A;
-//     box-shadow: none !important;
-//     border-radius: 20px;
-//     padding: 10px;
-//     position: absolute !important;
-//     // // top: 10px;
-//   }
-// }
+  #pac-input {
+    width: 80vw;
+    height: 10vw;
+    font-size: 3.5vw;
+    border: none;
+    color: #BF6B7A;
+    box-shadow: none !important;
+    border-radius: 20px;
+    padding: 10px;
+    position: absolute !important;
+    // // top: 10px;
+  }
+}
 
-// .loader {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   bottom: 0;
-//   right: 0;
-//   z-index: 20;
-//   background: rgb(22, 13, 0);
-//   background-repeat: repeat-x;
-//   transform: scale(1);
-//   overflow: hidden;
-//   transition: 0.4s;
-//   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-//   animation: backgroundmover 30s linear infinite;
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 20;
+  background: rgb(22, 13, 0);
+  background-repeat: repeat-x;
+  transform: scale(1);
+  overflow: hidden;
+  transition: 0.4s;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation: backgroundmover 30s linear infinite;
 
-//   .maploader {
-//     // overflow: hidden;
-//     width: 70px;
-//     height: 50px;
-//     margin: 40vh auto;
-//     text-align: center;
-//     // animation: name duration timing-function delay iteration-count direction fill-mode;
-//     animation: maploader 1.2s linear infinite;
-//     border-radius: 200px;
-//     display: grid;
-//     align-content: center;
-//     position: relative;
-//     border: solid 2px gray;
+  .maploader {
+    // overflow: hidden;
+    width: 70px;
+    height: 50px;
+    margin: 40vh auto;
+    text-align: center;
+    // animation: name duration timing-function delay iteration-count direction fill-mode;
+    animation: maploader 1.2s linear infinite;
+    border-radius: 200px;
+    display: grid;
+    align-content: center;
+    position: relative;
+    border: solid 2px gray;
 
-//     .lds-facebook {
-//       display: inline-block;
-//       position: relative;
-//       width: 64px;
-//       height: 64px;
-//     }
+    .lds-facebook {
+      display: inline-block;
+      position: relative;
+      width: 64px;
+      height: 64px;
+    }
 
-//     .lds-facebook div {
-//       border-radius: 200px;
-//       display: inline-block;
-//       position: absolute;
-//       left: 6px;
-//       right: 6px;
-//       width: 13px;
-//       background: #fff;
-//       animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-//     }
+    .lds-facebook div {
+      border-radius: 200px;
+      display: inline-block;
+      position: absolute;
+      left: 6px;
+      right: 6px;
+      width: 13px;
+      background: #fff;
+      animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    }
 
-//     .lds-facebook div:nth-child(1) {
-//       left: 6px;
-//       animation-delay: -0.24s;
-//     }
+    .lds-facebook div:nth-child(1) {
+      left: 6px;
+      animation-delay: -0.24s;
+    }
 
-//     .lds-facebook div:nth-child(2) {
-//       left: 26px;
-//       animation-delay: -0.12s;
-//     }
+    .lds-facebook div:nth-child(2) {
+      left: 26px;
+      animation-delay: -0.12s;
+    }
 
-//     .lds-facebook div:nth-child(3) {
-//       left: 45px;
-//       animation-delay: 0;
-//     }
+    .lds-facebook div:nth-child(3) {
+      left: 45px;
+      animation-delay: 0;
+    }
 
-//     @keyframes lds-facebook {
-//       0% {
-//         top: 6px;
-//         height: 51px;
-//       }
+    @keyframes lds-facebook {
+      0% {
+        top: 6px;
+        height: 51px;
+      }
 
-//       50%,
-//       100% {
-//         top: 19px;
-//         height: 26px;
-//       }
-//     }
+      50%,
+      100% {
+        top: 19px;
+        height: 26px;
+      }
+    }
 
-//   }
-// }
+  }
+}
 
-// .loading-text {
-//   // color: yellow;
-//   position: absolute;
-//   bottom: 50vh;
-//   left: 0px;
-//   width: 100vw;
-//   text-align: center;
-//   // background: red;
-//   height: 50vh;
-//   z-index: 50;
-// }
+.loading-text {
+  // color: yellow;
+  position: absolute;
+  bottom: 50vh;
+  left: 0px;
+  width: 100vw;
+  text-align: center;
+  // background: red;
+  height: 50vh;
+  z-index: 50;
+}
 
-// .loader-hide {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   bottom: 0;
-//   right: 0;
-//   z-index: 20;
-//   background: rgb(255, 255, 255);
-//   transform: scale(0);
-//   overflow: hidden;
-//   transition: 0.4s;
-//   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+.loader-hide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 20;
+  background: rgb(255, 255, 255);
+  transform: scale(0);
+  overflow: hidden;
+  transition: 0.4s;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 
-//   .maploader {
-//     // overflow: hidden;
-//     width: 70px;
-//     height: 50px;
-//     margin: 40vh auto;
-//     text-align: center;
-//     // animation: name duration timing-function delay iteration-count direction fill-mode;
-//     animation: maploader 1.2s linear infinite;
-//     border-radius: 200px;
-//     display: grid;
-//     align-content: center;
-//     position: relative;
-//     border: solid 2px gray;
+  .maploader {
+    // overflow: hidden;
+    width: 70px;
+    height: 50px;
+    margin: 40vh auto;
+    text-align: center;
+    // animation: name duration timing-function delay iteration-count direction fill-mode;
+    animation: maploader 1.2s linear infinite;
+    border-radius: 200px;
+    display: grid;
+    align-content: center;
+    position: relative;
+    border: solid 2px gray;
 
-//     .lds-facebook {
-//       display: inline-block;
-//       position: relative;
-//       width: 64px;
-//       height: 64px;
-//     }
+    .lds-facebook {
+      display: inline-block;
+      position: relative;
+      width: 64px;
+      height: 64px;
+    }
 
-//     .lds-facebook div {
-//       border-radius: 200px;
-//       display: inline-block;
-//       position: absolute;
-//       left: 6px;
-//       right: 6px;
-//       width: 13px;
-//       background: #fff;
-//       animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-//     }
+    .lds-facebook div {
+      border-radius: 200px;
+      display: inline-block;
+      position: absolute;
+      left: 6px;
+      right: 6px;
+      width: 13px;
+      background: #fff;
+      animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    }
 
-//     .lds-facebook div:nth-child(1) {
-//       left: 6px;
-//       animation-delay: -0.24s;
-//     }
+    .lds-facebook div:nth-child(1) {
+      left: 6px;
+      animation-delay: -0.24s;
+    }
 
-//     .lds-facebook div:nth-child(2) {
-//       left: 26px;
-//       animation-delay: -0.12s;
-//     }
+    .lds-facebook div:nth-child(2) {
+      left: 26px;
+      animation-delay: -0.12s;
+    }
 
-//     .lds-facebook div:nth-child(3) {
-//       left: 45px;
-//       animation-delay: 0;
-//     }
+    .lds-facebook div:nth-child(3) {
+      left: 45px;
+      animation-delay: 0;
+    }
 
-//     @keyframes lds-facebook {
-//       0% {
-//         top: 6px;
-//         height: 51px;
-//       }
+    @keyframes lds-facebook {
+      0% {
+        top: 6px;
+        height: 51px;
+      }
 
-//       50%,
-//       100% {
-//         top: 19px;
-//         height: 26px;
-//       }
-//     }
+      50%,
+      100% {
+        top: 19px;
+        height: 26px;
+      }
+    }
 
-//   }
-// }
+  }
+}
 
-// @keyframes maploader {
-//   0% {
-//     // transform: rotate(0deg);
-//     border-color: rgb(182, 70, 95);
-//     // background: rgb(255, 192, 192);
-//   }
+@keyframes maploader {
+  0% {
+    // transform: rotate(0deg);
+    border-color: rgb(182, 70, 95);
+    // background: rgb(255, 192, 192);
+  }
 
-//   50% {
-//     // background: rgb(206, 206, 255);
-//     // transform: rotate(360deg);
-//     border-color: rgb(42, 50, 75);
-//   }
+  50% {
+    // background: rgb(206, 206, 255);
+    // transform: rotate(360deg);
+    border-color: rgb(42, 50, 75);
+  }
 
-//   100% {
-//     border-color: rgb(250, 182, 43);
-//     // background: rgb(255, 167, 167);
-//     // transform: rotate(360deg);
-//   }
-// }
+  100% {
+    border-color: rgb(250, 182, 43);
+    // background: rgb(255, 167, 167);
+    // transform: rotate(360deg);
+  }
+}
 
-// .menu {
-//   display: flex;
-//   flex-flow: row;
-//   justify-content: space-between;
+.menu {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
 
-//   ion-icon {
-//     font-size: 200%;
-//   }
-// }
+  ion-icon {
+    font-size: 200%;
+  }
+}
 
-// #map {
-//   width: 100%;
-//   height: 100%;
-//   position: absolute;
-//   // bottom: -1px;
-// }
+#map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  // bottom: -1px;
+}
 
-// .salonlist {
-//   transition: 0.4s;
-//   height: 100%;
-//   width: 100%;
-//   display: flex;
-//   flex-flow: column;
-//   overflow-y: auto;
-//   position: absolute;
-//   top: 30%;
+.salonlist {
+  transition: 0.4s;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  overflow-y: auto;
+  position: absolute;
+  top: 30%;
 
-//   .magic {
-//     width: 100%;
-//     // height: 100%;
-//     p{
-//       font-family: 'Raleway';
-//     }
+  .magic {
+    width: 100%;
+    // height: 100%;
+    p{
+      font-family: 'Raleway';
+    }
 
-//     #nosalon{
-//       background: rgba(158, 158, 158, 0.699);
-//       border-radius: 5px;
-//       color: rgb(32, 32, 32);
-//       margin: 20px;
-//       margin-left: -8px;
-//       font-size: 8vw;
-//       font-family: 'Poiret One';
-//     }
-//   }
+    #nosalon{
+      background: rgba(158, 158, 158, 0.699);
+      border-radius: 5px;
+      color: rgb(32, 32, 32);
+      margin: 20px;
+      margin-left: -8px;
+      font-size: 8vw;
+      font-family: 'Poiret One';
+    }
+  }
 
-//   .card {
-//     width: 85vw;
-//     height: 150px;
-//     display: flex;
-//     flex-flow: column;
-//     margin: 5px;
-//     // background: rgba(8, 8, 8, 0.719);
-//     position: relative;
-//     overflow: hidden;
+  .card {
+    width: 85vw;
+    height: 150px;
+    display: flex;
+    flex-flow: column;
+    margin: 5px;
+    // background: rgba(8, 8, 8, 0.719);
+    position: relative;
+    overflow: hidden;
 
-//     .top {
-//       display: flex;
-//       flex-flow: row;
-//       justify-items: baseline;
-//       margin: 5px;
+    .top {
+      display: flex;
+      flex-flow: row;
+      justify-items: baseline;
+      margin: 5px;
 
-//       .image {
-//         box-shadow: 2px 2px 10px grey;
-//         position: absolute;
-//         z-index: 5;
-//         width: 30vw;
-//         height: 32vw;
-//         margin: 5px;
-//         border-radius: 20px;
-//         overflow: hidden;
+      .image {
+        box-shadow: 2px 2px 10px grey;
+        position: absolute;
+        z-index: 5;
+        width: 30vw;
+        height: 32vw;
+        margin: 5px;
+        border-radius: 20px;
+        overflow: hidden;
 
-//         .distance-active {
+        .distance-active {
 
-//           width: 100%;
-//           position: absolute;
-//           bottom: 0;
-//           height: auto;
-//           transform: translateY(0px);
+          width: 100%;
+          position: absolute;
+          bottom: 0;
+          height: auto;
+          transform: translateY(0px);
 
-//         }
+        }
 
-//         .distance-inactive {
+        .distance-inactive {
 
-//           width: 100%;
-//           position: absolute;
-//           top: 0;
-//           height: auto;
-//           transform: translateY(30px);
+          width: 100%;
+          position: absolute;
+          top: 0;
+          height: auto;
+          transform: translateY(30px);
 
-//           .data {
-//             width: 97%;
-//             margin: 3px auto;
-//             background: rgba(255, 255, 255, 0.507);
-//             color: rgb(202, 202, 202);
-//             // border-radius: 200px;
-//             display: flex;
-//             position: relative;
-//             justify-content: baseline;
-//             left: 10vw;
+          .data {
+            width: 97%;
+            margin: 3px auto;
+            background: rgba(255, 255, 255, 0.507);
+            color: rgb(202, 202, 202);
+            // border-radius: 200px;
+            display: flex;
+            position: relative;
+            justify-content: baseline;
+            left: 10vw;
 
-//             p {
-//               font-size: 3vw;
-//               color: rgb(165, 165, 165) !important;
-//               margin: 3px;
-//             }
-//           }
-//         }
+            p {
+              font-size: 3vw;
+              color: rgb(165, 165, 165) !important;
+              margin: 3px;
+            }
+          }
+        }
 
-//         img {
-//           width: 100%;
-//           height: 100%;
-//           object-fit: cover;
-//           border-radius: 10px;
-//         }
-//       }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 10px;
+        }
+      }
 
-//       .title {
-//         margin: 25px;
-//         // float: left;
-//         background: #343A3F;
-//         border-top-right-radius: 10px;
-//         border-bottom-right-radius: 10px;
-//         width: 55vw;
-//         height: 25vw;
-//         position: relative;
-//         left: 17vw;
-//         bottom: 4.5%;
+      .title {
+        margin: 25px;
+        // float: left;
+        background: #343A3F;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        width: 55vw;
+        height: 25vw;
+        position: relative;
+        left: 17vw;
+        bottom: 4.5%;
 
-//         // display: grid;
-//         // align-items: center;
-//         p {
-//           margin: 10px 10px;
-//         }
+        // display: grid;
+        // align-items: center;
+        p {
+          margin: 10px 10px;
+        }
 
-//         .data {
-//           width: 97%;
-//           margin: 6px auto;
-//           color: rgb(179, 179, 179);
-//           // border-radius: 200px;
-//           display: flex;
-//           flex-flow: row;
-//           position: relative;
-//           justify-content: baseline;
-//           left: 10vw;
+        .data {
+          width: 97%;
+          margin: 6px auto;
+          color: rgb(179, 179, 179);
+          // border-radius: 200px;
+          display: flex;
+          flex-flow: row;
+          position: relative;
+          justify-content: baseline;
+          left: 10vw;
 
-//           p {
-//             font-size: 3vw;
-//             color: rgb(165, 165, 165) !important;
-//             margin: 3px;
-//           }
-//         }
+          p {
+            font-size: 3vw;
+            color: rgb(165, 165, 165) !important;
+            margin: 3px;
+          }
+        }
 
-//       }
+      }
 
-//     }
+    }
 
-//   }
-// }
+  }
+}
 
-// p {
-//   color: rgb(255, 255, 255);
-//   font-size: 5vw;
-//   margin: 0;
-// }
+p {
+  color: rgb(255, 255, 255);
+  font-size: 5vw;
+  margin: 0;
+}

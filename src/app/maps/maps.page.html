@@ -1,130 +1,8 @@
-<ion-content fullscreen>
-
-  <div class="container">
-
-    <div class="top">
-      <div class="header" >
-        <div class="propic" routerLink="/viewprofile">
-          
-    <img  *ngIf="!profile.image" src="../../assets/danai.jpg">
-
-    <img *ngIf="profile.image" src="{{profile.image}}">
-        </div>
-        <div class="name">
-          <div>
-            <h3>{{profile.name}} &nbsp; {{profile.surname}}</h3>
-            <!-- <p>1655b Rabothata Avenue, Soweto, Johannesburg</p> -->
-          </div>
-        </div>
-
-      </div>
-      <div class="line"></div>
-
-      <div class="mylocation">
-        <p>Around:<span>{{myFilter}}</span></p>
-      </div>
-
-      <div class="mysalons"   >
-        <div class="cards"  >
-    
-
-          <div class="card " *ngFor="let b of salonFiltered"  (click)="selectsalon(b)">
-            <div class="image" >
-              <img src="{{b.salonImage}}">
-            </div>
-            <div class="title">
-              <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; padding-left: 10px;">
-                {{b.salonName}}
-                <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway">
-                  {{b.Address.streetName}}</p>
-                  <!-- <p>{{b.salonName}}<br> {{b.Address.streetName}}</p> -->
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="line"></div>
-
-
-    </div>
-    <div class="allsalons">
-      <div class="othersalons">
-
-        <p>Others: {{salons}} results</p>
-      </div>
-
-      <div class="search">
-        <ion-searchbar placeholder="Search Salons" id="search"></ion-searchbar>
-      </div>
-    
-      <div class='List'>
-        <ion-slides #slides [options]="slideOpts" (ionSlideWillChange)="change()"
-          style="height: 100%; width: 80%; overflow: visible;">
-          <ion-slide style="width: 80vw !important; border-radius: 20px !
-                ; overflow: hidden;" *ngFor="let b of newSalon">
-            <img src="{{b.salonImage}}" (click)="selectsalon(b)">
-            <div class="salonName">
-              <p>{{b.salonName}}<br> {{b.Address.streetName}}</p>
-            </div>
-          </ion-slide>
-        </ion-slides>
-      </div>
-    </div>
-  </div>
-
-  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed" size="small" color="transparent" >
-    <ion-fab-button >
-      <ion-icon name="map" class="cart-icon"></ion-icon>
-    </ion-fab-button>
-  </ion-fab> -->
- 
-</ion-content>
-
-  <!-- <div class="sidetitle">
-        <p>AIRSKEDGE</p>
-      </div> -->
-
-
- <!-- <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
-    <div class="maploader">
-      <div class="lds-facebook">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
-    <div class="loading-text">
-      <p>Loading Map</p>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="header">
-
-    </div>
-  </div>
+<ion-content>
   <div #map id="map"></div>
-  <div class="s-location">
-    //
-    <input id="pac-input" name="pac-input" class="controls" type="text" placeholder="Search Location " (click)="checkhide()">
-    //
-    <ion-searchbar placeholder="Search Location " id="pac-input" (ionFocus)="inputEvent('open')"
-      (ionBlur)="inputEvent('close')" color='transparent'></ion-searchbar>
-    <ion-icon name="locate" id="locater" (click)="requestPrompt()"></ion-icon>
-  </div>
-  //
-  <ion-item *ngIf="searchby.salon" id="salonlocate">
-      <ion-label position="floating" style="margin: 5px; ">Search by salon name</ion-label>
-      <ionic-selectable item-content [(ngModel)]="port" [items]="ports" itemTextField="names" [canSearch]="true"
-        searchFailText="Nothing Found :(" (onChange)="portChange($event)">
-      </ionic-selectable>
-    </ion-item>
-    //
-  <br><br><br>
-  <div class="salonlist">
+   <div class="salonlist">
     <ion-slides [options]="sliderConfig" #sliderRef (ionSlideDidChange)="moveMapEvent($event)">
-      <ion-slide class="magic" *ngFor="let b of salons; let i = index" (click)="selectsalon(b)">
+      <ion-slide class="magic" *ngFor="let b of newSalon; let i = index" (click)="selectsalon(b)">
         <div class="card">
           <div class="top">
             <div class="image">
@@ -132,10 +10,9 @@
               <img *ngIf="b.salonImage" src="{{b.salonImage}}" alt="tough">
             </div>
             <div class="title" (click)="selectsalon(b)">
-              <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; padding-left: 10px;">
-                <strong>{{b.salonName}}</strong></p>
-              <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway">
-                {{b.Address.streetName}}</p>
+           <p class="stars" style="font-size: 4vw; color: #FFB082; font-family: Poiret One; padding-left: 10px;">
+                <strong>{{b.salonName}}</strong></p> 
+             <p class="stars" style="color: rgb(185, 184, 184); font-size: 3vw; font-family: Raleway"> {{b.Address.streetName}}</p> 
               <div [ngClass]="{'distance-active': cardIndex, 'distance-inactive': !cardIndex}" (click)="showDistance()">
                 <div class="data" *ngIf="!duration">
                   <ion-icon name="car"></ion-icon>
@@ -152,8 +29,7 @@
           </div>
         </div>
       </ion-slide>
-      <ion-slide class="magic">
-        <p id="nosalon">No salons in this area</p>
-      </ion-slide>
+     
     </ion-slides>
-  </div> -->
+  </div> 
+</ion-content>

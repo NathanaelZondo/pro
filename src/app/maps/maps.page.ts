@@ -299,40 +299,42 @@ this.db.collection('Users').doc(firebase.auth().currentUser.uid).get().then(res 
   }
 })
     this.ngZone.run(() => {
-      let versionNumber = '5.1.1'
-      if (this.versionType === versionNumber) {
-        this.getUserPosition()
-        console.log('its got it')
-      } else {
+      this.getUserPosition()
+      this.getHairSalon()
+    //   let versionNumber = '5.1.1'
+    //   if (this.versionType === versionNumber) {
+    //     this.getUserPosition()
+    //     console.log('its got it')
+    //   } else {
      this.getSalons();
-     this.geolocation.getCurrentPosition().then(res =>{
-      let geoData = {
-        lat: res.coords.latitude,
-        lng: res.coords.longitude
-      }
-      this.geocoder.geocode({ 'location': geoData }, (results, status) => {
-        console.log('Geocode responded with', results, 'and status of', status)
-        if (status) {
-          if (results[0]) {
-            // get the city from the address components
-            this.myFilter = results[1].address_components[4].short_name;
-            console.log('filterd by', results);
-            console.log('match', this.myFilter);
-            this.getFilteredSalons();
-          } else {
-            console.log('No results found');
-          }
-        } else {
-          console.log('Geocoder failed due to: ' + status);
-        }
-      }, err => {
-        console.log('Geocoder failed with', err)
-      });
-      console.log('myLocation',geoData);
+    //  this.geolocation.getCurrentPosition().then(res =>{
+    //   let geoData = {
+    //     lat: res.coords.latitude,
+    //     lng: res.coords.longitude
+    //   }
+    //   this.geocoder.geocode({ 'location': geoData }, (results, status) => {
+    //     console.log('Geocode responded with', results, 'and status of', status)
+    //     if (status) {
+    //       if (results[0]) {
+    //         // get the city from the address components
+    //         this.myFilter = results[1].address_components[4].short_name;
+    //         console.log('filterd by', results);
+    //         console.log('match', this.myFilter);
+    //         this.getFilteredSalons();
+    //       } else {
+    //         console.log('No results found');
+    //       }
+    //     } else {
+    //       console.log('Geocoder failed due to: ' + status);
+    //     }
+    //   }, err => {
+    //     console.log('Geocoder failed with', err)
+    //   });
+    //   console.log('myLocation',geoData);
       
-     })
-        console.log('masbone')
-      }
+    //  })
+    //     console.log('masbone')
+    //   }
     })
 
   }
