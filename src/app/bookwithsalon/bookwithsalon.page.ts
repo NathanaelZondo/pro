@@ -709,7 +709,7 @@ else
   if ((new Date(ev.selectedTime).getMonth() + 1) < 10) {
 
     this.todate = (new Date(ev.selectedTime).getFullYear().toString()) + '-0' + (new Date(ev.selectedTime).getMonth() + 1) + '-' + (new Date(ev.selectedTime).getDate());
-    if ((new Date().getDate()) < 10) {
+    if ((new Date(ev.selectedTime).getDate()) < 10) {
       this.todate = (new Date(ev.selectedTime).getFullYear().toString()) + '-0' + (new Date(ev.selectedTime).getMonth() + 1) + '-0' + (new Date(ev.selectedTime).getDate());
     }
 
@@ -733,17 +733,17 @@ if ((new Date(ev.selectedTime).getDate()) < 10) {
 }
 
 
-if (this.todate> this.futuredate) {
+// if (this.todate> this.futuredate) {
 
 
-  console.log("futureDate =", this.futuredate)
-  this.booking.userdate=undefined;
-this.fdating =true;
-  this.isvalidated = true;
-  this.smallLoading();
+//   console.log("futureDate =", this.futuredate)
+//   this.booking.userdate=undefined;
+// this.fdating =true;
+//   this.isvalidated = true;
+//   this.smallLoading();
 
-}
-else
+// }
+// else
 if (this.cdate() > this.todate) {
 
   this.booking.userdate=undefined;
@@ -1445,11 +1445,11 @@ if(this.pdating ==true)
   console.log("Pastdatefound") 
 }
 
-else if(this.fdating ==true)
-{
-  this.FutureDateToast();
-  console.log("Futuredatefound") 
-}
+// else if(this.fdating ==true)
+// {
+//   this.FutureDateToast();
+//   console.log("Futuredatefound") 
+// }
   else{
     this.isvalidated =false;
   }
