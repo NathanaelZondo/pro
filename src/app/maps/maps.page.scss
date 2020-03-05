@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Lato|Teko|Abel|Bebas+Neue|Anton|Dosis|Oxygen|Jura|Pacifico|Righteous|Roboto+Condensed|Ubuntu|Manjari| Mansalva");
 
-
-
 // .content{
 //   background: rgb(48, 48, 48);
 // }
@@ -17,11 +15,10 @@
 // .container {
 //   display: flex;
 //   flex-flow: column;
-//   align-items: center; 
-//   height: 100vh;  
+//   align-items: center;
+//   height: 100vh;
 
 // }
-
 
 // .cards {
 //   width: 100vw;
@@ -64,7 +61,7 @@
 //     .title {
 //       border-radius: 10px;
 //       width: 100%;
-      
+
 //       background: white;
 //       padding: 10px 0 10px 10vw;
 //     }
@@ -77,8 +74,6 @@
 //     height: auto;
 //     // overflow-y: auto;
 // }
-
-
 
 // .header {
 //   display: flex;
@@ -178,16 +173,14 @@
 //       backdrop-filter: blur(3px);
 //       background: rgba(0, 0, 0, 0.39);
 //        p{
- 
+
 //       text-align: center;
 //       color: white;
 //     }
 //     }
-   
+
 //   }
 // }
-
-
 
 // // .sidetitle{
 // //   transform: rotate(-90deg);
@@ -206,15 +199,11 @@
 // // }
 // }
 
-
-
-
 .salons {
-
-main.inner-scroll{
-padding: 0;
-background: black;
-}
+  main.inner-scroll {
+    padding: 0;
+    background: black;
+  }
 }
 
 .g-search {
@@ -240,7 +229,7 @@ ion-toolbar {
   border-radius: 20px;
   display: grid;
   align-items: center;
-  background: #343A3F;
+  background: #343a3f;
   position: absolute;
   top: 15px;
   left: 13px;
@@ -259,7 +248,7 @@ ion-toolbar {
     align-items: center;
   }
 
- #pac-input :focus {
+  #pac-input :focus {
     outline: none;
   }
 
@@ -268,7 +257,7 @@ ion-toolbar {
     height: 10vw;
     font-size: 3.5vw;
     border: none;
-    color: #BF6B7A;
+    color: #bf6b7a;
     box-shadow: none !important;
     border-radius: 20px;
     padding: 10px;
@@ -351,7 +340,6 @@ ion-toolbar {
         height: 26px;
       }
     }
-
   }
 }
 
@@ -439,7 +427,6 @@ ion-toolbar {
         height: 26px;
       }
     }
-
   }
 }
 
@@ -485,26 +472,26 @@ ion-toolbar {
   height: 100%;
   width: 100%;
   display: flex;
-  flex-flow: column;
-  overflow-y: auto;
+  flex-flow: row;
+  overflow-x: auto;
   position: absolute;
-  top: 30%;
+  bottom: 0% !important;
 
   .magic {
     width: 100%;
     // height: 100%;
-    p{
-      font-family: 'Raleway';
+    p {
+      font-family: "Raleway";
     }
 
-    #nosalon{
+    #nosalon {
       background: rgba(158, 158, 158, 0.699);
       border-radius: 5px;
       color: rgb(32, 32, 32);
       margin: 20px;
       margin-left: -8px;
       font-size: 8vw;
-      font-family: 'Poiret One';
+      font-family: "Poiret One";
     }
   }
 
@@ -516,6 +503,7 @@ ion-toolbar {
     margin: 5px;
     // background: rgba(8, 8, 8, 0.719);
     position: relative;
+    top: 40%;
     overflow: hidden;
 
     .top {
@@ -535,17 +523,14 @@ ion-toolbar {
         overflow: hidden;
 
         .distance-active {
-
           width: 100%;
           position: absolute;
           bottom: 0;
           height: auto;
           transform: translateY(0px);
-
         }
 
         .distance-inactive {
-
           width: 100%;
           position: absolute;
           top: 0;
@@ -582,7 +567,7 @@ ion-toolbar {
       .title {
         margin: 25px;
         // float: left;
-        background: #343A3F;
+        background: #343a3f;
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
         width: 55vw;
@@ -614,11 +599,8 @@ ion-toolbar {
             margin: 3px;
           }
         }
-
       }
-
     }
-
   }
 }
 
