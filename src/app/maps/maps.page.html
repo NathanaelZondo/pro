@@ -53,7 +53,9 @@
           </div>
         </div>
       </ion-slide>
-     
+            <ion-slide class="magic"  *ngIf="newSalon.length==0">
+        <p id="nosalon">No salons in this area</p>
+      </ion-slide>
     </ion-slides>
   </div> 
 </ion-content>

@@ -73,7 +73,7 @@ export class MapsPage implements OnInit {
   fullAdress
   ports = []
   geocoder = new google.maps.Geocoder;
-  fiter = ''
+  fiter : string
   NewUseArray = {};
   schools = [];
   requests = [];
@@ -106,6 +106,7 @@ export class MapsPage implements OnInit {
 newSalon = [];
 salonFiltered = []
 myFilter = ''
+FilterArray = []
   salonContainer = document.getElementsByClassName('salonlist')
   autoCompSearch = document.getElementsByClassName('searchbar-input');
   constructor(private device: Device, private androidPermissions: AndroidPermissions,
@@ -120,6 +121,7 @@ myFilter = ''
     setTimeout(() => {
       this.ngZone.run(() => {
         this.AutoComplete();
+        // this.getSalons()
       })
     }, 500);
 
@@ -134,8 +136,6 @@ myFilter = ''
           lat: place.geometry.location.lat(),
           lng: place.geometry.location.lng(),
         }
-       
-        
       let geoData = {
         lat: place.geometry.location.lat(),
           lng: place.geometry.location.lng(),
@@ -146,10 +146,13 @@ myFilter = ''
         if (status) {
           if (results[0]) {
             // get the city from the address components
-            this.fiter = results[1].address_components[4].short_name;
-         
-      
-           this.getFilteredSalonMarkers();
+           this.fiter = results[1].address_components[3].long_name;
+          //  this.getFilteredSalonMarkers();
+   this.filterCards()
+       
+       
+        console.log('this filter', this.fiter)
+        
           } else {
             console.log('No results found');
           }
@@ -157,16 +160,21 @@ myFilter = ''
           console.log('Geocoder failed due to: ' + status);
         }
       })
-      this.map.panTo(latLng);
+      
+      this.map.panTo(latLng)
+      
 
+  
       });
     })
   }
   inputEvent(data) {
     this.ngZone.run(() => {
       if (data == 'open') {
+        this.newSalon = []
         this.rendere.setStyle(this.salonContainer[0], 'transform', 'translateY(30vh)')
       } else if (data == 'close') {
+      
         this.rendere.setStyle(this.salonContainer[0], 'transform', 'translateY(0)')
       }
     })
@@ -205,9 +213,11 @@ myFilter = ''
         // this.cardIndex = index;
         console.log(index);
         console.log('currentIndex:', this.cardIndex);
-        let currentEvent = this.salons[index]
+        let currentEvent = this.newSalon[index]
         console.log('something nyana', currentEvent.Address.lat);
+     
         this.fullAdress = currentEvent.Address.fullAddress;
+        console.log('something ', this.fullAdress);
         this.DirectionsCenter = {
           lat: currentEvent.Address.lat,
           lng: currentEvent.Address.lng
@@ -287,8 +297,11 @@ myFilter = ''
     });
     this.control.router.navigate(['viewsalon']);
   }
-
+  ionViewDidEnter(){
+    
+  }
   ngOnInit() {
+    console.log('ngonit',this.ngOnInit)
 this.db.collection('Users').doc(firebase.auth().currentUser.uid).get().then(res =>{
   if(res.exists){
     this.profile = res.data()
@@ -296,15 +309,16 @@ this.db.collection('Users').doc(firebase.auth().currentUser.uid).get().then(res 
     
   }
 })
+this.getSalons()
     this.ngZone.run(() => {
       this.getUserPosition()
-      this.getHairSalon()
+      // this.getHairSalon()
     //   let versionNumber = '5.1.1'
     //   if (this.versionType === versionNumber) {
     //     this.getUserPosition()
     //     console.log('its got it')
     //   } else {
-     this.getSalons();
+    
     //  this.geolocation.getCurrentPosition().then(res =>{
     //   let geoData = {
     //     lat: res.coords.latitude,
@@ -348,16 +362,34 @@ if(!res.empty){
  })
   }
   getSalons(){
-    this.db.collection('Salons').get().then(res =>{
-      this.newSalon = []
+    this.ngZone.run(()=>{
+      this.db.collection('Salons').get().then(res =>{
+        this.newSalon = []
+        if(!res.empty){
+          res.forEach(doc =>{
+  
+  this.newSalon.push(doc.data());
+  console.log('new array',this.newSalon);
+  
+          })
+        }
+        // this.newSalon = []
+      })
+    })
+  }
+  filterCards(){
+    this.ngZone.run(()=>{
+    this.db.collection('Salons').where('Metro2', '==', this.fiter).onSnapshot(res =>{
+      this.newSalon.length = 0
+      console.log('wsws'); 
       if(!res.empty){
-        res.forEach(doc =>{
-this.newSalon.push(doc.data());
-console.log('new array',this.newSalon);
-
+        res.forEach( doc =>{
+          console.log('log' , doc.data())
+          this.newSalon.push(doc.data())
         })
       }
     })
+  })
   }
   getHairSalon() {
     this.ngZone.run(()=>{
@@ -422,7 +454,7 @@ console.log('new array',this.newSalon);
               this.fiter = results[1].address_components[4].short_name;
               console.log('filterd by', results);
               console.log('match', this.fiter);
-              this.getFilteredSalonMarkers();
+              // this.getFilteredSalonMarkers();
             } else {
               console.log('No results found');
             }
@@ -434,6 +466,7 @@ console.log('new array',this.newSalon);
         });
         this.currentPos = pos;
         console.log(pos);
+        // this.getSalons();
         this.addMap(pos.coords.latitude, pos.coords.longitude);
         console.log('Current Location', geoData);
         this.addMarker();
