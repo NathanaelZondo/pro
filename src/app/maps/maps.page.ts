@@ -202,7 +202,6 @@ myFilter = ''
   async  moveMapEvent(): Promise<void> {
     this.ngZone.run(() => {
       this.slides.getActiveIndex().then(index => {
-
         // this.cardIndex = index;
         console.log(index);
         console.log('currentIndex:', this.cardIndex);
@@ -217,7 +216,6 @@ myFilter = ''
 
       })
       this.geolocation.getCurrentPosition().then((resp) => {
-
         let geoData = {
           lat: resp.coords.latitude,
           lng: resp.coords.longitude
